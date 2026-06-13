@@ -187,7 +187,8 @@ orderForm.addEventListener("submit", async (e) => {
   const order = {
     plan: planDD.value,
     username: $("#xUsername").value.trim(),
-      telegram: $("#tgUsername").value.trim(),
+      telegramUsername: $("#tgUsername").value.trim(),
+
 
     method: payDD.value,
     txRef: $("#txRef").value.trim(),
@@ -212,7 +213,7 @@ try {
   $("#summary").innerHTML = `
     <div class="sc full"><small>Plan</small><span>${esc(order.plan)}</span></div>
     <div class="sc"><small>X Username</small><span>${esc(order.username)}</span></div>
-    <div class="sc"><small>Telegram</small><span>${esc(order.telegram)}</span></div>
+    <div class="sc"><small>Telegram</small><span>${esc(order.telegramUsername)}</span></div>
     <div class="sc"><small>Payment Method</small><span>${esc(order.method)}</span></div>
     <div class="sc"><small>Time</small><span>${esc(order.time)}</span></div>
     <div class="sc full"><small>Reference</small><span>${esc(order.txRef)}</span></div>`;

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#07090C" />
+  <meta name="description" content="All-in-One Premiums — Twitter Premium made simple. Fast activation, trusted service, crypto-friendly payments." />
+  <title>All-in-One Premiums — Twitter Premium made simple</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== Luxurious layered background (pointer-events:none) ===== -->
+  <div class="bg" aria-hidden="true">
+    <div class="mesh"></div>
+    <div class="rays"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="orb orb-d"></div>
+    <canvas id="stars"></canvas>
+    <canvas id="scene"></canvas>
+    <div class="noise"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <!-- Scroll progress (subtle, bottom-anchored ring removed; thin top line per micro-interactions) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav-wrap" id="navWrap">
+    <nav class="nav glass" aria-label="Primary">
+      <a href="#hero" class="brand" data-scroll><span class="brand-mark" aria-hidden="true">◆</span><span>All-in-One Premiums</span></a>
+      <div class="nav-center">
+        <a href="#why" data-scroll>Why Us</a>
+        <a href="#pricing" data-scroll>Pricing</a>
+        <a href="#how" data-scroll>How It Works</a>
+        <a href="#faq" data-scroll>FAQ</a>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm magnetic nav-cta" data-open-order>Get Premium</button>
+      <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <!-- ===== Side drawer (mobile) ===== -->
+  <div class="drawer-scrim" id="drawerScrim" aria-hidden="true"></div>
+  <aside class="drawer glass" id="drawer" aria-hidden="true">
+    <button type="button" class="drawer-x" id="drawerX" aria-label="Close menu">×</button>
+    <nav class="drawer-nav" aria-label="Mobile">
+      <a href="#why" data-scroll>Why Us</a>
+      <a href="#pricing" data-scroll>Pricing</a>
+      <a href="#how" data-scroll>How It Works</a>
+      <a href="#faq" data-scroll>FAQ</a>
+    </nav>
+    <div class="drawer-actions">
+      <button type="button" class="btn btn-primary btn-lg btn-block magnetic" data-open-order>Get Premium</button>
+      <button type="button" class="btn btn-ghost btn-lg btn-block magnetic" data-dm>DM on Telegram</button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <span class="pill reveal">Trusted by 500+ users worldwide</span>
+        <h1 class="hero-title reveal">Twitter Premium<br /><span class="muted">made simple.</span></h1>
+        <p class="hero-sub reveal">Fast activation. Trusted service. Crypto friendly.</p>
+        <div class="hero-actions reveal">
+          <button type="button" class="btn btn-primary btn-lg magnetic" data-open-order>Get Premium</button>
+          <button type="button" class="btn btn-ghost btn-lg magnetic" data-dm>Contact Support</button>
+        </div>
+        <div class="hero-rating reveal">
+          <span class="stars">★★★★★</span>
+          <span><strong>4.9/5</strong> satisfaction · Trusted by 500+ users worldwide</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Social proof ===== -->
+    <section class="section section-tight">
+      <div class="container">
+        <div class="stats">
+          <div class="stat glass reveal"><strong class="count" data-target="500" data-suffix="+">0</strong><span>Premium Activations</span></div>
+          <div class="stat glass reveal"><strong>24/7</strong><span>Telegram Support</span></div>
+          <div class="stat glass reveal"><strong class="count" data-target="98" data-suffix="%">0</strong><span>Customer Satisfaction</span></div>
+          <div class="stat glass reveal"><strong>5–30 Min</strong><span>Average Activation Time</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Why Us ===== -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">Why us</span>
+          <h2>Why people choose us</h2>
+          <p>Everything is designed around a fast, secure, and effortless experience.</p>
+        </div>
+        <div class="why-grid">
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <h3>No password required</h3><p>We never ask for your password — only your X username.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+            <h3>Fast activation process</h3><p>Most orders activate within 5–30 minutes of verification.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Trusted by 500+ users</h3><p>A reliable process backed by consistent, satisfied customers.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <h3>Transparent pricing</h3><p>One-time payments, clear prices, no hidden fees ever.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9 8h4.5a2.5 2.5 0 010 5H9m0 0h5M9 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <h3>Multiple payment methods</h3><p>Pay with Binance UID, USDT (BSC), or USDC (Base).</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+            <h3>Direct Telegram support</h3><p>Message me personally on Telegram whenever you need help.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pricing ===== -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2>Choose your plan</h2>
+          <p>One-time payment. Activation in 5–30 minutes. Secure process.</p>
+        </div>
+
+        <div class="tier reveal">
+          <div class="tier-label">Twitter Premium <span class="badge hot">🔥 Most Popular</span></div>
+          <div class="cards cards-2">
+            <article class="plan glass tilt">
+              <span class="plan-term">3 Months</span><span class="plan-price">$3.00</span>
+              <span class="plan-note">Twitter Premium · one-time</span>
+              <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
+              <button type="button" class="btn btn-ghost btn-block magnetic plan-btn" data-plan="Twitter Premium — 3 Months">Get Premium</button>
+            </article>
+            <article class="plan glass tilt best">
+              <div class="plan-head"><span class="plan-term">6 Months</span><span class="plan-flag">🔥 Most Popular</span></div>
+              <span class="plan-price">$5.60</span>
+
+              <span class="plan-note">Twitter Premium · one-time</span>
+              <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
+              <button type="button" class="btn btn-primary btn-block magnetic plan-btn" data-plan="Twitter Premium — 6 Months">Get Premium</button>
+            </article>
+          </div>
+        </div>
+
+        <div class="tier reveal">
+          <div class="tier-label">Twitter Premium<span class="plus">+</span> <span class="badge val">⭐ Best Value</span></div>
+          <div class="cards cards-3">
+            <article class="plan glass tilt">
+              <span class="plan-term">3 Months</span><span class="plan-price">$15.00</span>
+              <span class="plan-note">Twitter Premium+ · one-time</span>
+              <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
+              <button type="button" class="btn btn-ghost btn-block magnetic plan-btn" data-plan="Twitter Premium+ — 3 Months">Get Premium</button>
+            </article>
+            <article class="plan glass tilt">
+              <span class="plan-term">6 Months</span><span class="plan-price">$18.00</span>
+              <span class="plan-note">Twitter Premium+ · one-time</span>
+              <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
+              <button type="button" class="btn btn-ghost btn-block magnetic plan-btn" data-plan="Twitter Premium+ — 6 Months">Get Premium</button>
+            </article>
+            <article class="plan glass tilt best">
+              <div class="plan-head"><span class="plan-term">12 Months</span><span class="plan-flag">⭐ Best Value</span></div>
+              <span class="plan-price">$22.00</span>
+
+              <span class="plan-note">Twitter Premium+ · one-time</span>
+              <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
+              <button type="button" class="btn btn-primary btn-block magnetic plan-btn" data-plan="Twitter Premium+ — 12 Months">Get Premium</button>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== How it works ===== -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Three simple steps</h2>
+          <p>From selection to activation in just a few minutes.</p>
+        </div>
+        <div class="timeline">
+          <div class="tl-step glass tilt reveal"><span class="tl-n">01</span><h3>Choose your plan</h3><p>Pick the option that fits you and open checkout.</p></div>
+          <div class="tl-step glass tilt reveal"><span class="tl-n">02</span><h3>Complete payment</h3><p>Pay via Binance UID, USDT (BSC), or USDC (Base).</p></div>
+          <div class="tl-step glass tilt reveal"><span class="tl-n">03</span><h3>Receive activation</h3><p>Submit your reference and enjoy Premium access.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Support ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="dm glass reveal">
+          <span class="eyebrow">Need help?</span>
+          <h2>Direct Telegram support</h2>
+          <p>Questions before ordering? Reach out anytime — I respond personally.</p>
+          <button type="button" class="btn btn-primary btn-lg magnetic" data-dm>DM on Telegram</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Reviews ===== -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">Reviews</span>
+          <h2>What customers say</h2>
+          <p>Real experiences from people who ordered with us.</p>
+        </div>
+      </div>
+      <div class="carousel reveal">
+        <div class="track" id="track">
+          <figure class="review glass"><div class="stars">★★★★★</div><blockquote>Fast activation and smooth experience.</blockquote><figcaption><span class="ava">M</span><span><strong>Marcus T.</strong><small>Verified order</small></span></figcaption></figure>
+          <figure class="review glass"><div class="stars">★★★★★</div><blockquote>Very reliable service. Exactly as described.</blockquote><figcaption><span class="ava">S</span><span><strong>Sofia R.</strong><small>Verified order</small></span></figcaption></figure>
+          <figure class="review glass"><div class="stars">★★★★★</div><blockquote>Premium was activated quickly. Impressed.</blockquote><figcaption><span class="ava">D</span><span><strong>Daniel K.</strong><small>Verified order</small></span></figcaption></figure>
+          <figure class="review glass"><div class="stars">★★★★★</div><blockquote>Clear communication and a secure process.</blockquote><figcaption><span class="ava">A</span><span><strong>Aisha N.</strong><small>Verified order</small></span></figcaption></figure>
+          <figure class="review glass"><div class="stars">★★★★★</div><blockquote>Trusted seller. Will order again for sure.</blockquote><figcaption><span class="ava">L</span><span><strong>Liam P.</strong><small>Verified order</small></span></figcaption></figure>
+          <figure class="review glass"><div class="stars">★★★★★</div><blockquote>Fair pricing, zero issues, fast support.</blockquote><figcaption><span class="ava">N</span><span><strong>Nora V.</strong><small>Verified order</small></span></figcaption></figure>
+        </div>
+      </div>
+      <div class="container car-ctrls">
+        <button type="button" class="car-btn" id="prev" aria-label="Previous">‹</button>
+        <button type="button" class="car-btn" id="next" aria-label="Next">›</button>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq">
+      <div class="container narrow">
+        <div class="head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Frequently asked questions</h2>
+          <p>Everything you need to know before ordering.</p>
+        </div>
+        <div class="faq reveal">
+          <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">How long does activation take?<i class="faq-icon"></i></button><div class="faq-a"><p>Usually 5–30 minutes after payment verification.</p></div></div>
+          <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">Do I need to provide my password?<i class="faq-icon"></i></button><div class="faq-a"><p>No. Only your X username is required — never your password.</p></div></div>
+          <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">What payment methods are accepted?<i class="faq-icon"></i></button><div class="faq-a"><p>Binance UID, USDT (BSC), and USDC (Base).</p></div></div>
+          <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">Can I contact support?<i class="faq-icon"></i></button><div class="faq-a"><p>Yes. Use the Telegram button to message me directly anytime.</p></div></div>
+          <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">Is this safe?<i class="faq-icon"></i></button><div class="faq-a"><p>Yes. We never request your password and only need your X username and transaction reference.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Final CTA ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="final glass reveal">
+          <h2>Ready to get started?</h2>
+          <p>Choose your plan and enjoy a fast, secure activation experience.</p>
+          <button type="button" class="btn btn-primary btn-lg magnetic" data-open-order>Get Premium Now</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer (minimal) ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#hero" class="brand" data-scroll><span class="brand-mark">◆</span><span>All-in-One Premiums</span></a>
+      <p class="footer-tag">Twitter Premium made simple.</p>
+      <p class="footer-bottom">© 2026 All-in-One Premiums</p>
+    </div>
+  </footer>
+
+  <!-- ===== Order Modal ===== -->
+  <div class="overlay" id="orderModal" aria-hidden="true">
+    <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal-x" id="modalClose" aria-label="Close">×</button>
+      <div id="orderView">
+        <div class="modal-head"><h2 id="modalTitle">Complete your order</h2><p>Quick and secure. We never ask for your password.</p></div>
+        <div class="steps-bar">
+          <div class="sb-item active" data-step="1"><span>1</span>Details</div><div class="sb-line"></div>
+          <div class="sb-item" data-step="2"><span>2</span>Payment</div><div class="sb-line"></div>
+          <div class="sb-item" data-step="3"><span>3</span>Confirm</div>
+        </div>
+        <form id="orderForm" novalidate>
+          <div class="dfield">
+            <span class="dlabel">Selected Plan</span>
+            <div class="select" id="planSelect">
+              <button type="button" class="select-trigger" aria-haspopup="listbox" aria-expanded="false"><span class="select-value">Choose a plan</span><span class="select-caret"></span></button>
+              <ul class="select-menu" role="listbox">
+                <li class="select-group">Twitter Premium</li>
+                <li role="option" data-value="Twitter Premium — 3 Months">Twitter Premium — 3 Months · $3.00</li>
+                <li role="option" data-value="Twitter Premium — 6 Months">Twitter Premium — 6 Months · $5.60</li>
+                <li class="select-group">Twitter Premium+</li>
+                <li role="option" data-value="Twitter Premium+ — 3 Months">Twitter Premium+ — 3 Months · $15.00</li>
+                <li role="option" data-value="Twitter Premium+ — 6 Months">Twitter Premium+ — 6 Months · $18.00</li>
+                <li role="option" data-value="Twitter Premium+ — 12 Months">Twitter Premium+ — 12 Months · $22.00</li>
+              </ul>
+            </div>
+            <small class="err" data-err="planSelect"></small>
+          </div>
+
+          <div class="ffield"><input type="text" id="xUsername" placeholder=" " autocomplete="off" /><label for="xUsername">X Username</label><small class="err" data-err="xUsername"></small></div>
+          <div class="ffield"><input type="text" id="tgUsername" placeholder=" " autocomplete="off" /><label for="tgUsername">Telegram Username</label><small class="err" data-err="tgUsername"></small></div>
+
+
+          <div class="dfield">
+            <span class="dlabel">Payment Method</span>
+            <div class="select" id="paySelect">
+              <button type="button" class="select-trigger" aria-haspopup="listbox" aria-expanded="false"><span class="select-value">Choose a payment method</span><span class="select-caret"></span></button>
+              <ul class="select-menu" role="listbox">
+                <li role="option" data-value="Binance UID"><span class="opt-ic">⬡</span>Binance UID</li>
+                <li role="option" data-value="USDT (BSC)"><span class="opt-ic">₮</span>USDT (BSC)</li>
+                <li role="option" data-value="USDC (Base)"><span class="opt-ic">＄</span>USDC (Base)</li>
+              </ul>
+            </div>
+            <small class="err" data-err="paySelect"></small>
+          </div>
+
+          <div class="pay-box" id="payBox" hidden>
+            <div class="pay-row" data-method="Binance UID"><div class="pay-label">Binance UID</div><div class="pay-val"><code>409082023</code><button type="button" class="copy" data-copy="409082023">Copy</button></div></div>
+            <div class="pay-row" data-method="USDT (BSC)"><div class="pay-label">USDT — BSC (BEP-20)</div><div class="pay-val"><code>0xb1790Cc3AD3b664d8dF1fecC8BfA6853D654b0Bb</code><button type="button" class="copy" data-copy="0xb1790Cc3AD3b664d8dF1fecC8BfA6853D654b0Bb">Copy</button></div></div>
+            <div class="pay-row" data-method="USDC (Base)"><div class="pay-label">USDC — Base</div><div class="pay-val"><code>0xb1790Cc3AD3b664d8dF1fecC8BfA6853D654b0Bb</code><button type="button" class="copy" data-copy="0xb1790Cc3AD3b664d8dF1fecC8BfA6853D654b0Bb">Copy</button></div></div>
+            <p class="pay-hint">Send the exact plan amount, then paste your transaction reference below.</p>
+          </div>
+
+          <div class="ffield"><input type="text" id="txRef" placeholder=" " autocomplete="off" /><label for="txRef">Transaction Reference / Tx Hash</label><small class="err" data-err="txRef"></small></div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block magnetic" id="submitBtn"><span class="btn-label">Submit Order</span><span class="spinner" aria-hidden="true"></span></button>
+        </form>
+      </div>
+
+      <div id="successView" hidden>
+        <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+        <div class="success-glow" aria-hidden="true"></div>
+        <div class="success-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none"/><path fill="none" d="M14 27l8 8 16-16"/></svg></div>
+        <h2 class="center">Order received.</h2>
+        <p class="success-sub center">Thank you. Your order has been submitted and is being verified. Activation usually completes within 5–30 minutes.</p>
+        <div class="summary-cards" id="summary"></div>
+        <button type="button" class="btn btn-primary btn-lg btn-block magnetic" id="successContact">Contact Support</button>
+        <button type="button" class="btn btn-ghost btn-lg btn-block magnetic" id="successClose">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Support Confirm Modal ===== -->
+  <div class="overlay" id="dmModal" aria-hidden="true">
+    <div class="modal glass small" role="dialog" aria-modal="true" aria-labelledby="dmTitle">
+      <div class="dm-icon" aria-hidden="true">✈</div>
+      <h2 id="dmTitle" class="center">Contact support</h2>
+      <p class="center dm-confirm-sub">You'll be redirected to Telegram to contact support directly.</p>
+      <div class="dm-actions">
+        <button type="button" class="btn btn-ghost magnetic" id="dmCancel">Cancel</button>
+        <button type="button" class="btn btn-primary magnetic" id="dmConfirm">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

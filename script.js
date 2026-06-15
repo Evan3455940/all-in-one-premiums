@@ -383,8 +383,9 @@ $$(".faq-item").forEach(item => {
     pop.classList.add("show");
     clearTimeout(hideT);
     hideT = setTimeout(() => pop.classList.remove("show"), 5000);
-    setTimeout(showOne, 25000 + Math.random()*35000);
+    setTimeout(showOne, 10000 + Math.random()*15000);
   }
-  setTimeout(showOne, 10000);
+  setTimeout(showOne, 4000);
+
 })();
 

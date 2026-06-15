@@ -117,12 +117,17 @@ ul{list-style:none}
 .stat span{color:var(--soft);font-size:14px;position:relative;z-index:1}
 
 /* Why */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.why{padding:30px;border-radius:var(--r);transition:transform .4s var(--e),border-color .4s;will-change:transform}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+.why{padding:22px 24px;border-radius:var(--r);transition:transform .4s var(--e),border-color .4s;will-change:transform}
+
 .why:hover{border-color:var(--line-2)}
-.why-icon{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;color:var(--accent);background:rgba(110,168,255,.12);border:1px solid rgba(110,168,255,.24);position:relative;z-index:1}
-.why-icon svg{width:26px;height:26px}
-.why h3{font-size:18px;font-weight:600;margin-bottom:8px;position:relative;z-index:1}
+.why-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;color:var(--accent);background:rgba(110,168,255,.12);border:1px solid rgba(110,168,255,.24);position:relative;z-index:1}
+
+.why-icon svg{width:23px;height:23px}
+
+.why h3{font-size:17px;font-weight:600;margin-bottom:6px;position:relative;z-index:1}
+
 .why p{color:var(--soft);font-size:14.5px;position:relative;z-index:1}
 
 /* Pricing */
@@ -312,7 +317,8 @@ ul{list-style:none}
   .nav{max-width:520px;padding:10px 10px 10px 18px}
   .section{padding:80px 0}
   .hero{padding:130px 0 60px}
-  .why-grid{grid-template-columns:1fr}
+.why-grid{grid-template-columns:1fr;gap:12px}
+
   .overlay{align-items:flex-end;padding:0}
   .modal{border-radius:24px 24px 0 0;max-height:94vh;padding:32px 22px}
   .modal.small{align-self:center;border-radius:26px;margin:20px}

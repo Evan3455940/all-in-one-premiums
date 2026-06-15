@@ -362,18 +362,29 @@ $$(".faq-item").forEach(item => {
 /* ===== Live activity popup ===== */
 (() => {
   const pop = $("#activityPop"); if (!pop) return;
-  const names = ["Hasan","Arif","Rahim","Sadia","Tanvir","Nadia","Rahul","Priya","Amit","Sneha","Vikram","Ananya","Ali","Fatima","Bilal","Ayesha","Usman","Zara","James","Oliver","Emma","Sophie","Harry","Charlotte","Liam","Olivia","Noah","Ava","Ethan","Mia","Daniel","Grace","Wei","Mei","Arjun","Kavya","Imran","Sana","Hamza","Maryam","Lucas","Chloe","Ryan","Hannah","Aiden","Layla"];
-  const countries = ["Bangladesh","India","Pakistan","the United Kingdom","Canada","the United States","Malaysia"];
+  const data = {
+    "Bangladesh": ["Hasan","Rahim","Shuvo","Tanvir","Arif","Mahin"],
+    "India": ["Rahul","Priya","Arjun","Vikram","Neha"],
+    "Pakistan": ["Ahmed","Bilal","Hamza","Ayesha"],
+    "the United States": ["Michael","Emma","James","Olivia","Ethan"],
+    "the United Kingdom": ["Oliver","Harry","Amelia","Charlotte"],
+    "Canada": ["Liam","Sophia","Noah","Emily"],
+    "Malaysia": ["Amir","Nurul","Hafiz","Siti"]
+  };
+  const countries = Object.keys(data);
   const plans = ["Twitter Premium (3 Months)","Twitter Premium (6 Months)","Twitter Premium+ (3 Months)","Twitter Premium+ (6 Months)","Twitter Premium+ (12 Months)"];
   const rand = (a) => a[Math.floor(Math.random()*a.length)];
   let hideT;
   function showOne(){
-    const name = rand(names), country = rand(countries), plan = rand(plans);
+    const country = rand(countries);
+    const name = rand(data[country]);
+    const plan = rand(plans);
     pop.innerHTML = `<span class="ap-ic">${name[0]}</span><span class="ap-body"><b>${name} from ${country}</b> just ordered <b>${plan}</b><small>Verified order</small></span>`;
     pop.classList.add("show");
     clearTimeout(hideT);
     hideT = setTimeout(() => pop.classList.remove("show"), 5000);
-    setTimeout(showOne, 20000 + Math.random()*25000);
+    setTimeout(showOne, 25000 + Math.random()*35000);
   }
-  setTimeout(showOne, 8000);
+  setTimeout(showOne, 10000);
 })();
+

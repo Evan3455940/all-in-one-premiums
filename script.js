@@ -120,10 +120,19 @@ class Dropdown {
   setValue(v){ const o = this.options.find(x => x.dataset.value === v); if (o) this.select(v, o.textContent.trim()); }
   reset(ph){ this.value = ""; this.valueEl.textContent = ph; this.root.classList.remove("has-value"); this.options.forEach(o => o.classList.remove("chosen")); }
 }
-const planDD = new Dropdown($("#planSelect"), updateSteps);
+const planDD = new Dropdown($("#planSelect"), (v) => { updateSteps(); updatePlanInfo(v); });
+
 const payDD  = new Dropdown($("#paySelect"), (v) => { showPayment(v); updateSteps(); });
 
 /* ===== Step indicator ===== */
+function updatePlanInfo(plan){
+  const isPlus = /Premium\+/.test(plan || "");
+  const notice = $("#plusNotice"), dbox = $("#deliveryBox"), dtext = $("#deliveryText");
+  if (!plan) { if (notice) notice.hidden = true; if (dbox) dbox.hidden = true; return; }
+  if (dbox && dtext) { dbox.hidden = false; dtext.textContent = isPlus ? "⏳ Estimated delivery: 1–3 hours" : "⚡ Estimated delivery: 5–30 minutes"; }
+  if (notice) notice.hidden = !isPlus;
+}
+
 function updateSteps(){
   const u = $("#xUsername").value.trim(), tx = $("#txRef").value.trim();
   let step = 1;
@@ -142,14 +151,15 @@ $$(".copy").forEach(b => b.addEventListener("click", async () => {
   const t = b.dataset.copy;
   try { await navigator.clipboard.writeText(t); }
   catch { const ta = document.createElement("textarea"); ta.value = t; ta.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
-  const o = b.textContent; b.textContent = "Copied ✓"; b.classList.add("copied"); Toast("Copied to clipboard");
+  const o = b.textContent; b.textContent = "✓ Copied Successfully"; b.classList.add("✓ Copied Successfully"); Toast("Copied to clipboard");
   setTimeout(() => { b.textContent = o; b.classList.remove("copied"); }, 1800);
 }));
 
 /* ===== Order modal ===== */
 const orderModal = $("#orderModal"), orderView = $("#orderView"), successView = $("#successView");
 const orderForm = $("#orderForm"), submitBtn = $("#submitBtn");
-function openOrder(plan){ orderView.hidden = false; successView.hidden = true; if (plan) planDD.setValue(plan); updateSteps(); orderModal.classList.add("open"); orderModal.setAttribute("aria-hidden","false"); document.body.classList.add("lock"); closeDrawer(); setTimeout(() => $("#xUsername").focus(), 400); }
+function openOrder(plan){ orderView.hidden = false; successView.hidden = true; if (plan) { planDD.setValue(plan); updatePlanInfo(plan); } else { updatePlanInfo(""); } updateSteps(); orderModal.classList.add("open"); orderModal.setAttribute("aria-hidden","false"); document.body.classList.add("lock"); closeDrawer(); setTimeout(() => $("#xUsername").focus(), 400); }
+
 function closeOrder(){ orderModal.classList.remove("open"); orderModal.setAttribute("aria-hidden","true"); document.body.classList.remove("lock"); }
 $$("[data-open-order]").forEach(b => b.addEventListener("click", () => openOrder()));
 $$(".plan-btn").forEach(b => b.addEventListener("click", () => openOrder(b.dataset.plan)));
@@ -160,22 +170,31 @@ orderModal.addEventListener("click", (e) => { if (e.target === orderModal) close
 /* ===== Validation ===== */
 function setErr(f, k, m){ f.classList.add("invalid"); const e = $(`[data-err="${k}"]`); if (e) e.textContent = m; }
 function clrErr(f, k){ f.classList.remove("invalid"); const e = $(`[data-err="${k}"]`); if (e) e.textContent = ""; }
-["xUsername","tgUsername","txRef"].forEach(id => $("#"+id).addEventListener("input", (e) => clrErr(e.target, id)));
+["xUsername","xProfileLink","tgUsername","txRef"].forEach(id => $("#"+id).addEventListener("input", (e) => clrErr(e.target, id)));
+$("#xProfilePic").addEventListener("change", (e) => clrErr(e.target, "xProfilePic"));
+
 
 function validate(){
-  let ok = true; const u = $("#xUsername"), tg = $("#tgUsername"), tx = $("#txRef");
+  let ok = true; const u = $("#xUsername"), link = $("#xProfileLink"), tg = $("#tgUsername"), tx = $("#txRef"), pic = $("#xProfilePic");
   if (!planDD.value)   { setErr($("#planSelect"), "planSelect", "Please select a plan."); ok = false; }
   if (!u.value.trim()) { setErr(u, "xUsername", "Please enter your X username."); ok = false; }
+  const linkVal = link.value.trim();
+  if (!linkVal) { setErr(link, "xProfileLink", "Please enter your X profile link."); ok = false; }
+  else if (!/(?:x\.com|twitter\.com)/i.test(linkVal)) { setErr(link, "xProfileLink", "Enter a valid x.com or twitter.com link."); ok = false; }
   let tgVal = tg.value.trim();
   if (!tgVal) { setErr(tg, "tgUsername", "Please enter your Telegram username."); ok = false; }
   else {
     if (!tgVal.startsWith("@")) { tgVal = "@" + tgVal; tg.value = tgVal; }
     if (!/^@[A-Za-z0-9_]{3,}$/.test(tgVal)) { setErr(tg, "tgUsername", "Enter a valid Telegram username (e.g. @username)."); ok = false; }
   }
+  if (pic.files && pic.files[0]) {
+    if (!/^image\/(jpeg|png|webp)$/.test(pic.files[0].type)) { setErr(pic, "xProfilePic", "Use a JPG, PNG, or WEBP image."); ok = false; }
+  }
   if (!payDD.value)    { setErr($("#paySelect"), "paySelect", "Please choose a payment method."); ok = false; }
   if (!tx.value.trim()){ setErr(tx, "txRef", "Enter your transaction reference."); ok = false; }
   return ok;
 }
+
 
 
 /* ===== Telegram (format preserved) ===== */
@@ -184,43 +203,51 @@ function validate(){
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!validate()) return;
+
+  const picFile = $("#xProfilePic").files[0] || null;
   const order = {
     plan: planDD.value,
     username: $("#xUsername").value.trim(),
-      telegramUsername: $("#tgUsername").value.trim(),
-
-
+    xProfileLink: $("#xProfileLink").value.trim(),
+    telegramUsername: $("#tgUsername").value.trim(),
     method: payDD.value,
     txRef: $("#txRef").value.trim(),
-    time: new Date().toLocaleString()
-  };
-try {
-    const res = await fetch("/api/notify", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(order)
-    });
+        orderId: "AIOP-" + Math.floor(100000 + Math.random() * 900000),
 
-    if (!res.ok) {
-        throw new Error("Notify failed");
-    }
-} catch (err) {
+    time: new Date().toLocaleString(),
+    hasPicture: picFile ? "Yes" : "No"
+  };
+
+  submitBtn.classList.add("loading"); submitBtn.disabled = true;
+
+  try {
+    const fd = new FormData();
+    Object.keys(order).forEach(k => fd.append(k, order[k]));
+    if (picFile) fd.append("profilePic", picFile);
+
+    const res = await fetch("/api/notify", { method: "POST", body: fd });
+    if (!res.ok) throw new Error("Notify failed");
+  } catch (err) {
     console.error(err);
     Toast("Order submitted (notification pending).");
-}
+  }
+
   $("#summary").innerHTML = `
+      <div class="sc full"><small>Order ID</small><span>${esc(order.orderId)}</span></div>
     <div class="sc full"><small>Plan</small><span>${esc(order.plan)}</span></div>
     <div class="sc"><small>X Username</small><span>${esc(order.username)}</span></div>
     <div class="sc"><small>Telegram</small><span>${esc(order.telegramUsername)}</span></div>
+    <div class="sc full"><small>X Profile Link</small><span>${esc(order.xProfileLink)}</span></div>
     <div class="sc"><small>Payment Method</small><span>${esc(order.method)}</span></div>
+    <div class="sc"><small>Profile Picture</small><span>${order.hasPicture === "Yes" ? "Attached" : "Not attached"}</span></div>
     <div class="sc"><small>Time</small><span>${esc(order.time)}</span></div>
     <div class="sc full"><small>Reference</small><span>${esc(order.txRef)}</span></div>`;
+
   orderView.hidden = true; successView.hidden = false; orderModal.scrollTop = 0; confetti();
   orderForm.reset(); planDD.reset("Choose a plan"); payDD.reset("Choose a payment method"); payBox.hidden = true;
   submitBtn.classList.remove("loading"); submitBtn.disabled = false;
 });
+
 
 /* ===== Confetti ===== */
 function confetti(){
@@ -331,4 +358,22 @@ $$(".faq-item").forEach(item => {
   }
   raf = requestAnimationFrame(loop);
   document.addEventListener("visibilitychange", () => { if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(loop); });
+})();
+/* ===== Live activity popup ===== */
+(() => {
+  const pop = $("#activityPop"); if (!pop) return;
+  const names = ["Hasan","Arif","Rahim","Sadia","Tanvir","Nadia","Rahul","Priya","Amit","Sneha","Vikram","Ananya","Ali","Fatima","Bilal","Ayesha","Usman","Zara","James","Oliver","Emma","Sophie","Harry","Charlotte","Liam","Olivia","Noah","Ava","Ethan","Mia","Daniel","Grace","Wei","Mei","Arjun","Kavya","Imran","Sana","Hamza","Maryam","Lucas","Chloe","Ryan","Hannah","Aiden","Layla"];
+  const countries = ["Bangladesh","India","Pakistan","the United Kingdom","Canada","the United States","Malaysia"];
+  const plans = ["Twitter Premium (3 Months)","Twitter Premium (6 Months)","Twitter Premium+ (3 Months)","Twitter Premium+ (6 Months)","Twitter Premium+ (12 Months)"];
+  const rand = (a) => a[Math.floor(Math.random()*a.length)];
+  let hideT;
+  function showOne(){
+    const name = rand(names), country = rand(countries), plan = rand(plans);
+    pop.innerHTML = `<span class="ap-ic">${name[0]}</span><span class="ap-body"><b>${name} from ${country}</b> just ordered <b>${plan}</b><small>Verified order</small></span>`;
+    pop.classList.add("show");
+    clearTimeout(hideT);
+    hideT = setTimeout(() => pop.classList.remove("show"), 5000);
+    setTimeout(showOne, 20000 + Math.random()*25000);
+  }
+  setTimeout(showOne, 8000);
 })();

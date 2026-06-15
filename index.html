@@ -123,6 +123,23 @@
             <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
             <h3>Direct Telegram support</h3><p>Message me personally on Telegram whenever you need help.</p>
           </article>
+                    <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <h3>No Password Required</h3><p>We never ask for your password — only your X username.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+            <h3>Secure Ordering Process</h3><p>Every order is handled through a safe, verified process.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+            <h3>Direct Support Available</h3><p>Reach out anytime on Telegram for personal assistance.</p>
+          </article>
+          <article class="why glass tilt reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9 8h4.5a2.5 2.5 0 010 5H9m0 0h5M9 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <h3>Reseller Friendly</h3><p>Resell our service and keep the profit on every order.</p>
+          </article>
+
         </div>
       </div>
     </section>
@@ -166,14 +183,14 @@
               <button type="button" class="btn btn-ghost btn-block magnetic plan-btn" data-plan="Twitter Premium+ — 3 Months">Get Premium</button>
             </article>
             <article class="plan glass tilt">
-              <span class="plan-term">6 Months</span><span class="plan-price">$18.00</span>
+              <span class="plan-term">6 Months</span><span class="plan-price">$19.00</span>
               <span class="plan-note">Twitter Premium+ · one-time</span>
               <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
               <button type="button" class="btn btn-ghost btn-block magnetic plan-btn" data-plan="Twitter Premium+ — 6 Months">Get Premium</button>
             </article>
             <article class="plan glass tilt best">
               <div class="plan-head"><span class="plan-term">12 Months</span><span class="plan-flag">⭐ Best Value</span></div>
-              <span class="plan-price">$22.00</span>
+              <span class="plan-price">$23.00</span>
 
               <span class="plan-note">Twitter Premium+ · one-time</span>
               <ul class="plan-feats"><li>One-time payment</li><li>Activation in 5–30 minutes</li><li>Secure process</li></ul>
@@ -251,6 +268,8 @@
           <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">What payment methods are accepted?<i class="faq-icon"></i></button><div class="faq-a"><p>Binance UID, USDT (BSC), and USDC (Base).</p></div></div>
           <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">Can I contact support?<i class="faq-icon"></i></button><div class="faq-a"><p>Yes. Use the Telegram button to message me directly anytime.</p></div></div>
           <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">Is this safe?<i class="faq-icon"></i></button><div class="faq-a"><p>Yes. We never request your password and only need your X username and transaction reference.</p></div></div>
+                 <div class="faq-item glass"><button type="button" class="faq-q" aria-expanded="false">Can I resell the service?<i class="faq-icon"></i></button><div class="faq-a"><p>Yes. You may resell the service and keep whatever profit you make from each order.</p></div></div>
+
         </div>
       </div>
     </section>
@@ -298,14 +317,20 @@
                 <li role="option" data-value="Twitter Premium — 6 Months">Twitter Premium — 6 Months · $5.60</li>
                 <li class="select-group">Twitter Premium+</li>
                 <li role="option" data-value="Twitter Premium+ — 3 Months">Twitter Premium+ — 3 Months · $15.00</li>
-                <li role="option" data-value="Twitter Premium+ — 6 Months">Twitter Premium+ — 6 Months · $18.00</li>
-                <li role="option" data-value="Twitter Premium+ — 12 Months">Twitter Premium+ — 12 Months · $22.00</li>
+                <li role="option" data-value="Twitter Premium+ — 6 Months">Twitter Premium+ — 6 Months · $19.00</li>
+                <li role="option" data-value="Twitter Premium+ — 12 Months">Twitter Premium+ — 12 Months · $23.00</li>
               </ul>
             </div>
             <small class="err" data-err="planSelect"></small>
           </div>
 
           <div class="ffield"><input type="text" id="xUsername" placeholder=" " autocomplete="off" /><label for="xUsername">X Username</label><small class="err" data-err="xUsername"></small></div>
+                    <div class="ffield"><input type="url" id="xProfileLink" placeholder=" " autocomplete="off" /><label for="xProfileLink">X Profile Link</label><small class="err" data-err="xProfileLink"></small></div>
+          <div class="filefield">
+            <label class="filelabel" for="xProfilePic">X Profile Picture (Optional)</label>
+            <input type="file" id="xProfilePic" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" />
+            <small class="err" data-err="xProfilePic"></small>
+          </div>
           <div class="ffield"><input type="text" id="tgUsername" placeholder=" " autocomplete="off" /><label for="tgUsername">Telegram Username</label><small class="err" data-err="tgUsername"></small></div>
 
 
@@ -321,6 +346,16 @@
             </div>
             <small class="err" data-err="paySelect"></small>
           </div>
+                    <div class="info-box" id="deliveryBox" hidden>
+            <span class="info-ic">⚡</span>
+            <span id="deliveryText">Estimated delivery: 5–30 minutes</span>
+          </div>
+          <div class="notice-box" id="plusNotice" hidden>
+            <strong>Premium+ Service Notice</strong>
+            <p>Due to the high order volume, increased demand, and the additional verification required to ensure the highest quality of service, Premium+ orders may take approximately <b>1–3 hours</b> to complete.</p>
+            <p>Thank you for your patience and understanding.</p>
+          </div>
+
 
           <div class="pay-box" id="payBox" hidden>
             <div class="pay-row" data-method="Binance UID"><div class="pay-label">Binance UID</div><div class="pay-val"><code>409082023</code><button type="button" class="copy" data-copy="409082023">Copy</button></div></div>
@@ -361,6 +396,8 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="activity-pop" id="activityPop" aria-hidden="true"></div>
+
 
   <script src="script.js"></script>
 </body>

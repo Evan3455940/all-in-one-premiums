@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All-in-One Premiums | Premium Subscriptions, Elevated</title>
+<meta name="description" content="All-in-One Premiums: X Premium and Telegram Premium subscriptions, delivered instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#F8F8F8;
+    --text:#000000;
+    --text-secondary:#333333;
+    --text-muted:#777777;
+    --border:#E8E8E8;
+    --gold:#C9A84C;
+    --charcoal:#1A1A1A;
+    --shadow:0 4px 20px rgba(0,0,0,0.06);
+    --shadow-lift:0 12px 32px rgba(0,0,0,0.1);
+    --radius:16px;
+    --max:1200px;
+    --font-serif:'Playfair Display',Georgia,serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button,input,select,textarea{font-family:inherit;}
+  button{border:none;background:none;cursor:pointer;}
+  a,button{touch-action:manipulation;}
+  button:disabled{opacity:.4;cursor:not-allowed;pointer-events:none;}
+
+  section[id]{scroll-margin-top:88px;}
+
+  .container{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  ::selection{background:#000;color:#fff;}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease-out, transform .8s ease-out;will-change:opacity,transform;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.08s;}
+  .reveal-delay-2{transition-delay:.16s;}
+  .reveal-delay-3{transition-delay:.24s;}
+
+  /* Ripple */
+  .ripple{position:relative;overflow:hidden;}
+  .ripple-effect{
+    position:absolute;border-radius:50%;transform:scale(0);
+    background:rgba(0,0,0,0.14);pointer-events:none;
+    animation:rippleAnim .6s cubic-bezier(.4,0,.2,1) forwards;
+    will-change:transform,opacity;
+  }
+  .btn-primary.ripple .ripple-effect,
+  .nav-cta.ripple .ripple-effect,
+  .copy-btn.ripple .ripple-effect{background:rgba(255,255,255,0.32);}
+  @keyframes rippleAnim{to{transform:scale(2.6);opacity:0;}}
+
+  /* Nav */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:var(--max);margin:0 auto;position:relative;}
+  .logo{font-weight:800;font-size:18px;letter-spacing:.3px;white-space:nowrap;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .nav-links{display:flex;align-items:center;gap:22px;list-style:none;}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--text-secondary);position:relative;transition:color .3s ease;}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#000;transition:width .3s ease;}
+  .nav-links a:hover{color:#000;}
+  .nav-links a:hover::after{width:100%;}
+  .dm-link{display:inline-flex;align-items:center;gap:6px;font-weight:600 !important;}
+  .dm-link svg{width:14px;height:14px;flex-shrink:0;}
+  .nav-cta{background:#000;color:#fff;padding:11px 24px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.3px;transition:transform .3s ease, box-shadow .3s ease;white-space:nowrap;will-change:transform;}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+  .menu-toggle{display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;min-width:44px;min-height:44px;}
+  .menu-toggle span{width:22px;height:2px;background:#000;transition:.3s ease;}
+  .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* Hero */
+  .hero{
+    padding:120px 32px 100px;
+    background:radial-gradient(circle at 15% 20%, rgba(0,0,0,0.035), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(0,0,0,0.03), transparent 40%), var(--bg-soft);
+    text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background-image:linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 20%, black, transparent);
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 20%, black, transparent);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1px solid var(--border);border-radius:100px;background:#fff;font-size:12.5px;font-weight:600;letter-spacing:.3px;color:var(--text-secondary);margin-bottom:32px;box-shadow:var(--shadow);}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
+  .hero h1{font-family:var(--font-serif);font-size:clamp(2.75rem, 5.5vw, 4rem);font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-bottom:24px;}
+  .hero h1 .thin{font-weight:300;display:block;}
+  .hero p{font-size:18px;color:var(--text-secondary);max-width:540px;margin:0 auto 40px;}
+  .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+  .btn{padding:16px 32px;border-radius:100px;font-size:14.5px;font-weight:600;letter-spacing:.3px;transition:transform .25s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease, background .25s ease, color .25s ease;cursor:pointer;display:inline-block;border:1px solid transparent;will-change:transform;}
+  .btn-primary{background:#000;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,0.18);}
+  .btn-primary:hover{background:var(--charcoal);transform:translateY(-2px) scale(1.02);box-shadow:0 12px 24px rgba(0,0,0,0.2);}
+  .btn-primary:active{transform:translateY(-1px) scale(.98);}
+  .btn-outline{background:#fff;color:#000;border:1px solid #000;}
+  .btn-outline:hover{background:var(--charcoal);border-color:var(--charcoal);color:#fff;transform:translateY(-2px) scale(1.02);}
+  .btn-outline:active{transform:translateY(-1px) scale(.98);}
+  .hero-stats{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;padding-top:48px;border-top:1px solid var(--border);}
+  .stat h3{font-size:28px;font-weight:800;letter-spacing:-1px;}
+  .stat span{font-size:12.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+
+  /* Sections */
+  section{padding:100px 0;}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 72px;}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;display:block;}
+  .section-head h2{font-family:var(--font-serif);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-0.01em;margin-bottom:20px;}
+  .section-head h2::after{content:'';display:block;width:44px;height:2px;background:var(--gold);margin:20px auto 0;}
+  .section-head p{color:var(--text-secondary);font-size:16px;}
+
+  /* Pricing cards */
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:860px;margin:0 auto;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .card{
+    position:relative;background:#fff;border:1px solid #000;border-radius:var(--radius);
+    padding:40px;max-width:500px;margin:0 auto;box-shadow:var(--shadow);
+    transition:transform .35s cubic-bezier(.16,.84,.44,1), box-shadow .35s cubic-bezier(.16,.84,.44,1);
+    overflow:hidden;will-change:transform;width:100%;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .card.featured{background:#000;color:#fff;border-color:#000;border-top:3px solid var(--gold);}
+  .card.featured .price-sub{color:#B8B8B8;}
+  .card.featured .feature-list li{color:#EDEDED;}
+  .card.featured .feature-list li svg{stroke:#fff;}
+  .card.featured .btn-outline{background:#fff;color:#000;border-color:#fff;}
+  .card.featured .btn-outline:hover{background:transparent;color:#fff;}
+  .ribbon{position:absolute;top:18px;right:-38px;background:#000;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 44px;transform:rotate(40deg);box-shadow:0 4px 10px rgba(0,0,0,0.25);}
+  .card.featured .ribbon{background:#fff;color:#000;}
+  .card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--bg-soft);border:1px solid var(--border);margin-bottom:24px;}
+  .card.featured .card-icon{background:#161616;border-color:#2a2a2a;}
+  .card-plan{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+  .card.featured .card-plan{color:#999;}
+  .card-name{font-size:22px;font-weight:700;margin-bottom:16px;letter-spacing:-.5px;}
+  .price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;}
+  .price .amount{font-size:42px;font-weight:800;letter-spacing:-1.5px;}
+  .price .currency{font-size:20px;font-weight:700;}
+  .price-sub{font-size:13px;color:var(--text-muted);margin-bottom:28px;}
+  .feature-list{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:13px;}
+  .feature-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary);}
+  .feature-list li svg{flex-shrink:0;width:16px;height:16px;stroke:#000;stroke-width:2.5;}
+  .card .btn{width:100%;text-align:center;display:block;}
+  .grid-4 .card{padding:32px;max-width:none;}
+  .grid-4 .price .amount{font-size:34px;}
+  .grid-4 .card-name{font-size:17px;}
+
+  /* Payment section */
+  #payment{background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:48px;align-items:stretch;}
+  .pay-card{
+    position:relative;background:#fff;border:1px solid #000;border-radius:var(--radius);
+    padding:40px;cursor:pointer;text-align:left;
+    display:flex;flex-direction:column;height:100%;
+    transition:transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease;
+    will-change:transform;
+  }
+  .pay-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .pay-card:focus-visible{outline:2px solid #000;outline-offset:3px;}
+  .pay-card.selected{box-shadow:0 0 0 2px var(--gold), var(--shadow-lift);}
+  .selected-badge{
+    position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;
+    background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;opacity:0;transform:scale(.5);
+    transition:opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .pay-card.selected .selected-badge{opacity:1;transform:scale(1);}
+  .selected-badge svg{width:13px;height:13px;}
+  .pay-label{font-size:18px;font-weight:800;letter-spacing:.5px;line-height:1.3;margin-bottom:10px;padding-right:26px;}
+  .pay-warning{color:var(--text);font-weight:600;}
+  .pay-card .pay-network{font-size:12px;color:var(--text-muted);margin-bottom:18px;text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+  .pay-address{display:flex;align-items:center;gap:10px;background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+  .pay-address code{flex:1;font-size:12px;font-family:'Inter',monospace;color:var(--text);word-break:break-all;letter-spacing:.2px;}
+  .pay-hint{margin-top:12px;font-size:12px;color:var(--text-muted);}
+  .copy-btn{flex-shrink:0;background:#000;color:#fff;border-radius:7px;padding:7px 16px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;transition:background .25s ease, transform .2s ease;will-change:transform;}
+  .copy-btn:hover{background:#333;}
+  .copy-btn:active{transform:scale(.94);}
+  .pay-note{text-align:center;font-size:13px;color:var(--text-muted);max-width:560px;margin:0 auto 56px;}
+
+  /* Order confirmation */
+  .confirm-box{max-width:600px;margin:0 auto;background:#fff;border:1px solid #000;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);}
+  .confirm-box h3{font-size:19px;font-weight:700;margin-bottom:22px;}
+  .confirm-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);gap:16px;}
+  .confirm-row:last-of-type{border-bottom:none;}
+  .confirm-row span:first-child{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);}
+  .confirm-row span:last-child{font-size:14.5px;font-weight:700;text-align:right;}
+  .confirm-check{display:flex;align-items:flex-start;gap:12px;margin-top:26px;padding-top:22px;border-top:1px solid var(--border);cursor:pointer;}
+  .confirm-check input{width:19px;height:19px;flex-shrink:0;accent-color:#000;margin-top:1px;cursor:pointer;}
+  .confirm-check label{font-size:14px;color:var(--text-secondary);cursor:pointer;}
+  .confirm-box .btn{width:100%;margin-top:24px;}
+
+  .order-form-wrap{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.16,.84,.44,1), opacity .5s ease, margin-top .5s ease;scroll-margin-top:110px;}
+  .order-form-wrap.open{max-height:1600px;opacity:1;margin-top:40px;}
+  .order-form{max-width:560px;margin:0 auto;background:#fff;border:1px solid #000;border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:20px;box-shadow:var(--shadow);}
+  .order-form h3{font-size:20px;font-weight:700;}
+  .order-form-sub{font-size:13.5px;color:var(--text-secondary);margin-top:-10px;}
+  .order-form label{display:flex;flex-direction:column;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);}
+  .order-form label[hidden]{display:none;}
+  .order-form input[type=text],.order-form input[type=url]{
+    background:var(--bg-soft);border:1.5px solid #000;border-radius:10px;padding:13px 16px;color:#000;
+    font-size:14px;font-weight:500;text-transform:none;letter-spacing:0;transition:box-shadow .3s ease, background .3s ease;
+  }
+  .order-form input::placeholder{color:#999;}
+  .order-form input:focus{outline:none;background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,0.1);}
+  .order-form input.invalid{box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
+  .field-msg{font-size:12px;color:var(--text-muted);text-transform:none;letter-spacing:0;font-weight:500;margin-top:2px;}
+  .field-msg.show::before{content:'• ';}
+
+  .x-preview{margin-top:10px;background:#fff;border:1px solid #000;border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);animation:statusIn .3s ease-out;}
+  .x-preview[hidden]{display:none;}
+  .x-preview-status{font-size:13px;color:var(--text-muted);font-weight:600;text-transform:none;letter-spacing:0;}
+  .x-preview-status.x-preview-invalid{color:#000;}
+  .x-preview-row{display:flex;align-items:center;gap:12px;}
+  .x-preview-avatar{width:40px;height:40px;border-radius:50%;border:1px solid #000;flex-shrink:0;object-fit:cover;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#000;}
+  .x-preview-name{font-size:14px;font-weight:700;color:#000;text-transform:none;letter-spacing:0;}
+  .x-preview-handle{font-size:12.5px;color:var(--text-muted);font-weight:500;text-transform:none;letter-spacing:0;margin-top:2px;}
+
+  .file-field{display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+  .file-btn{
+    width:100%;background:#000;color:#fff;border:1px solid #000;border-radius:10px;
+    padding:13px 18px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;white-space:nowrap;text-align:center;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    will-change:transform;
+  }
+  .file-btn:hover{background:var(--charcoal);transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,0.18);}
+  .file-btn:active{transform:translateY(-1px) scale(.98);}
+  .file-name{font-size:12.5px;color:var(--text-muted);text-transform:none;letter-spacing:0;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
+  .file-name.empty{font-style:italic;}
+  input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;}
+
+  .form-status{font-size:13.5px;text-align:center;min-height:20px;font-weight:600;color:var(--text-muted);}
+  .form-status.success{
+    background:#000;color:#fff;font-size:14px;padding:24px 18px;border-radius:10px;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    animation:statusIn .4s ease-out;
+  }
+  @keyframes statusIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .success-check{display:none;}
+  .form-status.success .success-check{
+    display:block;opacity:0;
+    animation:iconFadeIn .3s ease-out forwards;
+  }
+  .success-check-circle{
+    fill:none;stroke:#fff;stroke-width:3;
+    stroke-dasharray:164;stroke-dashoffset:164;
+  }
+  .success-check-mark{
+    fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:40;stroke-dashoffset:40;
+  }
+  .form-status.success .success-check-circle{animation:drawCircle .65s ease-out forwards;}
+  .form-status.success .success-check-mark{animation:drawCheck .55s ease-out .65s forwards;}
+  @keyframes iconFadeIn{to{opacity:1;}}
+  @keyframes drawCircle{to{stroke-dashoffset:0;}}
+  @keyframes drawCheck{to{stroke-dashoffset:0;}}
+
+  /* How to order */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+  .step{position:relative;padding:32px;border:1px solid #000;border-radius:var(--radius);background:#fff;transition:transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease;will-change:transform;}
+  .step:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .step-num{font-size:44px;font-weight:800;letter-spacing:-2px;color:var(--bg-soft);-webkit-text-stroke:1.5px #000;margin-bottom:18px;display:block;}
+  .step h4{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .step p{font-size:13.5px;color:var(--text-secondary);}
+  .step-arrow{position:absolute;top:50%;right:-38px;transform:translateY(-50%);font-size:20px;color:#c8c8c8;}
+
+  /* FAQ */
+  .faq-wrap{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-question{width:100%;padding:26px 4px;display:flex;align-items:center;justify-content:space-between;text-align:left;font-size:16.5px;font-weight:600;color:#000;gap:20px;}
+  .faq-icon{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;transition:transform .35s cubic-bezier(.16,.84,.44,1), background .35s ease;}
+  .faq-icon::before,.faq-icon::after{content:'';position:absolute;background:#000;transition:transform .35s ease, opacity .35s ease;}
+  .faq-icon::before{width:10px;height:1.4px;}
+  .faq-icon::after{width:1.4px;height:10px;}
+  .faq-item.open .faq-icon{background:#000;transform:rotate(180deg);}
+  .faq-item.open .faq-icon::before,.faq-item.open .faq-icon::after{background:#fff;}
+  .faq-item.open .faq-icon::after{opacity:0;}
+  .faq-answer{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,.84,.44,1);}
+  .faq-answer p{padding:0 4px 26px;font-size:14.5px;color:var(--text-secondary);max-width:640px;}
+
+  /* Footer */
+  footer{background:var(--bg-soft);border-top:1px solid var(--border);padding:80px 0 36px;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+  .footer-brand .logo{margin-bottom:14px;display:block;}
+  .footer-brand p{font-size:14px;color:var(--text-secondary);max-width:280px;}
+  .footer-contact{display:flex;gap:60px;flex-wrap:wrap;}
+  .footer-col h5{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
+  .footer-col a{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;margin-bottom:10px;transition:opacity .25s ease;}
+  .footer-col a:hover{opacity:.55;}
+  .footer-links{display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
+  .footer-links a{margin-bottom:0;}
+  .footer-links .sep{color:var(--text-muted);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;font-size:12.5px;color:var(--text-muted);}
+
+  /* Responsive: Desktop = default styles above (3 to 4 columns, spacious) */
+  @media (max-width:1060px){
+    .nav-right{display:none;}
+    .menu-toggle{display:flex;}
+    nav.open .nav-right{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:#fff;border-bottom:1px solid var(--border);padding:24px 32px;gap:20px;box-shadow:var(--shadow);}
+    nav.open .nav-links{flex-direction:column;align-items:flex-start;gap:18px;width:100%;}
+    nav.open .nav-cta{display:block;width:100%;text-align:center;}
+  }
+
+  /* Tablet: 769px to 1024px, 2 columns */
+  @media (min-width:769px) and (max-width:1024px){
+    body{font-size:18px;}
+    .container{padding:0 40px;}
+    .grid-4{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .step-arrow{display:none;}
+    .pay-grid{grid-template-columns:1fr;}
+  }
+
+  /* Mobile: up to 768px, single column */
+  @media (max-width:768px){
+    body{font-size:16px;}
+    .container{padding:0 20px;}
+    section{padding:80px 0;}
+    .grid-2,.grid-4{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .step-arrow{display:none;}
+    .pay-grid{grid-template-columns:1fr;}
+    .hero{padding:90px 20px 70px;}
+    .hero-stats{gap:36px;}
+    .hero h1{letter-spacing:-1px;}
+    .footer-top{flex-direction:column;}
+    .order-form,.confirm-box{padding:26px 20px;}
+    .confirm-row{flex-direction:column;align-items:flex-start;gap:4px;}
+    .confirm-row span:last-child{text-align:left;}
+    .card,.pay-card,.step{padding:24px;max-width:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav id="nav">
+    <div class="logo">All-in-One Premiums</div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#x-premium" onclick="event.preventDefault(); document.getElementById('x-premium').scrollIntoView({behavior:'smooth'})">X Premium</a></li>
+        <li><a href="#telegram-premium" onclick="event.preventDefault(); document.getElementById('telegram-premium').scrollIntoView({behavior:'smooth'})">Telegram</a></li>
+        <li><a href="#payment" onclick="event.preventDefault(); document.getElementById('payment').scrollIntoView({behavior:'smooth'})">Payment</a></li>
+        <li><a href="#how-it-works" onclick="event.preventDefault(); document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">How It Works</a></li>
+        <li><a href="#faq" onclick="event.preventDefault(); document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a></li>
+        <li>
+          <a href="https://t.me/evanjawad" target="_blank" rel="noopener" class="dm-link" aria-label="Contact us on Telegram" onclick="event.preventDefault(); openTelegram();">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 3.5a1 1 0 0 0-1.05-.15L2.6 10.9a1 1 0 0 0 .07 1.87l4.6 1.53 1.77 5.62a1 1 0 0 0 1.73.36l2.55-2.9 4.68 3.45a1 1 0 0 0 1.57-.6l3.4-15.85a1 1 0 0 0-.33-.9zM9.6 13.98l-1.02 3.24-.9-2.87 9.9-6.4z"/></svg>
+            Contact
+          </a>
+        </li>
+      </ul>
+      <a href="#payment" class="nav-cta ripple" onclick="event.preventDefault(); document.getElementById('payment').scrollIntoView({behavior:'smooth'})">Get Premium</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="badge reveal visible"><span class="dot"></span> Instant Delivery · Trusted Worldwide</span>
+    <h1 class="reveal visible">Premium Subscriptions,<span class="thin">Elevated.</span></h1>
+    <p class="reveal visible reveal-delay-1">All-in-One Premiums delivers X Premium and Telegram Premium at the best price. Instant, secure, no compromises.</p>
+    <div class="hero-actions reveal visible reveal-delay-2">
+      <a href="#x-premium" class="btn btn-primary ripple" onclick="event.preventDefault(); document.getElementById('x-premium').scrollIntoView({behavior:'smooth'})">Buy X Premium</a>
+      <a href="#telegram-premium" class="btn btn-outline ripple" onclick="event.preventDefault(); document.getElementById('telegram-premium').scrollIntoView({behavior:'smooth'})">Buy Telegram Premium</a>
+    </div>
+    <div class="hero-stats reveal visible reveal-delay-3">
+      <div class="stat"><h3>2 Min</h3><span>Avg. Delivery</span></div>
+      <div class="stat"><h3>1,200+</h3><span>Orders Fulfilled</span></div>
+      <div class="stat"><h3>24/7</h3><span>Support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- X PREMIUM -->
+<section id="x-premium" class="reveal">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">X Premium</span>
+      <h2>Unlock the full X experience</h2>
+      <p>Edit posts, longer videos, fewer ads, and the verified checkmark, delivered to your account.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg></div>
+        <span class="card-plan">Standard</span>
+        <h3 class="card-name">3 Months</h3>
+        <div class="price"><span class="currency">$</span><span class="amount">3</span></div>
+        <div class="price-sub">Single payment · billed once</div>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Blue checkmark verification</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Edit posts &amp; longer videos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Reduced ads in timeline</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Instant delivery</li>
+        </ul>
+        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="X Premium, 3 Months" data-price="$3.00">Get Premium</button>
+      </div>
+      <div class="card featured reveal reveal-delay-1">
+        <span class="ribbon">Best Value</span>
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg></div>
+        <span class="card-plan">Extended</span>
+        <h3 class="card-name">6 Months</h3>
+        <div class="price"><span class="currency">$</span><span class="amount">5.90</span></div>
+        <div class="price-sub">Single payment · billed once</div>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Blue checkmark verification</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Edit posts &amp; longer videos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Reduced ads in timeline</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
+        </ul>
+        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="X Premium, 6 Months" data-price="$5.90">Get Premium</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELEGRAM PREMIUM -->
+<section id="telegram-premium" class="reveal" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Telegram Premium</span>
+      <h2>More power. No limits.</h2>
+      <p>Faster downloads, exclusive stickers, larger uploads, and premium badges. Pick your duration.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card reveal">
+        <span class="card-plan">Starter</span>
+        <h3 class="card-name">1 Month</h3>
+        <div class="price"><span class="currency">$</span><span class="amount">6</span></div>
+        <div class="price-sub">Billed once</div>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Faster downloads</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Premium badge</li>
+        </ul>
+        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 1 Month" data-price="$6.00">Get Premium</button>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <span class="card-plan">Popular</span>
+        <h3 class="card-name">3 Months</h3>
+        <div class="price"><span class="currency">$</span><span class="amount">16</span></div>
+        <div class="price-sub">Billed once</div>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Exclusive stickers</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No ads in channels</li>
+        </ul>
+        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 3 Months" data-price="$16.00">Get Premium</button>
+      </div>
+      <div class="card featured reveal reveal-delay-2">
+        <span class="ribbon">Best Value</span>
+        <span class="card-plan">Extended</span>
+        <h3 class="card-name">6 Months</h3>
+        <div class="price"><span class="currency">$</span><span class="amount">20</span></div>
+        <div class="price-sub">Billed once</div>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Voice to text conversion</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
+        </ul>
+        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 6 Months" data-price="$20.00">Get Premium</button>
+      </div>
+      <div class="card reveal reveal-delay-3">
+        <span class="card-plan">Yearly</span>
+        <h3 class="card-name">12 Months</h3>
+        <div class="price"><span class="currency">$</span><span class="amount">33</span></div>
+        <div class="price-sub">Billed once</div>
+        <ul class="feature-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All premium features</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Lowest monthly rate</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
+        </ul>
+        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 12 Months" data-price="$33.00">Get Premium</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment" class="reveal">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Payment Methods</span>
+      <h2>Choose Your Payment Method</h2>
+      <p>Select a method below, then confirm your order.</p>
+    </div>
+
+    <div class="pay-grid">
+      <div class="pay-card reveal ripple" tabindex="0" role="button" aria-pressed="false" data-method="Binance Pay" data-detail="ID 409082023">
+        <span class="selected-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="pay-label">BINANCE</div>
+        <div class="pay-network">Pay ID</div>
+        <div class="pay-address">
+          <code id="binance-id">409082023</code>
+          <button type="button" class="copy-btn ripple" data-copy-target="binance-id">Copy</button>
+        </div>
+      </div>
+
+      <div class="pay-card reveal reveal-delay-1 ripple" tabindex="0" role="button" aria-pressed="false" data-method="USDT (BEP20) / Base USDC" data-detail="0x4d523fde952dc0bb3363e301462d4ebc1236d9c7">
+        <span class="selected-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="pay-label">USDT • BEP20</div>
+        <div class="pay-network">BNB Smart Chain / Base</div>
+        <div class="pay-address">
+          <code id="usdt-address">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</code>
+          <button type="button" class="copy-btn ripple" data-copy-target="usdt-address">Copy</button>
+        </div>
+        <p class="pay-hint">Same address for Base USDC</p>
+      </div>
+
+      <div class="pay-card reveal reveal-delay-2 ripple" tabindex="0" role="button" aria-pressed="false" data-method="Solana USDC" data-detail="AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe">
+        <span class="selected-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="pay-label">Solana USDC</div>
+        <div class="pay-network">Solana Network</div>
+        <div class="pay-address">
+          <code id="sol-address">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</code>
+          <button type="button" class="copy-btn ripple" data-copy-target="sol-address">Copy</button>
+        </div>
+        <p class="pay-hint pay-warning">Important: send only USDC on Solana chain. Sending other tokens may result in loss.</p>
+      </div>
+    </div>
+
+    <p class="pay-note reveal">Send only the exact amount for your selected plan. Double check the network before sending; payments to the wrong network cannot be recovered.</p>
+
+    <div class="confirm-box reveal" aria-live="polite">
+      <h3>Order Confirmation</h3>
+      <div class="confirm-row"><span>Selected Package</span><span id="summaryPackage">Not selected yet</span></div>
+      <div class="confirm-row"><span>Total Amount</span><span id="summaryAmount">Not selected yet</span></div>
+      <div class="confirm-row"><span>Selected Payment Method</span><span id="summaryMethod">Not selected yet</span></div>
+
+      <div class="confirm-check">
+        <input type="checkbox" id="confirmCheck" disabled>
+        <label for="confirmCheck">I confirm my order details are correct</label>
+      </div>
+
+      <button type="button" id="paidBtn" class="btn btn-primary ripple" disabled>I have sent the payment</button>
+    </div>
+
+    <div class="order-form-wrap" id="orderFormWrap">
+      <form class="order-form" id="orderForm" novalidate>
+        <h3>Confirm Your Order</h3>
+        <p class="order-form-sub">Fill this in and we will verify your transaction and activate your subscription.</p>
+
+        <label>Telegram Username
+          <input type="text" id="tgUsername" placeholder="@yourusername">
+          <span class="field-msg" id="err-tg"></span>
+        </label>
+
+        <label id="xProfileField">X Profile Link
+          <input type="text" id="xProfile" placeholder="https://x.com/yourhandle">
+          <div class="x-preview" id="xPreview" hidden></div>
+          <span class="field-msg" id="err-x"></span>
+        </label>
+
+        <label><span id="uploadLabelText">Upload Payment Screenshot</span>
+          <div class="file-field">
+            <label class="file-btn ripple" for="screenshot">Choose Image</label>
+            <span class="file-name empty" id="fileName">No file chosen</span>
+          </div>
+          <input type="file" id="screenshot" accept="image/*">
+          <span class="field-msg" id="err-shot"></span>
+        </label>
+
+        <label>Transaction Hash or Order ID
+          <input type="text" id="txHash" placeholder="Enter Binance Order ID or Transaction Hash (0x...)">
+          <span class="field-msg" id="err-tx"></span>
+        </label>
+
+        <button type="submit" class="btn btn-primary ripple" id="submitBtn" disabled>Submit &amp; Get Premium</button>
+        <div class="form-status" id="formStatus" aria-live="polite">
+          <span class="success-check" aria-hidden="true">
+            <svg viewBox="0 0 60 60" width="52" height="52">
+              <circle class="success-check-circle" cx="30" cy="30" r="26"/>
+              <polyline class="success-check-mark" points="18,31 27,40 43,20"/>
+            </svg>
+          </span>
+          <span class="form-status-text" id="formStatusText"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section id="how-it-works" class="reveal">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How To Order</span>
+      <h2>Four steps to Premium</h2>
+      <p>Simple, fast, and secure. Most orders are delivered within minutes.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h4>Choose Your Plan</h4>
+        <p>Pick the X Premium or Telegram Premium duration that fits you.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <span class="step-num">02</span>
+        <h4>Send Payment</h4>
+        <p>Pay via Binance Pay, USDT (BEP20) / Base USDC, or Solana USDC.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <span class="step-num">03</span>
+        <h4>Confirm Order</h4>
+        <p>Check the confirmation box, then fill in the short form to submit your order.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <span class="step-num">04</span>
+        <h4>Get Activated</h4>
+        <p>Sit back. Your subscription is activated within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="reveal" style="background:var(--bg-soft);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions &amp; answers</h2>
+      <p>Everything you need to know before ordering.</p>
+    </div>
+    <div class="faq-wrap reveal">
+      <div class="faq-item">
+        <button type="button" class="faq-question">Is this safe for my account?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>Yes. We never ask for your password. Activation is done through official, supported methods only. Your account credentials stay yours at all times.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-question">How long does delivery take?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>Most orders are activated within 24 hours of payment confirmation. During busier periods it may take a little longer, and we will keep you updated.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-question">What payment methods do you accept?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>We currently accept Binance Pay, USDT (BEP20) / Base USDC, and Solana USDC. More payment options may be added over time.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-question">Can I get a refund if something goes wrong?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>If your order fails to activate on our end, you are entitled to a full refund or a free replacement. Reach out via Telegram with your order details and we will resolve it quickly.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reveal">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">All-in-One Premiums</div>
+        <p>Premium subscriptions, elevated. Fast, secure delivery of X Premium and Telegram Premium.</p>
+      </div>
+      <div class="footer-contact">
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <div class="footer-links">
+            <a href="#x-premium" onclick="event.preventDefault(); document.getElementById('x-premium').scrollIntoView({behavior:'smooth'})">X Premium</a>
+            <span class="sep">|</span>
+            <a href="#telegram-premium" onclick="event.preventDefault(); document.getElementById('telegram-premium').scrollIntoView({behavior:'smooth'})">Telegram Premium</a>
+            <span class="sep">|</span>
+            <a href="#faq" onclick="event.preventDefault(); document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
+            <span class="sep">|</span>
+            <a href="https://t.me/evanjawad" target="_blank" rel="noopener" onclick="event.preventDefault(); openTelegram();">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 All-in-One Premiums. All rights reserved.</span>
+      <span>Not affiliated with X Corp or Telegram</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Telegram bot notification on order submit.
+  // NOTE: a bot token embedded in client-side code is publicly visible to anyone who
+  // views page source or the Network tab, and lets them send messages as this bot.
+  // Fine for a quick test; before real traffic hits this page, move this call behind
+  // a small backend/serverless proxy that holds the token server-side instead.
+  const TELEGRAM_BOT_TOKEN = '8777647025:AAGZfceplbue1FjjWIQblJHh0G6v8R7gqdQ';
+  const TELEGRAM_CHAT_ID = '6981762352';
+  // GET with query params avoids a JSON preflight request, which the Bot API does not
+  // reliably answer with CORS headers from the browser.
+  function notifyTelegramBot(message){
+    const url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage'
+      + '?chat_id=' + encodeURIComponent(TELEGRAM_CHAT_ID)
+      + '&text=' + encodeURIComponent(message);
+    return fetch(url);
+  }
+
+  // multipart/form-data without a manual Content-Type header is a CORS-safe "simple
+  // request" too, so this also avoids a blocked preflight.
+  function notifyTelegramPhoto(file, caption){
+    const form = new FormData();
+    form.append('chat_id', TELEGRAM_CHAT_ID);
+    form.append('caption', caption);
+    form.append('photo', file, file.name);
+    return fetch('https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendPhoto', {
+      method: 'POST',
+      body: form
+    });
+  }
+
+  // Contact: open the Telegram app directly on mobile, web Telegram on desktop
+  function openTelegram(){
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      window.location.href = 'tg://resolve?domain=evanjawad';
+      setTimeout(() => { window.location.href = 'https://t.me/evanjawad'; }, 500);
+    } else {
+      window.open('https://t.me/evanjawad', '_blank');
+    }
+  }
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    menuToggle.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a, .nav-cta').forEach(link => {
+    link.addEventListener('click', () => { nav.classList.remove('open'); menuToggle.classList.remove('open'); });
+  });
+
+  // Reveal on scroll: fades in and slides up once per element, then drops
+  // will-change so finished elements stop being promoted to their own layer.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.classList.add('visible');
+        observer.unobserve(el);
+        el.addEventListener('transitionend', () => { el.style.willChange = 'auto'; }, { once: true });
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-answer').style.maxHeight = null;
+      });
+      if (!isOpen) { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
+    });
+  });
+
+  // Copy to clipboard
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const text = document.getElementById(btn.getAttribute('data-copy-target')).textContent.trim();
+      const done = () => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1800);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta); done();
+      }
+    });
+  });
+
+  // Ripple
+  function createRipple(e, el){
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const radius = size / 2;
+    const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : rect.left + rect.width / 2);
+    const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : rect.top + rect.height / 2);
+    const circle = document.createElement('span');
+    circle.className = 'ripple-effect';
+    circle.style.width = circle.style.height = size + 'px';
+    circle.style.left = (clientX - rect.left - radius) + 'px';
+    circle.style.top = (clientY - rect.top - radius) + 'px';
+    const existing = el.querySelector('.ripple-effect');
+    if (existing) existing.remove();
+    el.appendChild(circle);
+    circle.addEventListener('animationend', () => circle.remove());
+  }
+  document.querySelectorAll('.ripple').forEach(el => {
+    el.addEventListener('click', function (e) { createRipple(e, this); });
+  });
+
+  /* ---------------- Order flow state machine ---------------- */
+  let selectedPlan = null;
+  let selectedPrice = null;
+  let selectedMethod = null;
+
+  const summaryPackage = document.getElementById('summaryPackage');
+  const summaryAmount = document.getElementById('summaryAmount');
+  const summaryMethod = document.getElementById('summaryMethod');
+  const confirmCheck = document.getElementById('confirmCheck');
+  const paidBtn = document.getElementById('paidBtn');
+  const orderFormWrap = document.getElementById('orderFormWrap');
+  const orderForm = document.getElementById('orderForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formStatus = document.getElementById('formStatus');
+  const formStatusText = document.getElementById('formStatusText');
+  const txHashInput = document.getElementById('txHash');
+
+  function refreshConfirmState(){
+    const ready = !!(selectedPlan && selectedMethod);
+    confirmCheck.disabled = !ready;
+    if (!ready) { confirmCheck.checked = false; }
+    paidBtn.disabled = !confirmCheck.checked;
+  }
+
+  // Plan buttons
+  document.querySelectorAll('.plan-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedPlan = btn.getAttribute('data-plan');
+      selectedPrice = btn.getAttribute('data-price');
+      summaryPackage.textContent = selectedPlan;
+      summaryAmount.textContent = selectedPrice;
+      confirmCheck.checked = false;
+      refreshConfirmState();
+      updateXFieldVisibility();
+      document.getElementById('payment').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Payment method cards
+  const payCards = document.querySelectorAll('.pay-card');
+  function selectPayCard(card){
+    payCards.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed','false'); });
+    card.classList.add('selected');
+    card.setAttribute('aria-pressed','true');
+    selectedMethod = card.getAttribute('data-method');
+    summaryMethod.textContent = selectedMethod;
+    confirmCheck.checked = false;
+    refreshConfirmState();
+  }
+  payCards.forEach(card => {
+    card.addEventListener('click', (e) => { if (!e.target.closest('.copy-btn')) selectPayCard(card); });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPayCard(card); }
+    });
+  });
+
+  confirmCheck.addEventListener('change', () => { refreshConfirmState(); refreshSubmitState(); });
+
+  paidBtn.addEventListener('click', () => {
+    orderFormWrap.classList.add('open');
+    setTimeout(() => orderFormWrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+    updateXFieldVisibility();
+    refreshSubmitState();
+  });
+
+  /* ---------------- Field validation ---------------- */
+  const tgInput = document.getElementById('tgUsername');
+  const xInput = document.getElementById('xProfile');
+  const xProfileField = document.getElementById('xProfileField');
+  const uploadLabelText = document.getElementById('uploadLabelText');
+  const fileInput = document.getElementById('screenshot');
+  const fileNameLabel = document.getElementById('fileName');
+
+  function isXPremiumOrder(){ return !!(selectedPlan && selectedPlan.indexOf('X Premium') === 0); }
+
+  function updateXFieldVisibility(){
+    const needsX = isXPremiumOrder();
+    xProfileField.hidden = !needsX;
+    if (!needsX) {
+      xInput.value = '';
+      xInput.classList.remove('invalid');
+      setFieldMsg('err-x', false, '');
+      hideXPreview();
+    }
+    if (selectedPlan) {
+      uploadLabelText.textContent = needsX ? 'Upload X Profile Screenshot' : 'Upload Telegram Profile Screenshot';
+    } else {
+      uploadLabelText.textContent = 'Upload Payment Screenshot';
+    }
+  }
+
+  function validTg(){ return tgInput.value.trim().indexOf('@') !== -1; }
+  function validX(){
+    if (!isXPremiumOrder()) return true;
+    const v = xInput.value.trim().toLowerCase();
+    return v.indexOf('x.com') !== -1 || v.indexOf('twitter.com') !== -1;
+  }
+
+  /* ---------------- X profile preview ---------------- */
+  const xPreview = document.getElementById('xPreview');
+  let xPreviewTimer = null;
+  let xPreviewRequestId = 0;
+  const X_PROFILE_PROXY = 'https://x-profile-proxy.evanjawad36.workers.dev/';
+
+  function extractXUsername(raw){
+    const v = raw.trim();
+    if (!v) return null;
+    let m = v.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})(?:[/?#]|$)/i);
+    if (m) return m[1];
+    m = v.match(/^@([A-Za-z0-9_]{1,15})$/);
+    if (m) return m[1];
+    m = v.match(/^([A-Za-z0-9_]{1,15})$/);
+    if (m) return m[1];
+    return null;
+  }
+
+  function showXPreview(html){ xPreview.hidden = false; xPreview.innerHTML = html; }
+  function hideXPreview(){ xPreview.hidden = true; xPreview.innerHTML = ''; }
+
+  function renderXPreviewInvalid(){
+    showXPreview('<div class="x-preview-status x-preview-invalid">Invalid X username</div>');
+  }
+  function renderXPreviewLoading(){
+    showXPreview('<div class="x-preview-status">Fetching profile...</div>');
+  }
+  function renderXPreviewServiceIssue(){
+    showXPreview('<div class="x-preview-status">Profile preview unavailable</div>');
+  }
+
+  function renderXPreviewFound(username, data){
+    xPreview.hidden = false;
+    xPreview.innerHTML = '';
+    const row = document.createElement('div');
+    row.className = 'x-preview-row';
+
+    let avatarEl;
+    if (data.profile_image_url) {
+      avatarEl = document.createElement('img');
+      avatarEl.className = 'x-preview-avatar';
+      avatarEl.src = data.profile_image_url;
+      avatarEl.alt = '';
+      avatarEl.addEventListener('error', () => {
+        const fallback = document.createElement('span');
+        fallback.className = 'x-preview-avatar';
+        fallback.setAttribute('aria-hidden', 'true');
+        fallback.textContent = username.charAt(0).toUpperCase();
+        avatarEl.replaceWith(fallback);
+      });
+    } else {
+      avatarEl = document.createElement('span');
+      avatarEl.className = 'x-preview-avatar';
+      avatarEl.setAttribute('aria-hidden', 'true');
+      avatarEl.textContent = username.charAt(0).toUpperCase();
+    }
+
+    const info = document.createElement('div');
+    const nameEl = document.createElement('div');
+    nameEl.className = 'x-preview-name';
+    nameEl.textContent = data.name || ('@' + username);
+    const handleEl = document.createElement('div');
+    handleEl.className = 'x-preview-handle';
+    handleEl.textContent = '@' + (data.username || username);
+    info.appendChild(nameEl);
+    info.appendChild(handleEl);
+
+    row.appendChild(avatarEl);
+    row.appendChild(info);
+    xPreview.appendChild(row);
+  }
+
+  // Routes through the Cloudflare Worker proxy so the X API bearer token stays
+  // server-side. The worker always responds HTTP 200 and passes X's JSON body
+  // through as-is, so success/failure has to be read from the body shape:
+  // success   -> { data: { name, username, profile_image_url } }
+  // not found -> { errors: [{ type: '.../resource-not-found', ... }] }
+  // anything else (credits depleted, malformed request, etc.) falls back below.
+  xInput.addEventListener('input', () => {
+    clearTimeout(xPreviewTimer);
+    const raw = xInput.value;
+    if (!raw.trim()) { xPreviewRequestId++; hideXPreview(); return; }
+    xPreviewTimer = setTimeout(() => {
+      const username = extractXUsername(raw);
+      if (!username) { xPreviewRequestId++; renderXPreviewInvalid(); return; }
+      renderXPreviewLoading();
+      const requestId = ++xPreviewRequestId;
+      fetch(X_PROFILE_PROXY + encodeURIComponent(username))
+        .then(res => res.json())
+        .then(body => {
+          if (requestId !== xPreviewRequestId) return;
+          const profile = body && body.data;
+          const errors = (body && body.errors) || [];
+          const notFound = errors.some(e => (e.type || '').indexOf('resource-not-found') !== -1 || e.title === 'Not Found Error');
+          if (profile && (profile.name || profile.username || profile.profile_image_url)) {
+            renderXPreviewFound(username, profile);
+          } else if (notFound) {
+            renderXPreviewInvalid();
+          } else {
+            renderXPreviewServiceIssue();
+          }
+        })
+        .catch(() => { if (requestId === xPreviewRequestId) renderXPreviewServiceIssue(); });
+    }, 450);
+  });
+
+  function validFile(){
+    const f = fileInput.files[0];
+    return !!f && f.type.indexOf('image/') === 0;
+  }
+  function validTx(){
+    const v = txHashInput.value.trim();
+    const isOrderId = /^[a-zA-Z0-9]{5,}$/.test(v);
+    const isEvmHash = /^0x[a-fA-F0-9]{40}$/.test(v);
+    return isOrderId || isEvmHash;
+  }
+
+  function setFieldMsg(id, show, text){
+    const el = document.getElementById(id);
+    el.textContent = show ? text : '';
+    el.classList.toggle('show', show);
+  }
+
+  function refreshSubmitState(){
+    const tgOk = validTg();
+    const xOk = validX();
+    const fileOk = validFile();
+    const txOk = validTx();
+
+    setFieldMsg('err-tg', tgInput.value.length > 0 && !tgOk, 'Must contain the @ symbol');
+    setFieldMsg('err-x', xInput.value.length > 0 && !xOk, 'Must be a link containing x.com or twitter.com');
+    setFieldMsg('err-shot', fileInput.files.length > 0 && !fileOk, 'Please choose an image file');
+    setFieldMsg('err-tx', txHashInput.value.length > 0 && !txOk, 'Enter Binance Order ID or Transaction Hash (0x...)');
+
+    tgInput.classList.toggle('invalid', tgInput.value.length > 0 && !tgOk);
+    xInput.classList.toggle('invalid', xInput.value.length > 0 && !xOk);
+    txHashInput.classList.toggle('invalid', txHashInput.value.length > 0 && !txOk);
+
+    const allValid = tgOk && xOk && fileOk && txOk && selectedMethod && selectedPlan && confirmCheck.checked;
+    submitBtn.disabled = !allValid;
+
+    if (!formStatus.classList.contains('success')) {
+      const missing = [];
+      if (!selectedPlan) missing.push('a plan');
+      if (!selectedMethod) missing.push('a payment method');
+      if (!tgOk) missing.push('Telegram username');
+      if (!xOk) missing.push('X profile link');
+      if (!fileOk) missing.push('screenshot');
+      if (!txOk) missing.push('transaction hash');
+      if (!confirmCheck.checked) missing.push('order confirmation checkbox');
+      formStatusText.textContent = allValid ? '' : ('Missing or invalid: ' + missing.join(', ') + '.');
+    }
+  }
+
+  [tgInput, xInput, txHashInput].forEach(inp => inp.addEventListener('input', refreshSubmitState));
+  fileInput.addEventListener('change', () => {
+    const hasFile = !!fileInput.files[0];
+    fileNameLabel.textContent = hasFile ? fileInput.files[0].name : 'No file chosen';
+    fileNameLabel.classList.toggle('empty', !hasFile);
+    refreshSubmitState();
+  });
+
+  orderForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (submitBtn.disabled) return;
+
+    const lines = [
+      'New Order',
+      'Username: ' + tgInput.value.trim()
+    ];
+    if (isXPremiumOrder()) { lines.push('X Profile: ' + xInput.value.trim()); }
+    lines.push(
+      'Hash: ' + txHashInput.value.trim(),
+      'Package: ' + selectedPlan,
+      'Amount: ' + selectedPrice,
+      'Payment: ' + selectedMethod
+    );
+
+    notifyTelegramBot(lines.join('\n')).catch(() => { /* non-blocking: ignore bot delivery failures */ });
+    const shot = fileInput.files[0];
+    if (shot) {
+      notifyTelegramPhoto(shot, 'Payment screenshot, order for ' + selectedPlan).catch(() => { /* non-blocking */ });
+    }
+
+    formStatusText.textContent = 'Your order has been submitted. We will verify within 24 hours.';
+    formStatus.classList.add('success');
+
+    setTimeout(() => {
+      orderForm.reset();
+      fileNameLabel.textContent = 'No file chosen';
+      fileNameLabel.classList.add('empty');
+      hideXPreview();
+      tgInput.classList.remove('invalid'); xInput.classList.remove('invalid'); txHashInput.classList.remove('invalid');
+      ['err-tg','err-x','err-shot','err-tx'].forEach(id => setFieldMsg(id, false, ''));
+      payCards.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed','false'); });
+      selectedPlan = null; selectedPrice = null; selectedMethod = null;
+      updateXFieldVisibility();
+      summaryPackage.textContent = 'Not selected yet';
+      summaryAmount.textContent = 'Not selected yet';
+      summaryMethod.textContent = 'Not selected yet';
+      confirmCheck.checked = false;
+      refreshConfirmState();
+      submitBtn.disabled = true;
+      orderFormWrap.classList.remove('open');
+      formStatusText.textContent = '';
+      formStatus.classList.remove('success');
+    }, 4000);
+  });
+
+  refreshConfirmState();
+</script>
+
+</body>
+</html>

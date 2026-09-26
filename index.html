@@ -129,6 +129,28 @@
   .stat h3{font-size:28px;font-weight:800;letter-spacing:-1px;}
   .stat span{font-size:12.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
 
+  /* X automation promo banner */
+  .promo-banner{
+    position:relative;background:#000;color:#fff;border-radius:var(--radius);border-top:3px solid var(--gold);
+    padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
+    box-shadow:var(--shadow-lift);overflow:hidden;
+  }
+  .promo-banner .ribbon{background:#fff;color:#000;}
+  .promo-banner-text{flex:1;min-width:280px;}
+  .promo-banner-text .eyebrow{color:#999;margin-bottom:10px;}
+  .promo-banner-title{font-family:var(--font-serif);font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:12px;}
+  .promo-banner-sub{font-size:14.5px;color:#D8D8D8;max-width:480px;margin-bottom:20px;}
+  .promo-banner-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
+  .promo-banner-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:#EDEDED;}
+  .promo-banner-list li svg{flex-shrink:0;width:16px;height:16px;stroke:#fff;stroke-width:2.5;}
+  .promo-banner-price{font-size:14px;color:#D8D8D8;}
+  .promo-banner-price b{color:#fff;font-size:18px;}
+  .promo-banner-cta{flex-shrink:0;white-space:nowrap;}
+  @media (max-width:768px){
+    .promo-banner{flex-direction:column;align-items:flex-start;padding:28px 24px;}
+    .promo-banner-cta{width:100%;text-align:center;}
+  }
+
   /* Sections */
   section{padding:100px 0;}
   .section-head{text-align:center;max-width:600px;margin:0 auto 72px;}
@@ -396,6 +418,27 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
+
+<!-- X AUTOMATION PROMO -->
+<section class="reveal" style="padding:48px 0 0;">
+  <div class="container">
+    <div class="promo-banner reveal">
+      <span class="ribbon">Also From Us</span>
+      <div class="promo-banner-text">
+        <span class="eyebrow">X Automation Extension</span>
+        <h3 class="promo-banner-title">Full auto. 10 agents. Zero effort.</h3>
+        <p class="promo-banner-sub">It replies, engages and grows your X account while you do literally anything else. Not a maybe, automatic.</p>
+        <ul class="promo-banner-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Auto replies and engages, on your posts and anyone else's</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Grows your account and Sorsa Score on its own</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Safety Guard watches X's limits live, protects your account</li>
+        </ul>
+        <div class="promo-banner-price"><b>$6.99</b> one time, unlocks all 10 agents for good.</div>
+      </div>
+      <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="btn btn-primary ripple promo-banner-cta">Click Me →</a>
+    </div>
+  </div>
+</section>
 
 <!-- HERO -->
 <section class="hero">

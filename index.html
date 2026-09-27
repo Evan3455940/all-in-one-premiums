@@ -776,30 +776,23 @@
 </footer>
 
 <script>
-  // Telegram bot notification on order submit.
-  // NOTE: a bot token embedded in client-side code is publicly visible to anyone who
-  // views page source or the Network tab, and lets them send messages as this bot.
-  // Fine for a quick test; before real traffic hits this page, move this call behind
-  // a small backend/serverless proxy that holds the token server-side instead.
-  const TELEGRAM_BOT_TOKEN = '8777647025:AAGZfceplbue1FjjWIQblJHh0G6v8R7gqdQ';
-  const TELEGRAM_CHAT_ID = '6981762352';
-  // GET with query params avoids a JSON preflight request, which the Bot API does not
-  // reliably answer with CORS headers from the browser.
+  // Telegram bot notification on order submit, relayed through the backend
+  // Worker instead of calling api.telegram.org directly — the bot token now
+  // lives server-side only, never in this page's own source.
+  const STORE_NOTIFY_URL = 'https://x-auto-pilot-backend.evanjawad36.workers.dev/store-notify';
   function notifyTelegramBot(message){
-    const url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage'
-      + '?chat_id=' + encodeURIComponent(TELEGRAM_CHAT_ID)
-      + '&text=' + encodeURIComponent(message);
-    return fetch(url);
+    return fetch(STORE_NOTIFY_URL + '/message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message })
+    });
   }
 
-  // multipart/form-data without a manual Content-Type header is a CORS-safe "simple
-  // request" too, so this also avoids a blocked preflight.
   function notifyTelegramPhoto(file, caption){
     const form = new FormData();
-    form.append('chat_id', TELEGRAM_CHAT_ID);
     form.append('caption', caption);
     form.append('photo', file, file.name);
-    return fetch('https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendPhoto', {
+    return fetch(STORE_NOTIFY_URL + '/photo', {
       method: 'POST',
       body: form
     });

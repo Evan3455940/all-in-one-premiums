@@ -1,1272 +1,3227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All-in-One Premiums | Premium Subscriptions, Elevated</title>
-<meta name="description" content="All-in-One Premiums: X Premium and Telegram Premium subscriptions, delivered instantly.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#FFFFFF;
-    --bg-soft:#F8F8F8;
-    --text:#000000;
-    --text-secondary:#333333;
-    --text-muted:#777777;
-    --border:#E8E8E8;
-    --gold:#C9A84C;
-    --charcoal:#1A1A1A;
-    --shadow:0 4px 20px rgba(0,0,0,0.06);
-    --shadow-lift:0 12px 32px rgba(0,0,0,0.1);
-    --radius:16px;
-    --max:1200px;
-    --font-serif:'Playfair Display',Georgia,serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>All-in-One Premiums · The Sovereign Digital Suite</title>
+  <meta name="description" content="All-in-One Premiums: The definitive provider for X Premium, Telegram Premium, and X AutoPilot 12-Agent Autonomous Suite. Instant cryptographic dispatch, zero credentials required.">
+  <link rel="canonical" href="https://all-in-one-premiums.store/">
 
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://all-in-one-premiums.store/">
+  <meta property="og:title" content="All-in-One Premiums · The Sovereign Digital Suite">
+  <meta property="og:description" content="Instant cryptographic dispatch for X Premium, Telegram Premium, and X AutoPilot 12-Agent Suite. Elevate your presence.">
+  <meta name="theme-color" content="#08080A">
 
-  html{scroll-behavior:smooth;}
+  <!-- Typography: Cinzel, Manrope, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM TOKENS & CRAFT FOUNDATION
+       Bespoke luxury digital atelier: Obsidian, Warm Oxblood, Champagne Metallic
+       ========================================================================== */
+    :root {
+      --bg-base: #08080A;
+      --bg-surface: #100E13;
+      --bg-card: rgba(20, 16, 23, 0.72);
+      --bg-card-hover: rgba(28, 22, 33, 0.88);
+      --bg-elevated: #18141D;
 
-  img{max-width:100%;display:block;}
-  a{color:inherit;text-decoration:none;}
-  button,input,select,textarea{font-family:inherit;}
-  button{border:none;background:none;cursor:pointer;}
-  a,button{touch-action:manipulation;}
-  button:disabled{opacity:.4;cursor:not-allowed;pointer-events:none;}
+      --plum-accent: #55162D;
+      --burgundy: #8A2346;
+      --oxblood-deep: #320C1A;
 
-  section[id]{scroll-margin-top:88px;}
+      --gold-primary: #D5C3A0;
+      --gold-bright: #EFE5D1;
+      --gold-dim: #9C8C70;
+      --gold-border: rgba(213, 195, 160, 0.22);
 
-  .container{max-width:var(--max);margin:0 auto;padding:0 32px;}
+      --text-pure: #FBF9F5;
+      --text-primary: #EDE8E1;
+      --text-secondary: #ADA49F;
+      --text-muted: #A59E9A;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(255, 255, 255, 0.16);
 
-  ::selection{background:#000;color:#fff;}
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Cinzel', serif;
+      --font-mono: 'JetBrains Mono', monospace;
 
-  /* Reveal on scroll */
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease-out, transform .8s ease-out;will-change:opacity,transform;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-  .reveal-delay-1{transition-delay:.08s;}
-  .reveal-delay-2{transition-delay:.16s;}
-  .reveal-delay-3{transition-delay:.24s;}
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
 
-  /* Ripple */
-  .ripple{position:relative;overflow:hidden;}
-  .ripple-effect{
-    position:absolute;border-radius:50%;transform:scale(0);
-    background:rgba(0,0,0,0.14);pointer-events:none;
-    animation:rippleAnim .6s cubic-bezier(.4,0,.2,1) forwards;
-    will-change:transform,opacity;
-  }
-  .btn-primary.ripple .ripple-effect,
-  .nav-cta.ripple .ripple-effect,
-  .copy-btn.ripple .ripple-effect{background:rgba(255,255,255,0.32);}
-  @keyframes rippleAnim{to{transform:scale(2.6);opacity:0;}}
+      --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+      --max-width: 1240px;
+    }
 
-  /* Nav */
-  header{
-    position:sticky;top:0;z-index:100;
-    background:rgba(255,255,255,0.85);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border);
-  }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:var(--max);margin:0 auto;position:relative;}
-  .logo{font-weight:800;font-size:18px;letter-spacing:.3px;white-space:nowrap;}
-  .nav-right{display:flex;align-items:center;gap:22px;}
-  .nav-links{display:flex;align-items:center;gap:22px;list-style:none;}
-  .nav-links a{font-size:14px;font-weight:500;color:var(--text-secondary);position:relative;transition:color .3s ease;}
-  .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#000;transition:width .3s ease;}
-  .nav-links a:hover{color:#000;}
-  .nav-links a:hover::after{width:100%;}
-  .dm-link{display:inline-flex;align-items:center;gap:6px;font-weight:600 !important;}
-  .dm-link svg{width:14px;height:14px;flex-shrink:0;}
-  .nav-cta{background:#000;color:#fff;padding:11px 24px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.3px;transition:transform .3s ease, box-shadow .3s ease;white-space:nowrap;will-change:transform;}
-  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
-  .menu-toggle{display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;min-width:44px;min-height:44px;}
-  .menu-toggle span{width:22px;height:2px;background:#000;transition:.3s ease;}
-  .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  .menu-toggle.open span:nth-child(2){opacity:0;}
-  .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  /* Hero */
-  .hero{
-    padding:120px 32px 100px;
-    background:radial-gradient(circle at 15% 20%, rgba(0,0,0,0.035), transparent 40%),
-      radial-gradient(circle at 85% 10%, rgba(0,0,0,0.03), transparent 40%), var(--bg-soft);
-    text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;
-  }
-  .hero::before{
-    content:'';position:absolute;inset:0;
-    background-image:linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
-    background-size:48px 48px;
-    mask-image:radial-gradient(ellipse 70% 60% at 50% 20%, black, transparent);
-    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 20%, black, transparent);
-    pointer-events:none;
-  }
-  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
-  .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1px solid var(--border);border-radius:100px;background:#fff;font-size:12.5px;font-weight:600;letter-spacing:.3px;color:var(--text-secondary);margin-bottom:32px;box-shadow:var(--shadow);}
-  .badge .dot{width:6px;height:6px;border-radius:50%;background:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
-  .hero h1{font-family:var(--font-serif);font-size:clamp(2.75rem, 5.5vw, 4rem);font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-bottom:24px;}
-  .hero h1 .thin{font-weight:300;display:block;}
-  .hero p{font-size:18px;color:var(--text-secondary);max-width:540px;margin:0 auto 40px;}
-  .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
-  .btn{padding:16px 32px;border-radius:100px;font-size:14.5px;font-weight:600;letter-spacing:.3px;transition:transform .25s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease, background .25s ease, color .25s ease;cursor:pointer;display:inline-block;border:1px solid transparent;will-change:transform;}
-  .btn-primary{background:#000;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,0.18);}
-  .btn-primary:hover{background:var(--charcoal);transform:translateY(-2px) scale(1.02);box-shadow:0 12px 24px rgba(0,0,0,0.2);}
-  .btn-primary:active{transform:translateY(-1px) scale(.98);}
-  .btn-outline{background:#fff;color:#000;border:1px solid #000;}
-  .btn-outline:hover{background:var(--charcoal);border-color:var(--charcoal);color:#fff;transform:translateY(-2px) scale(1.02);}
-  .btn-outline:active{transform:translateY(-1px) scale(.98);}
-  .hero-stats{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;padding-top:48px;border-top:1px solid var(--border);}
-  .stat h3{font-size:28px;font-weight:800;letter-spacing:-1px;}
-  .stat span{font-size:12.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-size: 16px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-  /* X automation promo banner */
-  .promo-banner{
-    position:relative;background:#000;color:#fff;border-radius:var(--radius);border-top:3px solid var(--gold);
-    padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
-    box-shadow:var(--shadow-lift);overflow:hidden;
-  }
-  .promo-banner .ribbon{background:#fff;color:#000;}
-  .promo-banner-text{flex:1;min-width:280px;}
-  .promo-banner-text .eyebrow{color:#999;margin-bottom:10px;}
-  .promo-banner-title{font-family:var(--font-serif);font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:12px;}
-  .promo-banner-num{color:var(--gold);font-weight:800;}
-  .promo-banner-sub{font-size:14.5px;color:#D8D8D8;max-width:480px;margin-bottom:20px;}
-  .promo-banner-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
-  .promo-banner-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:#EDEDED;}
-  .promo-banner-list li svg{flex-shrink:0;width:16px;height:16px;stroke:#fff;stroke-width:2.5;}
-  .promo-banner-price{font-size:14px;color:#D8D8D8;}
-  .promo-banner-price b{color:#fff;font-size:18px;}
-  .promo-banner-cta{flex-shrink:0;white-space:nowrap;}
-  @media (max-width:768px){
-    .promo-banner{flex-direction:column;align-items:flex-start;padding:28px 24px;}
-    .promo-banner-cta{width:100%;text-align:center;}
-  }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
 
-  /* Sections */
-  section{padding:100px 0;}
-  .section-head{text-align:center;max-width:600px;margin:0 auto 72px;}
-  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;display:block;}
-  .section-head h2{font-family:var(--font-serif);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-0.01em;margin-bottom:20px;}
-  .section-head h2::after{content:'';display:block;width:44px;height:2px;background:var(--gold);margin:20px auto 0;}
-  .section-head p{color:var(--text-secondary);font-size:16px;}
+    ::selection {
+      background: var(--plum-accent);
+      color: var(--gold-bright);
+    }
 
-  /* Pricing cards */
-  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:860px;margin:0 auto;}
-  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
-  .card{
-    position:relative;background:#fff;border:1px solid #000;border-radius:var(--radius);
-    padding:40px;max-width:500px;margin:0 auto;box-shadow:var(--shadow);
-    transition:transform .35s cubic-bezier(.16,.84,.44,1), box-shadow .35s cubic-bezier(.16,.84,.44,1);
-    overflow:hidden;will-change:transform;width:100%;
-  }
-  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
-  .card.featured{background:#000;color:#fff;border-color:#000;border-top:3px solid var(--gold);}
-  .card.featured .price-sub{color:#B8B8B8;}
-  .card.featured .feature-list li{color:#EDEDED;}
-  .card.featured .feature-list li svg{stroke:#fff;}
-  .card.featured .btn-outline{background:#fff;color:#000;border-color:#fff;}
-  .card.featured .btn-outline:hover{background:transparent;color:#fff;}
-  .ribbon{position:absolute;top:18px;right:-38px;background:#000;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 44px;transform:rotate(40deg);box-shadow:0 4px 10px rgba(0,0,0,0.25);}
-  .card.featured .ribbon{background:#fff;color:#000;}
-  .card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--bg-soft);border:1px solid var(--border);margin-bottom:24px;}
-  .card.featured .card-icon{background:#161616;border-color:#2a2a2a;}
-  .card-plan{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
-  .card.featured .card-plan{color:#999;}
-  .card-name{font-size:22px;font-weight:700;margin-bottom:16px;letter-spacing:-.5px;}
-  .price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;}
-  .price .amount{font-size:42px;font-weight:800;letter-spacing:-1.5px;}
-  .price .currency{font-size:20px;font-weight:700;}
-  .price-sub{font-size:13px;color:var(--text-muted);margin-bottom:28px;}
-  .feature-list{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:13px;}
-  .feature-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary);}
-  .feature-list li svg{flex-shrink:0;width:16px;height:16px;stroke:#000;stroke-width:2.5;}
-  .card .btn{width:100%;text-align:center;display:block;}
-  .grid-4 .card{padding:32px;max-width:none;}
-  .grid-4 .price .amount{font-size:34px;}
-  .grid-4 .card-name{font-size:17px;}
+    .ambient-aurora {
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140vw;
+      height: 85vh;
+      background: radial-gradient(55% 45% at 50% 30%, rgba(138, 35, 70, 0.16) 0%, rgba(85, 22, 45, 0.08) 45%, rgba(8, 8, 10, 0) 100%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      will-change: transform;
+    }
 
-  /* Payment section */
-  #payment{background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .pay-grid-helper{text-align:center;font-size:14px;font-style:italic;color:var(--text-muted);margin-bottom:24px;}
-  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:48px;align-items:stretch;}
-  .pay-card{
-    position:relative;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
-    padding:40px;cursor:pointer;text-align:left;
-    display:flex;flex-direction:column;height:100%;
-    transition:transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease, background .25s ease, border-color .25s ease;
-    will-change:transform;
-  }
-  .pay-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);background:#F5F5F5;}
-  .pay-card:focus-visible{outline:2px solid #000;outline-offset:3px;}
-  .pay-card.selected{border-color:#000;box-shadow:0 0 0 2px #000, 0 0 24px rgba(0,0,0,0.15), var(--shadow-lift);}
-  .selected-badge{
-    position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;
-    background:#000;color:#fff;display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:800;opacity:0;transform:scale(.5);
-    transition:opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
-  }
-  .pay-card.selected .selected-badge{opacity:1;transform:scale(1);}
-  .selected-badge svg{width:13px;height:13px;}
-  .pay-card-status{margin-top:14px;font-size:12px;font-style:italic;color:var(--text-muted);}
-  .pay-card.selected .pay-card-status{font-style:normal;font-weight:700;color:#000;}
-  .pay-label{font-size:18px;font-weight:800;letter-spacing:.5px;line-height:1.3;margin-bottom:10px;padding-right:26px;}
-  .pay-warning{color:var(--text);font-weight:600;}
-  .pay-card .pay-network{font-size:12px;color:var(--text-muted);margin-bottom:18px;text-transform:uppercase;letter-spacing:1px;font-weight:600;}
-  .pay-address{display:flex;align-items:center;gap:10px;background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
-  .pay-address code{flex:1;font-size:12px;font-family:'Inter',monospace;color:var(--text);word-break:break-all;letter-spacing:.2px;}
-  .pay-hint{margin-top:12px;font-size:12px;color:var(--text-muted);}
-  .copy-btn{flex-shrink:0;background:#000;color:#fff;border-radius:7px;padding:7px 16px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;transition:background .25s ease, transform .2s ease;will-change:transform;}
-  .copy-btn:hover{background:#333;}
-  .copy-btn:active{transform:scale(.94);}
-  .pay-note{text-align:center;font-size:13px;color:var(--text-muted);max-width:560px;margin:0 auto 56px;}
-  .payment-method-error{text-align:center;font-size:14px;font-weight:700;color:#000;margin:-24px auto 40px;animation:statusIn .3s ease-out;}
-  .payment-method-error[hidden]{display:none;}
-  .package-error{text-align:center;font-size:14px;font-weight:700;color:#000;margin:0 auto 32px;animation:statusIn .3s ease-out;}
-  .package-error[hidden]{display:none;}
-  .confirm-error{text-align:center;font-size:13.5px;font-weight:700;color:#000;margin-top:16px;animation:statusIn .3s ease-out;}
-  .confirm-error[hidden]{display:none;}
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(213, 195, 160, 0.2);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-primary);
+    }
 
-  /* Order confirmation */
-  .confirm-box{max-width:600px;margin:0 auto;background:#fff;border:1px solid #000;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);}
-  .confirm-box h3{font-size:19px;font-weight:700;margin-bottom:22px;}
-  .confirm-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);gap:16px;}
-  .confirm-row:last-of-type{border-bottom:none;}
-  .confirm-row span:first-child{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);}
-  .confirm-row span:last-child{font-size:14.5px;font-weight:700;text-align:right;}
-  .confirm-check{display:flex;align-items:flex-start;gap:12px;margin-top:26px;padding-top:22px;border-top:1px solid var(--border);cursor:pointer;}
-  .confirm-check input{width:19px;height:19px;flex-shrink:0;accent-color:#000;margin-top:1px;cursor:pointer;}
-  .confirm-check label{font-size:14px;color:var(--text-secondary);cursor:pointer;}
-  .confirm-box .btn{width:100%;margin-top:24px;}
+    /* Layout Container */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
 
-  .order-form-wrap{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.16,.84,.44,1), opacity .5s ease, margin-top .5s ease;scroll-margin-top:110px;}
-  .order-form-wrap.open{max-height:1600px;opacity:1;margin-top:40px;}
-  .order-form{max-width:560px;margin:0 auto;background:#fff;border:1px solid #000;border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:20px;box-shadow:var(--shadow);}
-  .order-form h3{font-size:20px;font-weight:700;}
-  .order-form-sub{font-size:13.5px;color:var(--text-secondary);margin-top:-10px;}
-  .order-form label{display:flex;flex-direction:column;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);}
-  .order-form label[hidden]{display:none;}
-  .order-form input[type=text],.order-form input[type=url]{
-    background:var(--bg-soft);border:1.5px solid #000;border-radius:10px;padding:13px 16px;color:#000;
-    font-size:14px;font-weight:500;text-transform:none;letter-spacing:0;transition:box-shadow .3s ease, background .3s ease;
-  }
-  .order-form input::placeholder{color:#999;}
-  .order-form input:focus{outline:none;background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,0.1);}
-  .order-form input.invalid{box-shadow:0 0 0 3px rgba(0,0,0,0.08);}
-  .field-msg{font-size:12px;color:var(--text-muted);text-transform:none;letter-spacing:0;font-weight:500;margin-top:2px;}
-  .field-msg.show::before{content:'• ';}
+    /* Interactive Magnetic Cursor (Desktop) - Uses transform exclusively */
+    .cursor-dot {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background-color: var(--gold-bright);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+    .cursor-outline {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(213, 195, 160, 0.45);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease, border-color 0.25s ease, transform 0.2s var(--ease-cinematic);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-dot, .cursor-outline { display: block; }
+    }
 
-  .x-preview{margin-top:10px;background:#fff;border:1px solid #000;border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);animation:statusIn .3s ease-out;}
-  .x-preview[hidden]{display:none;}
-  .x-preview-status{font-size:13px;color:var(--text-muted);font-weight:600;text-transform:none;letter-spacing:0;}
-  .x-preview-status.x-preview-invalid{color:#000;}
-  .x-preview-row{display:flex;align-items:center;gap:12px;}
-  .x-preview-avatar{width:40px;height:40px;border-radius:50%;border:1px solid #000;flex-shrink:0;object-fit:cover;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#000;}
-  .x-preview-name{font-size:14px;font-weight:700;color:#000;text-transform:none;letter-spacing:0;}
-  .x-preview-handle{font-size:12.5px;color:var(--text-muted);font-weight:500;text-transform:none;letter-spacing:0;margin-top:2px;}
+    /* ==========================================================================
+       TOP TELEMETRY & MASTER HEADER
+       ========================================================================== */
+    .telemetry-ticker {
+      background: #0D0A11;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      padding: 8px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 101;
+      letter-spacing: 0.02em;
+    }
+    .ticker-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .ticker-live-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold-primary);
+      font-weight: 600;
+    }
+    .live-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #25D366;
+      display: inline-block;
+    }
+    .ticker-feed {
+      display: flex;
+      gap: 24px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ticker-item span.highlight {
+      color: var(--gold-bright);
+      font-weight: 500;
+    }
 
-  .file-field{display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
-  .file-btn{
-    width:100%;background:#000;color:#fff;border:1px solid #000;border-radius:10px;
-    padding:13px 18px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:700;white-space:nowrap;text-align:center;
-    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
-    will-change:transform;
-  }
-  .file-btn:hover{background:var(--charcoal);transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,0.18);}
-  .file-btn:active{transform:translateY(-1px) scale(.98);}
-  .file-name{font-size:12.5px;color:var(--text-muted);text-transform:none;letter-spacing:0;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
-  .file-name.empty{font-style:italic;}
-  input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;}
+    /* Master Floating Navigation */
+    header.master-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 0;
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      background: rgba(8, 8, 10, 0.9);
+      border-bottom: 1px solid rgba(213, 195, 160, 0.08);
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-pure);
+      transition: transform 0.25s var(--ease-cinematic);
+    }
+    .brand-mark:hover {
+      transform: translateY(-1px);
+    }
+    .brand-crest {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: #221323;
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+    .brand-crest svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--gold-bright);
+      stroke-width: 1.8;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-pure);
+    }
+    .brand-sub {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      color: var(--gold-dim);
+    }
 
-  .form-status{font-size:13.5px;text-align:center;min-height:20px;font-weight:600;color:var(--text-muted);}
-  .form-status.success{
-    background:#000;color:#fff;font-size:14px;padding:24px 18px;border-radius:10px;
-    display:flex;flex-direction:column;align-items:center;gap:14px;
-    animation:statusIn .4s ease-out;
-  }
-  @keyframes statusIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      position: relative;
+      padding: 6px 0;
+      transition: color 0.25s ease;
+    }
+    .nav-link:hover {
+      color: var(--text-pure);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold-primary);
+      transition: width 0.3s var(--ease-cinematic), left 0.3s var(--ease-cinematic);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+      left: 0;
+    }
 
-  .success-check{display:none;}
-  .form-status.success .success-check{
-    display:block;opacity:0;
-    animation:iconFadeIn .3s ease-out forwards;
-  }
-  .success-check-circle{
-    fill:none;stroke:#fff;stroke-width:3;
-    stroke-dasharray:164;stroke-dashoffset:164;
-  }
-  .success-check-mark{
-    fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:40;stroke-dashoffset:40;
-  }
-  .form-status.success .success-check-circle{animation:drawCircle .65s ease-out forwards;}
-  .form-status.success .success-check-mark{animation:drawCheck .55s ease-out .65s forwards;}
-  @keyframes iconFadeIn{to{opacity:1;}}
-  @keyframes drawCircle{to{stroke-dashoffset:0;}}
-  @keyframes drawCheck{to{stroke-dashoffset:0;}}
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .btn-concierge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding: 10px 18px;
+      min-height: 44px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s var(--ease-cinematic);
+      text-decoration: none;
+    }
+    .btn-concierge:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--border-highlight);
+      color: var(--text-pure);
+      transform: translateY(-1px);
+    }
+    .btn-concierge svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
 
-  /* How to order */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
-  .step{position:relative;padding:32px;border:1px solid #000;border-radius:var(--radius);background:#fff;transition:transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease;will-change:transform;}
-  .step:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
-  .step-num{font-size:44px;font-weight:800;letter-spacing:-2px;color:var(--bg-soft);-webkit-text-stroke:1.5px #000;margin-bottom:18px;display:block;}
-  .step h4{font-size:16px;font-weight:700;margin-bottom:10px;}
-  .step p{font-size:13.5px;color:var(--text-secondary);}
-  .step-arrow{position:absolute;top:50%;right:-38px;transform:translateY(-50%);font-size:20px;color:#c8c8c8;}
+    .btn-gold-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #08080A;
+      padding: 11px 24px;
+      min-height: 44px;
+      border-radius: var(--radius-full);
+      background: var(--gold-primary);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s var(--ease-cinematic), box-shadow 0.25s ease, filter 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn-gold-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+      background: var(--gold-bright);
+    }
+    .btn-gold-action:active {
+      transform: translateY(0) scale(0.98);
+    }
 
-  /* FAQ */
-  .faq-wrap{max-width:760px;margin:0 auto;}
-  .faq-item{border-bottom:1px solid var(--border);}
-  .faq-question{width:100%;padding:26px 4px;display:flex;align-items:center;justify-content:space-between;text-align:left;font-size:16.5px;font-weight:600;color:#000;gap:20px;}
-  .faq-icon{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;transition:transform .35s cubic-bezier(.16,.84,.44,1), background .35s ease;}
-  .faq-icon::before,.faq-icon::after{content:'';position:absolute;background:#000;transition:transform .35s ease, opacity .35s ease;}
-  .faq-icon::before{width:10px;height:1.4px;}
-  .faq-icon::after{width:1.4px;height:10px;}
-  .faq-item.open .faq-icon{background:#000;transform:rotate(180deg);}
-  .faq-item.open .faq-icon::before,.faq-item.open .faq-icon::after{background:#fff;}
-  .faq-item.open .faq-icon::after{opacity:0;}
-  .faq-answer{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,.84,.44,1);}
-  .faq-answer p{padding:0 4px 26px;font-size:14.5px;color:var(--text-secondary);max-width:640px;}
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px;
+      min-width: 44px;
+      min-height: 44px;
+      color: var(--text-pure);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+    }
 
-  /* Footer */
-  footer{background:var(--bg-soft);border-top:1px solid var(--border);padding:80px 0 36px;}
-  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
-  .footer-brand .logo{margin-bottom:14px;display:block;}
-  .footer-brand p{font-size:14px;color:var(--text-secondary);max-width:280px;}
-  .footer-contact{display:flex;gap:60px;flex-wrap:wrap;}
-  .footer-col h5{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
-  .footer-col a{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;margin-bottom:10px;transition:opacity .25s ease;}
-  .footer-col a:hover{opacity:.55;}
-  .footer-links{display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
-  .footer-links a{margin-bottom:0;}
-  .footer-links .sep{color:var(--text-muted);}
-  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;font-size:12.5px;color:var(--text-muted);}
+    /* ==========================================================================
+       HERO CINEMATIQUE SECTION
+       ========================================================================== */
+    .hero-cinematic {
+      position: relative;
+      padding: 90px 0 110px;
+      min-height: 84vh;
+      display: flex;
+      align-items: center;
+    }
 
-  /* Responsive: Desktop = default styles above (3 to 4 columns, spacious) */
-  @media (max-width:1060px){
-    .nav-right{display:none;}
-    .menu-toggle{display:flex;}
-    nav.open .nav-right{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:#fff;border-bottom:1px solid var(--border);padding:24px 32px;gap:20px;box-shadow:var(--shadow);}
-    nav.open .nav-links{flex-direction:column;align-items:flex-start;gap:18px;width:100%;}
-    nav.open .nav-cta{display:block;width:100%;text-align:center;}
-  }
+    .hero-ghost-typography {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(5.5rem, 13vw, 14rem);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.02);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      line-height: 0.9;
+    }
 
-  /* Tablet: 769px to 1024px, 2 columns */
-  @media (min-width:769px) and (max-width:1024px){
-    body{font-size:18px;}
-    .container{padding:0 40px;}
-    .grid-4{grid-template-columns:repeat(2,1fr);}
-    .steps{grid-template-columns:repeat(2,1fr);}
-    .step-arrow{display:none;}
-    .pay-grid{grid-template-columns:1fr;}
-  }
+    .hero-grid-split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+    }
 
-  /* Mobile: up to 768px, single column */
-  @media (max-width:768px){
-    body{font-size:16px;}
-    .container{padding:0 20px;}
-    section{padding:80px 0;}
-    .grid-2,.grid-4{grid-template-columns:1fr;}
-    .steps{grid-template-columns:1fr;}
-    .step-arrow{display:none;}
-    .pay-grid{grid-template-columns:1fr;}
-    .hero{padding:90px 20px 70px;}
-    .hero-stats{gap:36px;}
-    .hero h1{letter-spacing:-1px;}
-    .footer-top{flex-direction:column;}
-    .order-form,.confirm-box{padding:26px 20px;}
-    .confirm-row{flex-direction:column;align-items:flex-start;gap:4px;}
-    .confirm-row span:last-child{text-align:left;}
-    .card,.pay-card,.step{padding:24px;max-width:none;}
-  }
+    .hero-narrative {
+      max-width: 620px;
+    }
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(26, 18, 28, 0.8);
+      border: 1px solid var(--gold-border);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-bright);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+    }
+    .badge-icon-vault {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold-bright);
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
-  }
-</style>
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4.8vw, 4.1rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text-pure);
+      margin-bottom: 24px;
+      padding-bottom: 0.15em;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold-bright);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 38px;
+      font-weight: 400;
+      max-width: 520px;
+    }
+
+    .hero-cta-cluster {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-lux-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 34px;
+      min-height: 48px;
+      border-radius: var(--radius-full);
+      background: var(--gold-primary);
+      color: #08080A;
+      font-weight: 700;
+      font-size: 14.5px;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px #fff;
+      transition: all 0.25s var(--ease-cinematic);
+    }
+    .btn-lux-primary:hover {
+      transform: translateY(-2px);
+      background: var(--gold-bright);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+    }
+    .btn-lux-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 15px 30px;
+      min-height: 48px;
+      border-radius: var(--radius-full);
+      background: rgba(25, 18, 28, 0.6);
+      border: 1px solid var(--border-highlight);
+      color: var(--text-pure);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s var(--ease-cinematic);
+    }
+    .btn-lux-secondary:hover {
+      background: rgba(45, 24, 40, 0.7);
+      border-color: var(--gold-border);
+      transform: translateY(-2px);
+    }
+
+    .hero-metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 36px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-subtle);
+      width: fit-content;
+    }
+    .metric-unit .metric-val {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold-bright);
+      line-height: 1.1;
+    }
+    .metric-unit p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* 3D Tactile Centerpiece Card */
+    .hero-visual-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      perspective: 1200px;
+    }
+
+    .sovereign-card-container {
+      width: 100%;
+      max-width: 440px;
+      height: 520px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.15s cubic-bezier(0.2, 0, 0.1, 1);
+      cursor: grab;
+      user-select: none;
+    }
+    .sovereign-card-container:active {
+      cursor: grabbing;
+    }
+
+    .sovereign-card {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, #18121D 0%, #0F0B13 45%, #22111D 100%);
+      border: 1px solid rgba(213, 195, 160, 0.25);
+      box-shadow: 
+        0 24px 60px rgba(0, 0, 0, 0.8),
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      padding: 38px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform-style: preserve-3d;
+    }
+
+    .card-specular-glare {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 320px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.12) 0%, rgba(213, 195, 160, 0.04) 40%, transparent 80%);
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .card-micro-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(213, 195, 160, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+    }
+    .card-chip {
+      width: 44px;
+      height: 34px;
+      border-radius: 7px;
+      background: #C4B18D;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      position: relative;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+    .card-chip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .card-wireless {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-bright);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+    }
+
+    .card-mid-suite {
+      margin: auto 0;
+      position: relative;
+      z-index: 2;
+    }
+    .card-suite-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-pure);
+      line-height: 1.2;
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .card-services-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .service-pill-item {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(213, 195, 160, 0.15);
+      color: var(--gold-bright);
+    }
+
+    .card-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+      z-index: 2;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .card-auth-info {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+    .card-auth-info b {
+      color: var(--text-pure);
+      display: block;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .card-gold-crest {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #C7B594;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #120E15;
+      font-weight: 800;
+      font-size: 16px;
+      font-family: var(--font-display);
+    }
+
+    .satellite-badge {
+      position: absolute;
+      background: rgba(18, 14, 22, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      z-index: 3;
+      transform-style: preserve-3d;
+    }
+    .badge-sat-left {
+      bottom: 24px;
+      left: -28px;
+    }
+    .badge-sat-right {
+      top: 36px;
+      right: -28px;
+    }
+    .sat-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--oxblood-deep);
+      border: 1px solid var(--burgundy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-bright);
+    }
+    .sat-text .sat-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-pure);
+    }
+    .sat-text p {
+      font-size: 12px;
+      color: var(--gold-primary);
+    }
+
+    /* ==========================================================================
+       SECTION FOUNDATIONS & ART DIRECTION
+       ========================================================================== */
+    section {
+      position: relative;
+      padding: 100px 0;
+    }
+
+    .section-header-block {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-pure);
+      line-height: 1.2;
+      margin-bottom: 18px;
+      padding-bottom: 0.15em;
+    }
+    .section-headline em {
+      font-style: normal;
+      color: var(--gold-bright);
+    }
+    .section-subtext {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       X PREMIUM TIER SHOWCASE
+       Mandatory pricing: 3 Months $5 | 6 Months $8
+       ========================================================================== */
+    .grid-duo-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .lux-plan-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 44px 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      backdrop-filter: blur(20px);
+      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .lux-plan-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold-border);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+    }
+    .lux-plan-card.highlight-featured {
+      background: linear-gradient(160deg, rgba(32, 22, 36, 0.85) 0%, rgba(15, 11, 18, 0.95) 100%);
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .plan-corner-ribbon {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: #7A1F3E;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFF;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .plan-header-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .plan-crest-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--gold-bright);
+      flex-shrink: 0;
+    }
+    .plan-name-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-pure);
+      letter-spacing: 0.01em;
+    }
+
+    .price-display-cluster {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .price-currency {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+    .price-amount {
+      font-family: var(--font-display);
+      font-size: 54px;
+      font-weight: 800;
+      color: var(--text-pure);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .price-cadence {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .price-note-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .plan-perk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .plan-perk-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    .plan-perk-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold-bright);
+      stroke-width: 2.2;
+      flex-shrink: 0;
+    }
+
+    .btn-select-tier {
+      width: 100%;
+      padding: 15px 24px;
+      min-height: 48px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-highlight);
+      color: var(--text-pure);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s var(--ease-cinematic);
+    }
+    .btn-select-tier:hover {
+      background: var(--plum-accent);
+      border-color: var(--gold-border);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+    .highlight-featured .btn-select-tier {
+      background: var(--gold-primary);
+      color: #08080A;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+    .highlight-featured .btn-select-tier:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+      background: var(--gold-bright);
+    }
+
+    /* ==========================================================================
+       X AUTOMATION EXTENSION (12 AGENTS ENGINE SHOWCASE)
+       Mandatory: 12 Agents · $11.99 Lifetime · Bot: @XAutoPilot1Bot
+       ======================================================================== -->
+    .x-auto-suite-section {
+      background: linear-gradient(180deg, rgba(8, 8, 10, 0) 0%, rgba(22, 14, 25, 0.45) 50%, rgba(8, 8, 10, 0) 100%);
+      border-top: 1px solid rgba(213, 195, 160, 0.08);
+      border-bottom: 1px solid rgba(213, 195, 160, 0.08);
+    }
+
+    .auto-flagship-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(26, 19, 30, 0.85) 0%, rgba(14, 11, 18, 0.95) 100%);
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      padding: 52px 46px;
+      position: relative;
+    }
+
+    .auto-grid-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .auto-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.4vw, 3rem);
+      font-weight: 700;
+      color: var(--text-pure);
+      line-height: 1.2;
+      margin-bottom: 18px;
+      padding-bottom: 0.15em;
+    }
+    .auto-title span.gold-highlight {
+      color: var(--gold-bright);
+    }
+
+    .auto-desc {
+      font-size: 15.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* 12 Agents Interactive Grid */
+    .agents-kinetic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .agent-pill {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .agent-pill:hover {
+      background: rgba(85, 22, 45, 0.3);
+      border-color: var(--gold-border);
+      transform: translateX(4px);
+    }
+    .agent-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      flex-shrink: 0;
+    }
+    .agent-info .agent-name {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-pure);
+      line-height: 1.2;
+    }
+    .agent-info span {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    /* Pricing & Action Anchor */
+    .auto-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .auto-price-num {
+      font-family: var(--font-display);
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--gold-bright);
+      letter-spacing: -0.02em;
+    }
+    .auto-price-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+    .auto-price-meta b {
+      color: #25D366;
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    /* Clean Console Telemetry Stream */
+    .telemetry-console-wrapper {
+      background: #09070C;
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      font-family: var(--font-mono);
+    }
+    .console-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .console-indicator-lights {
+      display: flex;
+      gap: 6px;
+    }
+    .c-light {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .c-red { background: #E05252; }
+    .c-yellow { background: #E0A838; }
+    .c-green { background: #25D366; }
+    .console-meta-title {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .terminal-stream {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #A3B8CC;
+      height: 250px;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .log-line {
+      display: flex;
+      gap: 8px;
+    }
+    .log-time { color: var(--gold-dim); }
+    .log-agent { color: #E88295; font-weight: 600; }
+    .log-action { color: var(--text-primary); }
+
+    /* ==========================================================================
+       TELEGRAM PREMIUM SHOWCASE (4 Duration Tiers)
+       Pricing: 1mo $6 | 3mo $16 | 6mo $20 | 12mo $33
+       ========================================================================== */
+    .grid-quad-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .tg-tier-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 34px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .tg-tier-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold-border);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    }
+    .tg-tier-card.featured-tg {
+      background: linear-gradient(150deg, rgba(34, 22, 38, 0.8) 0%, rgba(16, 12, 20, 0.95) 100%);
+      border-color: var(--gold-border);
+    }
+
+    .tg-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tg-badge-star {
+      width: 20px;
+      height: 20px;
+      color: #38A5F8;
+      flex-shrink: 0;
+    }
+    .tg-duration {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-pure);
+      letter-spacing: 0.01em;
+    }
+    .tg-price-group {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+    .tg-amount {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--gold-bright);
+      line-height: 1;
+    }
+    .tg-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+    .tg-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tg-features svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold-bright);
+      stroke-width: 2.2;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       MACHINED OBSIDIAN PAYMENT & CRYPTOGRAPHIC VERIFICATION TERMINAL
+       ========================================================================== */
+    .terminal-section {
+      background: #0B080E;
+      border-top: 1px solid rgba(213, 195, 160, 0.1);
+      border-bottom: 1px solid rgba(213, 195, 160, 0.1);
+      position: relative;
+    }
+
+    .payment-trays-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .machined-tray {
+      background: linear-gradient(145deg, rgba(22, 17, 26, 0.85) 0%, rgba(13, 10, 16, 0.95) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 26px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s var(--ease-cinematic);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .machined-tray:hover {
+      border-color: rgba(213, 195, 160, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    }
+    .machined-tray.selected-tray {
+      border-color: var(--gold-primary);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      background: linear-gradient(145deg, rgba(32, 22, 36, 0.95) 0%, rgba(16, 12, 19, 0.98) 100%);
+    }
+
+    .tray-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .tray-brand {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-pure);
+      letter-spacing: 0.02em;
+    }
+    .tray-check-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--border-highlight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: transparent;
+    }
+    .machined-tray.selected-tray .tray-check-circle {
+      background: var(--gold-bright);
+      border-color: var(--gold-bright);
+      color: #08080A;
+    }
+    .tray-check-circle svg {
+      width: 13px;
+      height: 13px;
+      stroke-width: 3;
+    }
+
+    .tray-network {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gold-dim);
+      margin-bottom: 20px;
+    }
+
+    .crypto-address-dock {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .crypto-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gold-bright);
+      word-break: break-all;
+    }
+
+    .btn-tray-copy {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      color: var(--text-pure);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      padding: 8px 14px;
+      min-height: 44px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+    .btn-tray-copy:hover {
+      background: var(--gold-primary);
+      color: #08080A;
+    }
+
+    .tray-hint-msg {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .tray-hint-msg.warning-highlight {
+      color: #FFB37C;
+    }
+
+    /* Checkout Summary Console */
+    .checkout-console-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 42px 46px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(24px);
+    }
+    .console-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .console-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-pure);
+    }
+    .console-status-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gold-bright);
+      background: rgba(213, 195, 160, 0.12);
+      border: 1px solid var(--gold-border);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+    }
+
+    .summary-spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .spec-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    .spec-key {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .spec-val {
+      font-weight: 600;
+      color: var(--text-pure);
+    }
+    .spec-val.gold {
+      color: var(--gold-bright);
+      font-family: var(--font-display);
+      font-size: 18px;
+    }
+
+    .confirmation-toggle-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+      margin-bottom: 28px;
+      transition: border-color 0.2s ease;
+    }
+    .confirmation-toggle-box:hover {
+      border-color: var(--border-highlight);
+    }
+    .confirmation-toggle-box input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--gold-primary);
+      cursor: pointer;
+    }
+    .confirmation-toggle-box label {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .error-alert-banner {
+      background: rgba(138, 35, 70, 0.2);
+      border: 1px solid #8A2346;
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font-size: 12.5px;
+      color: #FFA6B9;
+      font-family: var(--font-mono);
+      margin-bottom: 20px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+    .error-alert-banner.show {
+      display: flex;
+    }
+
+    /* Verification Form Drawer */
+    .order-dispatch-drawer {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.5s var(--ease-cinematic), opacity 0.4s ease;
+    }
+    .order-dispatch-drawer.is-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .dispatch-form-pane {
+      min-height: 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 32px;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .dispatch-form-pane h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-pure);
+    }
+    .dispatch-form-pane p.form-guidance {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-top: -12px;
+    }
+
+    .form-group-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group-field label {
+      font-size: 12px;
+      color: var(--gold-dim);
+      font-weight: 600;
+    }
+    .input-machined {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      color: var(--text-pure);
+      font-size: 16px;
+      font-family: var(--font-sans);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      min-height: 48px;
+    }
+    .input-machined:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(213, 195, 160, 0.18);
+    }
+    .input-machined.is-invalid {
+      border-color: #8A2346;
+      box-shadow: 0 0 0 2px rgba(138, 35, 70, 0.25);
+    }
+
+    /* Live Profile Preview */
+    .live-x-preview-dock {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      margin-top: 10px;
+      display: none;
+    }
+    .live-x-preview-dock.active {
+      display: block;
+    }
+    .preview-account-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .preview-avatar-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-border);
+      object-fit: cover;
+      background: #18121D;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+    .preview-names-meta .prev-display-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-pure);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .preview-names-meta span {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    /* Drag & Drop Proof Uploader */
+    .file-dropzone-box {
+      border: 1.5px dashed var(--gold-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s ease;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .file-dropzone-box:hover, .file-dropzone-box.dragover {
+      border-color: var(--gold-bright);
+      background: rgba(85, 22, 45, 0.15);
+    }
+    .dropzone-icon {
+      width: 32px;
+      height: 32px;
+      stroke: var(--gold-primary);
+      margin-bottom: 8px;
+    }
+    .file-preview-wrap {
+      max-height: 120px;
+      margin: 10px auto;
+      display: none;
+    }
+    .hidden-file-input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* Submission Feedback */
+    .submit-result-status {
+      min-height: 24px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: center;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+    .submit-result-status.success {
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid #25D366;
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      color: #A3FFC2;
+    }
+
+    /* ==========================================================================
+       FOUR STEPS SOVEREIGN DISPATCH
+       ========================================================================== */
+    .steps-quad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .step-chronicle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 38px 28px;
+      position: relative;
+      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease;
+      backdrop-filter: blur(12px);
+    }
+    .step-chronicle-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold-border);
+    }
+    .step-chronicle-num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 800;
+      color: rgba(213, 195, 160, 0.18);
+      line-height: 1;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .step-chronicle-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-pure);
+      margin-bottom: 10px;
+    }
+    .step-chronicle-card p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       FREQUENTLY ASKED QUESTIONS
+       ========================================================================== */
+    .faq-bespoke-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-bespoke-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+    .faq-bespoke-item:hover {
+      border-color: var(--gold-border);
+    }
+    .faq-trigger-btn {
+      width: 100%;
+      padding: 24px 28px;
+      min-height: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: none;
+      border: none;
+      color: var(--text-pure);
+      font-family: var(--font-sans);
+      font-size: 16.5px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      gap: 20px;
+    }
+    .faq-icon-rotator {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s var(--ease-cinematic), background 0.3s ease;
+      flex-shrink: 0;
+      color: var(--gold-bright);
+    }
+    .faq-bespoke-item.is-open .faq-icon-rotator {
+      transform: rotate(180deg);
+      background: var(--plum-accent);
+      border-color: var(--gold-border);
+    }
+    .faq-body-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s var(--ease-cinematic);
+    }
+    .faq-bespoke-item.is-open .faq-body-content {
+      grid-template-rows: 1fr;
+    }
+    .faq-inner-text {
+      min-height: 0;
+      overflow: hidden;
+      padding: 0 28px 26px;
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       EDITORIAL FOOTER
+       ========================================================================== */
+    footer.master-footer {
+      border-top: 1px solid rgba(213, 195, 160, 0.1);
+      padding: 80px 0 40px;
+      background: #060608;
+      position: relative;
+    }
+    .footer-columns-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .footer-summary p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 360px;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+    .footer-col-header {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--gold-dim);
+      margin-bottom: 18px;
+    }
+    .footer-links-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-link-entry {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 32px;
+    }
+    .footer-link-entry:hover {
+      color: var(--gold-bright);
+      transform: translateX(3px);
+    }
+
+    .footer-bottom-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Sticky Bottom Quick-Bar */
+    .mobile-quickbar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(12, 10, 15, 0.94);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--gold-border);
+      padding: 12px 20px env(safe-area-inset-bottom, 12px);
+      z-index: 99;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .quickbar-price-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .quickbar-price-info span {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--gold-dim);
+    }
+    .quickbar-price-info b {
+      font-size: 16px;
+      color: var(--text-pure);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADAPTATIONS
+       ========================================================================== */
+    @media (max-width: 1060px) {
+      .nav-menu { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .hero-grid-split { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+      .hero-narrative { max-width: 100%; margin: 0 auto; }
+      .hero-subtitle { margin: 0 auto 36px; }
+      .hero-cta-cluster { justify-content: center; }
+      .hero-metrics-bar { margin: 0 auto; }
+      .auto-grid-layout { grid-template-columns: 1fr; }
+      .grid-quad-cards { grid-template-columns: repeat(2, 1fr); }
+      .payment-trays-grid { grid-template-columns: 1fr; }
+      .steps-quad-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-columns-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      section { padding: 80px 0; }
+      .hero-cinematic { padding: 60px 0 90px; }
+      .grid-duo-cards { grid-template-columns: 1fr; }
+      .grid-quad-cards { grid-template-columns: 1fr; }
+      .steps-quad-grid { grid-template-columns: 1fr; }
+      .checkout-console-card { padding: 30px 20px; }
+      .mobile-quickbar { display: flex; }
+      body { padding-bottom: 74px; }
+      .badge-sat-left, .badge-sat-right { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <nav id="nav">
-    <div class="logo">All-in-One Premiums</div>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#x-premium" onclick="event.preventDefault(); document.getElementById('x-premium').scrollIntoView({behavior:'smooth'})">X Premium</a></li>
-        <li><a href="#telegram-premium" onclick="event.preventDefault(); document.getElementById('telegram-premium').scrollIntoView({behavior:'smooth'})">Telegram</a></li>
-        <li><a href="#payment" onclick="event.preventDefault(); document.getElementById('payment').scrollIntoView({behavior:'smooth'})">Payment</a></li>
-        <li><a href="#how-it-works" onclick="event.preventDefault(); document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">How It Works</a></li>
-        <li><a href="#faq" onclick="event.preventDefault(); document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a></li>
-        <li>
-          <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="dm-link" aria-label="Contact us on Telegram" onclick="event.preventDefault(); openTelegram();">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 3.5a1 1 0 0 0-1.05-.15L2.6 10.9a1 1 0 0 0 .07 1.87l4.6 1.53 1.77 5.62a1 1 0 0 0 1.73.36l2.55-2.9 4.68 3.45a1 1 0 0 0 1.57-.6l3.4-15.85a1 1 0 0 0-.33-.9zM9.6 13.98l-1.02 3.24-.9-2.87 9.9-6.4z"/></svg>
-            Contact
-          </a>
-        </li>
+  <div class="ambient-aurora" aria-hidden="true"></div>
+
+  <!-- Interactive Magnetic Cursor Elements (Desktop) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-outline" id="cursorOutline" aria-hidden="true"></div>
+
+  <!-- Real-Time Telemetry Bar -->
+  <div class="telemetry-ticker">
+    <div class="ticker-inner">
+      <div class="ticker-live-tag">
+        <span class="live-status-dot"></span> Dispatch protocol operational
+      </div>
+      <div class="ticker-feed">
+        <div class="ticker-item">
+          <span>Mean dispatch duration:</span> <span class="highlight">118 seconds</span>
+        </div>
+        <div class="ticker-item">
+          <span>Completed today:</span> <span class="highlight">142 verified orders</span>
+        </div>
+        <div class="ticker-item">
+          <span>Security guarantee:</span> <span class="highlight">Zero credential access</span>
+        </div>
+        <div class="ticker-item">
+          <span>Accepted:</span> <span class="highlight">Binance Pay · USDT BEP20 · Base · Solana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Master Floating Header -->
+  <header class="master-nav-wrap" id="masterNav">
+    <div class="nav-container">
+      <a href="#" class="brand-mark">
+        <div class="brand-crest">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">All-in-One Premiums</span>
+          <span class="brand-sub">Sovereign Suite</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#x-premium" class="nav-link">X Premium</a></li>
+        <li><a href="#x-automation" class="nav-link">X AutoPilot Suite</a></li>
+        <li><a href="#telegram-premium" class="nav-link">Telegram Premium</a></li>
+        <li><a href="#payment-terminal" class="nav-link">Payment Vault</a></li>
+        <li><a href="#dispatch-process" class="nav-link">How It Works</a></li>
+        <li><a href="#faq-section" class="nav-link">FAQ</a></li>
       </ul>
-      <a href="#payment" class="nav-cta ripple" onclick="event.preventDefault(); document.getElementById('payment').scrollIntoView({behavior:'smooth'})">Get Premium</a>
-    </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  </nav>
-</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <span class="badge reveal visible"><span class="dot"></span> Instant Delivery · Trusted Worldwide</span>
-    <h1 class="reveal visible">Premium Subscriptions,<span class="thin">Elevated.</span></h1>
-    <p class="reveal visible reveal-delay-1">All-in-One Premiums delivers X Premium, Telegram Premium, and the X Automation extension at the best price. Instant, secure, no compromises.</p>
-    <div class="hero-actions reveal visible reveal-delay-2">
-      <a href="#x-premium" class="btn btn-primary ripple" onclick="event.preventDefault(); document.getElementById('x-premium').scrollIntoView({behavior:'smooth'})">Buy X Premium</a>
-      <a href="#telegram-premium" class="btn btn-outline ripple" onclick="event.preventDefault(); document.getElementById('telegram-premium').scrollIntoView({behavior:'smooth'})">Buy Telegram Premium</a>
-      <a href="#x-automation" class="btn btn-primary ripple" onclick="event.preventDefault(); document.getElementById('x-automation').scrollIntoView({behavior:'smooth'})">Buy X Automation</a>
-    </div>
-    <div class="hero-stats reveal visible reveal-delay-3">
-      <div class="stat"><h3>2 Min</h3><span>Avg. Delivery</span></div>
-      <div class="stat"><h3>1,200+</h3><span>Orders Fulfilled</span></div>
-      <div class="stat"><h3>24/7</h3><span>Support</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- X AUTOMATION PROMO -->
-<section id="x-automation" class="reveal" style="background:var(--bg-soft);border-bottom:1px solid var(--border);padding:64px 0;">
-  <div class="container">
-    <div class="promo-banner reveal">
-      <span class="ribbon">Also From Us</span>
-      <div class="promo-banner-text">
-        <span class="eyebrow">X Automation Extension</span>
-        <h3 class="promo-banner-title">Full auto. <span class="promo-banner-num">10 agents.</span> Zero effort.</h3>
-        <p class="promo-banner-sub">It replies, engages and grows your X account while you do literally anything else. Not a maybe, automatic.</p>
-        <ul class="promo-banner-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Auto replies and engages, on your posts and anyone else's</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Answers every comment on your own posts automatically</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Grows your Sorsa Score and followers on its own</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Cleans up who doesn't follow back automatically</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Safety Guard watches X's limits live, protects your account</li>
-        </ul>
-        <div class="promo-banner-price"><b>$6.99</b> one time, unlocks all 10 agents for lifetime.</div>
-      </div>
-      <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="btn btn-primary ripple promo-banner-cta">Click Me →</a>
-    </div>
-  </div>
-</section>
-
-<!-- X PREMIUM -->
-<section id="x-premium" class="reveal">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">X Premium</span>
-      <h2>Unlock the full X experience</h2>
-      <p>Edit posts, longer videos, fewer ads, and the verified checkmark, delivered to your account.</p>
-    </div>
-    <p class="package-error" id="packageError" hidden>Please select a package first</p>
-    <div class="grid-2">
-      <div class="card reveal">
-        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg></div>
-        <span class="card-plan">Standard</span>
-        <h3 class="card-name">3 Months</h3>
-        <div class="price"><span class="currency">$</span><span class="amount">3</span></div>
-        <div class="price-sub">Single payment · billed once</div>
-        <ul class="feature-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Blue checkmark verification</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Edit posts &amp; longer videos</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Reduced ads in timeline</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Instant delivery</li>
-        </ul>
-        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="X Premium, 3 Months" data-price="$3.00">Get Premium</button>
-      </div>
-      <div class="card featured reveal reveal-delay-1">
-        <span class="ribbon">Best Value</span>
-        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg></div>
-        <span class="card-plan">Extended</span>
-        <h3 class="card-name">6 Months</h3>
-        <div class="price"><span class="currency">$</span><span class="amount">5.90</span></div>
-        <div class="price-sub">Single payment · billed once</div>
-        <ul class="feature-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Blue checkmark verification</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Edit posts &amp; longer videos</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Reduced ads in timeline</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
-        </ul>
-        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="X Premium, 6 Months" data-price="$5.90">Get Premium</button>
+      <div class="nav-actions">
+        <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="btn-concierge" onclick="event.preventDefault(); openTelegramConcierge();">
+          <svg viewBox="0 0 24 24"><path d="M21.94 3.5a1 1 0 0 0-1.05-.15L2.6 10.9a1 1 0 0 0 .07 1.87l4.6 1.53 1.77 5.62a1 1 0 0 0 1.73.36l2.55-2.9 4.68 3.45a1 1 0 0 0 1.57-.6l3.4-15.85a1 1 0 0 0-.33-.9zM9.6 13.98l-1.02 3.24-.9-2.87 9.9-6.4z"/></svg>
+          Concierge
+        </a>
+        <a href="#payment-terminal" class="btn-gold-action">
+          Acquire Pass
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- TELEGRAM PREMIUM -->
-<section id="telegram-premium" class="reveal" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Telegram Premium</span>
-      <h2>More power. No limits.</h2>
-      <p>Faster downloads, exclusive stickers, larger uploads, and premium badges. Pick your duration.</p>
-    </div>
-    <div class="grid-4">
-      <div class="card reveal">
-        <span class="card-plan">Starter</span>
-        <h3 class="card-name">1 Month</h3>
-        <div class="price"><span class="currency">$</span><span class="amount">6</span></div>
-        <div class="price-sub">Billed once</div>
-        <ul class="feature-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Faster downloads</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Premium badge</li>
-        </ul>
-        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 1 Month" data-price="$6.00">Get Premium</button>
-      </div>
-      <div class="card reveal reveal-delay-1">
-        <span class="card-plan">Popular</span>
-        <h3 class="card-name">3 Months</h3>
-        <div class="price"><span class="currency">$</span><span class="amount">16</span></div>
-        <div class="price-sub">Billed once</div>
-        <ul class="feature-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Exclusive stickers</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No ads in channels</li>
-        </ul>
-        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 3 Months" data-price="$16.00">Get Premium</button>
-      </div>
-      <div class="card featured reveal reveal-delay-2">
-        <span class="ribbon">Best Value</span>
-        <span class="card-plan">Extended</span>
-        <h3 class="card-name">6 Months</h3>
-        <div class="price"><span class="currency">$</span><span class="amount">20</span></div>
-        <div class="price-sub">Billed once</div>
-        <ul class="feature-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Voice to text conversion</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
-        </ul>
-        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 6 Months" data-price="$20.00">Get Premium</button>
-      </div>
-      <div class="card reveal reveal-delay-3">
-        <span class="card-plan">Yearly</span>
-        <h3 class="card-name">12 Months</h3>
-        <div class="price"><span class="currency">$</span><span class="amount">33</span></div>
-        <div class="price-sub">Billed once</div>
-        <ul class="feature-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All premium features</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Lowest monthly rate</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
-        </ul>
-        <button type="button" class="btn btn-outline ripple plan-btn" onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})" data-plan="Telegram Premium, 12 Months" data-price="$33.00">Get Premium</button>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- ========================================================================
+       HERO CINEMATIQUE SECTION
+       ======================================================================== -->
+  <section class="hero-cinematic">
+    <div class="hero-ghost-typography" aria-hidden="true">SOVEREIGN</div>
 
-<!-- PAYMENT -->
-<section id="payment" class="reveal">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Payment Methods</span>
-      <h2>Choose Your Payment Method</h2>
-      <p>Select a method below, then confirm your order.</p>
-    </div>
-
-    <p class="pay-grid-helper">Click a card to select your payment method</p>
-
-    <div class="pay-grid">
-      <div class="pay-card reveal ripple" tabindex="0" role="button" aria-pressed="false" data-method="Binance Pay" data-detail="ID 409082023">
-        <span class="selected-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <div class="pay-label">BINANCE</div>
-        <div class="pay-network">Pay ID</div>
-        <div class="pay-address">
-          <code id="binance-id">409082023</code>
-          <button type="button" class="copy-btn ripple" data-copy-target="binance-id">Copy</button>
-        </div>
-        <div class="pay-card-status">Click to select</div>
-      </div>
-
-      <div class="pay-card reveal reveal-delay-1 ripple" tabindex="0" role="button" aria-pressed="false" data-method="USDT (BEP20) / Base USDC" data-detail="0x4d523fde952dc0bb3363e301462d4ebc1236d9c7">
-        <span class="selected-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <div class="pay-label">USDT • BEP20</div>
-        <div class="pay-network">BNB Smart Chain / Base</div>
-        <div class="pay-address">
-          <code id="usdt-address">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</code>
-          <button type="button" class="copy-btn ripple" data-copy-target="usdt-address">Copy</button>
-        </div>
-        <p class="pay-hint">Same address for Base USDC</p>
-        <div class="pay-card-status">Click to select</div>
-      </div>
-
-      <div class="pay-card reveal reveal-delay-2 ripple" tabindex="0" role="button" aria-pressed="false" data-method="Solana USDC" data-detail="AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe">
-        <span class="selected-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <div class="pay-label">Solana USDC</div>
-        <div class="pay-network">Solana Network</div>
-        <div class="pay-address">
-          <code id="sol-address">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</code>
-          <button type="button" class="copy-btn ripple" data-copy-target="sol-address">Copy</button>
-        </div>
-        <p class="pay-hint pay-warning">Important: send only USDC on Solana chain. Sending other tokens may result in loss.</p>
-        <div class="pay-card-status">Click to select</div>
-      </div>
-    </div>
-
-    <p class="payment-method-error" id="paymentMethodError" hidden>Please select a payment method first</p>
-
-    <p class="pay-note reveal">Send only the exact amount for your selected plan. Double check the network before sending; payments to the wrong network cannot be recovered.</p>
-
-    <div class="confirm-box reveal" aria-live="polite">
-      <h3>Order Confirmation</h3>
-      <div class="confirm-row"><span>Selected Package</span><span id="summaryPackage">Not selected yet</span></div>
-      <div class="confirm-row"><span>Total Amount</span><span id="summaryAmount">Not selected yet</span></div>
-      <div class="confirm-row"><span>Selected Payment Method</span><span id="summaryMethod">Not selected yet</span></div>
-
-      <div class="confirm-check">
-        <input type="checkbox" id="confirmCheck">
-        <label for="confirmCheck">I confirm my order details are correct</label>
-      </div>
-
-      <p class="confirm-error" id="confirmError" hidden>Please confirm your order details</p>
-
-      <button type="button" id="paidBtn" class="btn btn-primary ripple">I have sent the payment</button>
-    </div>
-
-    <div class="order-form-wrap" id="orderFormWrap">
-      <form class="order-form" id="orderForm" novalidate>
-        <h3>Confirm Your Order</h3>
-        <p class="order-form-sub">Fill this in and we will verify your transaction and activate your subscription.</p>
-
-        <label>Telegram Username
-          <input type="text" id="tgUsername" placeholder="@yourusername">
-          <span class="field-msg" id="err-tg"></span>
-        </label>
-
-        <label id="xProfileField">X Profile Link
-          <input type="text" id="xProfile" placeholder="https://x.com/yourhandle">
-          <div class="x-preview" id="xPreview" hidden></div>
-          <span class="field-msg" id="err-x"></span>
-        </label>
-
-        <label><span id="uploadLabelText">Upload Payment Screenshot</span>
-          <div class="file-field">
-            <label class="file-btn ripple" for="screenshot">Choose Image</label>
-            <span class="file-name empty" id="fileName">No file chosen</span>
-          </div>
-          <input type="file" id="screenshot" accept="image/*">
-          <span class="field-msg" id="err-shot"></span>
-        </label>
-
-        <label>Transaction Hash or Order ID
-          <input type="text" id="txHash" placeholder="Enter Binance Order ID or Transaction Hash (0x...)">
-          <span class="field-msg" id="err-tx"></span>
-        </label>
-
-        <button type="submit" class="btn btn-primary ripple" id="submitBtn" disabled>Submit &amp; Get Premium</button>
-        <div class="form-status" id="formStatus" aria-live="polite">
-          <span class="success-check" aria-hidden="true">
-            <svg viewBox="0 0 60 60" width="52" height="52">
-              <circle class="success-check-circle" cx="30" cy="30" r="26"/>
-              <polyline class="success-check-mark" points="18,31 27,40 43,20"/>
+    <div class="container">
+      <div class="hero-grid-split">
+        <div class="hero-narrative">
+          <div class="hero-badge-pill">
+            <svg class="badge-icon-vault" viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-          </span>
-          <span class="form-status-text" id="formStatusText"></span>
+            Cryptographic Instant Dispatch · Guaranteed Security
+          </div>
+
+          <h1 class="hero-title">
+            Digital Status,<br>
+            <em>Effortlessly Commanded.</em>
+          </h1>
+
+          <p class="hero-subtitle">
+            All-in-One Premiums provisions authentic X Premium checkmarks, Telegram Premium privileges, and autonomous 12-agent growth engines directly to your identity. Zero password disclosures. Zero friction.
+          </p>
+
+          <div class="hero-cta-cluster">
+            <a href="#x-premium" class="btn-lux-primary">
+              Explore X Premium
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+            <a href="#x-automation" class="btn-lux-secondary">
+              View X AutoPilot 12-Agents
+            </a>
+          </div>
+
+          <div class="hero-metrics-bar">
+            <div class="metric-unit">
+              <div class="metric-val">&lt; 2 min</div>
+              <p>Mean Delivery</p>
+            </div>
+            <div class="metric-unit">
+              <div class="metric-val">1,450+</div>
+              <p>Verified Activations</p>
+            </div>
+            <div class="metric-unit">
+              <div class="metric-val">100%</div>
+              <p>Escrow Guarantee</p>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-</section>
 
-<!-- HOW TO ORDER -->
-<section id="how-it-works" class="reveal">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">How To Order</span>
-      <h2>Four steps to Premium</h2>
-      <p>Simple, fast, and secure. Most orders are delivered within minutes.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <span class="step-num">01</span>
-        <h4>Choose Your Plan</h4>
-        <p>Pick the X Premium or Telegram Premium duration that fits you.</p>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="step reveal reveal-delay-1">
-        <span class="step-num">02</span>
-        <h4>Send Payment</h4>
-        <p>Pay via Binance Pay, USDT (BEP20) / Base USDC, or Solana USDC.</p>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <span class="step-num">03</span>
-        <h4>Confirm Order</h4>
-        <p>Check the confirmation box, then fill in the short form to submit your order.</p>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <span class="step-num">04</span>
-        <h4>Get Activated</h4>
-        <p>Sit back. Your subscription is activated within 24 hours.</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="hero-visual-stage">
+          <div class="sovereign-card-container" id="tiltContainer">
+            <div class="sovereign-card" id="sovereignCard">
+              <div class="card-specular-glare" id="cardGlare"></div>
+              <div class="card-micro-pattern"></div>
 
-<!-- FAQ -->
-<section id="faq" class="reveal" style="background:var(--bg-soft);border-top:1px solid var(--border);">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">FAQ</span>
-      <h2>Questions &amp; answers</h2>
-      <p>Everything you need to know before ordering.</p>
-    </div>
-    <div class="faq-wrap reveal">
-      <div class="faq-item">
-        <button type="button" class="faq-question">Is this safe for my account?<span class="faq-icon"></span></button>
-        <div class="faq-answer"><p>Yes. We never ask for your password. Activation is done through official, supported methods only. Your account credentials stay yours at all times.</p></div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-question">How long does delivery take?<span class="faq-icon"></span></button>
-        <div class="faq-answer"><p>Most orders are activated within 24 hours of payment confirmation. During busier periods it may take a little longer, and we will keep you updated.</p></div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-question">What payment methods do you accept?<span class="faq-icon"></span></button>
-        <div class="faq-answer"><p>We currently accept Binance Pay, USDT (BEP20) / Base USDC, and Solana USDC. More payment options may be added over time.</p></div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-question">Can I get a refund if something goes wrong?<span class="faq-icon"></span></button>
-        <div class="faq-answer"><p>If your order fails to activate on our end, you are entitled to a full refund or a free replacement. Reach out via Telegram with your order details and we will resolve it quickly.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+              <div class="card-top-row">
+                <div class="card-chip"></div>
+                <div class="card-wireless">
+                  <span>DISPATCH NFC</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                </div>
+              </div>
 
-<!-- FOOTER -->
-<footer class="reveal">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="logo">All-in-One Premiums</div>
-        <p>Premium subscriptions, elevated. Fast, secure delivery of X Premium and Telegram Premium.</p>
-      </div>
-      <div class="footer-contact">
-        <div class="footer-col">
-          <h5>Quick Links</h5>
-          <div class="footer-links">
-            <a href="#x-premium" onclick="event.preventDefault(); document.getElementById('x-premium').scrollIntoView({behavior:'smooth'})">X Premium</a>
-            <span class="sep">|</span>
-            <a href="#telegram-premium" onclick="event.preventDefault(); document.getElementById('telegram-premium').scrollIntoView({behavior:'smooth'})">Telegram Premium</a>
-            <span class="sep">|</span>
-            <a href="#faq" onclick="event.preventDefault(); document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
-            <span class="sep">|</span>
-            <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" onclick="event.preventDefault(); openTelegram();">Contact</a>
+              <div class="card-mid-suite">
+                <h2 class="card-suite-title" style="border:none; margin-bottom:14px;">ALL-IN-ONE<br>SOVEREIGN</h2>
+                <div class="card-services-pills">
+                  <span class="service-pill-item">X Premium Blue Check</span>
+                  <span class="service-pill-item">Telegram Star Badge</span>
+                  <span class="service-pill-item">12-Agent Engine</span>
+                </div>
+              </div>
+
+              <div class="card-bottom-row">
+                <div class="card-auth-info">
+                  Token Hash
+                  <b>AI1-9982-VERIFIED</b>
+                </div>
+                <div class="card-gold-crest">A</div>
+              </div>
+            </div>
+
+            <div class="satellite-badge badge-sat-left">
+              <div class="sat-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="sat-text">
+                <div class="sat-title">X Blue Check</div>
+                <p>3 Mo from $5</p>
+              </div>
+            </div>
+
+            <div class="satellite-badge badge-sat-right">
+              <div class="sat-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div class="sat-text">
+                <div class="sat-title">12 Agents AI</div>
+                <p>Lifetime $11.99</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 All-in-One Premiums. All rights reserved.</span>
-      <span>Not affiliated with X Corp or Telegram</span>
+  </section>
+
+  <!-- ========================================================================
+       X PREMIUM FLAGSHIP SECTION
+       MANDATORY PRICING: 3 Months = $5 | 6 Months = $8
+       ======================================================================== -->
+  <section id="x-premium">
+    <div class="container">
+      <div class="section-header-block">
+        <h2 class="section-headline">X Premium <em>Checkmark</em></h2>
+        <p class="section-subtext">Command algorithmic priority, edit published posts, upload 4K media, and claim the undisputed mark of credibility directly on your profile.</p>
+      </div>
+
+      <div class="grid-duo-cards">
+        <!-- 3 Months Tier -->
+        <div class="lux-plan-card">
+          <div>
+            <div class="plan-header-row">
+              <svg class="plan-crest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg>
+              <h3 class="plan-name-title">3 Months</h3>
+            </div>
+
+            <div class="price-display-cluster">
+              <span class="price-currency">$</span>
+              <span class="price-amount">5</span>
+              <span class="price-cadence">/ one-time</span>
+            </div>
+            <p class="price-note-sub">Single payment · Zero recurring surprises</p>
+
+            <ul class="plan-perk-list">
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Blue checkmark verification
+              </li>
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Edit post privilege &amp; longer media
+              </li>
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                50% reduced timeline advertisements
+              </li>
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Instant cryptographic activation
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="X Premium, 3 Months" data-price="$5.00">
+            Select 3-Month Plan · $5
+          </button>
+        </div>
+
+        <!-- 6 Months Tier -->
+        <div class="lux-plan-card highlight-featured">
+          <span class="plan-corner-ribbon">Best Value · 67% Less</span>
+          <div>
+            <div class="plan-header-row">
+              <svg class="plan-crest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg>
+              <h3 class="plan-name-title">6 Months</h3>
+            </div>
+
+            <div class="price-display-cluster">
+              <span class="price-currency">$</span>
+              <span class="price-amount">8</span>
+              <span class="price-cadence">/ one-time</span>
+            </div>
+            <p class="price-note-sub">Single payment · Optimal pricing efficiency</p>
+
+            <ul class="plan-perk-list">
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Official blue checkmark authentication
+              </li>
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Highest algorithmic reply boost in threads
+              </li>
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Grok AI analytical capabilities
+              </li>
+              <li class="plan-perk-item">
+                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                Priority concierge dispatch &amp; warranty
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="X Premium, 6 Months" data-price="$8.00">
+            Select 6-Month Plan · $8
+          </button>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- ========================================================================
+       X AUTOMATION EXTENSION (12 AGENTS AUTONOMOUS SUITE)
+       MANDATORY: 12 Agents · $11.99 Lifetime · Bot: @XAutoPilot1Bot
+       ======================================================================== -->
+  <section id="x-automation" class="x-auto-suite-section">
+    <div class="container">
+      <div class="auto-flagship-card">
+        <div class="auto-grid-layout">
+          <div>
+            <h2 class="auto-title">
+              Full Autopilot.<br>
+              <span class="gold-highlight">12 Autonomous Agents.</span><br>
+              Zero Human Strain.
+            </h2>
+
+            <p class="auto-desc">
+              The proprietary browser extension that continuously replies, crafts insightful quotes, networks with top creators, and grows your X audience in real time. Runs quietly in your browser with strict behavioral heuristics that protect your account.
+            </p>
+
+            <!-- 12 Agents Interactive Matrix -->
+            <div class="agents-kinetic-grid">
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">1. Neural Auto-Reply</span>
+                  <span>Context-aware responses</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">2. Viral Radar Scout</span>
+                  <span>Early niche breakout alerts</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">3. Quote Crafter AI</span>
+                  <span>High-engagement commentary</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">4. Follower Matrix</span>
+                  <span>Strategic audience networking</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">5. Ghost Shield Guard</span>
+                  <span>Live X rate limit guardian</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">6. Unfollower Purge</span>
+                  <span>Automated ratio optimizer</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">7. Thread Synthesizer</span>
+                  <span>Structured knowledge drafting</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">8. Comment Responder</span>
+                  <span>100% reply rate on your tweets</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">9. Trend Hunter AI</span>
+                  <span>Global keyword spike tracker</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">10. Sorsa Velocity</span>
+                  <span>Algorithmic engagement ranker</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">11. DM Outreach Scout</span>
+                  <span>Warm conversation scheduler</span>
+                </div>
+              </div>
+              <div class="agent-pill">
+                <span class="agent-indicator"></span>
+                <div class="agent-info">
+                  <span class="agent-name">12. Growth Analytics</span>
+                  <span>Daily automated KPI telemetry</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="auto-price-row">
+              <span class="auto-price-num">$11.99</span>
+              <div class="auto-price-meta">
+                <b>Lifetime access · Zero subscription</b>
+                Unlocks all 12 autonomous agents with lifetime updates
+              </div>
+            </div>
+
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+              <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="btn-lux-primary">
+                Launch via Telegram Bot
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 3.5a1 1 0 0 0-1.05-.15L2.6 10.9a1 1 0 0 0 .07 1.87l4.6 1.53 1.77 5.62a1 1 0 0 0 1.73.36l2.55-2.9 4.68 3.45a1 1 0 0 0 1.57-.6l3.4-15.85a1 1 0 0 0-.33-.9zM9.6 13.98l-1.02 3.24-.9-2.87 9.9-6.4z"/></svg>
+              </a>
+              <button type="button" class="btn-lux-secondary plan-trigger-btn" data-plan="X AutoPilot 12-Agents Suite" data-price="$11.99">
+                Order via Vault Checkout ($11.99)
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div class="telemetry-console-wrapper">
+              <div class="console-topbar">
+                <div class="console-indicator-lights">
+                  <span class="c-light c-red"></span>
+                  <span class="c-light c-yellow"></span>
+                  <span class="c-light c-green"></span>
+                </div>
+                <div class="console-meta-title">Agent Telemetry · Live Runtime</div>
+              </div>
+              <div class="terminal-stream" id="terminalStream">
+                <div class="log-line"><span class="log-time">[18:04:12]</span> <span class="log-agent">VIRAL_RADAR</span> <span class="log-action">Detected high velocity thread #crypto #ai</span></div>
+                <div class="log-line"><span class="log-time">[18:04:19]</span> <span class="log-agent">NEURAL_REPLY</span> <span class="log-action">Synthesized high-value perspective (98.4% match)</span></div>
+                <div class="log-line"><span class="log-time">[18:04:22]</span> <span class="log-agent">SAFETY_GUARD</span> <span class="log-action">Pacing verified: 1/15 safe threshold</span></div>
+                <div class="log-line"><span class="log-time">[18:04:35]</span> <span class="log-agent">SORSA_BOOST</span> <span class="log-action">+42 algorithmic impressions registered</span></div>
+                <div class="log-line"><span class="log-time">[18:04:51]</span> <span class="log-agent">FOLLOWER_MTX</span> <span class="log-action">2 verified accounts engaged with commentary</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       TELEGRAM PREMIUM SECTION
+       PRICING: 1mo $6 | 3mo $16 | 6mo $20 | 12mo $33
+       ======================================================================== -->
+  <section id="telegram-premium">
+    <div class="container">
+      <div class="section-header-block">
+        <h2 class="section-headline">Telegram Premium <em>Privileges</em></h2>
+        <p class="section-subtext">Massive 4GB transfers, lightning downloads, real-time voice transcription, and the iconic star badge for seamless messaging supremacy.</p>
+      </div>
+
+      <div class="grid-quad-cards">
+        <!-- 1 Month -->
+        <div class="tg-tier-card">
+          <div>
+            <div class="tg-card-header">
+              <svg class="tg-badge-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <h3 class="tg-duration">1 Month</h3>
+            </div>
+            <div class="tg-price-group">
+              <span class="price-currency">$</span>
+              <span class="tg-amount">6</span>
+            </div>
+            <ul class="tg-features">
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> High-speed downloads</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Telegram star badge</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 1 Month" data-price="$6.00">
+            Select $6
+          </button>
+        </div>
+
+        <!-- 3 Months -->
+        <div class="tg-tier-card">
+          <div>
+            <div class="tg-card-header">
+              <svg class="tg-badge-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <h3 class="tg-duration">3 Months</h3>
+            </div>
+            <div class="tg-price-group">
+              <span class="price-currency">$</span>
+              <span class="tg-amount">16</span>
+            </div>
+            <ul class="tg-features">
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Exclusive animated emojis</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Zero channel sponsors</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 3 Months" data-price="$16.00">
+            Select $16
+          </button>
+        </div>
+
+        <!-- 6 Months -->
+        <div class="tg-tier-card featured-tg">
+          <span class="plan-corner-ribbon" style="top:14px; right:14px; font-size:12px; padding:3px 9px;">Popular</span>
+          <div>
+            <div class="tg-card-header">
+              <svg class="tg-badge-star" style="color:var(--gold-bright);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <h3 class="tg-duration">6 Months</h3>
+            </div>
+            <div class="tg-price-group">
+              <span class="price-currency">$</span>
+              <span class="tg-amount">20</span>
+            </div>
+            <ul class="tg-features">
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Voice-to-text decoding</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Real-time chat translation</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Doubled capacity limits</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 6 Months" data-price="$20.00" style="background:var(--gold-primary); color:#08080A; border:none; font-weight:800;">
+            Select $20
+          </button>
+        </div>
+
+        <!-- 12 Months -->
+        <div class="tg-tier-card">
+          <div>
+            <div class="tg-card-header">
+              <svg class="tg-badge-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <h3 class="tg-duration">12 Months</h3>
+            </div>
+            <div class="tg-price-group">
+              <span class="price-currency">$</span>
+              <span class="tg-amount">33</span>
+            </div>
+            <ul class="tg-features">
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Full annual privileges</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Lowest monthly equivalent</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Dedicated priority support</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 12 Months" data-price="$33.00">
+            Select $33
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MACHINED OBSIDIAN PAYMENT & CRYPTOGRAPHIC VERIFICATION TERMINAL
+       ======================================================================== -->
+  <section id="payment-terminal" class="terminal-section">
+    <div class="container">
+      <div class="section-header-block">
+        <h2 class="section-headline">Cryptographic <em>Payment Vault</em></h2>
+        <p class="section-subtext">Select your preferred settlement rail below. Transfer the exact amount, then transmit your transaction reference for swift verification.</p>
+      </div>
+
+      <!-- Payment Trays -->
+      <div class="payment-trays-grid">
+        <!-- Binance Pay -->
+        <div class="machined-tray" tabindex="0" role="button" data-method="Binance Pay" data-detail="409082023">
+          <div>
+            <div class="tray-top">
+              <span class="tray-brand">BINANCE PAY</span>
+              <div class="tray-check-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <div class="tray-network">Binance Pay ID Rail</div>
+            <div class="crypto-address-dock">
+              <span class="crypto-code" id="codeBinance">409082023</span>
+              <button type="button" class="btn-tray-copy" data-copy-target="codeBinance">
+                Copy ID
+              </button>
+            </div>
+          </div>
+          <p class="tray-hint-msg">Instant zero-gas settlement using Binance App Pay feature.</p>
+        </div>
+
+        <!-- USDT BEP20 / Base USDC -->
+        <div class="machined-tray" tabindex="0" role="button" data-method="USDT (BEP20) / Base USDC" data-detail="0x4d523fde952dc0bb3363e301462d4ebc1236d9c7">
+          <div>
+            <div class="tray-top">
+              <span class="tray-brand">USDT · BEP20 / BASE</span>
+              <div class="tray-check-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <div class="tray-network">BNB Smart Chain (BEP20) / Base Chain</div>
+            <div class="crypto-address-dock">
+              <span class="crypto-code" id="codeEvm">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</span>
+              <button type="button" class="btn-tray-copy" data-copy-target="codeEvm">
+                Copy Address
+              </button>
+            </div>
+          </div>
+          <p class="tray-hint-msg">Universal EVM receiver. Compatible with USDT (BEP20) and Base USDC.</p>
+        </div>
+
+        <!-- Solana USDC -->
+        <div class="machined-tray" tabindex="0" role="button" data-method="Solana USDC" data-detail="AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe">
+          <div>
+            <div class="tray-top">
+              <span class="tray-brand">SOLANA USDC</span>
+              <div class="tray-check-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <div class="tray-network">Solana SPL Network</div>
+            <div class="crypto-address-dock">
+              <span class="crypto-code" id="codeSol">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</span>
+              <button type="button" class="btn-tray-copy" data-copy-target="codeSol">
+                Copy Address
+              </button>
+            </div>
+          </div>
+          <p class="tray-hint-msg warning-highlight">Important: Transmit exclusively native USDC on Solana. Other SPL tokens cannot be received.</p>
+        </div>
+      </div>
+
+      <!-- Checkout Console Summary -->
+      <div class="checkout-console-card">
+        <div class="console-title-row">
+          <h3 class="console-title">Order Terminal Summary</h3>
+          <span class="console-status-pill" id="consoleStatusPill">AWAITING SELECTION</span>
+        </div>
+
+        <div class="summary-spec-list">
+          <div class="spec-line">
+            <span class="spec-key">Chosen Service</span>
+            <span class="spec-val" id="summaryPackageText">None Selected (Pick Above)</span>
+          </div>
+          <div class="spec-line">
+            <span class="spec-key">Settlement Total</span>
+            <span class="spec-val gold" id="summaryAmountText">—</span>
+          </div>
+          <div class="spec-line">
+            <span class="spec-key">Payment Rail</span>
+            <span class="spec-val" id="summaryMethodText">None Selected</span>
+          </div>
+        </div>
+
+        <div class="confirmation-toggle-box" id="confirmToggleBox">
+          <input type="checkbox" id="orderConfirmCheck">
+          <label for="orderConfirmCheck">
+            I confirm that I will transfer the exact settlement amount to the verified address above.
+          </label>
+        </div>
+
+        <div class="error-alert-banner" id="errorAlertBanner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span id="errorMessageText">Please choose a package and payment rail first.</span>
+        </div>
+
+        <button type="button" id="openDrawerBtn" class="btn-gold-action" style="width:100%; justify-content:center; padding:16px;">
+          I Have Transferred Payment · Enter Details
+        </button>
+
+        <!-- Slide Drawer Order Submission Form -->
+        <div class="order-dispatch-drawer" id="orderDrawer">
+          <form class="dispatch-form-pane" id="dispatchForm" novalidate>
+            <h3>Order Dispatch Verification</h3>
+            <p class="form-guidance">Submit your handle and transaction proof. Our automated dispatcher reconciles the blockchain and processes your order in under 24 hours.</p>
+
+            <div class="form-group-field">
+              <label for="tgHandle">Telegram Username *</label>
+              <input type="text" id="tgHandle" class="input-machined" placeholder="@yourhandle" required>
+              <span class="tray-hint-msg" id="err-tg-msg" style="color:#FFA6B9; display:none;">Must include the '@' symbol</span>
+            </div>
+
+            <div class="form-group-field" id="xProfileContainer">
+              <label for="xProfileUrl">X Profile Link / Handle *</label>
+              <input type="text" id="xProfileUrl" class="input-machined" placeholder="https://x.com/yourhandle">
+              <span class="tray-hint-msg" id="err-x-msg" style="color:#FFA6B9; display:none;">Must be a valid x.com profile URL</span>
+
+              <!-- Live Cloudflare Worker Proxy Profile Preview -->
+              <div class="live-x-preview-dock" id="liveXPreviewDock">
+                <div class="preview-account-row">
+                  <div class="preview-avatar-circle" id="prevAvatar">X</div>
+                  <div class="preview-names-meta">
+                    <div class="prev-display-name" id="prevName">Resolving Profile...</div>
+                    <span id="prevHandle">@username</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-field">
+              <label id="screenshotLabelText">Payment Receipt Screenshot *</label>
+              <div class="file-dropzone-box" id="dropzoneBox">
+                <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <div style="font-size:13.5px; font-weight:600; color:var(--text-pure);" id="dropzoneText">
+                  Click or drag payment screenshot here
+                </div>
+                <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+                  Supports PNG, JPG, WebP
+                </div>
+                <div class="file-preview-wrap" id="screenshotPreviewWrap"></div>
+                <input type="file" id="screenshotInput" class="hidden-file-input" accept="image/*">
+              </div>
+              <span class="tray-hint-msg" id="err-file-msg" style="color:#FFA6B9; display:none;">Please attach a valid screenshot</span>
+            </div>
+
+            <div class="form-group-field">
+              <label for="txReference">Transaction Hash or Binance Order ID *</label>
+              <input type="text" id="txReference" class="input-machined" placeholder="Binance Order ID or 0x... / Solana Tx Hash" required>
+              <span class="tray-hint-msg" id="err-tx-msg" style="color:#FFA6B9; display:none;">Please provide your transaction ID or hash</span>
+            </div>
+
+            <button type="submit" id="submitOrderBtn" class="btn-lux-primary" style="width:100%; justify-content:center; padding:16px;" disabled>
+              Dispatch Order For Verification
+            </button>
+
+            <div class="submit-result-status" id="submitResultStatus"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOUR STEPS SOVEREIGN DISPATCH
+       ======================================================================== -->
+  <section id="dispatch-process">
+    <div class="container">
+      <div class="section-header-block">
+        <h2 class="section-headline">Sovereign <em>Dispatch Flow</em></h2>
+        <p class="section-subtext">Engineered for absolute frictionlessness. From payment transmission to verified status in four swift steps.</p>
+      </div>
+
+      <div class="steps-quad-grid">
+        <div class="step-chronicle-card">
+          <span class="step-chronicle-num">01</span>
+          <h3>Select Identity Tier</h3>
+          <p>Choose X Premium duration, Telegram Premium star package, or the 12-agent autonomous growth extension.</p>
+        </div>
+        <div class="step-chronicle-card">
+          <span class="step-chronicle-num">02</span>
+          <h3>Transfer Settlement</h3>
+          <p>Send the exact amount via Binance Pay ID, USDT BEP20, Base USDC, or Solana USDC.</p>
+        </div>
+        <div class="step-chronicle-card">
+          <span class="step-chronicle-num">03</span>
+          <h3>Transmit Reference</h3>
+          <p>Provide your target handle and upload your payment transaction screenshot into the secure verification drawer.</p>
+        </div>
+        <div class="step-chronicle-card">
+          <span class="step-chronicle-num">04</span>
+          <h3>Cryptographic Dispatch</h3>
+          <p>Our automated node confirms payment and applies your official upgrade within minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FREQUENTLY ASKED QUESTIONS (FAQ)
+       ======================================================================== -->
+  <section id="faq-section">
+    <div class="container">
+      <div class="section-header-block">
+        <h2 class="section-headline">Frequently Asked <em>Questions</em></h2>
+        <p class="section-subtext">Everything you need to know about our cryptographic fulfillment protocol and guarantees.</p>
+      </div>
+
+      <div class="faq-bespoke-list">
+        <div class="faq-bespoke-item">
+          <button type="button" class="faq-trigger-btn">
+            Is my account password or private login ever required?
+            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-body-content">
+            <div class="faq-inner-text">
+              Never. We never ask for, require, or store passwords or sensitive account credentials. All subscriptions are provisioned via official protocol gift mechanisms, subscription vouchers, and public profile links. Your security remains 100% sovereign.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-bespoke-item">
+          <button type="button" class="faq-trigger-btn">
+            How fast is the typical subscription activation?
+            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-body-content">
+            <div class="faq-inner-text">
+              The vast majority of orders are fulfilled and verified within minutes of blockchain confirmation. During peak network volumes or queue surges, fulfillment takes up to 24 hours with live status notifications provided via our Telegram concierge.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-bespoke-item">
+          <button type="button" class="faq-trigger-btn">
+            What blockchain payment methods do you support?
+            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-body-content">
+            <div class="faq-inner-text">
+              We natively accept Binance Pay ID (instant zero-fee settlement), USDT on BNB Smart Chain (BEP20), USDC on Base, and native USDC on Solana. Please ensure you transfer on the matching network to avoid fund misplacement.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-bespoke-item">
+          <button type="button" class="faq-trigger-btn">
+            What is your refund and escrow warranty policy?
+            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-body-content">
+            <div class="faq-inner-text">
+              If any subscription fails to activate or encounters technical incompatibility on our dispatch rail, you are backed by an unconditional 100% refund guarantee or immediate replacement voucher. Reach out to our 24/7 Telegram support concierge with your transaction reference.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MASTER EDITORIAL FOOTER
+       ======================================================================== -->
+  <footer class="master-footer">
+    <div class="container">
+      <div class="footer-columns-grid">
+        <div class="footer-summary">
+          <div class="brand-text">
+            <span class="brand-name" style="font-size:18px;">All-in-One Premiums</span>
+            <span class="brand-sub">The Sovereign Digital Suite</span>
+          </div>
+          <p>The definitive luxury provisioning atelier for digital social authority. Official X Premium, Telegram Premium, and X AutoPilot 12-Agent Autonomous Suite.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-header">Quick Navigations</div>
+          <div class="footer-links-col">
+            <a href="#x-premium" class="footer-link-entry">X Premium (3mo &amp; 6mo)</a>
+            <a href="#x-automation" class="footer-link-entry">X AutoPilot Extension (12 Agents)</a>
+            <a href="#telegram-premium" class="footer-link-entry">Telegram Premium</a>
+            <a href="#payment-terminal" class="footer-link-entry">Payment Vault</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-header">Concierge &amp; Escrow</div>
+          <div class="footer-links-col">
+            <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="footer-link-entry" onclick="event.preventDefault(); openTelegramConcierge();">
+              Telegram Concierge Support
+            </a>
+            <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="footer-link-entry">
+              X AutoPilot Telegram Bot
+            </a>
+            <span style="font-size:12px; color:var(--text-muted); margin-top:8px;">Operational Hours: 24/7/365</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-meta">
+        <span>&copy; 2026 All-in-One Premiums. All rights reserved.</span>
+        <span>Not affiliated with X Corp or Telegram FZ-LLC.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Floating Quick-Bar -->
+  <div class="mobile-quickbar">
+    <div class="quickbar-price-info">
+      <span id="quickbarLabel">Selected Tier</span>
+      <b id="quickbarPrice">Select a Plan Above</b>
+    </div>
+    <a href="#payment-terminal" class="btn-gold-action" style="padding:10px 18px; font-size:12px;">
+      Proceed to Vault
+    </a>
   </div>
-</footer>
 
-<script>
-  // Telegram bot notification on order submit, relayed through the backend
-  // Worker instead of calling api.telegram.org directly — the bot token now
-  // lives server-side only, never in this page's own source.
-  const STORE_NOTIFY_URL = 'https://x-auto-pilot-backend.evanjawad36.workers.dev/store-notify';
-  function notifyTelegramBot(message){
-    return fetch(STORE_NOTIFY_URL + '/message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
-    });
-  }
+  <!-- ========================================================================
+       MASTER JAVASCRIPT ENGINE
+       ======================================================================== -->
+  <script>
+    const STORE_NOTIFY_URL = 'https://x-auto-pilot-backend.evanjawad36.workers.dev/store-notify';
+    const X_PROFILE_PROXY = 'https://x-profile-proxy.evanjawad36.workers.dev/';
 
-  function notifyTelegramPhoto(file, caption){
-    const form = new FormData();
-    form.append('caption', caption);
-    form.append('photo', file, file.name);
-    return fetch(STORE_NOTIFY_URL + '/photo', {
-      method: 'POST',
-      body: form
-    });
-  }
-
-  // Contact: open the Telegram app directly on mobile, web Telegram on desktop
-  function openTelegram(){
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      window.location.href = 'tg://resolve?domain=XAutoPilotSupport';
-      setTimeout(() => { window.location.href = 'https://t.me/XAutoPilotSupport'; }, 500);
-    } else {
-      window.open('https://t.me/XAutoPilotSupport', '_blank');
-    }
-  }
-
-  // Mobile menu
-  const menuToggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('nav');
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
-    menuToggle.classList.toggle('open');
-  });
-  document.querySelectorAll('.nav-links a, .nav-cta').forEach(link => {
-    link.addEventListener('click', () => { nav.classList.remove('open'); menuToggle.classList.remove('open'); });
-  });
-
-  // Reveal on scroll: fades in and slides up once per element, then drops
-  // will-change so finished elements stop being promoted to their own layer.
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        el.classList.add('visible');
-        observer.unobserve(el);
-        el.addEventListener('transitionend', () => { el.style.willChange = 'auto'; }, { once: true });
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(other => {
-        other.classList.remove('open');
-        other.querySelector('.faq-answer').style.maxHeight = null;
+    function notifyTelegramBot(message) {
+      return fetch(STORE_NOTIFY_URL + '/message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
       });
-      if (!isOpen) { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
-    });
-  });
+    }
 
-  // Copy to clipboard
-  document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const text = document.getElementById(btn.getAttribute('data-copy-target')).textContent.trim();
-      const done = () => {
-        const original = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(() => { btn.textContent = original; }, 1800);
-      };
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(done).catch(done);
+    function notifyTelegramPhoto(file, caption) {
+      const form = new FormData();
+      form.append('caption', caption);
+      form.append('photo', file, file.name);
+      return fetch(STORE_NOTIFY_URL + '/photo', {
+        method: 'POST',
+        body: form
+      });
+    }
+
+    function openTelegramConcierge() {
+      if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        window.location.href = 'tg://resolve?domain=XAutoPilotSupport';
+        setTimeout(() => { window.location.href = 'https://t.me/XAutoPilotSupport'; }, 500);
       } else {
-        const ta = document.createElement('textarea');
-        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy'); } catch (e) {}
-        document.body.removeChild(ta); done();
+        window.open('https://t.me/XAutoPilotSupport', '_blank');
       }
-    });
-  });
-
-  // Ripple
-  function createRipple(e, el){
-    const rect = el.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const radius = size / 2;
-    const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : rect.left + rect.width / 2);
-    const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : rect.top + rect.height / 2);
-    const circle = document.createElement('span');
-    circle.className = 'ripple-effect';
-    circle.style.width = circle.style.height = size + 'px';
-    circle.style.left = (clientX - rect.left - radius) + 'px';
-    circle.style.top = (clientY - rect.top - radius) + 'px';
-    const existing = el.querySelector('.ripple-effect');
-    if (existing) existing.remove();
-    el.appendChild(circle);
-    circle.addEventListener('animationend', () => circle.remove());
-  }
-  document.querySelectorAll('.ripple').forEach(el => {
-    el.addEventListener('click', function (e) { createRipple(e, this); });
-  });
-
-  /* ---------------- Order flow state machine ---------------- */
-  let selectedPlan = null;
-  let selectedPrice = null;
-  let selectedMethod = null;
-
-  const summaryPackage = document.getElementById('summaryPackage');
-  const summaryAmount = document.getElementById('summaryAmount');
-  const summaryMethod = document.getElementById('summaryMethod');
-  const confirmCheck = document.getElementById('confirmCheck');
-  const paymentMethodError = document.getElementById('paymentMethodError');
-  const payGrid = document.querySelector('.pay-grid');
-  const packageError = document.getElementById('packageError');
-  const confirmError = document.getElementById('confirmError');
-  const paidBtn = document.getElementById('paidBtn');
-  const orderFormWrap = document.getElementById('orderFormWrap');
-  const orderForm = document.getElementById('orderForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const formStatus = document.getElementById('formStatus');
-  const formStatusText = document.getElementById('formStatusText');
-  const txHashInput = document.getElementById('txHash');
-
-  function showPaymentMethodError(){
-    paymentMethodError.hidden = false;
-    payGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  function hidePaymentMethodError(){
-    paymentMethodError.hidden = true;
-  }
-
-  function showPackageError(){
-    packageError.hidden = false;
-    packageError.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  function hidePackageError(){
-    packageError.hidden = true;
-  }
-
-  function showConfirmError(){
-    confirmError.hidden = false;
-  }
-  function hideConfirmError(){
-    confirmError.hidden = true;
-  }
-
-  function refreshConfirmState(){
-    if (confirmCheck.checked) hideConfirmError();
-  }
-
-  // Plan buttons
-  document.querySelectorAll('.plan-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedPlan = btn.getAttribute('data-plan');
-      selectedPrice = btn.getAttribute('data-price');
-      summaryPackage.textContent = selectedPlan;
-      summaryAmount.textContent = selectedPrice;
-      confirmCheck.checked = false;
-      hidePackageError();
-      refreshConfirmState();
-      updateXFieldVisibility();
-      document.getElementById('payment').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // Payment method cards
-  const payCards = document.querySelectorAll('.pay-card');
-  function selectPayCard(card){
-    payCards.forEach(c => {
-      c.classList.remove('selected');
-      c.setAttribute('aria-pressed','false');
-      const status = c.querySelector('.pay-card-status');
-      if (status) status.textContent = 'Click to select';
-    });
-    card.classList.add('selected');
-    card.setAttribute('aria-pressed','true');
-    const selectedStatus = card.querySelector('.pay-card-status');
-    if (selectedStatus) selectedStatus.textContent = 'Selected';
-    selectedMethod = card.getAttribute('data-method');
-    summaryMethod.textContent = selectedMethod;
-    confirmCheck.checked = false;
-    hidePaymentMethodError();
-    refreshConfirmState();
-  }
-  payCards.forEach(card => {
-    card.addEventListener('click', (e) => { if (!e.target.closest('.copy-btn')) selectPayCard(card); });
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPayCard(card); }
-    });
-  });
-
-  // Clicking the checkbox without a payment method selected blocks the check and
-  // points the user back at the cards, instead of silently doing nothing.
-  confirmCheck.addEventListener('click', (e) => {
-    if (!selectedMethod) {
-      e.preventDefault();
-      showPaymentMethodError();
-      return;
     }
-    hidePaymentMethodError();
-  });
 
-  confirmCheck.addEventListener('change', () => { refreshConfirmState(); refreshSubmitState(); });
+    // Interactive 3D Card Tilt with Specular Glare Tracking
+    const tiltContainer = document.getElementById('tiltContainer');
+    const sovereignCard = document.getElementById('sovereignCard');
+    const cardGlare = document.getElementById('cardGlare');
 
-  paidBtn.addEventListener('click', () => {
-    if (!selectedPlan) {
-      hidePaymentMethodError();
-      hideConfirmError();
-      showPackageError();
-      return;
-    }
-    hidePackageError();
+    if (tiltContainer && sovereignCard) {
+      let isHovered = false;
 
-    if (!selectedMethod) {
-      hideConfirmError();
-      showPaymentMethodError();
-      return;
-    }
-    hidePaymentMethodError();
-
-    if (!confirmCheck.checked) {
-      showConfirmError();
-      return;
-    }
-    hideConfirmError();
-
-    orderFormWrap.classList.add('open');
-    setTimeout(() => orderFormWrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
-    updateXFieldVisibility();
-    refreshSubmitState();
-  });
-
-  /* ---------------- Field validation ---------------- */
-  const tgInput = document.getElementById('tgUsername');
-  const xInput = document.getElementById('xProfile');
-  const xProfileField = document.getElementById('xProfileField');
-  const uploadLabelText = document.getElementById('uploadLabelText');
-  const fileInput = document.getElementById('screenshot');
-  const fileNameLabel = document.getElementById('fileName');
-
-  function isXPremiumOrder(){ return !!(selectedPlan && selectedPlan.indexOf('X Premium') === 0); }
-
-  function updateXFieldVisibility(){
-    const needsX = isXPremiumOrder();
-    xProfileField.hidden = !needsX;
-    if (!needsX) {
-      xInput.value = '';
-      xInput.classList.remove('invalid');
-      setFieldMsg('err-x', false, '');
-      hideXPreview();
-    }
-    if (selectedPlan) {
-      uploadLabelText.textContent = needsX ? 'Upload X Profile Screenshot' : 'Upload Telegram Profile Screenshot';
-    } else {
-      uploadLabelText.textContent = 'Upload Payment Screenshot';
-    }
-  }
-
-  function validTg(){ return tgInput.value.trim().indexOf('@') !== -1; }
-  function validX(){
-    if (!isXPremiumOrder()) return true;
-    const v = xInput.value.trim().toLowerCase();
-    return v.indexOf('x.com') !== -1 || v.indexOf('twitter.com') !== -1;
-  }
-
-  /* ---------------- X profile preview ---------------- */
-  const xPreview = document.getElementById('xPreview');
-  let xPreviewTimer = null;
-  let xPreviewRequestId = 0;
-  const X_PROFILE_PROXY = 'https://x-profile-proxy.evanjawad36.workers.dev/';
-
-  function extractXUsername(raw){
-    const v = raw.trim();
-    if (!v) return null;
-    let m = v.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})(?:[/?#]|$)/i);
-    if (m) return m[1];
-    m = v.match(/^@([A-Za-z0-9_]{1,15})$/);
-    if (m) return m[1];
-    m = v.match(/^([A-Za-z0-9_]{1,15})$/);
-    if (m) return m[1];
-    return null;
-  }
-
-  function showXPreview(html){ xPreview.hidden = false; xPreview.innerHTML = html; }
-  function hideXPreview(){ xPreview.hidden = true; xPreview.innerHTML = ''; }
-
-  function renderXPreviewInvalid(){
-    showXPreview('<div class="x-preview-status x-preview-invalid">Invalid X username</div>');
-  }
-  function renderXPreviewLoading(){
-    showXPreview('<div class="x-preview-status">Fetching profile...</div>');
-  }
-  function renderXPreviewServiceIssue(){
-    showXPreview('<div class="x-preview-status">Profile preview unavailable</div>');
-  }
-
-  function renderXPreviewFound(username, data){
-    xPreview.hidden = false;
-    xPreview.innerHTML = '';
-    const row = document.createElement('div');
-    row.className = 'x-preview-row';
-
-    let avatarEl;
-    if (data.profile_image_url) {
-      avatarEl = document.createElement('img');
-      avatarEl.className = 'x-preview-avatar';
-      avatarEl.src = data.profile_image_url;
-      avatarEl.alt = '';
-      avatarEl.addEventListener('error', () => {
-        const fallback = document.createElement('span');
-        fallback.className = 'x-preview-avatar';
-        fallback.setAttribute('aria-hidden', 'true');
-        fallback.textContent = username.charAt(0).toUpperCase();
-        avatarEl.replaceWith(fallback);
+      tiltContainer.addEventListener('mouseenter', () => { isHovered = true; });
+      tiltContainer.addEventListener('mouseleave', () => {
+        isHovered = false;
+        sovereignCard.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        if (cardGlare) cardGlare.style.opacity = '0';
       });
-    } else {
-      avatarEl = document.createElement('span');
-      avatarEl.className = 'x-preview-avatar';
-      avatarEl.setAttribute('aria-hidden', 'true');
-      avatarEl.textContent = username.charAt(0).toUpperCase();
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isHovered) return;
+        const rect = tiltContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -14;
+        const rotateY = ((x - centerX) / centerX) * 14;
+
+        sovereignCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+
+        if (cardGlare) {
+          cardGlare.style.opacity = '1';
+          cardGlare.style.setProperty('--glare-x', `${x}px`);
+          cardGlare.style.setProperty('--glare-y', `${y}px`);
+        }
+      });
     }
 
-    const info = document.createElement('div');
-    const nameEl = document.createElement('div');
-    nameEl.className = 'x-preview-name';
-    nameEl.textContent = data.name || ('@' + username);
-    const handleEl = document.createElement('div');
-    handleEl.className = 'x-preview-handle';
-    handleEl.textContent = '@' + (data.username || username);
-    info.appendChild(nameEl);
-    info.appendChild(handleEl);
+    // Magnetic Cursor Follower (Desktop)
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorOutline = document.getElementById('cursorOutline');
 
-    row.appendChild(avatarEl);
-    row.appendChild(info);
-    xPreview.appendChild(row);
-  }
+    if (cursorDot && cursorOutline && window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
 
-  // Routes through the Cloudflare Worker proxy so the X API bearer token stays
-  // server-side. The worker always responds HTTP 200 and passes X's JSON body
-  // through as-is, so success/failure has to be read from the body shape:
-  // success   -> { data: { name, username, profile_image_url } }
-  // not found -> { errors: [{ type: '.../resource-not-found', ... }] }
-  // anything else (credits depleted, malformed request, etc.) falls back below.
-  xInput.addEventListener('input', () => {
-    clearTimeout(xPreviewTimer);
-    const raw = xInput.value;
-    if (!raw.trim()) { xPreviewRequestId++; hideXPreview(); return; }
-    xPreviewTimer = setTimeout(() => {
-      const username = extractXUsername(raw);
-      if (!username) { xPreviewRequestId++; renderXPreviewInvalid(); return; }
-      renderXPreviewLoading();
-      const requestId = ++xPreviewRequestId;
-      fetch(X_PROFILE_PROXY + encodeURIComponent(username))
-        .then(res => res.json())
-        .then(body => {
-          if (requestId !== xPreviewRequestId) return;
-          const profile = body && body.data;
-          const errors = (body && body.errors) || [];
-          const notFound = errors.some(e => (e.type || '').indexOf('resource-not-found') !== -1 || e.title === 'Not Found Error');
-          if (profile && (profile.name || profile.username || profile.profile_image_url)) {
-            renderXPreviewFound(username, profile);
-          } else if (notFound) {
-            renderXPreviewInvalid();
-          } else {
-            renderXPreviewServiceIssue();
-          }
-        })
-        .catch(() => { if (requestId === xPreviewRequestId) renderXPreviewServiceIssue(); });
-    }, 450);
-  });
+        cursorOutline.animate({
+          left: `${posX}px`,
+          top: `${posY}px`
+        }, { duration: 400, fill: "forwards" });
+      });
 
-  function validFile(){
-    const f = fileInput.files[0];
-    return !!f && f.type.indexOf('image/') === 0;
-  }
-  function validTx(){
-    const v = txHashInput.value.trim();
-    const isOrderId = /^[a-zA-Z0-9]{5,}$/.test(v);
-    const isEvmHash = /^0x[a-fA-F0-9]{40}$/.test(v);
-    return isOrderId || isEvmHash;
-  }
-
-  function setFieldMsg(id, show, text){
-    const el = document.getElementById(id);
-    el.textContent = show ? text : '';
-    el.classList.toggle('show', show);
-  }
-
-  function refreshSubmitState(){
-    const tgOk = validTg();
-    const xOk = validX();
-    const fileOk = validFile();
-    const txOk = validTx();
-
-    setFieldMsg('err-tg', tgInput.value.length > 0 && !tgOk, 'Must contain the @ symbol');
-    setFieldMsg('err-x', xInput.value.length > 0 && !xOk, 'Must be a link containing x.com or twitter.com');
-    setFieldMsg('err-shot', fileInput.files.length > 0 && !fileOk, 'Please choose an image file');
-    setFieldMsg('err-tx', txHashInput.value.length > 0 && !txOk, 'Enter Binance Order ID or Transaction Hash (0x...)');
-
-    tgInput.classList.toggle('invalid', tgInput.value.length > 0 && !tgOk);
-    xInput.classList.toggle('invalid', xInput.value.length > 0 && !xOk);
-    txHashInput.classList.toggle('invalid', txHashInput.value.length > 0 && !txOk);
-
-    const allValid = tgOk && xOk && fileOk && txOk && selectedMethod && selectedPlan && confirmCheck.checked;
-    submitBtn.disabled = !allValid;
-
-    if (!formStatus.classList.contains('success')) {
-      const missing = [];
-      if (!selectedPlan) missing.push('a plan');
-      if (!selectedMethod) missing.push('a payment method');
-      if (!tgOk) missing.push('Telegram username');
-      if (!xOk) missing.push('X profile link');
-      if (!fileOk) missing.push('screenshot');
-      if (!txOk) missing.push('transaction hash');
-      if (!confirmCheck.checked) missing.push('order confirmation checkbox');
-      formStatusText.textContent = allValid ? '' : ('Missing or invalid: ' + missing.join(', ') + '.');
+      document.querySelectorAll('a, button, input, .machined-tray, .agent-pill').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorOutline.style.width = '55px';
+          cursorOutline.style.height = '55px';
+          cursorOutline.style.borderColor = 'rgba(213, 195, 160, 0.75)';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorOutline.style.width = '36px';
+          cursorOutline.style.height = '36px';
+          cursorOutline.style.borderColor = 'rgba(213, 195, 160, 0.45)';
+        });
+      });
     }
-  }
 
-  [tgInput, xInput, txHashInput].forEach(inp => inp.addEventListener('input', refreshSubmitState));
-  fileInput.addEventListener('change', () => {
-    const hasFile = !!fileInput.files[0];
-    fileNameLabel.textContent = hasFile ? fileInput.files[0].name : 'No file chosen';
-    fileNameLabel.classList.toggle('empty', !hasFile);
-    refreshSubmitState();
-  });
+    // Clipboard Copy Helper
+    document.querySelectorAll('.btn-tray-copy').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetId = btn.getAttribute('data-copy-target');
+        const text = document.getElementById(targetId).textContent.trim();
+        const originalText = btn.textContent;
 
-  orderForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (submitBtn.disabled) return;
+        const copySuccess = () => {
+          btn.textContent = 'Copied!';
+          btn.style.background = '#25D366';
+          btn.style.color = '#08080A';
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+            btn.style.color = '';
+          }, 2000);
+        };
 
-    const lines = [
-      'New Order',
-      'Username: ' + tgInput.value.trim()
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(copySuccess).catch(copySuccess);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (_) {}
+          document.body.removeChild(ta);
+          copySuccess();
+        }
+      });
+    });
+
+    // Accordion Logic
+    document.querySelectorAll('.faq-bespoke-item').forEach(item => {
+      const trigger = item.querySelector('.faq-trigger-btn');
+
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.faq-bespoke-item').forEach(other => {
+          other.classList.remove('is-open');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+        }
+      });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const navMenu = document.querySelector('.nav-menu');
+        if (navMenu.style.display === 'flex') {
+          navMenu.style.display = 'none';
+        } else {
+          navMenu.style.display = 'flex';
+          navMenu.style.flexDirection = 'column';
+          navMenu.style.position = 'absolute';
+          navMenu.style.top = '100%';
+          navMenu.style.left = '0';
+          navMenu.style.right = '0';
+          navMenu.style.background = 'rgba(8, 8, 10, 0.96)';
+          navMenu.style.padding = '24px';
+          navMenu.style.borderBottom = '1px solid var(--gold-border)';
+        }
+      });
+    }
+
+    // Terminal Simulator Dynamic Log Stream
+    const terminalStream = document.getElementById('terminalStream');
+    const mockLogs = [
+      { agent: 'TREND_HUNTER', action: 'Tracking breakout engagement on #Web3' },
+      { agent: 'QUOTE_CRAFTER', action: 'Generated 3 high-impact quote variants' },
+      { agent: 'GHOST_SHIELD', action: 'API heartbeat optimal: latency 42ms' },
+      { agent: 'ANALYTICS_SCOUT', action: 'Weekly follower trajectory +18.2%' },
+      { agent: 'NEURAL_REPLY', action: 'Delivered context response to verified peer' }
     ];
-    if (isXPremiumOrder()) { lines.push('X Profile: ' + xInput.value.trim()); }
-    lines.push(
-      'Hash: ' + txHashInput.value.trim(),
-      'Package: ' + selectedPlan,
-      'Amount: ' + selectedPrice,
-      'Payment: ' + selectedMethod
-    );
+    let logIndex = 0;
+    setInterval(() => {
+      if (!terminalStream) return;
+      const now = new Date();
+      const timeStr = `[${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}]`;
+      const item = mockLogs[logIndex % mockLogs.length];
+      logIndex++;
 
-    notifyTelegramBot(lines.join('\n')).catch(() => { /* non-blocking: ignore bot delivery failures */ });
-    const shot = fileInput.files[0];
-    if (shot) {
-      notifyTelegramPhoto(shot, 'Payment screenshot, order for ' + selectedPlan).catch(() => { /* non-blocking */ });
+      const logRow = document.createElement('div');
+      logRow.className = 'log-line';
+      logRow.innerHTML = `<span class="log-time">${timeStr}</span> <span class="log-agent">${item.agent}</span> <span class="log-action">${item.action}</span>`;
+      terminalStream.appendChild(logRow);
+
+      if (terminalStream.children.length > 7) {
+        terminalStream.removeChild(terminalStream.children[0]);
+      }
+    }, 3800);
+
+    /* ========================================================================
+       ORDER FLOW & STATE MACHINE ENGINE
+       ======================================================================== */
+    let activePlan = null;
+    let activePrice = null;
+    let activePaymentMethod = null;
+
+    const summaryPackageText = document.getElementById('summaryPackageText');
+    const summaryAmountText = document.getElementById('summaryAmountText');
+    const summaryMethodText = document.getElementById('summaryMethodText');
+    const consoleStatusPill = document.getElementById('consoleStatusPill');
+    const orderConfirmCheck = document.getElementById('orderConfirmCheck');
+    const errorAlertBanner = document.getElementById('errorAlertBanner');
+    const errorMessageText = document.getElementById('errorMessageText');
+    const openDrawerBtn = document.getElementById('openDrawerBtn');
+    const orderDrawer = document.getElementById('orderDrawer');
+    const xProfileContainer = document.getElementById('xProfileContainer');
+    const screenshotLabelText = document.getElementById('screenshotLabelText');
+
+    const quickbarLabel = document.getElementById('quickbarLabel');
+    const quickbarPrice = document.getElementById('quickbarPrice');
+
+    function showError(msg) {
+      errorMessageText.textContent = msg;
+      errorAlertBanner.classList.add('show');
+    }
+    function hideError() {
+      errorAlertBanner.classList.remove('show');
     }
 
-    formStatusText.textContent = 'Your order has been submitted. We will verify within 24 hours.';
-    formStatus.classList.add('success');
+    function isXOrder() {
+      return activePlan && activePlan.indexOf('X Premium') === 0;
+    }
 
-    setTimeout(() => {
-      orderForm.reset();
-      fileNameLabel.textContent = 'No file chosen';
-      fileNameLabel.classList.add('empty');
-      hideXPreview();
-      tgInput.classList.remove('invalid'); xInput.classList.remove('invalid'); txHashInput.classList.remove('invalid');
-      ['err-tg','err-x','err-shot','err-tx'].forEach(id => setFieldMsg(id, false, ''));
-      payCards.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed','false'); });
-      selectedPlan = null; selectedPrice = null; selectedMethod = null;
-      updateXFieldVisibility();
-      summaryPackage.textContent = 'Not selected yet';
-      summaryAmount.textContent = 'Not selected yet';
-      summaryMethod.textContent = 'Not selected yet';
-      confirmCheck.checked = false;
-      hidePaymentMethodError();
-      hidePackageError();
-      hideConfirmError();
-      refreshConfirmState();
-      submitBtn.disabled = true;
-      orderFormWrap.classList.remove('open');
-      formStatusText.textContent = '';
-      formStatus.classList.remove('success');
-    }, 4000);
-  });
+    function updateProfileRequirement() {
+      const needsX = isXOrder();
+      if (xProfileContainer) {
+        xProfileContainer.style.display = needsX ? 'flex' : 'none';
+        if (!needsX) {
+          document.getElementById('xProfileUrl').value = '';
+          hideXPreview();
+        }
+      }
+      if (screenshotLabelText) {
+        screenshotLabelText.textContent = needsX 
+          ? 'Upload X Profile Screenshot Proof *' 
+          : 'Upload Payment Receipt Screenshot *';
+      }
+    }
 
-  refreshConfirmState();
-</script>
+    // Plan selection handlers
+    document.querySelectorAll('.plan-trigger-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activePlan = btn.getAttribute('data-plan');
+        activePrice = btn.getAttribute('data-price');
 
+        summaryPackageText.textContent = activePlan;
+        summaryAmountText.textContent = activePrice;
+        consoleStatusPill.textContent = 'PACKAGE CONFIGURED';
+
+        if (quickbarLabel) quickbarLabel.textContent = activePlan;
+        if (quickbarPrice) quickbarPrice.textContent = activePrice;
+
+        orderConfirmCheck.checked = false;
+        hideError();
+        updateProfileRequirement();
+        validateFormInputs();
+
+        document.getElementById('payment-terminal').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Payment method tray selection
+    const paymentTrays = document.querySelectorAll('.machined-tray');
+    paymentTrays.forEach(tray => {
+      tray.addEventListener('click', (e) => {
+        if (e.target.closest('.btn-tray-copy')) return;
+
+        paymentTrays.forEach(t => t.classList.remove('selected-tray'));
+        tray.classList.add('selected-tray');
+
+        activePaymentMethod = tray.getAttribute('data-method');
+        summaryMethodText.textContent = activePaymentMethod;
+        orderConfirmCheck.checked = false;
+        hideError();
+        validateFormInputs();
+      });
+    });
+
+    // Drawer opener button
+    openDrawerBtn.addEventListener('click', () => {
+      if (!activePlan) {
+        showError('Please choose a subscription package first (X Premium, Telegram, or X AutoPilot).');
+        document.getElementById('x-premium').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      if (!activePaymentMethod) {
+        showError('Please click one of the payment trays above to select your settlement rail.');
+        return;
+      }
+      if (!orderConfirmCheck.checked) {
+        showError('Please check the confirmation box acknowledging your transfer.');
+        return;
+      }
+
+      hideError();
+      orderDrawer.classList.add('is-open');
+      setTimeout(() => {
+        orderDrawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 150);
+      validateFormInputs();
+    });
+
+    // Form Fields & Validation
+    const tgHandleInput = document.getElementById('tgHandle');
+    const xProfileUrlInput = document.getElementById('xProfileUrl');
+    const txReferenceInput = document.getElementById('txReference');
+    const screenshotInput = document.getElementById('screenshotInput');
+    const dropzoneBox = document.getElementById('dropzoneBox');
+    const dropzoneText = document.getElementById('dropzoneText');
+    const screenshotPreviewWrap = document.getElementById('screenshotPreviewWrap');
+    const submitOrderBtn = document.getElementById('submitOrderBtn');
+    const submitResultStatus = document.getElementById('submitResultStatus');
+
+    const errTgMsg = document.getElementById('err-tg-msg');
+    const errXMsg = document.getElementById('err-x-msg');
+    const errTxMsg = document.getElementById('err-tx-msg');
+    const errFileMsg = document.getElementById('err-file-msg');
+
+    // Drag and drop handling
+    if (dropzoneBox && screenshotInput) {
+      dropzoneBox.addEventListener('click', () => screenshotInput.click());
+
+      ['dragenter', 'dragover'].forEach(name => {
+        dropzoneBox.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzoneBox.classList.add('dragover');
+        });
+      });
+      ['dragleave', 'drop'].forEach(name => {
+        dropzoneBox.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzoneBox.classList.remove('dragover');
+        });
+      });
+
+      dropzoneBox.addEventListener('drop', (e) => {
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          screenshotInput.files = e.dataTransfer.files;
+          handleFileChosen(e.dataTransfer.files[0]);
+        }
+      });
+
+      screenshotInput.addEventListener('change', () => {
+        if (screenshotInput.files && screenshotInput.files[0]) {
+          handleFileChosen(screenshotInput.files[0]);
+        }
+      });
+    }
+
+    function handleFileChosen(file) {
+      if (file && file.type.startsWith('image/')) {
+        dropzoneText.textContent = `Attached: ${file.name}`;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          screenshotPreviewWrap.innerHTML = `<img src="${e.target.result}" alt="Receipt preview" style="max-height:120px;border-radius:8px;border:1px solid var(--gold-border);">`;
+          screenshotPreviewWrap.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        dropzoneText.textContent = 'Invalid file type. Please attach an image.';
+        screenshotPreviewWrap.style.display = 'none';
+        screenshotPreviewWrap.innerHTML = '';
+      }
+      validateFormInputs();
+    }
+
+    // X Profile Real-Time Preview via Cloudflare Worker Proxy
+    const liveXPreviewDock = document.getElementById('liveXPreviewDock');
+    const prevAvatar = document.getElementById('prevAvatar');
+    const prevName = document.getElementById('prevName');
+    const prevHandle = document.getElementById('prevHandle');
+    let xProxyTimer = null;
+
+    function extractUsername(raw) {
+      const v = raw.trim();
+      if (!v) return null;
+      let m = v.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})/i);
+      if (m) return m[1];
+      m = v.match(/^@([A-Za-z0-9_]{1,15})$/);
+      if (m) return m[1];
+      m = v.match(/^([A-Za-z0-9_]{1,15})$/);
+      if (m) return m[1];
+      return null;
+    }
+
+    function showXPreview(name, handle, avatarUrl) {
+      liveXPreviewDock.classList.add('active');
+      prevName.textContent = name;
+      prevHandle.textContent = `@${handle}`;
+      if (avatarUrl) {
+        prevAvatar.innerHTML = `<img src="${avatarUrl}" alt="${handle}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+      } else {
+        prevAvatar.textContent = handle.charAt(0).toUpperCase();
+      }
+    }
+    function hideXPreview() {
+      liveXPreviewDock.classList.remove('active');
+    }
+
+    xProfileUrlInput.addEventListener('input', () => {
+      clearTimeout(xProxyTimer);
+      const val = xProfileUrlInput.value.trim();
+      if (!val) { hideXPreview(); validateFormInputs(); return; }
+
+      xProxyTimer = setTimeout(() => {
+        const username = extractUsername(val);
+        if (!username) {
+          showXPreview('Invalid Handle Format', 'check link', null);
+          return;
+        }
+
+        prevName.textContent = 'Fetching profile from X...';
+        prevHandle.textContent = `@${username}`;
+        liveXPreviewDock.classList.add('active');
+
+        fetch(X_PROFILE_PROXY + encodeURIComponent(username))
+          .then(res => res.json())
+          .then(body => {
+            const profile = body && body.data;
+            if (profile && (profile.name || profile.username)) {
+              showXPreview(profile.name || `@${username}`, profile.username || username, profile.profile_image_url);
+            } else {
+              showXPreview('Profile Not Found', username, null);
+            }
+          })
+          .catch(() => {
+            showXPreview('Preview Unavailable', username, null);
+          });
+      }, 450);
+      validateFormInputs();
+    });
+
+    function validateFormInputs() {
+      const tgValid = tgHandleInput.value.trim().indexOf('@') !== -1;
+      const txValid = txReferenceInput.value.trim().length >= 5;
+      const fileValid = screenshotInput.files && screenshotInput.files.length > 0 && screenshotInput.files[0].type.startsWith('image/');
+
+      let xValid = true;
+      if (isXOrder()) {
+        const xVal = xProfileUrlInput.value.trim().toLowerCase();
+        xValid = xVal.indexOf('x.com') !== -1 || xVal.indexOf('twitter.com') !== -1 || extractUsername(xVal) !== null;
+      }
+
+      errTgMsg.style.display = (tgHandleInput.value.length > 0 && !tgValid) ? 'block' : 'none';
+      errTxMsg.style.display = (txReferenceInput.value.length > 0 && !txValid) ? 'block' : 'none';
+      if (xProfileContainer.style.display !== 'none') {
+        errXMsg.style.display = (xProfileUrlInput.value.length > 0 && !xValid) ? 'block' : 'none';
+      }
+
+      const allValid = tgValid && txValid && fileValid && xValid && activePlan && activePaymentMethod && orderConfirmCheck.checked;
+      submitOrderBtn.disabled = !allValid;
+      return allValid;
+    }
+
+    [tgHandleInput, txReferenceInput, orderConfirmCheck].forEach(el => {
+      el.addEventListener('input', validateFormInputs);
+      el.addEventListener('change', validateFormInputs);
+    });
+
+    // Form Submission: dispatches to Telegram Bot endpoints
+    const dispatchForm = document.getElementById('dispatchForm');
+    dispatchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateFormInputs()) return;
+
+      submitOrderBtn.disabled = true;
+      submitOrderBtn.textContent = 'Transmitting to Dispatch Relay...';
+
+      const orderPayloadLines = [
+        '⚡ NEW STORE ORDER DISPATCH ⚡',
+        'Package: ' + activePlan,
+        'Amount: ' + activePrice,
+        'Settlement Rail: ' + activePaymentMethod,
+        'Telegram Handle: ' + tgHandleInput.value.trim(),
+        'Reference/Tx: ' + txReferenceInput.value.trim()
+      ];
+
+      if (isXOrder()) {
+        orderPayloadLines.push('X Profile Link: ' + xProfileUrlInput.value.trim());
+      }
+
+      notifyTelegramBot(orderPayloadLines.join('\n')).catch(() => {});
+
+      const shotFile = screenshotInput.files[0];
+      if (shotFile) {
+        notifyTelegramPhoto(shotFile, `Screenshot for ${activePlan} (${activePrice}) - ${tgHandleInput.value.trim()}`).catch(() => {});
+      }
+
+      submitResultStatus.className = 'submit-result-status success';
+      submitResultStatus.innerHTML = `
+        <strong>Order Successfully Queued!</strong><br>
+        Your transaction reference has been logged. Our automated concierge will verify and dispatch your subscription shortly.
+      `;
+
+      setTimeout(() => {
+        dispatchForm.reset();
+        dropzoneText.textContent = 'Click or drag payment screenshot here';
+        screenshotPreviewWrap.style.display = 'none';
+        screenshotPreviewWrap.innerHTML = '';
+        hideXPreview();
+        submitOrderBtn.textContent = 'Dispatch Order For Verification';
+        orderDrawer.classList.remove('is-open');
+        submitResultStatus.className = 'submit-result-status';
+        submitResultStatus.innerHTML = '';
+      }, 5000);
+    });
+  </script>
 </body>
 </html>

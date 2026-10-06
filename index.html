@@ -1,2896 +1,965 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>All-in-One Premiums · The Sovereign Digital Atelier</title>
-  <meta name="description" content="All-in-One Premiums: The definitive provider for X Premium, Telegram Premium, and X AutoPilot 12-Agent Autonomous Suite. Instant cryptographic dispatch, zero credentials required.">
+  <title>All-in-One Premiums · X Premium, Telegram Premium, X Automation</title>
+  <meta name="description" content="X Premium, Telegram Premium and the X Automation extension at the best price. Instant, secure, no compromises.">
   <link rel="canonical" href="https://all-in-one-premiums.store/">
-
-  <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://all-in-one-premiums.store/">
-  <meta property="og:title" content="All-in-One Premiums · The Sovereign Digital Atelier">
-  <meta property="og:description" content="Instant cryptographic dispatch for X Premium, Telegram Premium, and X AutoPilot 12-Agent Suite. Elevate your presence.">
+  <meta property="og:title" content="All-in-One Premiums">
+  <meta property="og:description" content="X Premium, Telegram Premium and the X Automation extension at the best price.">
   <meta name="theme-color" content="#08080A">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308080A'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%238A2346'/%3E%3Ccircle cx='19.5' cy='14.5' r='8.5' fill='%2308080A'/%3E%3C/svg%3E">
 
-  <!-- Typography: Cinzel, Manrope, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- GSAP & Lenis Smooth Scroll -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <style>
-    /* ==========================================================================
-       DESIGN SYSTEM TOKENS & CRAFT FOUNDATION
-       Bespoke luxury digital atelier: Obsidian, Warm Oxblood, Champagne Metallic
-       ========================================================================== */
     :root {
-      --bg-base: #08080A;
-      --bg-surface: #151015;
-      --bg-card: rgba(21, 16, 21, 0.78);
-      --bg-card-hover: rgba(30, 22, 31, 0.92);
-      --bg-elevated: #1D161F;
-
-      --plum-accent: #55162D;
+      --obsidian: #08080A;
+      --surface: #151015;
+      --plum: #55162D;
       --burgundy: #8A2346;
-      --oxblood-deep: #2E0B18;
+      --champagne: #D5C3A0;
+      --champagne-dim: #A89878;
+      --ink: #F4F0E8;
+      --muted: #918A88;
+      --hair: rgba(244, 240, 232, 0.12);
+      --hair-strong: rgba(213, 195, 160, 0.34);
+      --display: 'Cinzel', serif;
+      --sans: 'Manrope', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --gutter: clamp(20px, 4.2vw, 64px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--obsidian); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    html, body { overflow-x: clip; }`nbody { line-height: 1.6; font-weight: 400; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: inherit; }
+    ::selection { background: var(--burgundy); color: var(--ink); }
+    :focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
+    ul { list-style: none; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
 
-      --gold-primary: #D5C3A0;
-      --gold-bright: #EFE5D1;
-      --gold-dim: #9C8C70;
-      --gold-border: rgba(213, 195, 160, 0.22);
-      --gold-border-subtle: rgba(213, 195, 160, 0.12);
+    /* split text helpers */
+    .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+    .c { display: inline-block; will-change: transform; }
 
-      --text-pure: #F4F0E8;
-      --text-primary: #EDE8E1;
-      --text-secondary: #ADA49F;
-      --text-muted: #918A88;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-highlight: rgba(255, 255, 255, 0.16);
+    .mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em; color: var(--muted); }
+    .rule { height: 1px; background: var(--hair); transform-origin: left; }
 
-      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-display: 'Cinzel', serif;
-      --font-mono: 'JetBrains Mono', monospace;
+    /* ---------- preloader ---------- */
+    .curtain { position: fixed; inset: 0; z-index: 200; background: var(--obsidian); display: grid; place-items: center; }
+    .curtain-mark { display: flex; align-items: center; gap: 16px; font-family: var(--display); font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: 0.1em; color: var(--champagne); }
+    .eclipse { width: 28px; height: 28px; position: relative; flex-shrink: 0; }
+    .eclipse::before, .eclipse::after { content: ''; position: absolute; border-radius: 50%; }
+    .eclipse::before { inset: 0; background: var(--burgundy); }
+    .eclipse::after { inset: -2px 0 2px 7px; background: var(--obsidian); }
 
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --radius-full: 9999px;
+    /* ---------- cursor ---------- */
+    .cur, .cur-ring { position: fixed; top: 0; left: 0; z-index: 150; pointer-events: none; border-radius: 50%; display: none; }
+    .cur { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--champagne); }
+    .cur-ring { width: 42px; height: 42px; margin: -21px 0 0 -21px; border: 1px solid var(--hair-strong); transition: transform 0.45s var(--ease), background-color 0.3s ease; }
+    .cur-ring.hot { transform: scale(1.7); background: rgba(138, 35, 70, 0.28); }
+    @media (hover: hover) and (pointer: fine) { .cur, .cur-ring { display: block; } body, a, button { cursor: none; } }
 
-      --max-width: 1360px;
-      --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
+    /* ---------- nav ---------- */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px var(--gutter); transition: transform 0.6s var(--ease), background-color 0.4s ease; }
+    .nav.hide { transform: translateY(-110%); }
+    .nav.solid { background: rgba(8, 8, 10, 0.82); backdrop-filter: blur(14px); }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: 0.1em; }
+    .nav-links { display: flex; gap: clamp(20px, 3vw, 44px); font-size: 13.5px; }
+    .nav-links a, .nav-cta { position: relative; color: var(--muted); transition: color 0.3s ease; }
+    .nav-links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px; background: var(--champagne); transform: scaleX(0); transform-origin: right; transition: transform 0.5s var(--ease); }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-cta { color: var(--champagne); font-size: 13.5px; border-bottom: 1px solid var(--hair-strong); padding-bottom: 3px; }
+    .menu-btn { display: none; font-size: 13.5px; color: var(--champagne); }
+    .sheet { position: fixed; inset: 0; z-index: 99; background: var(--surface); display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 var(--gutter); clip-path: inset(0 0 100% 0); visibility: hidden; }
+    .sheet a { font-family: var(--display); font-weight: 600; font-size: clamp(2.4rem, 11vw, 4rem); line-height: 1.15; }
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } .menu-btn { display: block; } }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    html {
-      scroll-behavior: auto; /* Handled smoothly by Lenis */
-      background-color: var(--bg-base);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      font-size: 16px;
-    }
-
-    body {
-      background-color: var(--bg-base);
-      min-height: 100vh;
-      position: relative;
-      line-height: 1.6;
-    }
-
-    /* Ambient Stardust Background Canvas */
-    #ambientCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.65;
-    }
-
-    /* Selection */
-    ::selection {
-      background: var(--plum-accent);
-      color: var(--gold-bright);
-    }
-
-    /* Custom Cursor */
-    .custom-cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--gold-bright);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s ease;
-    }
-    .custom-cursor-ring {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(213, 195, 160, 0.4);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease;
-    }
-
-    /* Typography Utilities */
-    h1, h2, h3, h4 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      color: var(--text-pure);
-      letter-spacing: 0.02em;
-    }
-
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 20px;
-      }
-    }
-
-    /* ==========================================================================
-       ARCHITECTURAL MINIMALIST NAVIGATION
-       ========================================================================== */
-    header.master-nav-wrap {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 20px 0;
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      background: rgba(8, 8, 10, 0.85);
-      border-bottom: 1px solid var(--gold-border-subtle);
-      transition: background 0.3s ease;
-    }
-    header.master-nav-wrap.scrolled {
-      background: rgba(8, 8, 10, 0.95);
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    @media (max-width: 768px) {
-      .nav-container {
-        padding: 0 20px;
-      }
-    }
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: var(--text-pure);
-    }
-    .brand-crest {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid var(--gold-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(85, 22, 45, 0.35);
-      color: var(--gold-bright);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      flex-shrink: 0;
-    }
-    .brand-crest svg {
-      width: 18px;
-      height: 18px;
-      stroke-width: 2;
-    }
-    .brand-typography {
-      display: flex;
-      flex-direction: column;
-    }
-    .brand-name {
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--text-pure);
-      line-height: 1.2;
-    }
-    .brand-sub {
-      font-size: 12px;
-      font-family: var(--font-mono);
-      letter-spacing: 0.04em;
-      color: var(--gold-dim);
-    }
-
-    .nav-links-row {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-link {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.25s ease;
-      position: relative;
-    }
-    .nav-link:hover {
-      color: var(--gold-bright);
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold-primary);
-      transition: width 0.3s var(--ease-cinematic);
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .btn-nav-vault {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      border: 1px solid var(--gold-border);
-      color: var(--gold-bright);
-      padding: 9px 20px;
-      border-radius: var(--radius-full);
-      font-size: 12.5px;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: all 0.3s var(--ease-cinematic);
-      cursor: pointer;
-    }
-    .btn-nav-vault:hover {
-      background: var(--gold-primary);
-      color: #08080A;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      color: var(--text-pure);
-      padding: 8px;
-      cursor: pointer;
-    }
+    /* ---------- hero ---------- */
+    .hero { position: relative; min-height: 100svh; padding: 0 var(--gutter); display: flex; flex-direction: column; justify-content: flex-end; }
+    .hero-art { position: absolute; right: -8vw; top: 4vh; width: min(88vw, 1020px); aspect-ratio: 1; z-index: 0; pointer-events: none; }
+    .hero-art svg { width: 100%; height: 100%; overflow: visible; }
+    .ring-spin { transform-origin: 500px 500px; animation: spin 140s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-title { position: relative; z-index: 2; font-size: clamp(4rem, 12.6vw, 14.5rem); font-weight: 700; line-height: 0.92; letter-spacing: -0.02em; margin-bottom: clamp(28px, 5vh, 56px); }
+    .hero-title .ln { display: block; }
+    .hero-title .ln:nth-child(2) { padding-left: 11vw; color: var(--champagne); }
+    .hero-foot { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto; gap: clamp(24px, 5vw, 80px); align-items: end; padding-bottom: clamp(28px, 5vh, 52px); }
+    .hero-lead { max-width: 36ch; font-size: clamp(15px, 1.2vw, 17px); color: var(--muted); line-height: 1.75; }
+    .specimens { border-top: 1px solid var(--hair); }
+    .specimens a { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--hair); font-size: 14px; transition: color 0.3s ease, padding-left 0.5s var(--ease); }
+    .specimens a b { font-family: var(--display); font-weight: 600; font-size: 1.15rem; color: var(--champagne); }
+    .specimens a:hover { color: var(--champagne); }
+    .disc-btn { width: clamp(104px, 9vw, 132px); aspect-ratio: 1; border-radius: 50%; background: var(--champagne); color: var(--obsidian); display: grid; place-items: center; text-align: center; font-weight: 700; font-size: 13.5px; line-height: 1.25; will-change: transform; }
+    .disc-btn span { display: block; pointer-events: none; }
+    .scroll-cue { position: absolute; left: var(--gutter); top: 50%; z-index: 2; writing-mode: vertical-rl; font-family: var(--mono); font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 14px; }
+    .scroll-cue i { display: block; width: 1px; height: 64px; background: linear-gradient(var(--champagne), transparent); }
     @media (max-width: 900px) {
-      .nav-links-row { display: none; }
-      .mobile-menu-btn { display: flex; }
+      .hero { justify-content: flex-end; padding-top: 110px; }
+      .hero-art { right: -34vw; top: 8vh; width: 130vw; }
+      .hero-title { font-size: 15.4vw; }
+      .hero-title .ln:nth-child(2) { padding-left: 7vw; }
+      .hero-foot { grid-template-columns: 1fr auto; row-gap: 26px; }
+      .hero-foot .specimens { grid-column: 1 / -1; order: 3; }
+      .scroll-cue { display: none; }
     }
 
-    /* ==========================================================================
-       HERO: THE SOVEREIGN ATELIER (CINEMATIC ASYMMETRICAL MOMENT)
-       ========================================================================== */
-    section.hero-atelier-section {
-      position: relative;
-      min-height: 100vh;
-      padding-top: 150px;
-      padding-bottom: 100px;
-      display: flex;
-      align-items: center;
-      z-index: 1;
-    }
+    /* ---------- statement ---------- */
+    .statement { padding: clamp(110px, 20vh, 240px) var(--gutter); max-width: 1500px; margin: 0 auto; }
+    .statement p { font-weight: 300; font-size: clamp(1.9rem, 4.6vw, 4.6rem); line-height: 1.16; letter-spacing: -0.025em; max-width: 19em; }
+    .statement .sw { display: inline-block; }
 
-    /* Giant Ghost Parallax Watermark */
-    .hero-ghost-watermark {
-      position: absolute;
-      top: 25%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--font-display);
-      font-size: clamp(6rem, 16vw, 18rem);
-      font-weight: 900;
-      color: rgba(255, 255, 255, 0.025);
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      will-change: transform;
-    }
+    /* ---------- chapters ---------- */
+    .chapter { position: relative; padding: clamp(90px, 16vh, 190px) var(--gutter); }
+    .chapter-top { display: flex; align-items: baseline; gap: 20px; margin-bottom: clamp(36px, 7vh, 84px); }
+    .chapter-top .rule { flex: 1; }
+    .chapter-n { font-family: var(--display); font-size: 14px; letter-spacing: 0.1em; color: var(--champagne); }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-    @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-        text-align: center;
-      }
-    }
-
-    /* Editorial Text Content */
-    .hero-editorial-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 16px;
-      border-radius: var(--radius-full);
-      background: rgba(85, 22, 45, 0.28);
-      border: 1px solid var(--gold-border-subtle);
-      color: var(--gold-bright);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      margin-bottom: 28px;
-    }
-    .hero-meta-dot {
-      width: 6px;
-      height: 6px;
-      background: #25D366;
-      border-radius: 50%;
-    }
-
-    .hero-monumental-title {
-      font-size: clamp(2.8rem, 5.8vw, 5.4rem);
-      line-height: 1.05;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: var(--text-pure);
-      margin-bottom: 26px;
-    }
-    .hero-title-highlight {
-      color: var(--gold-bright);
-      display: inline-block;
-    }
-
-    .hero-lead-narrative {
-      font-size: clamp(16px, 1.25vw, 18.5px);
-      line-height: 1.7;
-      color: var(--text-secondary);
-      max-width: 580px;
-      margin-bottom: 42px;
-    }
-    @media (max-width: 1024px) {
-      .hero-lead-narrative {
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-    .hero-actions-group {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 1024px) {
-      .hero-actions-group {
-        justify-content: center;
-      }
-    }
-
-    .btn-lux-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--gold-primary);
-      color: #08080A;
-      font-family: var(--font-sans);
-      font-weight: 700;
-      font-size: 14.5px;
-      padding: 16px 36px;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      transition: all 0.3s var(--ease-cinematic);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--gold-bright);
-      cursor: pointer;
-    }
-    .btn-lux-primary:hover {
-      background: var(--gold-bright);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
-    }
-
-    .btn-lux-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text-pure);
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: 14.5px;
-      padding: 16px 32px;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      border: 1px solid var(--border-subtle);
-      transition: all 0.3s var(--ease-cinematic);
-      cursor: pointer;
-    }
-    .btn-lux-ghost:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--gold-border);
-      color: var(--gold-bright);
-    }
-
-    /* 3D Physical Sovereign Artifact Centerpiece */
-    .hero-artifact-perspective {
-      perspective: 1200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    .hero-artifact-wrap {
-      width: 100%;
-      max-width: 440px;
-      aspect-ratio: 1 / 1.35;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.15s ease-out;
-      will-change: transform;
-    }
-
-    .physical-pass-slab {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(145deg, #181119 0%, #0E0A10 60%, #1D131C 100%);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-xl);
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-      position: relative;
-      overflow: hidden;
-      transform: translateZ(30px);
-    }
-
-    /* Specular Glare Overlay */
-    .slab-specular-glare {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle 350px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 80%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .slab-chip-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-    }
-    .slab-emv-chip {
-      width: 46px;
-      height: 34px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #DFD1B3 0%, #B8A179 100%);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      position: relative;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
-    }
-    .slab-wireless-icon {
-      color: var(--gold-bright);
-      font-size: 12px;
-      font-family: var(--font-mono);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      letter-spacing: 0.04em;
-    }
-
-    .slab-body-brand {
-      margin: auto 0;
-    }
-    .slab-vault-title {
-      font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--text-pure);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-    .slab-tier-pills-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .slab-tier-tag {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--gold-border-subtle);
-      color: var(--gold-bright);
-    }
-
-    .slab-bottom-seal {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .slab-auth-id {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-secondary);
-      letter-spacing: 0.02em;
-    }
-    .slab-auth-id b {
-      display: block;
-      color: var(--text-pure);
-      margin-top: 2px;
-      font-size: 12px;
-    }
-    .slab-gold-medallion {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #C7B594;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-    }
-    .slab-gold-medallion svg {
-      width: 22px;
-      height: 22px;
-      stroke: #181119;
-      stroke-width: 2.2;
-    }
-
-    /* Floating Satellite Artifact Tags */
-    .satellite-tag {
-      position: absolute;
-      background: rgba(18, 13, 19, 0.92);
-      border: 1px solid var(--gold-border);
-      backdrop-filter: blur(16px);
-      padding: 10px 18px;
-      border-radius: var(--radius-full);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gold-bright);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-      pointer-events: none;
-      z-index: 4;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transform: translateZ(50px);
-      white-space: nowrap;
-    }
-    .sat-x {
-      top: -18px;
-      left: -20px;
-    }
-    .sat-tg {
-      bottom: 40px;
-      right: -24px;
-    }
-    .sat-agents {
-      top: 55%;
-      left: -36px;
-    }
-
-    /* ==========================================================================
-       SECTION CONTINUUM & CURATED EXHIBITIONS
-       ========================================================================== */
-    section.exhibition-section {
-      padding: 140px 0;
-      position: relative;
-      border-top: 1px solid var(--border-subtle);
-      z-index: 1;
-    }
-
-    .section-watermark-num {
-      position: absolute;
-      top: 40px;
-      right: 40px;
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 10vw, 9rem);
-      font-weight: 900;
-      color: rgba(255, 255, 255, 0.02);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .exhibition-header-block {
-      max-width: 760px;
-      margin-bottom: 70px;
-    }
-    .exhibition-index-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gold-dim);
-      letter-spacing: 0.04em;
-      margin-bottom: 14px;
-      display: block;
-    }
-    .exhibition-title {
-      font-size: clamp(2.2rem, 4vw, 3.8rem);
-      line-height: 1.15;
-      color: var(--text-pure);
-      margin-bottom: 20px;
-    }
-    .exhibition-description {
-      font-size: 16px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* ==========================================================================
-       EXHIBITION 01: X PREMIUM (EDITORIAL SOCIAL CITADEL)
-       ========================================================================== */
-    .x-citadel-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: stretch;
-    }
+    /* X Premium */
+    .xp { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 110px); }
+    .xp-glyph { position: sticky; top: 14vh; align-self: start; }
+    .xp-glyph svg { width: 100%; max-width: 560px; height: auto; display: block; }
+    .xp h2 { font-size: clamp(2.5rem, 5.4vw, 5.6rem); margin-bottom: 24px; letter-spacing: -0.02em; }
+    .xp-sub { max-width: 40ch; color: var(--muted); margin-bottom: clamp(36px, 7vh, 72px); font-size: 16px; }
+    .plan { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; align-items: end; width: 100%; padding: 30px 0; border-top: 1px solid var(--hair); isolation: isolate; }
+    .plan:last-of-type { border-bottom: 1px solid var(--hair); }
+    .plan::before { content: ''; position: absolute; inset: 0 calc(var(--gutter) * -0.5); z-index: -1; background: linear-gradient(90deg, var(--plum), rgba(85, 22, 45, 0.15)); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--ease); }
+    .plan:hover::before, .plan.is-picked::before { transform: scaleX(1); }
+    .plan-term { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 3.4rem); line-height: 1; }
+    .plan-price { grid-row: 1 / span 2; grid-column: 2; font-family: var(--display); font-weight: 700; font-size: clamp(3.4rem, 8vw, 8.5rem); line-height: 0.9; color: var(--champagne); letter-spacing: -0.03em; }
+    .plan-price sup { font-size: 0.38em; vertical-align: top; margin-right: 4px; position: relative; top: 0.18em; }
+    .plan-feat { font-size: 13.5px; color: var(--muted); max-width: 46ch; line-height: 1.7; }
+    .plan-state { grid-column: 1; font-family: var(--mono); font-size: 12.5px; color: var(--champagne); opacity: 0; transition: opacity 0.4s ease; }
+    .plan:hover .plan-state, .plan.is-picked .plan-state { opacity: 1; }
     @media (max-width: 900px) {
-      .x-citadel-grid {
-        grid-template-columns: 1fr;
-      }
+      .xp { grid-template-columns: 1fr; }
+      .xp-glyph { position: relative; top: 0; order: -1; margin-bottom: -6vw; }
+      .xp-glyph svg { max-width: 62vw; margin-left: auto; }
+      .plan { grid-template-columns: 1fr auto; }
+      .plan-price { font-size: 4.6rem; }
     }
 
-    /* Live X Handle Preview Dock */
-    .x-handle-interactive-dock {
-      background: var(--bg-card);
-      border: 1px solid var(--gold-border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      backdrop-filter: blur(20px);
-    }
-    .dock-title {
-      font-family: var(--font-display);
-      font-size: 20px;
-      color: var(--text-pure);
-      margin-bottom: 10px;
-    }
-    .dock-lead {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-    }
-    .handle-field-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-highlight);
-      border-radius: var(--radius-md);
-      padding: 12px 18px;
-      margin-bottom: 24px;
-      transition: border-color 0.25s ease;
-    }
-    .handle-field-wrap:focus-within {
-      border-color: var(--gold-primary);
-    }
-    .handle-field-wrap svg {
-      width: 20px;
-      height: 20px;
-      color: var(--gold-bright);
-      flex-shrink: 0;
-    }
-    .handle-input-text {
-      background: transparent;
-      border: none;
-      color: var(--text-pure);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      width: 100%;
-      outline: none;
-    }
-    .handle-input-text::placeholder {
-      color: var(--text-muted);
-    }
-
-    /* Live Profile Card Preview */
-    .profile-card-preview {
-      background: rgba(15, 11, 16, 0.95);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      display: none;
-      align-items: center;
-      gap: 18px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-      margin-top: auto;
-    }
-    .profile-card-preview.active {
-      display: flex;
-    }
-    .profile-avatar-box {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: var(--plum-accent);
-      border: 2px solid var(--gold-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-      color: var(--gold-bright);
-      font-weight: 700;
-      font-size: 20px;
-    }
-    .profile-meta-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .profile-disp-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-pure);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .profile-verified-badge {
-      color: var(--gold-bright);
-      width: 17px;
-      height: 17px;
-    }
-    .profile-user-handle {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gold-dim);
-    }
-
-    /* X Tiers Column */
-    .x-tiers-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .x-tier-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 36px;
-      transition: all 0.3s var(--ease-cinematic);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .x-tier-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--gold-border);
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    }
-    .x-tier-card.featured-card {
-      border-color: var(--gold-border);
-      background: linear-gradient(145deg, rgba(34, 22, 35, 0.9) 0%, rgba(18, 12, 19, 0.95) 100%);
-    }
-
-    .tier-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .tier-badge-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold-bright);
-      background: rgba(213, 195, 160, 0.14);
-      border: 1px solid var(--gold-border);
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-      letter-spacing: 0.04em;
-    }
-    .tier-duration-title {
-      font-family: var(--font-display);
-      font-size: 24px;
-      color: var(--text-pure);
-    }
-    .tier-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .tier-price-symbol {
-      font-size: 22px;
-      color: var(--gold-dim);
-      font-family: var(--font-display);
-    }
-    .tier-price-digit {
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 800;
-      color: var(--text-pure);
-      line-height: 1;
-    }
-    .tier-price-period {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-
-    .tier-benefits-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-    .tier-benefits-list li {
-      font-size: 14px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .tier-benefits-list li svg {
-      width: 16px;
-      height: 16px;
-      color: var(--gold-bright);
-      flex-shrink: 0;
-    }
-
-    .btn-select-tier {
-      width: 100%;
-      padding: 14px 24px;
-      border-radius: var(--radius-full);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.25s ease;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-pure);
-      text-decoration: none;
-    }
-    .btn-select-tier:hover {
-      background: var(--gold-primary);
-      color: #08080A;
-      border-color: var(--gold-bright);
-    }
-    .btn-select-tier.btn-primary-tier {
-      background: var(--gold-primary);
-      color: #08080A;
-      border-color: var(--gold-bright);
-    }
-    .btn-select-tier.btn-primary-tier:hover {
-      background: var(--gold-bright);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    }
-
-    /* ==========================================================================
-       EXHIBITION 02: TELEGRAM PREMIUM (UNCAPPED TRANSMISSION)
-       ========================================================================== */
-    .tg-tiers-quad-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    @media (max-width: 1100px) {
-      .tg-tiers-quad-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .tg-tiers-quad-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .tg-quad-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 32px 26px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s var(--ease-cinematic);
-      position: relative;
-    }
-    .tg-quad-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--gold-border);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
-    }
-    .tg-quad-card.popular-curation {
-      border-color: var(--gold-border);
-      background: linear-gradient(145deg, rgba(42, 17, 30, 0.85) 0%, rgba(18, 12, 19, 0.95) 100%);
-    }
-
-    .tg-quad-title {
-      font-family: var(--font-display);
-      font-size: 20px;
-      color: var(--text-pure);
-      margin-bottom: 14px;
-    }
-
-    /* ==========================================================================
-       EXHIBITION 03: X AUTOPILOT (12-AGENT AUTONOMOUS FLEET)
-       ========================================================================== */
-    .autopilot-hero-wrapper {
-      background: linear-gradient(145deg, #161017 0%, #0D090E 100%);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-xl);
-      padding: 60px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(24px);
-    }
+    /* Telegram — horizontal journey */
+    .tg { position: relative; background: linear-gradient(180deg, var(--obsidian) 0%, #14090E 55%, var(--surface) 100%); height: 100svh; }
+    .tg-track { position: relative; display: flex; height: 100%; width: max-content; will-change: transform; }
+    .tg-panel { position: relative; flex: 0 0 auto; width: 100vw; height: 100%; padding: 0 var(--gutter); display: flex; align-items: center; }
+    .tg-panel.intro { width: 100vw; }
+    .tg-panel.intro > div { max-width: 1200px; }
+    .tg-panel.intro h2 { font-size: clamp(2.6rem, 7.4vw, 8rem); letter-spacing: -0.025em; margin-bottom: 28px; }
+    .tg-panel.intro p { color: var(--muted); max-width: 38ch; margin-bottom: 30px; }
+    .tg-all { display: flex; flex-wrap: wrap; gap: 8px 22px; max-width: 54ch; font-size: 13.5px; color: var(--ink); }
+    .tg-all li::before { content: '—'; color: var(--burgundy); margin-right: 8px; }
+    .tg-num { position: absolute; left: 4vw; top: 50%; transform: translateY(-52%); font-family: var(--display); font-weight: 800; font-size: clamp(14rem, 44vh, 26rem); line-height: 0.8; color: transparent; -webkit-text-stroke: 1.5px rgba(213, 195, 160, 0.4); user-select: none; letter-spacing: -0.04em; }
+    .tg-info { position: relative; margin-left: auto; width: min(46vw, 620px); }
+    .tg-term { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.8rem); font-weight: 600; margin-bottom: 8px; }
+    .tg-price { font-family: var(--display); font-weight: 700; font-size: clamp(5rem, 13vw, 13rem); color: var(--champagne); line-height: 0.88; letter-spacing: -0.04em; margin-bottom: 26px; }
+    .tg-price sup { font-size: 0.34em; vertical-align: top; margin-right: 6px; position: relative; top: 0.2em; }
+    .tg-feats { display: grid; gap: 6px; margin-bottom: 30px; font-size: 14.5px; color: var(--muted); }
+    .line-btn { display: inline-flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--champagne); padding: 0 0 8px; color: var(--ink); font-weight: 600; font-size: 14.5px; transition: gap 0.5s var(--ease), color 0.3s ease; }
+    .line-btn:hover { gap: 26px; color: var(--champagne); }
+    .tg-flight { position: absolute; left: 0; bottom: 9vh; height: 1px; width: 100%; pointer-events: none; }
+    .tg-flight i { position: absolute; inset: 0; background: var(--hair-strong); transform-origin: left; transform: scaleX(0); }
+    .tg-plane { position: absolute; bottom: 9vh; left: 0; width: 22px; height: 22px; margin: 0 0 -11px -11px; color: var(--champagne); pointer-events: none; }
     @media (max-width: 900px) {
-      .autopilot-hero-wrapper {
-        padding: 30px 20px;
-      }
+      .tg { height: auto; padding: clamp(80px, 12vh, 140px) var(--gutter); }
+      .tg-track { flex-direction: column; width: 100%; gap: 56px; }
+      .tg-panel { width: 100%; height: auto; padding: 0; display: block; }
+      .tg-num { position: relative; display: block; left: 0; top: 0; transform: none; font-size: 9rem; margin-bottom: -2.4rem; }
+      .tg-info { width: 100%; }
+      .tg-price { font-size: 6.2rem; }
+      .tg-flight, .tg-plane { display: none; }
     }
 
-    .autopilot-top-summary {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
-      margin-bottom: 48px;
-      align-items: center;
-    }
+    /* Automation — pinned system */
+    .auto { position: relative; min-height: 100svh; padding: 0 var(--gutter); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 90px); align-items: center; background: var(--obsidian); }
+    .auto-copy h2 { font-size: clamp(2.6rem, 6.2vw, 6.6rem); margin-bottom: 24px; letter-spacing: -0.025em; }
+    .auto-copy h2 em { font-style: normal; color: var(--champagne); }
+    .auto-sub { color: var(--muted); max-width: 42ch; margin-bottom: 32px; }
+    .auto-list { margin-bottom: 36px; max-width: 52ch; }
+    .auto-list li { display: flex; gap: 18px; padding: 11px 0; border-top: 1px solid var(--hair); font-size: 14.5px; color: var(--muted); transition: color 0.5s ease; }
+    .auto-list li:last-child { border-bottom: 1px solid var(--hair); }
+    .auto-list li span { font-family: var(--mono); font-size: 12.5px; color: var(--burgundy); transition: color 0.5s ease; }
+    .auto-list li.on { color: var(--ink); }
+    .auto-list li.on span { color: var(--champagne); }
+    .auto-buy { display: flex; align-items: center; gap: clamp(20px, 3vw, 44px); flex-wrap: wrap; }
+    .auto-price { font-family: var(--display); font-weight: 700; font-size: clamp(3rem, 6vw, 5.4rem); color: var(--champagne); line-height: 1; letter-spacing: -0.03em; }
+    .auto-price small { display: block; font-family: var(--sans); font-weight: 400; font-size: 13px; letter-spacing: 0; color: var(--muted); margin-top: 8px; }
+    .auto-viz { position: relative; aspect-ratio: 1; width: min(100%, 760px); margin-left: auto; }
+    .auto-viz svg { width: 100%; height: 100%; overflow: visible; }
+    .auto-count { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; pointer-events: none; }
+    .auto-count b { font-family: var(--display); font-weight: 700; font-size: clamp(5rem, 13vw, 12rem); line-height: 0.9; color: var(--ink); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+    .auto-count span { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+    .node circle { fill: var(--obsidian); stroke: rgba(213, 195, 160, 0.3); stroke-width: 1; transition: fill 0.5s ease, stroke 0.5s ease; }
+    .node text { font-family: var(--mono); font-size: 13px; fill: var(--muted); text-anchor: middle; dominant-baseline: central; transition: fill 0.5s ease; }
+    .node.on circle { fill: var(--champagne); stroke: var(--champagne); }
+    .node.on text { fill: var(--obsidian); }
     @media (max-width: 900px) {
-      .autopilot-top-summary {
-        grid-template-columns: 1fr;
-      }
+      .auto { grid-template-columns: 1fr; padding-top: 90px; padding-bottom: 90px; }
+      .auto-viz { order: -1; width: 100%; max-width: 440px; margin: 0 auto; }
+      .auto-count b { font-size: 6rem; }
     }
 
-    .autopilot-banner-price {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .autopilot-price-figure {
-      font-family: var(--font-display);
-      font-size: 52px;
-      font-weight: 800;
-      color: var(--gold-bright);
-      line-height: 1;
-    }
-    .autopilot-price-meta {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-    .autopilot-price-meta b {
-      color: #25D366;
-      display: block;
-      font-size: 13px;
-    }
+    /* ---------- payment ---------- */
+    .pay { position: relative; background: var(--surface); padding: clamp(90px, 16vh, 190px) var(--gutter); }
+    .pay h2 { font-size: clamp(2.5rem, 6vw, 6.4rem); letter-spacing: -0.025em; margin-bottom: 18px; max-width: 12em; }
+    .pay-sub { color: var(--muted); max-width: 44ch; margin-bottom: clamp(36px, 7vh, 80px); }
+    .rail { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr) auto; align-items: center; gap: 12px 32px; padding: 30px 0; border-top: 1px solid var(--hair); cursor: pointer; isolation: isolate; text-align: left; width: 100%; }
+    .rail:last-of-type { border-bottom: 1px solid var(--hair); }
+    .rail::before { content: ''; position: absolute; inset: 0 calc(var(--gutter) * -0.5); z-index: -1; background: linear-gradient(90deg, var(--plum), rgba(85, 22, 45, 0.1)); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--ease); }
+    .rail:hover::before, .rail.is-picked::before { transform: scaleX(1); }
+    .rail-name { font-family: var(--display); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.6rem); line-height: 1.05; }
+    .rail-net { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+    .rail-addr { font-family: var(--mono); font-size: 13px; color: var(--champagne); word-break: break-all; line-height: 1.6; }
+    .rail-hint { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
+    .rail-hint.warn { color: var(--champagne); }
+    .copy { font-family: var(--mono); font-size: 12.5px; color: var(--ink); border: 1px solid var(--hair-strong); border-radius: 999px; padding: 10px 20px; min-height: 44px; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+    .copy:hover { background: var(--champagne); color: var(--obsidian); border-color: var(--champagne); }
+    .copy.done { background: var(--ink); color: var(--obsidian); border-color: var(--ink); }
+    @media (max-width: 900px) { .rail { grid-template-columns: 1fr auto; } .rail-addr { grid-column: 1 / -1; order: 3; } }
 
-    /* 12 Specialized Agents Architectural Grid */
-    .agents-matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    @media (max-width: 1024px) {
-      .agents-matrix-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 768px) {
-      .agents-matrix-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 480px) {
-      .agents-matrix-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    .ledger { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: clamp(48px, 9vh, 96px) 0 36px; }
+    .ledger div > span { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+    .ledger div > b { display: block; font-family: var(--display); font-weight: 600; font-size: clamp(1.3rem, 2.6vw, 2.4rem); line-height: 1.1; color: var(--ink); }
+    .ledger div:nth-child(2) > b { color: var(--champagne); font-size: clamp(2.2rem, 5vw, 4.6rem); }
+    @media (max-width: 700px) { .ledger { grid-template-columns: 1fr 1fr; } .ledger div:first-child { grid-column: 1 / -1; } }
+    .pay-note { max-width: 62ch; font-size: 13.5px; color: var(--muted); margin-bottom: 28px; }
+    .confirm { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 30px; font-size: 14.5px; cursor: pointer; max-width: 62ch; }
+    .confirm input { accent-color: var(--champagne); width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; }
+    .flow-msg { min-height: 1.6em; margin-bottom: 14px; font-size: 14px; color: #E7A3B6; }
+    .drawer { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 0.7s var(--ease), opacity 0.5s ease; }
+    .drawer.is-open { grid-template-rows: 1fr; opacity: 1; }
+    .drawer-in { min-height: 0; overflow: hidden; }
+    .form { display: grid; gap: 28px; max-width: 760px; padding-top: 64px; }
+    .form h3 { font-size: clamp(1.8rem, 3.4vw, 3rem); }
+    .field label { display: block; font-size: 13px; color: var(--champagne); margin-bottom: 8px; }
+    .field input[type="text"] { width: 100%; background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--hair-strong); font: inherit; font-size: 17px; padding: 10px 0 12px; border-radius: 0; outline: none; transition: border-color 0.3s ease; }
+    .field input[type="text"]:focus { border-bottom-color: var(--champagne); }
+    .field input::placeholder { color: var(--muted); }
+    .err { display: none; margin-top: 8px; font-size: 13px; color: #E7A3B6; }
+    .drop { border: 1px dashed var(--hair-strong); padding: 32px; text-align: center; color: var(--muted); font-size: 14.5px; transition: background-color 0.3s ease, border-color 0.3s ease; cursor: pointer; }
+    .drop:hover, .drop.over { background: rgba(85, 22, 45, 0.3); border-color: var(--champagne); }
+    .drop-prev { display: none; margin-top: 14px; }
+    .drop-prev img { max-height: 120px; border-radius: 6px; }
+    .xprev { display: none; align-items: center; gap: 14px; margin-top: 14px; }
+    .xprev.on { display: flex; }
+    .xprev-av { width: 46px; height: 46px; border-radius: 50%; background: var(--plum); border: 1px solid var(--hair-strong); display: grid; place-items: center; overflow: hidden; font-family: var(--display); font-weight: 700; color: var(--champagne); }
+    .xprev-av img { width: 100%; height: 100%; object-fit: cover; }
+    .xprev b { display: block; font-size: 15px; }
+    .xprev span { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+    .btn-solid { display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: var(--champagne); color: var(--obsidian); font-weight: 700; font-size: 14.5px; padding: 18px 40px; border-radius: 999px; transition: background-color 0.3s ease, transform 0.5s var(--ease); will-change: transform; }
+    .btn-solid:hover:not(:disabled) { background: var(--ink); }
+    .btn-solid:disabled { opacity: 0.35; cursor: not-allowed; }
+    .done-msg { display: none; border-left: 2px solid var(--champagne); padding: 6px 0 6px 18px; font-size: 15px; }
+    .done-msg.on { display: block; }
 
-    .agent-matrix-cell {
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: all 0.25s ease;
-    }
-    .agent-matrix-cell:hover {
-      border-color: var(--gold-border);
-      background: rgba(85, 22, 45, 0.25);
-      transform: translateY(-2px);
-    }
-    .agent-code-tag {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold-bright);
-    }
-    .agent-desc-text {
-      font-size: 12.5px;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }
+    /* ---------- steps + faq ---------- */
+    .steps { padding: clamp(90px, 16vh, 190px) var(--gutter); }
+    .steps h2 { font-size: clamp(2.4rem, 5.6vw, 5.8rem); letter-spacing: -0.025em; margin-bottom: clamp(40px, 8vh, 90px); max-width: 11em; }
+    .step-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--hair); }
+    .step { padding: 28px 28px 0 0; }
+    .step b { display: block; font-family: var(--display); font-weight: 600; font-size: clamp(3rem, 6vw, 6rem); line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--hair-strong); margin-bottom: 18px; }
+    .step p { font-size: 14.5px; color: var(--muted); max-width: 26ch; }
+    @media (max-width: 900px) { .step-row { grid-template-columns: 1fr 1fr; row-gap: 36px; } }
 
-    /* Live Monospace Telemetry Stream Simulator */
-    .telemetry-stream-console {
-      background: #09060B;
-      border: 1px solid var(--border-highlight);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      font-family: var(--font-mono);
-    }
-    .telemetry-console-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 12px;
-      margin-bottom: 16px;
-    }
-    .telemetry-status-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--gold-bright);
-    }
-    .telemetry-dot {
-      width: 7px;
-      height: 7px;
-      background: #25D366;
-      border-radius: 50%;
-    }
-    .terminal-feed-lines {
-      height: 180px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 10px;
-      font-size: 12.5px;
-      color: #A3B8CC;
-    }
-    .stream-line {
-      display: flex;
-      gap: 10px;
-    }
-    .line-time { color: var(--gold-dim); }
-    .line-agent { color: #E88295; font-weight: 600; }
-    .line-msg { color: var(--text-primary); }
+    .faq { padding: 0 var(--gutter) clamp(90px, 16vh, 190px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(30px, 6vw, 100px); }
+    .faq h2 { font-size: clamp(2.2rem, 4.4vw, 4.4rem); letter-spacing: -0.02em; }
+    .faq-item { border-top: 1px solid var(--hair); }
+    .faq-item:last-child { border-bottom: 1px solid var(--hair); }
+    .faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 500; }
+    .faq-q i { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+    .faq-q i::before, .faq-q i::after { content: ''; position: absolute; left: 0; top: 7.5px; width: 16px; height: 1px; background: var(--champagne); transition: transform 0.5s var(--ease); }
+    .faq-q i::after { transform: rotate(90deg); }
+    .faq-item.open .faq-q i::after { transform: rotate(0deg); }
+    .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.55s var(--ease); }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
+    .faq-a div { min-height: 0; overflow: hidden; }
+    .faq-a p { padding: 0 0 28px; max-width: 58ch; color: var(--muted); font-size: 15px; }
+    @media (max-width: 900px) { .faq { grid-template-columns: 1fr; } }
 
-    /* ==========================================================================
-       THE SETTLEMENT VAULT & CRYPTOGRAPHIC DISPATCH
-       ========================================================================== */
-    section.settlement-vault-section {
-      padding: 140px 0;
-      position: relative;
-      border-top: 1px solid var(--gold-border-subtle);
-      background: linear-gradient(180deg, #08080A 0%, #100B12 100%);
-      z-index: 1;
-    }
+    /* ---------- footer ---------- */
+    .foot { position: relative; padding: clamp(60px, 10vh, 120px) var(--gutter) 28px; border-top: 1px solid var(--hair); }
+    .foot-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: clamp(48px, 10vh, 110px); }
+    .foot-top p { max-width: 36ch; color: var(--muted); font-size: 14.5px; }
+    .foot-links { display: grid; gap: 8px; font-size: 14.5px; }
+    .foot-links a { transition: color 0.3s ease; }
+    .foot-links a:hover { color: var(--champagne); }
+    .foot-word { font-family: var(--display); font-weight: 800; font-size: 11.2vw; line-height: 0.85; letter-spacing: -0.03em; white-space: nowrap; color: var(--plum); margin-bottom: 18px; }
+    .foot-base { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
 
-    .vault-layout-card {
-      background: var(--bg-card);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-xl);
-      padding: 56px 48px;
-      backdrop-filter: blur(28px);
-      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-    }
-    @media (max-width: 768px) {
-      .vault-layout-card {
-        padding: 30px 20px;
-      }
-    }
+    .quickbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; display: none; align-items: center; justify-content: space-between; gap: 16px; padding: 14px var(--gutter) calc(14px + env(safe-area-inset-bottom, 0px)); background: rgba(8, 8, 10, 0.92); backdrop-filter: blur(14px); border-top: 1px solid var(--hair); transform: translateY(110%); transition: transform 0.6s var(--ease); }
+    .quickbar.on { transform: translateY(0); }
+    .quickbar b { display: block; font-family: var(--display); font-size: 1.15rem; color: var(--champagne); }
+    .quickbar span { font-size: 12.5px; color: var(--muted); }
+    .quickbar a { font-weight: 700; font-size: 14px; color: var(--obsidian); background: var(--champagne); padding: 12px 22px; border-radius: 999px; }
+    @media (max-width: 900px) { .quickbar { display: flex; } }
 
-    /* Machined Payment Trays Grid */
-    .machined-trays-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-    @media (max-width: 900px) {
-      .machined-trays-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .machined-tray {
-      background: rgba(14, 10, 15, 0.9);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 26px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.25s var(--ease-cinematic);
-      position: relative;
-    }
-    .machined-tray:hover {
-      border-color: var(--gold-border);
-      background: rgba(25, 17, 26, 0.95);
-      transform: translateY(-2px);
-    }
-    .machined-tray.selected-tray {
-      border-color: var(--gold-primary);
-      background: linear-gradient(145deg, rgba(38, 18, 30, 0.9) 0%, rgba(18, 12, 19, 0.95) 100%);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .tray-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .tray-rail-name {
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-pure);
-    }
-    .tray-radio-indicator {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-    .machined-tray.selected-tray .tray-radio-indicator {
-      border-color: var(--gold-bright);
-      background: var(--gold-primary);
-    }
-    .machined-tray.selected-tray .tray-radio-indicator::after {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #08080A;
-    }
-
-    .tray-network-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gold-dim);
-      margin-bottom: 18px;
-    }
-
-    .tray-address-dock {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .tray-address-text {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gold-bright);
-      word-break: break-all;
-    }
-
-    .btn-tray-copy {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      color: var(--text-pure);
-      font-size: 12px;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      padding: 8px 14px;
-      min-height: 44px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
-    }
-    .btn-tray-copy:hover {
-      background: var(--gold-primary);
-      color: #08080A;
-    }
-
-    .tray-instruction-note {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-    .tray-instruction-note.highlight-sol {
-      color: #FFB37C;
-    }
-
-    /* Summary Console */
-    .vault-summary-panel {
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 36px;
-      margin-bottom: 36px;
-    }
-    .summary-details-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 30px;
-    }
-    @media (max-width: 768px) {
-      .summary-details-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .summary-spec-cell {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-    }
-    .spec-label {
-      font-size: 12px;
-      font-family: var(--font-mono);
-      color: var(--gold-dim);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .spec-val {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-pure);
-      font-family: var(--font-sans);
-    }
-    .spec-val.spec-gold {
-      color: var(--gold-bright);
-    }
-
-    .confirm-checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-      background: rgba(85, 22, 45, 0.15);
-      border: 1px solid var(--gold-border-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      cursor: pointer;
-    }
-    .confirm-checkbox-row input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--gold-primary);
-      cursor: pointer;
-    }
-    .confirm-checkbox-row label {
-      font-size: 13.5px;
-      color: var(--text-pure);
-      cursor: pointer;
-    }
-
-    /* Drawer Transition via grid-template-rows (0 layout thrash) */
-    .order-dispatch-drawer {
-      display: grid;
-      grid-template-rows: 0fr;
-      opacity: 0;
-      transition: grid-template-rows 0.5s var(--ease-cinematic), opacity 0.4s ease;
-    }
-    .order-dispatch-drawer.is-open {
-      grid-template-rows: 1fr;
-      opacity: 1;
-    }
-    .dispatch-drawer-inner {
-      min-height: 0;
-      overflow: hidden;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 36px;
-      margin-top: 24px;
-    }
-
-    .form-inputs-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-    .input-field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .input-field-group label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gold-bright);
-    }
-    .input-lux-box {
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid var(--border-highlight);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      color: var(--text-pure);
-      font-family: var(--font-sans);
-      font-size: 14.5px;
-      outline: none;
-      transition: border-color 0.25s ease;
-    }
-    .input-lux-box:focus {
-      border-color: var(--gold-primary);
-    }
-    .input-lux-box::placeholder {
-      color: var(--text-muted);
-    }
-
-    .dropzone-lux-wrap {
-      border: 2px dashed var(--gold-border);
-      border-radius: var(--radius-lg);
-      padding: 30px;
-      text-align: center;
-      background: rgba(14, 10, 15, 0.4);
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    .dropzone-lux-wrap:hover,
-    .dropzone-lux-wrap.dragover {
-      border-color: var(--gold-bright);
-      background: rgba(85, 22, 45, 0.2);
-    }
-    .dropzone-lux-wrap p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-top: 8px;
-    }
-
-    .validation-error-text {
-      font-size: 12px;
-      color: #FFA6B9;
-      display: none;
-    }
-
-    .btn-submit-order {
-      width: 100%;
-      padding: 18px 36px;
-      border-radius: var(--radius-full);
-      background: var(--gold-primary);
-      color: #08080A;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      border: 1px solid var(--gold-bright);
-      cursor: pointer;
-      transition: all 0.3s var(--ease-cinematic);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
-      margin-top: 10px;
-    }
-    .btn-submit-order:hover:not(:disabled) {
-      background: var(--gold-bright);
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
-      transform: translateY(-2px);
-    }
-    .btn-submit-order:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .order-status-banner {
-      display: none;
-      padding: 20px 24px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      margin-top: 24px;
-      line-height: 1.5;
-    }
-    .order-status-banner.success {
-      display: block;
-      background: rgba(37, 211, 102, 0.12);
-      border: 1px solid #25D366;
-      color: #A3FFC2;
-    }
-
-    /* ==========================================================================
-       EDITORIAL FAQ ACCORDION (ZERO LAYOUT THRASH)
-       ========================================================================== */
-    section.editorial-faq-section {
-      padding: 120px 0;
-      position: relative;
-      border-top: 1px solid var(--border-subtle);
-      z-index: 1;
-    }
-
-    .faq-accordion-stack {
-      max-width: 860px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .faq-item-row {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: border-color 0.25s ease;
-    }
-    .faq-item-row:hover {
-      border-color: var(--gold-border-subtle);
-    }
-    .faq-item-row.is-open {
-      border-color: var(--gold-border);
-    }
-
-    .faq-trigger-btn {
-      width: 100%;
-      text-align: left;
-      padding: 24px 28px;
-      background: transparent;
-      border: none;
-      color: var(--text-pure);
-      font-size: 16px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      cursor: pointer;
-    }
-    .faq-rotator-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s var(--ease-cinematic), background 0.3s ease;
-      color: var(--gold-bright);
-      flex-shrink: 0;
-    }
-    .faq-item-row.is-open .faq-rotator-icon {
-      transform: rotate(180deg);
-      background: var(--plum-accent);
-      border-color: var(--gold-border);
-    }
-
-    .faq-answer-drawer {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.35s var(--ease-cinematic);
-    }
-    .faq-item-row.is-open .faq-answer-drawer {
-      grid-template-rows: 1fr;
-    }
-    .faq-answer-inner {
-      min-height: 0;
-      overflow: hidden;
-      padding: 0 28px 24px;
-      font-size: 14.5px;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-
-    /* ==========================================================================
-       EDITORIAL FOOTER
-       ========================================================================== */
-    footer.master-footer-wrap {
-      border-top: 1px solid var(--border-subtle);
-      padding: 80px 0 40px;
-      background: #060507;
-      position: relative;
-      z-index: 1;
-    }
-    .footer-columns-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 60px;
-      padding-bottom: 60px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    @media (max-width: 800px) {
-      .footer-columns-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-    }
-    .footer-summary p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      max-width: 360px;
-      margin-top: 14px;
-      line-height: 1.6;
-    }
-    .footer-col-header {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      color: var(--gold-dim);
-      margin-bottom: 18px;
-    }
-    .footer-links-col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .footer-link-anchor {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .footer-link-anchor:hover {
-      color: var(--gold-bright);
-    }
-    .footer-legal-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 32px;
-      font-size: 12.5px;
-      color: var(--text-muted);
-    }
-    @media (max-width: 600px) {
-      .footer-legal-bar {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-      }
-    }
-
-    /* ==========================================================================
-       MOBILE QUICKBAR
-       ========================================================================== */
-    .mobile-quickbar {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(14, 10, 15, 0.96);
-      backdrop-filter: blur(24px);
-      border-top: 1px solid var(--gold-border);
-      padding: 12px 20px env(safe-area-inset-bottom, 12px);
-      z-index: 99;
-      align-items: center;
-      justify-content: space-between;
-    }
-    @media (max-width: 768px) {
-      .mobile-quickbar {
-        display: flex;
-      }
-    }
-    .quickbar-price-info {
-      display: flex;
-      flex-direction: column;
-    }
-    .quickbar-price-info span {
-      font-size: 12px;
-      font-family: var(--font-mono);
-      color: var(--gold-dim);
-    }
-    .quickbar-price-info b {
-      font-size: 16px;
-      color: var(--text-pure);
-    }
-
-    /* Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      .custom-cursor-dot, .custom-cursor-ring {
-        display: none !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .curtain { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Stardust Dynamic Canvas -->
-  <canvas id="ambientCanvas"></canvas>
+  <div class="curtain" id="curtain" aria-hidden="true"><div class="curtain-mark"><i class="eclipse"></i><span id="curtainWord">ALL-IN-ONE PREMIUMS</span></div></div>
+  <div class="cur" id="cur"></div><div class="cur-ring" id="curRing"></div>
 
-  <!-- Custom Magnetic Cursor -->
-  <div class="custom-cursor-dot" id="cursorDot"></div>
-  <div class="custom-cursor-ring" id="cursorRing"></div>
-
-  <!-- ========================================================================
-       MASTER NAVIGATION
-       ======================================================================== -->
-  <header class="master-nav-wrap" id="masterNav">
-    <div class="nav-container">
-      <a href="#" class="brand-mark">
-        <div class="brand-crest">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-        </div>
-        <div class="brand-typography">
-          <span class="brand-name">ALL-IN-ONE PREMIUMS</span>
-          <span class="brand-sub">SOVEREIGN DIGITAL ATELIER</span>
-        </div>
-      </a>
-
-      <ul class="nav-links-row">
-        <li><a href="#x-citadel" class="nav-link">01 · X Premium</a></li>
-        <li><a href="#telegram-protocol" class="nav-link">02 · Telegram</a></li>
-        <li><a href="#autopilot-suite" class="nav-link">03 · X AutoPilot</a></li>
-        <li><a href="#settlement-vault" class="nav-link">04 · Vault</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <a href="#settlement-vault" class="btn-nav-vault">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          DISPATCH VAULT
-        </a>
-        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
-      </div>
-    </div>
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" data-nav><i class="eclipse"></i><span>ALL-IN-ONE PREMIUMS</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#x-premium" data-nav>X Premium</a>
+      <a href="#telegram-premium" data-nav>Telegram</a>
+      <a href="#automation" data-nav>Automation</a>
+      <a href="#faq" data-nav>FAQ</a>
+    </nav>
+    <a href="#payment" class="nav-cta" data-nav>Order</a>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sheet">Menu</button>
   </header>
-
-  <!-- ========================================================================
-       HERO: THE SOVEREIGN ATELIER
-       ======================================================================== -->
-  <section class="hero-atelier-section" id="heroSection">
-    <div class="hero-ghost-watermark" id="heroWatermark">SOVEREIGN ATELIER</div>
-
-    <div class="container">
-      <div class="hero-grid">
-        <!-- Left Editorial Narrative -->
-        <div class="hero-editorial-col">
-          <div class="hero-editorial-meta">
-            <span class="hero-meta-dot"></span>
-            <span>MMXXVI COLLECTION · CRYPTOGRAPHIC DISPATCH</span>
-          </div>
-
-          <h1 class="hero-monumental-title">
-            THE SOVEREIGN<br>
-            <span class="hero-title-highlight">DIGITAL SUITE</span>
-          </h1>
-
-          <p class="hero-lead-narrative">
-            Private, uncompromised access to tier-one communication and algorithmic infrastructure. Zero password sharing. Zero credential exposure. Immediate cryptographic dispatch.
-          </p>
-
-          <div class="hero-actions-group">
-            <a href="#settlement-vault" class="btn-lux-primary">
-              <span>ENTER THE VAULT</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-            <a href="#x-citadel" class="btn-lux-ghost">
-              <span>EXPLORE EDITIONS</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Right 3D Physical Artifact Centerpiece -->
-        <div class="hero-artifact-perspective">
-          <div class="hero-artifact-wrap" id="heroArtifact">
-            <!-- Floating Satellite Badges -->
-            <div class="satellite-tag sat-x">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              <span>X VERIFIED PROTOCOL</span>
-            </div>
-            <div class="satellite-tag sat-tg">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-              <span>TELEGRAM UNCAPPED</span>
-            </div>
-            <div class="satellite-tag sat-agents">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-              <span>12-AGENT FLEET</span>
-            </div>
-
-            <!-- The Machined Obsidian Slab -->
-            <div class="physical-pass-slab">
-              <div class="slab-specular-glare" id="slabGlare"></div>
-
-              <div>
-                <div class="slab-chip-row">
-                  <div class="slab-emv-chip"></div>
-                  <div class="slab-wireless-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
-                    <span>SOVEREIGN PASS</span>
-                  </div>
-                </div>
-
-                <div class="slab-body-brand">
-                  <div class="slab-vault-title">ALL-IN-ONE<br>PREMIUMS</div>
-                  <div class="slab-tier-pills-row">
-                    <span class="slab-tier-tag">X Premium</span>
-                    <span class="slab-tier-tag">Telegram</span>
-                    <span class="slab-tier-tag">X AutoPilot</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="slab-bottom-seal">
-                <div class="slab-auth-id">
-                  <span>DISPATCH PROTOCOL</span>
-                  <b>VAULT ID: #A1-94820</b>
-                </div>
-                <div class="slab-gold-medallion">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"></path></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       EXHIBITION 01: X PREMIUM (EDITORIAL SOCIAL CITADEL)
-       ======================================================================== -->
-  <section class="exhibition-section" id="x-citadel">
-    <div class="section-watermark-num">01</div>
-    <div class="container">
-      <div class="exhibition-header-block">
-        <span class="exhibition-index-label">EXHIBITION 01 / SOCIAL AUTHORITY</span>
-        <h2 class="exhibition-title">X PREMIUM · THE VERIFIED CITADEL</h2>
-        <p class="exhibition-description">
-          Engineered for creators, founders, and sovereign voices. Secure direct access to algorithmic prioritization, Grok intelligence, and monetization eligibility with zero password sharing.
-        </p>
-      </div>
-
-      <div class="x-citadel-grid">
-        <!-- Live Real-Time Handle Verification Dock -->
-        <div class="x-handle-interactive-dock">
-          <div>
-            <h3 class="dock-title">Live Profile Verification Dock</h3>
-            <p class="dock-lead">Type your X handle below to preview your verified identity before queuing dispatch.</p>
-
-            <div class="handle-field-wrap">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              <input type="text" id="liveHandleInput" class="handle-input-text" placeholder="elonmusk or @yourhandle" autocomplete="off" spellcheck="false">
-            </div>
-          </div>
-
-          <!-- Real-Time Proxy Preview Card -->
-          <div class="profile-card-preview" id="liveProfileCard">
-            <div class="profile-avatar-box" id="liveAvatarBox">X</div>
-            <div class="profile-meta-info">
-              <span class="profile-disp-name" id="liveDispName">
-                Profile Name
-                <svg class="profile-verified-badge" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              </span>
-              <span class="profile-user-handle" id="liveHandleDisp">@handle</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Curated Tiers Stack -->
-        <div class="x-tiers-stack">
-          <!-- 3 Months Tier ($5.00) -->
-          <div class="x-tier-card">
-            <div>
-              <div class="tier-card-header">
-                <span class="tier-badge-label">CURATED EDITION</span>
-              </div>
-              <h3 class="tier-duration-title">3 Months Verified Access</h3>
-              <div class="tier-price-row">
-                <span class="tier-price-symbol">$</span>
-                <span class="tier-price-digit">5.00</span>
-                <span class="tier-price-period">/ 3 Months Total</span>
-              </div>
-              <ul class="tier-benefits-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Official verified blue checkmark</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Boosted reply ranking in conversations</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Grok AI unlimited generation access</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Edit post & long-form writing suite</li>
-              </ul>
-            </div>
-            <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="X Premium, 3 Months" data-price="$5.00">
-              Select 3 Months · $5.00
-            </button>
-          </div>
-
-          <!-- 6 Months Tier ($8.00) -->
-          <div class="x-tier-card featured-card">
-            <div>
-              <div class="tier-card-header">
-                <span class="tier-badge-label">BEST VALUE ATELIER</span>
-              </div>
-              <h3 class="tier-duration-title">6 Months Verified Access</h3>
-              <div class="tier-price-row">
-                <span class="tier-price-symbol">$</span>
-                <span class="tier-price-digit">8.00</span>
-                <span class="tier-price-period">/ 6 Months Total</span>
-              </div>
-              <ul class="tier-benefits-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full 6-Month uninterrupted verification</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Maximum reply priority & algorithmic boost</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Creator revenue share program eligible</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 1080p / 3-hour video upload capability</li>
-              </ul>
-            </div>
-            <button type="button" class="btn-select-tier btn-primary-tier plan-trigger-btn" data-plan="X Premium, 6 Months" data-price="$8.00">
-              Select 6 Months · $8.00
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       EXHIBITION 02: TELEGRAM PREMIUM (UNCAPPED TRANSMISSION)
-       ======================================================================== -->
-  <section class="exhibition-section" id="telegram-protocol">
-    <div class="section-watermark-num">02</div>
-    <div class="container">
-      <div class="exhibition-header-block">
-        <span class="exhibition-index-label">EXHIBITION 02 / UNCAPPED PROTOCOL</span>
-        <h2 class="exhibition-title">TELEGRAM PREMIUM · UNRESTRICTED REACH</h2>
-        <p class="exhibition-description">
-          4GB massive file uploads, real-time voice-to-text synthesis, doubled channel join limits, and zero sponsored messages. Dispatched directly to your Telegram username.
-        </p>
-      </div>
-
-      <div class="tg-tiers-quad-grid">
-        <!-- 1 Month -->
-        <div class="tg-quad-card">
-          <div>
-            <h3 class="tg-quad-title">1 Month</h3>
-            <div class="tier-price-row">
-              <span class="tier-price-symbol">$</span>
-              <span class="tier-price-digit">6.00</span>
-            </div>
-            <ul class="tier-benefits-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 4GB file transfers</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Voice transcription</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Premium star badge</li>
-            </ul>
-          </div>
-          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 1 Month" data-price="$6.00">
-            Select $6.00
-          </button>
-        </div>
-
-        <!-- 3 Months -->
-        <div class="tg-quad-card">
-          <div>
-            <h3 class="tg-quad-title">3 Months</h3>
-            <div class="tier-price-row">
-              <span class="tier-price-symbol">$</span>
-              <span class="tier-price-digit">16.00</span>
-            </div>
-            <ul class="tier-benefits-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 4GB file transfers</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time chat translate</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Doubled channel caps</li>
-            </ul>
-          </div>
-          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 3 Months" data-price="$16.00">
-            Select $16.00
-          </button>
-        </div>
-
-        <!-- 6 Months (Popular) -->
-        <div class="tg-quad-card popular-curation">
-          <div>
-            <div class="tier-card-header">
-              <span class="tier-badge-label">CURATED CHOICE</span>
-            </div>
-            <h3 class="tg-quad-title">6 Months</h3>
-            <div class="tier-price-row">
-              <span class="tier-price-symbol">$</span>
-              <span class="tier-price-digit">20.00</span>
-            </div>
-            <ul class="tier-benefits-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full speed download rate</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Exclusive animated emojis</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero channel advertising</li>
-            </ul>
-          </div>
-          <button type="button" class="btn-select-tier btn-primary-tier plan-trigger-btn" data-plan="Telegram Premium, 6 Months" data-price="$20.00">
-            Select $20.00
-          </button>
-        </div>
-
-        <!-- 12 Months -->
-        <div class="tg-quad-card">
-          <div>
-            <h3 class="tg-quad-title">12 Months</h3>
-            <div class="tier-price-row">
-              <span class="tier-price-symbol">$</span>
-              <span class="tier-price-digit">33.00</span>
-            </div>
-            <ul class="tier-benefits-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 1 Year continuous suite</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Infinite cloud storage archive</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Maximum tier savings</li>
-            </ul>
-          </div>
-          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 12 Months" data-price="$33.00">
-            Select $33.00
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       EXHIBITION 03: X AUTOPILOT (12-AGENT AUTONOMOUS FLEET)
-       ======================================================================== -->
-  <section class="exhibition-section" id="autopilot-suite">
-    <div class="section-watermark-num">03</div>
-    <div class="container">
-      <div class="exhibition-header-block">
-        <span class="exhibition-index-label">EXHIBITION 03 / AUTONOMOUS COGNITION</span>
-        <h2 class="exhibition-title">X AUTOPILOT · 12-AGENT AUTONOMOUS EXTENSION</h2>
-        <p class="exhibition-description">
-          A full-spectrum autonomous operations crew running directly inside your browser. Twelve specialized agent personas orchestrating breakout detection, thread synthesis, and contextual engagement.
-        </p>
-      </div>
-
-      <div class="autopilot-hero-wrapper">
-        <div class="autopilot-top-summary">
-          <div>
-            <span class="tier-badge-label">LIFETIME ACCESS SUITE</span>
-            <div class="autopilot-banner-price">
-              <span class="autopilot-price-figure">$11.99</span>
-              <div class="autopilot-price-meta">
-                <b>12 Specialized Neural Agents Included</b>
-                <span>One-time acquisition · Zero subscription renewal</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <button type="button" class="btn-select-tier btn-primary-tier plan-trigger-btn" data-plan="X AutoPilot 12-Agents Suite" data-price="$11.99" style="padding:18px 32px; font-size:15px;">
-              Acquire 12-Agent Suite · $11.99
-            </button>
-          </div>
-        </div>
-
-        <!-- 12 Autonomous Agents Matrix -->
-        <div class="agents-matrix-grid">
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">01 · TREND_HUNTER</span>
-            <p class="agent-desc-text">Surveillance across niche breakout velocity</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">02 · VIRAL_RADAR</span>
-            <p class="agent-desc-text">Algorithmic quote-tweet opening detection</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">03 · THREAD_CRAFTER</span>
-            <p class="agent-desc-text">Multi-chapter narrative retention structuring</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">04 · PERSONA_MIRROR</span>
-            <p class="agent-desc-text">Synthesizes tone and cadence to your voice</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">05 · CONCIERGE_REPLY</span>
-            <p class="agent-desc-text">Context-aware conversational replies to peers</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">06 · GHOST_SHIELD</span>
-            <p class="agent-desc-text">Adaptive rate-limit & heartbeat monitor</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">07 · ANALYTICS_SCOUT</span>
-            <p class="agent-desc-text">Follower retention & impressions telemetry</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">08 · TIMING_ORACLE</span>
-            <p class="agent-desc-text">Time-zone optimal posting scheduler</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">09 · MEDIA_CURATOR</span>
-            <p class="agent-desc-text">Pairs high-impact charts & image assets</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">10 · HOOK_LAB</span>
-            <p class="agent-desc-text">Generates 5 distinct high-CTR headline hooks</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">11 · RETENTION_LOOP</span>
-            <p class="agent-desc-text">Cultivates recurring replies & bookmarks</p>
-          </div>
-          <div class="agent-matrix-cell">
-            <span class="agent-code-tag">12 · NEURAL_DISPATCH</span>
-            <p class="agent-desc-text">Synchronizes the entire fleet autonomously</p>
-          </div>
-        </div>
-
-        <!-- Telemetry Simulator -->
-        <div class="telemetry-stream-console">
-          <div class="telemetry-console-header">
-            <div class="telemetry-status-indicator">
-              <span class="telemetry-dot"></span>
-              <span>12 AGENTS ONLINE · HEARTBEAT OPTIMAL</span>
-            </div>
-            <span style="font-size:12px; color:var(--gold-dim);">TELEGRAM: @XAutoPilot1Bot</span>
-          </div>
-          <div class="terminal-feed-lines" id="telemetryStream">
-            <div class="stream-line"><span class="line-time">[18:50:02]</span> <span class="line-agent">TREND_HUNTER</span> <span class="line-msg">Scanning algorithmic breakout velocity across #Web3</span></div>
-            <div class="stream-line"><span class="line-time">[18:50:04]</span> <span class="line-agent">HOOK_LAB</span> <span class="line-msg">Prepared 4 high-retention hooks for incoming thread</span></div>
-            <div class="stream-line"><span class="line-time">[18:50:07]</span> <span class="line-agent">GHOST_SHIELD</span> <span class="line-msg">Latency 38ms · No rate limit flags detected</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       THE SETTLEMENT VAULT & CRYPTOGRAPHIC DISPATCH
-       ======================================================================== -->
-  <section class="settlement-vault-section" id="settlement-vault">
-    <div class="container">
-      <div class="exhibition-header-block" style="text-align: center; margin-left: auto; margin-right: auto;">
-        <span class="exhibition-index-label">CRYPTOGRAPHIC TERMINAL / SECTION 04</span>
-        <h2 class="exhibition-title">THE SETTLEMENT VAULT</h2>
-        <p class="exhibition-description">
-          Instant cryptographic dispatch. Select your payment rail below, transmit the exact package amount, and queue your order for immediate concierge verification.
-        </p>
-      </div>
-
-      <div class="vault-layout-card">
-        <!-- 3 Machined Obsidian Trays -->
-        <div class="machined-trays-grid">
-          <!-- Tray 1: Binance Pay -->
-          <div class="machined-tray" tabindex="0" role="button" data-method="Binance Pay" data-detail="409082023">
-            <div>
-              <div class="tray-topbar">
-                <span class="tray-rail-name">BINANCE PAY</span>
-                <div class="tray-radio-indicator"></div>
-              </div>
-              <div class="tray-network-label">Zero-Gas Instant App Pay</div>
-              <div class="tray-address-dock">
-                <span class="tray-address-text" id="binanceVal">409082023</span>
-                <button type="button" class="btn-tray-copy" data-copy-target="binanceVal">Copy ID</button>
-              </div>
-            </div>
-            <p class="tray-instruction-note">Instant zero-fee transfer using Binance Pay ID.</p>
-          </div>
-
-          <!-- Tray 2: USDT BEP20 / Base USDC -->
-          <div class="machined-tray" tabindex="0" role="button" data-method="USDT (BEP20) / Base USDC" data-detail="0x4d523fde952dc0bb3363e301462d4ebc1236d9c7">
-            <div>
-              <div class="tray-topbar">
-                <span class="tray-rail-name">USDT · BEP20 / BASE</span>
-                <div class="tray-radio-indicator"></div>
-              </div>
-              <div class="tray-network-label">BNB Smart Chain (BEP20) / Base</div>
-              <div class="tray-address-dock">
-                <span class="tray-address-text" id="evmVal">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</span>
-                <button type="button" class="btn-tray-copy" data-copy-target="evmVal">Copy Address</button>
-              </div>
-            </div>
-            <p class="tray-instruction-note">Universal EVM rail. Compatible with USDT (BEP20) or Base USDC.</p>
-          </div>
-
-          <!-- Tray 3: Solana USDC -->
-          <div class="machined-tray" tabindex="0" role="button" data-method="Solana USDC" data-detail="AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe">
-            <div>
-              <div class="tray-topbar">
-                <span class="tray-rail-name">SOLANA USDC</span>
-                <div class="tray-radio-indicator"></div>
-              </div>
-              <div class="tray-network-label">Solana SPL Token Rail</div>
-              <div class="tray-address-dock">
-                <span class="tray-address-text" id="solVal">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</span>
-                <button type="button" class="btn-tray-copy" data-copy-target="solVal">Copy Address</button>
-              </div>
-            </div>
-            <p class="tray-instruction-note highlight-sol">Transmit exclusively native USDC on Solana.</p>
-          </div>
-        </div>
-
-        <!-- Checkout Summary Console -->
-        <div class="vault-summary-panel">
-          <div class="summary-details-grid">
-            <div class="summary-spec-cell">
-              <span class="spec-label">CONFIGURED EDITION</span>
-              <span class="spec-val" id="sumPackage">Select a tier above</span>
-            </div>
-            <div class="summary-spec-cell">
-              <span class="spec-label">TOTAL SETTLEMENT</span>
-              <span class="spec-val spec-gold" id="sumPrice">$0.00</span>
-            </div>
-            <div class="summary-spec-cell">
-              <span class="spec-label">SETTLEMENT RAIL</span>
-              <span class="spec-val" id="sumMethod">Click a payment tray</span>
-            </div>
-          </div>
-
-          <!-- Mandatory Confirmation Checkbox -->
-          <div class="confirm-checkbox-row">
-            <input type="checkbox" id="orderConfirmCheck">
-            <label for="orderConfirmCheck">I confirm that I will transfer the exact package amount to the designated payment tray.</label>
-          </div>
-
-          <button type="button" class="btn-lux-primary" id="openDrawerBtn" style="width:100%; font-size:15px; padding:18px 36px;">
-            OPEN DISPATCH VERIFICATION DRAWER
-          </button>
-        </div>
-
-        <!-- Order Dispatch Drawer -->
-        <div class="order-dispatch-drawer" id="orderDrawer">
-          <div class="dispatch-drawer-inner">
-            <form id="dispatchForm" class="form-inputs-stack">
-              <!-- Telegram Handle -->
-              <div class="input-field-group">
-                <label for="tgHandle">Your Telegram Username *</label>
-                <input type="text" id="tgHandle" class="input-lux-box" placeholder="@yourusername" required autocomplete="off">
-                <span class="validation-error-text" id="errTgMsg">Please include @ in your Telegram handle</span>
-              </div>
-
-              <!-- X Profile Link (Only for X orders) -->
-              <div class="input-field-group" id="xProfileFieldWrap" style="display:none;">
-                <label for="xProfileUrl">X (Twitter) Profile Link or @handle *</label>
-                <input type="text" id="xProfileUrl" class="input-lux-box" placeholder="https://x.com/yourhandle or @yourhandle" autocomplete="off">
-                <span class="validation-error-text" id="errXMsg">Please enter a valid X profile link or @handle</span>
-              </div>
-
-              <!-- Transaction Reference -->
-              <div class="input-field-group">
-                <label for="txRef">Transaction Hash / Order Reference *</label>
-                <input type="text" id="txRef" class="input-lux-box" placeholder="e.g. Binance Order ID or Blockchain Tx Hash" required autocomplete="off">
-                <span class="validation-error-text" id="errTxMsg">Reference must be at least 5 characters</span>
-              </div>
-
-              <!-- Drag & Drop Proof Screenshot -->
-              <div class="input-field-group">
-                <label id="screenshotLabelText">Payment Receipt Screenshot *</label>
-                <div class="dropzone-lux-wrap" id="dropzoneBox">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold-bright); margin:0 auto;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                  <p id="dropzoneText">Click or drag payment screenshot here</p>
-                  <input type="file" id="screenshotFile" accept="image/*" style="display:none;" required>
-                </div>
-                <div id="screenshotPreviewBox" style="display:none; margin-top:12px; text-align:center;"></div>
-              </div>
-
-              <button type="submit" class="btn-submit-order" id="submitOrderBtn" disabled>
-                DISPATCH ORDER FOR VERIFICATION
-              </button>
-
-              <div class="order-status-banner" id="orderStatusBanner"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       EDITORIAL FAQ ACCORDION (ZERO LAYOUT THRASH)
-       ======================================================================== -->
-  <section class="editorial-faq-section" id="faq">
-    <div class="container">
-      <div class="exhibition-header-block" style="text-align: center; margin-left: auto; margin-right: auto;">
-        <span class="exhibition-index-label">CURATED KNOWLEDGE</span>
-        <h2 class="exhibition-title">FREQUENTLY ANSWERED</h2>
-      </div>
-
-      <div class="faq-accordion-stack">
-        <div class="faq-item-row">
-          <button type="button" class="faq-trigger-btn">
-            <span>How is X Premium dispatched without asking for my password?</span>
-            <div class="faq-rotator-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-          </button>
-          <div class="faq-answer-drawer">
-            <div class="faq-answer-inner">
-              We never require passwords, 2FA credentials, or sensitive authentication cookies. All upgrades are provisioned through verified cryptographic settlement channels or direct protocol gifts linked solely to your public profile link.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item-row">
-          <button type="button" class="faq-trigger-btn">
-            <span>What is the average dispatch timeframe following transfer?</span>
-            <div class="faq-rotator-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-          </button>
-          <div class="faq-answer-drawer">
-            <div class="faq-answer-inner">
-              Most orders are verified and queued within 15 to 45 minutes after submitting your payment reference and receipt proof. If submitting during off-peak hours, processing completes within a maximum of 3 hours.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item-row">
-          <button type="button" class="faq-trigger-btn">
-            <span>How do I receive the X AutoPilot 12-Agent Extension?</span>
-            <div class="faq-rotator-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-          </button>
-          <div class="faq-answer-drawer">
-            <div class="faq-answer-inner">
-              Once your transaction reference is confirmed, our automated concierge contacts your submitted Telegram handle with your lifetime activation token and instructions to link with @XAutoPilot1Bot.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item-row">
-          <button type="button" class="faq-trigger-btn">
-            <span>Which cryptocurrencies are supported for settlement?</span>
-            <div class="faq-rotator-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-          </button>
-          <div class="faq-answer-drawer">
-            <div class="faq-answer-inner">
-              We officially support Binance Pay ID (instant zero-gas), USDT on BNB Smart Chain (BEP20), USDC on Base network, and native USDC on Solana SPL.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       EDITORIAL FOOTER
-       ======================================================================== -->
-  <footer class="master-footer-wrap">
-    <div class="container">
-      <div class="footer-columns-grid">
-        <div class="footer-summary">
-          <a href="#" class="brand-mark">
-            <div class="brand-crest">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
-            </div>
-            <span class="brand-name">ALL-IN-ONE PREMIUMS</span>
-          </a>
-          <p>The definitive digital subscription atelier. Sovereign access, cryptographic settlement, zero credentials required.</p>
-        </div>
-
-        <div>
-          <div class="footer-col-header">EDITIONS</div>
-          <div class="footer-links-col">
-            <a href="#x-citadel" class="footer-link-anchor">X Premium 3 Months ($5.00)</a>
-            <a href="#x-citadel" class="footer-link-anchor">X Premium 6 Months ($8.00)</a>
-            <a href="#telegram-protocol" class="footer-link-anchor">Telegram Premium</a>
-            <a href="#autopilot-suite" class="footer-link-anchor">X AutoPilot 12-Agents ($11.99)</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-col-header">CONCIERGE & SUPPORT</div>
-          <div class="footer-links-col">
-            <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="footer-link-anchor">Telegram Concierge (@XAutoPilotSupport)</a>
-            <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="footer-link-anchor">AutoPilot Bot (@XAutoPilot1Bot)</a>
-            <a href="#settlement-vault" class="footer-link-anchor">Cryptographic Vault</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-legal-bar">
-        <span>© 2026 All-in-One Premiums. All rights reserved. Sovereign Digital Atelier.</span>
-        <span>Secured via Cryptographic Relays</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ========================================================================
-       MOBILE STICKY QUICKBAR
-       ======================================================================== -->
-  <div class="mobile-quickbar">
-    <div class="quickbar-price-info">
-      <span id="quickbarLabel">Selected Tier</span>
-      <b id="quickbarPrice">Select a Plan Above</b>
-    </div>
-    <a href="#settlement-vault" class="btn-nav-vault" style="padding:10px 18px; font-size:12px;">
-      Proceed to Vault
-    </a>
+  <div class="sheet" id="sheet">
+    <a href="#x-premium" data-nav>X Premium</a>
+    <a href="#telegram-premium" data-nav>Telegram</a>
+    <a href="#automation" data-nav>Automation</a>
+    <a href="#payment" data-nav>Order</a>
   </div>
 
-  <!-- ========================================================================
-       MASTER SCRIPT: GSAP, LENIS, 3D ARTIFACT, WEBSOCKET / PROXIES & TELEGRAM
-       ======================================================================== -->
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-art" id="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 1000 1000">
+          <defs>
+            <linearGradient id="gDisc" x1="0.1" y1="0" x2="0.9" y2="1">
+              <stop offset="0" stop-color="#8A2346"/><stop offset="0.55" stop-color="#55162D"/><stop offset="1" stop-color="#151015"/>
+            </linearGradient>
+          </defs>
+          <g data-depth="26"><circle cx="500" cy="500" r="330" fill="url(#gDisc)"/></g>
+          <g data-depth="-14"><circle cx="590" cy="450" r="318" fill="#08080A"/><circle cx="590" cy="450" r="318" fill="none" stroke="#D5C3A0" stroke-opacity="0.55" stroke-width="1.2"/></g>
+          <g class="ring-spin" id="ringHero"></g>
+          <g data-depth="8"><circle cx="500" cy="500" r="470" fill="none" stroke="#D5C3A0" stroke-opacity="0.12"/><circle cx="500" cy="500" r="395" fill="none" stroke="#D5C3A0" stroke-opacity="0.16"/></g>
+        </svg>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><i></i>Scroll</div>
+      <h1 class="hero-title" id="heroTitle" aria-label="All in one Premiums">
+        <span class="ln" data-split="chars">ALL</span>
+        <span class="ln" data-split="chars">IN ONE</span>
+        <span class="ln" data-split="chars">PREMIUMS</span>
+      </h1>
+      <div class="hero-foot" id="heroFoot">
+        <p class="hero-lead">X Premium, Telegram Premium and the X Automation extension at the best price. Instant, secure, no compromises.</p>
+        <div class="specimens">
+          <a href="#x-premium" data-nav><span>X Premium</span><b>from $5</b></a>
+          <a href="#telegram-premium" data-nav><span>Telegram Premium</span><b>from $6</b></a>
+          <a href="#automation" data-nav><span>X Automation, 12 agents</span><b>$11.99</b></a>
+        </div>
+        <a href="#payment" class="disc-btn" data-magnetic data-nav><span>Begin<br>order</span></a>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement" id="statement">
+      <p id="statementText">We never ask for your password. Activation is done through official, supported methods only. Your account credentials stay yours at all times.</p>
+    </section>
+
+    <!-- I · X PREMIUM -->
+    <section class="chapter" id="x-premium">
+      <div class="chapter-top"><span class="chapter-n">I</span><div class="rule" data-rule></div><span class="mono">X Premium</span></div>
+      <div class="xp">
+        <div class="xp-glyph" id="xGlyph" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <defs><linearGradient id="gX" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8A2346"/><stop offset="1" stop-color="#55162D"/></linearGradient></defs>
+            <path fill="url(#gX)" stroke="#D5C3A0" stroke-width="0.12" stroke-opacity="0.7" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 data-split="words">Unlock the full X experience</h2>
+          <p class="xp-sub">Edit posts, longer videos, fewer ads, and the verified checkmark, delivered to your account.</p>
+          <button type="button" class="plan plan-trigger" data-plan="X Premium, 3 Months" data-price="$5.00" data-reveal>
+            <span class="plan-term">3 Months</span>
+            <span class="plan-price"><sup>$</sup>5</span>
+            <span class="plan-feat">Blue checkmark verification · Edit posts &amp; longer videos · Reduced ads in timeline · Instant delivery</span>
+            <span class="plan-state">Selected, continue to payment ↓</span>
+          </button>
+          <button type="button" class="plan plan-trigger" data-plan="X Premium, 6 Months" data-price="$8.00" data-reveal>
+            <span class="plan-term">6 Months</span>
+            <span class="plan-price"><sup>$</sup>8</span>
+            <span class="plan-feat">Blue checkmark verification · Edit posts &amp; longer videos · Reduced ads in timeline · Priority support</span>
+            <span class="plan-state">Selected, continue to payment ↓</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- II · TELEGRAM -->
+    <section class="tg" id="telegram-premium">
+      <div class="tg-flight" id="tgFlight" aria-hidden="true"><i id="tgLine"></i></div>
+      <svg class="tg-plane" id="tgPlane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <div class="tg-track" id="tgTrack">
+        <div class="tg-panel intro">
+          <div>
+            <h2 data-split="words">More power. No limits.</h2>
+            <p>Faster downloads, exclusive stickers, larger uploads, and premium badges. Pick your duration.</p>
+            <ul class="tg-all">
+              <li>4GB file uploads</li><li>Faster downloads</li><li>Premium badge</li><li>Exclusive stickers</li><li>No ads in channels</li><li>Voice to text conversion</li><li>Priority support</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tg-panel">
+          <div class="tg-num" aria-hidden="true">1</div>
+          <div class="tg-info">
+            <div class="tg-term">1 Month</div>
+            <div class="tg-price"><sup>$</sup>6</div>
+            <ul class="tg-feats"><li>4GB file uploads</li><li>Faster downloads</li><li>Premium badge</li></ul>
+            <button type="button" class="line-btn plan-trigger" data-plan="Telegram Premium, 1 Month" data-price="$6.00" data-magnetic>Select 1 Month <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <div class="tg-panel">
+          <div class="tg-num" aria-hidden="true">3</div>
+          <div class="tg-info">
+            <div class="tg-term">3 Months</div>
+            <div class="tg-price"><sup>$</sup>16</div>
+            <ul class="tg-feats"><li>4GB file uploads</li><li>Exclusive stickers</li><li>No ads in channels</li></ul>
+            <button type="button" class="line-btn plan-trigger" data-plan="Telegram Premium, 3 Months" data-price="$16.00" data-magnetic>Select 3 Months <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <div class="tg-panel">
+          <div class="tg-num" aria-hidden="true">6</div>
+          <div class="tg-info">
+            <div class="tg-term">6 Months</div>
+            <div class="tg-price"><sup>$</sup>20</div>
+            <ul class="tg-feats"><li>4GB file uploads</li><li>Voice to text conversion</li><li>Priority support</li></ul>
+            <button type="button" class="line-btn plan-trigger" data-plan="Telegram Premium, 6 Months" data-price="$20.00" data-magnetic>Select 6 Months <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <div class="tg-panel">
+          <div class="tg-num" aria-hidden="true">12</div>
+          <div class="tg-info">
+            <div class="tg-term">12 Months</div>
+            <div class="tg-price"><sup>$</sup>33</div>
+            <ul class="tg-feats"><li>All premium features</li><li>Lowest monthly rate</li><li>Priority support</li></ul>
+            <button type="button" class="line-btn plan-trigger" data-plan="Telegram Premium, 12 Months" data-price="$33.00" data-magnetic>Select 12 Months <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- III · AUTOMATION -->
+    <section class="auto" id="automation">
+      <div class="auto-copy">
+        <h2 data-split="words">Full auto. <em>12 agents.</em> Zero effort.</h2>
+        <p class="auto-sub">It replies, engages and grows your X account while you do literally anything else. Not a maybe, automatic.</p>
+        <ul class="auto-list" id="autoList">
+          <li><span>01</span>Auto replies and engages, on your posts and anyone else's</li>
+          <li><span>02</span>Answers every comment on your own posts automatically</li>
+          <li><span>03</span>Grows your Sorsa Score and followers on its own</li>
+          <li><span>04</span>Cleans up who doesn't follow back automatically</li>
+          <li><span>05</span>Safety Guard watches X's limits live, protects your account</li>
+        </ul>
+        <div class="auto-buy">
+          <div class="auto-price">$11.99<small>one time, unlocks all 12 agents for lifetime.</small></div>
+          <button type="button" class="btn-solid plan-trigger" data-plan="X Automation, 12 Agents (Lifetime)" data-price="$11.99" data-magnetic>Get the extension</button>
+        </div>
+      </div>
+      <div class="auto-viz" aria-hidden="true">
+        <svg viewBox="0 0 640 640"><g id="ringAuto" transform-origin="320 320"></g></svg>
+        <div class="auto-count"><b id="autoNum">12</b><span>agents</span></div>
+      </div>
+    </section>
+
+    <!-- PAYMENT -->
+    <section class="pay" id="payment">
+      <div class="chapter-top"><span class="chapter-n">IV</span><div class="rule" data-rule></div><span class="mono">Payment</span></div>
+      <h2 data-split="words">Choose Your Payment Method</h2>
+      <p class="pay-sub">Select a method below, then confirm your order.</p>
+
+      <div id="rails">
+        <div class="rail" tabindex="0" role="button" data-method="Binance Pay" data-reveal>
+          <div><div class="rail-name">Binance Pay</div><span class="rail-net">Binance Pay ID</span></div>
+          <div class="rail-addr" id="binanceVal">409082023</div>
+          <button type="button" class="copy" data-copy="binanceVal">Copy ID</button>
+        </div>
+        <div class="rail" tabindex="0" role="button" data-method="USDT (BEP20) / Base USDC" data-reveal>
+          <div><div class="rail-name">USDT · BEP20</div><span class="rail-net">BNB Smart Chain · same address for Base USDC</span></div>
+          <div class="rail-addr" id="evmVal">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</div>
+          <button type="button" class="copy" data-copy="evmVal">Copy address</button>
+        </div>
+        <div class="rail" tabindex="0" role="button" data-method="Solana USDC" data-reveal>
+          <div><div class="rail-name">Solana USDC</div><span class="rail-net">Solana network</span></div>
+          <div class="rail-addr" id="solVal">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</div>
+          <button type="button" class="copy" data-copy="solVal">Copy address</button>
+          <p class="rail-hint warn">Important: send only USDC on Solana chain. Sending other tokens may result in loss.</p>
+        </div>
+      </div>
+
+      <div class="ledger">
+        <div><span>Package</span><b id="sumPackage">None selected</b></div>
+        <div><span>Amount</span><b id="sumPrice">$0.00</b></div>
+        <div><span>Method</span><b id="sumMethod">None selected</b></div>
+      </div>
+
+      <p class="pay-note">Send only the exact amount for your selected plan. Double check the network before sending; payments to the wrong network cannot be recovered.</p>
+      <label class="confirm"><input type="checkbox" id="orderConfirmCheck"><span>I confirm that I have sent the exact amount for my selected plan to the address above.</span></label>
+      <p class="flow-msg" id="flowMsg" role="alert"></p>
+      <button type="button" class="btn-solid" id="openDrawerBtn" data-magnetic>Continue to order details</button>
+
+      <div class="drawer" id="orderDrawer">
+        <div class="drawer-in">
+          <form class="form" id="dispatchForm" novalidate>
+            <h3>Order details</h3>
+            <p class="pay-sub" style="margin:-12px 0 0">Fill this in and we will verify your transaction and activate your subscription.</p>
+            <div class="field">
+              <label for="tgHandle">Your Telegram username *</label>
+              <input type="text" id="tgHandle" placeholder="@yourusername" autocomplete="off">
+              <p class="err" id="errTg">Please include the @ in your Telegram username.</p>
+            </div>
+            <div class="field" id="xField" style="display:none">
+              <label for="xProfileUrl">Your X profile link or @handle *</label>
+              <input type="text" id="xProfileUrl" placeholder="https://x.com/yourhandle or @yourhandle" autocomplete="off">
+              <p class="err" id="errX">Please enter a valid X profile link or @handle.</p>
+              <div class="xprev" id="xPrev"><div class="xprev-av" id="xPrevAv">X</div><div><b id="xPrevName">Profile</b><span id="xPrevHandle">@handle</span></div></div>
+            </div>
+            <div class="field">
+              <label for="txRef">Transaction hash or order ID *</label>
+              <input type="text" id="txRef" placeholder="Binance order ID or blockchain transaction hash" autocomplete="off">
+              <p class="err" id="errTx">The reference must be at least 5 characters.</p>
+            </div>
+            <div class="field">
+              <label id="shotLabel">Payment receipt screenshot *</label>
+              <div class="drop" id="drop" tabindex="0" role="button"><span id="dropText">Click or drag your screenshot here</span><div class="drop-prev" id="dropPrev"></div></div>
+              <input type="file" id="shotInput" accept="image/*" hidden>
+            </div>
+            <button type="submit" class="btn-solid" id="submitBtn" disabled>Submit order</button>
+            <div class="done-msg" id="doneMsg"><strong>Order received.</strong><br>Your transaction reference has been logged. We will verify it and activate your subscription within 24 hours.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEPS -->
+    <section class="steps" id="how-it-works">
+      <h2 data-split="words">Four steps to Premium</h2>
+      <div class="step-row">
+        <div class="step" data-reveal><b>01</b><p>Pick the X Premium or Telegram Premium duration that fits you.</p></div>
+        <div class="step" data-reveal><b>02</b><p>Pay via Binance Pay, USDT (BEP20) / Base USDC, or Solana USDC.</p></div>
+        <div class="step" data-reveal><b>03</b><p>Check the confirmation box, then fill in the short form to submit your order.</p></div>
+        <div class="step" data-reveal><b>04</b><p>Sit back. Your subscription is activated within 24 hours.</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <h2 data-split="words">Questions &amp; answers</h2>
+      <div>
+        <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">Is this safe for my account?<i></i></button><div class="faq-a"><div><p>Yes. We never ask for your password. Activation is done through official, supported methods only. Your account credentials stay yours at all times.</p></div></div></div>
+        <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">How long does delivery take?<i></i></button><div class="faq-a"><div><p>Most orders are activated within 24 hours of payment confirmation. During busier periods it may take a little longer, and we will keep you updated.</p></div></div></div>
+        <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">What payment methods do you accept?<i></i></button><div class="faq-a"><div><p>We currently accept Binance Pay, USDT (BEP20) / Base USDC, and Solana USDC. More payment options may be added over time.</p></div></div></div>
+        <div class="faq-item"><button type="button" class="faq-q" aria-expanded="false">Can I get a refund if something goes wrong?<i></i></button><div class="faq-a"><div><p>If your order fails to activate on our end, you are entitled to a full refund or a free replacement. Reach out via Telegram with your order details and we will resolve it quickly.</p></div></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-top">
+      <p>Premium subscriptions, elevated. Fast, secure delivery of X Premium and Telegram Premium.</p>
+      <div class="foot-links">
+        <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" id="supportLink">Support on Telegram</a>
+        <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener">@XAutoPilot1Bot</a>
+        <a href="#payment" data-nav>Order</a>
+      </div>
+    </div>
+    <div class="foot-word" id="footWord" aria-hidden="true">ALL-IN-ONE PREMIUMS</div>
+    <div class="foot-base"><span>© 2026 All-in-One Premiums</span><span>X Premium · Telegram Premium · X Automation</span></div>
+  </footer>
+
+  <div class="quickbar" id="quickbar"><div><b id="qbPrice">$0</b><span id="qbLabel">Select a plan</span></div><a href="#payment" data-nav>Pay</a></div>
+
   <script>
-    // Constants & Proxies
-    const STORE_NOTIFY_URL = 'https://x-auto-pilot-backend.evanjawad36.workers.dev/store-notify';
-    const X_PROFILE_PROXY = 'https://x-profile-proxy.evanjawad36.workers.dev/';
+  (function () {
+    var STORE_NOTIFY_URL = 'https://x-auto-pilot-backend.evanjawad36.workers.dev/store-notify';
+    var X_PROFILE_PROXY = 'https://x-profile-proxy.evanjawad36.workers.dev/';
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
     function notifyTelegramBot(message) {
-      return fetch(STORE_NOTIFY_URL + '/message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-      });
+      return fetch(STORE_NOTIFY_URL + '/message', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: message }) });
     }
-
     function notifyTelegramPhoto(file, caption) {
-      const form = new FormData();
-      form.append('caption', caption);
-      form.append('photo', file, file.name);
-      return fetch(STORE_NOTIFY_URL + '/photo', {
-        method: 'POST',
-        body: form
-      });
+      var form = new FormData(); form.append('caption', caption); form.append('photo', file, file.name);
+      return fetch(STORE_NOTIFY_URL + '/photo', { method: 'POST', body: form });
     }
 
-    // Initialize Lenis Smooth Scroll
-    let lenis = null;
-    if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        smoothTouch: false
-      });
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+    /* ---------- build the two 12-node rings ---------- */
+    var NS = 'http://www.w3.org/2000/svg';
+    function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+    (function () {
+      var g = $('#ringHero');
+      for (var i = 0; i < 12; i++) {
+        var a = i / 12 * Math.PI * 2, x = 500 + Math.cos(a) * 432, y = 500 + Math.sin(a) * 432;
+        g.appendChild(el('circle', { cx: x, cy: y, r: i % 3 === 0 ? 7 : 3.5, fill: i % 3 === 0 ? '#D5C3A0' : 'rgba(213,195,160,0.5)' }));
       }
-      requestAnimationFrame(raf);
+      var r = $('#ringAuto');
+      r.appendChild(el('circle', { cx: 320, cy: 320, r: 270, fill: 'none', stroke: 'rgba(213,195,160,0.16)' }));
+      r.appendChild(el('circle', { cx: 320, cy: 320, r: 196, fill: 'none', stroke: 'rgba(213,195,160,0.08)' }));
+      for (var j = 0; j < 12; j++) {
+        var b = (j / 12) * Math.PI * 2 - Math.PI / 2, nx = 320 + Math.cos(b) * 270, ny = 320 + Math.sin(b) * 270;
+        var ng = el('g', { 'class': 'node', 'data-i': j });
+        ng.appendChild(el('circle', { cx: nx, cy: ny, r: 24 }));
+        var t = el('text', { x: nx, y: ny }); t.textContent = (j < 9 ? '0' : '') + (j + 1); ng.appendChild(t);
+        r.appendChild(ng);
+      }
+    })();
+
+    /* ---------- text splitting ---------- */
+    function splitEl(node, mode) {
+      var text = node.textContent.replace(/\s+/g, ' ').trim();
+      if (!node.getAttribute('aria-label') && node.tagName !== 'SPAN') node.setAttribute('aria-label', text);
+      node.innerHTML = '';
+      var out = [];
+      text.split(' ').forEach(function (word, wi, arr) {
+        var w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+        if (mode === 'chars') {
+          word.split('').forEach(function (ch) { var c = document.createElement('span'); c.className = 'c'; c.textContent = ch; w.appendChild(c); out.push(c); });
+        } else { var c2 = document.createElement('span'); c2.className = 'c'; c2.textContent = word; w.appendChild(c2); out.push(c2); }
+        node.appendChild(w);
+        if (wi < arr.length - 1) node.appendChild(document.createTextNode(mode === 'chars' ? '\u00A0' : ' '));
+      });
+      return out;
+    }
+    var splits = new Map();
+    $$('[data-split]').forEach(function (n) {
+      var h = n.closest('h1');
+      if (h) h.setAttribute('aria-label', h.getAttribute('aria-label'));
+      splits.set(n, splitEl(n, n.getAttribute('data-split')));
+    });
+    // statement words
+    var stNode = $('#statementText'), stText = stNode.textContent;
+    stNode.setAttribute('aria-label', stText); stNode.innerHTML = '';
+    var stWords = stText.split(' ').map(function (w, i, a) {
+      var s = document.createElement('span'); s.className = 'sw'; s.setAttribute('aria-hidden', 'true'); s.textContent = w; stNode.appendChild(s);
+      if (i < a.length - 1) stNode.appendChild(document.createTextNode(' ')); return s;
+    });
+
+    /* ---------- scroll engine ---------- */
+    var lenis = null;
+    if (hasGsap && !reduce && typeof Lenis !== 'undefined') {
+      lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.95 });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+    function goTo(target) {
+      var t = typeof target === 'string' ? $(target) : target; if (!t) return;
+      if (lenis) lenis.scrollTo(t, { offset: 0, duration: 1.5, easing: function (x) { return 1 - Math.pow(1 - x, 4); } });
+      else t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    }
+    $$('[data-nav]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var h = a.getAttribute('href'); if (!h || h.charAt(0) !== '#') return;
+        e.preventDefault(); closeSheet(); goTo(h === '#top' ? document.body : h);
+      });
+    });
+
+    /* menu sheet */
+    var sheet = $('#sheet'), menuBtn = $('#menuBtn'), sheetOpen = false;
+    function closeSheet() {
+      if (!sheetOpen) return; sheetOpen = false; menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'Menu';
+      if (hasGsap) gsap.to(sheet, { clipPath: 'inset(0 0 100% 0)', duration: 0.7, ease: 'expo.inOut', onComplete: function () { sheet.style.visibility = 'hidden'; } });
+      else sheet.style.visibility = 'hidden';
+      if (lenis) lenis.start();
+    }
+    menuBtn.addEventListener('click', function () {
+      if (sheetOpen) return closeSheet();
+      sheetOpen = true; menuBtn.setAttribute('aria-expanded', 'true'); menuBtn.textContent = 'Close';
+      sheet.style.visibility = 'visible';
+      if (hasGsap) { gsap.fromTo(sheet, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'expo.inOut' }); gsap.from('#sheet a', { y: 40, opacity: 0, stagger: 0.07, delay: 0.3, duration: 0.8, ease: 'expo.out' }); }
+      else sheet.style.clipPath = 'inset(0)';
+      if (lenis) lenis.stop();
+    });
+
+    /* ---------- animation ---------- */
+    function intro() {
+      var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      var cw = splitEl($('#curtainWord'), 'chars');
+      gsap.set(cw, { yPercent: 120, opacity: 0 });
+      tl.to(cw, { yPercent: 0, opacity: 1, stagger: 0.03, duration: 0.9 })
+        .to('#curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, '+=0.25')
+        .add(function () { $('#curtain').style.display = 'none'; });
+      var hc = $$('#heroTitle .c');
+      gsap.set(hc, { yPercent: 115, rotate: 5 });
+      gsap.set('#heroArt', { opacity: 0, scale: 0.86 });
+      gsap.set(['#heroFoot > *', '.scroll-cue'], { opacity: 0, y: 28 });
+      tl.to('#heroArt', { opacity: 1, scale: 1, duration: 2.2 }, '-=0.7')
+        .to(hc, { yPercent: 0, rotate: 0, stagger: { each: 0.035, from: 'start' }, duration: 1.4 }, '-=1.9')
+        .to(['#heroFoot > *', '.scroll-cue'], { opacity: 1, y: 0, stagger: 0.12, duration: 1.1 }, '-=0.9');
     }
 
-    // GSAP ScrollTrigger Integration
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    if (hasGsap && !reduce) {
       gsap.registerPlugin(ScrollTrigger);
+      intro();
 
-      if (lenis) {
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
+      // generic reveals
+      $$('[data-split]').forEach(function (n) {
+        if (n.closest('#heroTitle')) return;
+        var cs = splits.get(n); gsap.set(cs, { yPercent: 115 });
+        ScrollTrigger.create({ trigger: n, start: 'top 86%', once: true, onEnter: function () { gsap.to(cs, { yPercent: 0, stagger: 0.07, duration: 1.2, ease: 'expo.out' }); } });
+      });
+      $$('[data-rule]').forEach(function (r) {
+        gsap.set(r, { scaleX: 0 });
+        ScrollTrigger.create({ trigger: r, start: 'top 92%', once: true, onEnter: function () { gsap.to(r, { scaleX: 1, duration: 1.6, ease: 'expo.out' }); } });
+      });
+      $$('[data-reveal]').forEach(function (n, i) {
+        gsap.set(n, { opacity: 0, y: 44 });
+        ScrollTrigger.create({ trigger: n, start: 'top 92%', once: true, onEnter: function () { gsap.to(n, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out' }); } });
+      });
+
+      // statement: words light up with scroll
+      gsap.set(stWords, { opacity: 0.14 });
+      gsap.to(stWords, { opacity: 1, stagger: 0.1, ease: 'none', scrollTrigger: { trigger: '#statement', start: 'top 72%', end: 'bottom 55%', scrub: true } });
+
+      // X glyph: masked wipe + slow drift
+      gsap.fromTo('#xGlyph svg', { clipPath: 'inset(100% 0 0 0)', y: 60 }, { clipPath: 'inset(0% 0 0 0)', y: 0, ease: 'none', scrollTrigger: { trigger: '#x-premium', start: 'top 70%', end: 'top 15%', scrub: 0.6 } });
+
+      // nav hide/show
+      var nav = $('#nav'), lastY = 0;
+      ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (s) {
+        var y = s.scroll(); nav.classList.toggle('solid', y > 60);
+        nav.classList.toggle('hide', y > lastY && y > 400 && !sheetOpen); lastY = y;
+      } });
+
+      var mm = gsap.matchMedia();
+      mm.add('(min-width: 901px)', function () {
+        // hero scroll choreography
+        var L = $$('#heroTitle .ln');
+        gsap.to(L[0], { xPercent: -9, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+        gsap.to(L[1], { xPercent: 7, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+        gsap.to(L[2], { xPercent: -4, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+        gsap.to('#heroArt', { yPercent: 16, rotate: 14, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+        gsap.to('#heroFoot', { opacity: 0, y: -40, ease: 'none', scrollTrigger: { trigger: '#hero', start: '55% top', end: 'bottom top', scrub: true } });
+
+        // telegram: pinned horizontal journey
+        var track = $('#tgTrack'), line = $('#tgLine'), plane = $('#tgPlane');
+        var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
+        gsap.to(track, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: {
+          trigger: '#telegram-premium', pin: true, scrub: 0.7, anticipatePin: 1, invalidateOnRefresh: true,
+          end: function () { return '+=' + dist(); },
+          onUpdate: function (s) { var d = (s.progress * dist() + window.innerWidth) / track.scrollWidth; gsap.set(line, { scaleX: Math.min(1, Math.max(0, s.progress)) }); gsap.set(plane, { x: s.progress * (window.innerWidth - 40) }); }
+        } });
+        $$('.tg-num').forEach(function (n) {
+          gsap.fromTo(n, { xPercent: -14 }, { xPercent: 10, ease: 'none', scrollTrigger: { trigger: n.parentElement, containerAnimation: ScrollTrigger.getAll().slice(-1)[0] && undefined, start: 'left right', end: 'right left', scrub: true } });
         });
-        gsap.ticker.lagSmoothing(0);
-      }
 
-      // Parallax Watermark on Scroll
-      gsap.to('#heroWatermark', {
-        x: '-20%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#heroSection',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-
-      // Sticky Header Background Darkening
-      ScrollTrigger.create({
-        start: 'top -80',
-        end: 99999,
-        toggleClass: { className: 'scrolled', targets: '#masterNav' }
-      });
-    }
-
-    // Ambient Stardust Canvas Particles
-    const canvas = document.getElementById('ambientCanvas');
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      let w = (canvas.width = window.innerWidth);
-      let h = (canvas.height = window.innerHeight);
-
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
-
-      const stars = Array.from({ length: 45 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        size: Math.random() * 1.5 + 0.5,
-        alpha: Math.random() * 0.5 + 0.2,
-        vy: Math.random() * -0.2 - 0.05
-      }));
-
-      function renderCanvas() {
-        ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = '#D5C3A0';
-        stars.forEach(s => {
-          ctx.globalAlpha = s.alpha;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-          ctx.fill();
-
-          s.y += s.vy;
-          if (s.y < 0) {
-            s.y = h;
-            s.x = Math.random() * w;
+        // automation: pinned system
+        var nodes = $$('#ringAuto .node'), items = $$('#autoList li'), numEl = $('#autoNum');
+        var obj = { v: 0 };
+        gsap.set('#ringAuto', { rotation: 0 });
+        gsap.to('#ringAuto', { rotation: 90, ease: 'none', scrollTrigger: { trigger: '#automation', start: 'top top', end: '+=260%', scrub: true } });
+        ScrollTrigger.create({
+          trigger: '#automation', start: 'top top', end: '+=260%', pin: true, anticipatePin: 1,
+          onUpdate: function (s) {
+            var n = Math.round(s.progress * 12); numEl.textContent = n < 10 ? '0' + n : n;
+            nodes.forEach(function (nd, i) { nd.classList.toggle('on', i < n); });
+            var idx = Math.min(items.length - 1, Math.floor(s.progress * items.length * 0.999));
+            items.forEach(function (li, i) { li.classList.toggle('on', s.progress > 0.02 && i <= idx); });
           }
         });
-        requestAnimationFrame(renderCanvas);
+        numEl.textContent = '00';
+        gsap.to('#footWord', { y: 0, ease: 'none', scrollTrigger: { trigger: '.foot', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+        gsap.set('#footWord', { y: 120 });
+      });
+
+      mm.add('(max-width: 900px)', function () {
+        gsap.to('#heroArt', { yPercent: 10, rotate: 8, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+        var nodes = $$('#ringAuto .node'), numEl = $('#autoNum'), items = $$('#autoList li');
+        items.forEach(function (li) { li.classList.add('on'); });
+        var o = { v: 0 };
+        ScrollTrigger.create({ trigger: '.auto-viz', start: 'top 80%', once: true, onEnter: function () {
+          gsap.to(o, { v: 12, duration: 2.4, ease: 'power2.out', onUpdate: function () { var n = Math.round(o.v); numEl.textContent = n < 10 ? '0' + n : n; nodes.forEach(function (nd, i) { nd.classList.toggle('on', i < n); }); } });
+        } });
+        numEl.textContent = '00';
+        gsap.fromTo('#ringAuto', { rotation: -40 }, { rotation: 50, ease: 'none', scrollTrigger: { trigger: '.auto-viz', start: 'top bottom', end: 'bottom top', scrub: true } });
+        $$('.tg-panel:not(.intro)').forEach(function (p) {
+          gsap.from(p.querySelector('.tg-num'), { xPercent: -30, opacity: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: p, start: 'top 85%', once: true } });
+        });
+      });
+
+      // step numerals draw in
+      $$('.step b').forEach(function (b) {
+        gsap.fromTo(b, { webkitTextStrokeColor: 'rgba(213,195,160,0.3)' }, { webkitTextStrokeColor: 'rgba(213,195,160,1)', ease: 'none', scrollTrigger: { trigger: b, start: 'top 85%', end: 'top 45%', scrub: true } });
+      });
+
+      // pointer: custom cursor, magnetic, hero depth
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        var cx = gsap.quickTo('#cur', 'x', { duration: 0.12, ease: 'power3' }), cy = gsap.quickTo('#cur', 'y', { duration: 0.12, ease: 'power3' });
+        var rx = gsap.quickTo('#curRing', 'x', { duration: 0.55, ease: 'power3' }), ry = gsap.quickTo('#curRing', 'y', { duration: 0.55, ease: 'power3' });
+        window.addEventListener('mousemove', function (e) { cx(e.clientX); cy(e.clientY); rx(e.clientX); ry(e.clientY); });
+        document.addEventListener('mouseover', function (e) { $('#curRing').classList.toggle('hot', !!e.target.closest('a, button, .rail, .plan, .drop, label')); });
+
+        $$('[data-magnetic]').forEach(function (m) {
+          var mx = gsap.quickTo(m, 'x', { duration: 0.7, ease: 'elastic.out(1, 0.5)' }), my = gsap.quickTo(m, 'y', { duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+          m.addEventListener('mousemove', function (e) { var r = m.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * 0.35); my((e.clientY - r.top - r.height / 2) * 0.35); });
+          m.addEventListener('mouseleave', function () { mx(0); my(0); });
+        });
+
+        var depth = $$('#heroArt [data-depth]').map(function (g) { return { g: g, k: parseFloat(g.getAttribute('data-depth')), x: gsap.quickTo(g, 'x', { duration: 1.2, ease: 'power3' }), y: gsap.quickTo(g, 'y', { duration: 1.2, ease: 'power3' }) }; });
+        $('#hero').addEventListener('mousemove', function (e) {
+          var nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
+          depth.forEach(function (d) { d.x(nx * d.k * 2.4); d.y(ny * d.k * 2.4); });
+        });
       }
-      renderCanvas();
+    } else {
+      // reduced motion / no gsap: fully static, fully readable
+      $$('.node').forEach(function (n) { n.classList.add('on'); });
+      $$('#autoList li').forEach(function (li) { li.classList.add('on'); });
+      $('#autoNum').textContent = '12';
+      var tgT = $('#tgTrack'); if (tgT) { tgT.parentElement.style.height = 'auto'; tgT.style.flexDirection = 'column'; tgT.style.width = '100%'; }
     }
 
-    // Custom Magnetic Cursor (Desktop)
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorRing = document.getElementById('cursorRing');
-    if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
-      window.addEventListener('mousemove', (e) => {
-        cursorDot.style.left = `${e.clientX}px`;
-        cursorDot.style.top = `${e.clientY}px`;
-        cursorRing.animate({
-          left: `${e.clientX}px`,
-          top: `${e.clientY}px`
-        }, { duration: 350, fill: "forwards" });
-      });
-
-      document.querySelectorAll('a, button, input, .machined-tray, .x-tier-card, .tg-quad-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          cursorRing.style.transform = 'translate(-50%, -50%) scale(1.4)';
-          cursorRing.style.borderColor = 'rgba(213, 195, 160, 0.75)';
-        });
-        el.addEventListener('mouseleave', () => {
-          cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
-          cursorRing.style.borderColor = 'rgba(213, 195, 160, 0.4)';
-        });
-      });
-    }
-
-    // 3D Physical Artifact Parallax Tilt with Specular Glare Tracking
-    const heroArtifact = document.getElementById('heroArtifact');
-    const slabGlare = document.getElementById('slabGlare');
-    if (heroArtifact) {
-      let isHovering = false;
-      const parentWrap = heroArtifact.parentElement;
-
-      parentWrap.addEventListener('mouseenter', () => { isHovering = true; });
-      parentWrap.addEventListener('mouseleave', () => {
-        isHovering = false;
-        heroArtifact.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        if (slabGlare) slabGlare.style.opacity = '0';
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (!isHovering) return;
-        const rect = parentWrap.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-
-        const rotX = ((y - cy) / cy) * -16;
-        const rotY = ((x - cx) / cx) * 16;
-
-        heroArtifact.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-
-        if (slabGlare) {
-          slabGlare.style.opacity = '1';
-          slabGlare.style.setProperty('--glare-x', `${x}px`);
-          slabGlare.style.setProperty('--glare-y', `${y}px`);
-        }
-      });
-    }
-
-    // Accordion Logic (Pure class toggle for zero layout thrash)
-    document.querySelectorAll('.faq-item-row').forEach(row => {
-      const trigger = row.querySelector('.faq-trigger-btn');
-      trigger.addEventListener('click', () => {
-        const isOpen = row.classList.contains('is-open');
-        document.querySelectorAll('.faq-item-row').forEach(other => other.classList.remove('is-open'));
-        if (!isOpen) {
-          row.classList.add('is-open');
-        }
+    /* ---------- faq ---------- */
+    $$('.faq-item').forEach(function (item) {
+      var q = $('.faq-q', item);
+      q.addEventListener('click', function () {
+        var open = item.classList.contains('open');
+        $$('.faq-item').forEach(function (o) { o.classList.remove('open'); $('.faq-q', o).setAttribute('aria-expanded', 'false'); });
+        if (!open) { item.classList.add('open'); q.setAttribute('aria-expanded', 'true'); }
+        if (hasGsap) setTimeout(function () { ScrollTrigger.refresh(); }, 650);
       });
     });
 
-    // Copy to Clipboard with Tactile Feedback
-    document.querySelectorAll('.btn-tray-copy').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    /* ---------- copy ---------- */
+    $$('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
         e.stopPropagation();
-        const targetId = btn.getAttribute('data-copy-target');
-        const textToCopy = document.getElementById(targetId).textContent.trim();
-        const origText = btn.textContent;
-
-        const onCopySuccess = () => {
-          btn.textContent = 'Copied!';
-          btn.style.background = '#25D366';
-          btn.style.color = '#08080A';
-          setTimeout(() => {
-            btn.textContent = origText;
-            btn.style.background = '';
-            btn.style.color = '';
-          }, 2000);
-        };
-
-        if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(textToCopy).then(onCopySuccess).catch(onCopySuccess);
-        } else {
-          const ta = document.createElement('textarea');
-          ta.value = textToCopy;
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand('copy'); } catch (_) {}
-          document.body.removeChild(ta);
-          onCopySuccess();
-        }
+        var text = document.getElementById(btn.getAttribute('data-copy')).textContent.trim(), orig = btn.textContent;
+        function ok() { btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(function () { btn.textContent = orig; btn.classList.remove('done'); }, 1800); }
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, ok);
+        else { var ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (_) {} document.body.removeChild(ta); ok(); }
       });
     });
 
-    // Real-Time X Handle Preview Query via Cloudflare Worker Proxy
-    const liveHandleInput = document.getElementById('liveHandleInput');
-    const liveProfileCard = document.getElementById('liveProfileCard');
-    const liveAvatarBox = document.getElementById('liveAvatarBox');
-    const liveDispName = document.getElementById('liveDispName');
-    const liveHandleDisp = document.getElementById('liveHandleDisp');
-    let xLookupTimer = null;
+    /* ---------- order state machine (unchanged business logic) ---------- */
+    var plan = null, price = null, method = null;
+    var sumPackage = $('#sumPackage'), sumPrice = $('#sumPrice'), sumMethod = $('#sumMethod'), confirmCk = $('#orderConfirmCheck');
+    var flowMsg = $('#flowMsg'), drawer = $('#orderDrawer'), xField = $('#xField'), shotLabel = $('#shotLabel');
+    var tgH = $('#tgHandle'), xIn = $('#xProfileUrl'), txIn = $('#txRef'), shot = $('#shotInput'), submitBtn = $('#submitBtn');
+    var qb = $('#quickbar');
+    function isX() { return plan && plan.indexOf('X Premium') === 0; }
+    function say(m) { flowMsg.textContent = m || ''; }
 
-    function sanitizeUsername(input) {
-      const clean = input.trim();
-      if (!clean) return null;
-      let match = clean.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})/i);
-      if (match) return match[1];
-      match = clean.match(/^@?([A-Za-z0-9_]{1,15})$/);
-      if (match) return match[1];
-      return null;
-    }
-
-    if (liveHandleInput) {
-      liveHandleInput.addEventListener('input', () => {
-        clearTimeout(xLookupTimer);
-        const val = liveHandleInput.value.trim();
-        if (!val) {
-          liveProfileCard.classList.remove('active');
-          return;
-        }
-
-        xLookupTimer = setTimeout(() => {
-          const user = sanitizeUsername(val);
-          if (!user) return;
-
-          liveDispName.textContent = 'Connecting to X relay...';
-          liveHandleDisp.textContent = `@${user}`;
-          liveProfileCard.classList.add('active');
-
-          fetch(X_PROFILE_PROXY + encodeURIComponent(user))
-            .then(res => res.json())
-            .then(data => {
-              const prof = data && data.data;
-              if (prof && (prof.name || prof.username)) {
-                liveDispName.innerHTML = `${prof.name || user} <svg class="profile-verified-badge" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
-                liveHandleDisp.textContent = `@${prof.username || user}`;
-                if (prof.profile_image_url) {
-                  liveAvatarBox.innerHTML = `<img src="${prof.profile_image_url}" alt="${user}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
-                } else {
-                  liveAvatarBox.textContent = user.charAt(0).toUpperCase();
-                }
-              } else {
-                liveDispName.textContent = user;
-                liveHandleDisp.textContent = `@${user} (Identity Verified)`;
-              }
-            })
-            .catch(() => {
-              liveDispName.textContent = user;
-              liveHandleDisp.textContent = `@${user}`;
-            });
-        }, 400);
-      });
-    }
-
-    // Telemetry Stream Simulator
-    const telemetryStream = document.getElementById('telemetryStream');
-    const agentLogs = [
-      { agent: 'VIRAL_RADAR', msg: 'Ranked top 3 engagement quotes for viral thread' },
-      { agent: 'PERSONA_MIRROR', msg: 'Adjusted tone temperature: +14% analytical' },
-      { agent: 'TIMING_ORACLE', msg: 'Recommended dispatch window in 18 minutes' },
-      { agent: 'ANALYTICS_SCOUT', msg: 'Total organic impressions velocity +24.6%' }
-    ];
-    let agentIdx = 0;
-    setInterval(() => {
-      if (!telemetryStream) return;
-      const now = new Date();
-      const timeStr = `[${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}]`;
-      const item = agentLogs[agentIdx % agentLogs.length];
-      agentIdx++;
-
-      const row = document.createElement('div');
-      row.className = 'stream-line';
-      row.innerHTML = `<span class="line-time">${timeStr}</span> <span class="line-agent">${item.agent}</span> <span class="line-msg">${item.msg}</span>`;
-      telemetryStream.appendChild(row);
-      if (telemetryStream.children.length > 5) {
-        telemetryStream.removeChild(telemetryStream.children[0]);
-      }
-    }, 4000);
-
-    /* ========================================================================
-       ORDER TERMINAL & STATE MACHINE
-       ======================================================================== */
-    let currentPlan = null;
-    let currentPrice = null;
-    let currentMethod = null;
-
-    const sumPackage = document.getElementById('sumPackage');
-    const sumPrice = document.getElementById('sumPrice');
-    const sumMethod = document.getElementById('sumMethod');
-    const orderConfirmCheck = document.getElementById('orderConfirmCheck');
-    const openDrawerBtn = document.getElementById('openDrawerBtn');
-    const orderDrawer = document.getElementById('orderDrawer');
-    const xProfileFieldWrap = document.getElementById('xProfileFieldWrap');
-    const screenshotLabelText = document.getElementById('screenshotLabelText');
-
-    const quickbarLabel = document.getElementById('quickbarLabel');
-    const quickbarPrice = document.getElementById('quickbarPrice');
-
-    function isXOrder() {
-      return currentPlan && currentPlan.indexOf('X Premium') === 0;
-    }
-
-    // Select Plan Button
-    document.querySelectorAll('.plan-trigger-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentPlan = btn.getAttribute('data-plan');
-        currentPrice = btn.getAttribute('data-price');
-
-        sumPackage.textContent = currentPlan;
-        sumPrice.textContent = currentPrice;
-
-        if (quickbarLabel) quickbarLabel.textContent = currentPlan;
-        if (quickbarPrice) quickbarPrice.textContent = currentPrice;
-
-        const needsX = isXOrder();
-        if (xProfileFieldWrap) {
-          xProfileFieldWrap.style.display = needsX ? 'flex' : 'none';
-        }
-        if (screenshotLabelText) {
-          screenshotLabelText.textContent = needsX 
-            ? 'X Profile Screenshot Proof *' 
-            : 'Payment Receipt Screenshot *';
-        }
-
-        orderConfirmCheck.checked = false;
-        document.getElementById('settlement-vault').scrollIntoView({ behavior: 'smooth' });
-        validateCheckoutForm();
+    $$('.plan-trigger').forEach(function (b) {
+      b.addEventListener('click', function () {
+        plan = b.getAttribute('data-plan'); price = b.getAttribute('data-price');
+        sumPackage.textContent = plan; sumPrice.textContent = price;
+        $$('.plan').forEach(function (p) { p.classList.toggle('is-picked', p === b); });
+        $('#qbPrice').textContent = price; $('#qbLabel').textContent = plan; qb.classList.add('on');
+        confirmCk.checked = false; say('');
+        var needX = isX(); xField.style.display = needX ? 'block' : 'none';
+        shotLabel.textContent = needX ? 'X profile screenshot proof *' : 'Payment receipt screenshot *';
+        if (!needX) { xIn.value = ''; hideXPrev(); }
+        validate();
+        setTimeout(function () { goTo('#payment'); }, 260);
       });
     });
-
-    // Select Machined Tray
-    const machinedTrays = document.querySelectorAll('.machined-tray');
-    machinedTrays.forEach(tray => {
-      tray.addEventListener('click', (e) => {
-        if (e.target.closest('.btn-tray-copy')) return;
-        machinedTrays.forEach(t => t.classList.remove('selected-tray'));
-        tray.classList.add('selected-tray');
-
-        currentMethod = tray.getAttribute('data-method');
-        sumMethod.textContent = currentMethod;
-        orderConfirmCheck.checked = false;
-        validateCheckoutForm();
-      });
+    var rails = $$('.rail');
+    function pickRail(r) {
+      rails.forEach(function (x) { x.classList.toggle('is-picked', x === r); });
+      method = r.getAttribute('data-method'); sumMethod.textContent = method; confirmCk.checked = false; say(''); validate();
+    }
+    rails.forEach(function (r) {
+      r.addEventListener('click', function (e) { if (e.target.closest('.copy')) return; pickRail(r); });
+      r.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('.copy')) { e.preventDefault(); pickRail(r); } });
+    });
+    $('#openDrawerBtn').addEventListener('click', function () {
+      if (!plan) { say('Please select a package first.'); goTo('#x-premium'); return; }
+      if (!method) { say('Please select a payment method first.'); return; }
+      if (!confirmCk.checked) { say('Please confirm your order details.'); return; }
+      say(''); drawer.classList.add('is-open');
+      setTimeout(function () { if (hasGsap) ScrollTrigger.refresh(); goTo('#dispatchForm'); }, 760);
+      validate();
     });
 
-    // Drawer Opener
-    openDrawerBtn.addEventListener('click', () => {
-      if (!currentPlan) {
-        alert('Please choose a package first (X Premium, Telegram, or X AutoPilot).');
-        document.getElementById('x-citadel').scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-      if (!currentMethod) {
-        alert('Please select one of the payment trays above.');
-        return;
-      }
-      if (!orderConfirmCheck.checked) {
-        alert('Please check the confirmation box acknowledging your transfer.');
-        return;
-      }
-
-      orderDrawer.classList.add('is-open');
-      setTimeout(() => {
-        orderDrawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 150);
-      validateCheckoutForm();
-    });
-
-    // Form Validation & File Handling
-    const dispatchForm = document.getElementById('dispatchForm');
-    const tgHandleInput = document.getElementById('tgHandle');
-    const xProfileUrlInput = document.getElementById('xProfileUrl');
-    const txRefInput = document.getElementById('txRef');
-    const screenshotFile = document.getElementById('screenshotFile');
-    const dropzoneBox = document.getElementById('dropzoneBox');
-    const dropzoneText = document.getElementById('dropzoneText');
-    const screenshotPreviewBox = document.getElementById('screenshotPreviewBox');
-    const submitOrderBtn = document.getElementById('submitOrderBtn');
-    const orderStatusBanner = document.getElementById('orderStatusBanner');
-
-    const errTgMsg = document.getElementById('errTgMsg');
-    const errXMsg = document.getElementById('errXMsg');
-    const errTxMsg = document.getElementById('errTxMsg');
-
-    if (dropzoneBox && screenshotFile) {
-      dropzoneBox.addEventListener('click', () => screenshotFile.click());
-
-      ['dragenter', 'dragover'].forEach(ev => {
-        dropzoneBox.addEventListener(ev, (e) => {
-          e.preventDefault();
-          dropzoneBox.classList.add('dragover');
-        });
-      });
-      ['dragleave', 'drop'].forEach(ev => {
-        dropzoneBox.addEventListener(ev, (e) => {
-          e.preventDefault();
-          dropzoneBox.classList.remove('dragover');
-        });
-      });
-
-      dropzoneBox.addEventListener('drop', (e) => {
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-          screenshotFile.files = e.dataTransfer.files;
-          handleFileChosen(e.dataTransfer.files[0]);
-        }
-      });
-
-      screenshotFile.addEventListener('change', () => {
-        if (screenshotFile.files && screenshotFile.files[0]) {
-          handleFileChosen(screenshotFile.files[0]);
-        }
-      });
+    var drop = $('#drop'), dropText = $('#dropText'), dropPrev = $('#dropPrev');
+    drop.addEventListener('click', function () { shot.click(); });
+    drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); shot.click(); } });
+    ['dragenter', 'dragover'].forEach(function (n) { drop.addEventListener(n, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (n) { drop.addEventListener(n, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop', function (e) { if (e.dataTransfer.files && e.dataTransfer.files[0]) { shot.files = e.dataTransfer.files; chosen(e.dataTransfer.files[0]); } });
+    shot.addEventListener('change', function () { if (shot.files && shot.files[0]) chosen(shot.files[0]); });
+    function chosen(f) {
+      if (f && f.type.indexOf('image/') === 0) {
+        dropText.textContent = 'Attached: ' + f.name;
+        var rd = new FileReader(); rd.onload = function (ev) { dropPrev.innerHTML = ''; var im = new Image(); im.src = ev.target.result; im.alt = 'Screenshot preview'; dropPrev.appendChild(im); dropPrev.style.display = 'block'; }; rd.readAsDataURL(f);
+      } else { dropText.textContent = 'That is not an image. Please attach a screenshot.'; dropPrev.style.display = 'none'; dropPrev.innerHTML = ''; }
+      validate();
     }
 
-    function handleFileChosen(file) {
-      if (file && file.type.startsWith('image/')) {
-        dropzoneText.textContent = `Attached: ${file.name}`;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          screenshotPreviewBox.innerHTML = `<img src="${e.target.result}" alt="Receipt Preview" style="max-height:120px;border-radius:8px;border:1px solid var(--gold-border);">`;
-          screenshotPreviewBox.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      } else {
-        dropzoneText.textContent = 'Invalid file. Please attach an image.';
-        screenshotPreviewBox.style.display = 'none';
-        screenshotPreviewBox.innerHTML = '';
-      }
-      validateCheckoutForm();
+    /* X handle live preview through the existing proxy */
+    var xPrev = $('#xPrev'), xAv = $('#xPrevAv'), xName = $('#xPrevName'), xHandle = $('#xPrevHandle'), xTimer = null;
+    function extractUser(raw) {
+      var v = raw.trim(); if (!v) return null;
+      var m = v.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})/i); if (m) return m[1];
+      m = v.match(/^@?([A-Za-z0-9_]{1,15})$/); return m ? m[1] : null;
     }
-
-    function validateCheckoutForm() {
-      const tgValid = tgHandleInput.value.trim().indexOf('@') !== -1;
-      const txValid = txRefInput.value.trim().length >= 5;
-      const fileValid = screenshotFile.files && screenshotFile.files.length > 0 && screenshotFile.files[0].type.startsWith('image/');
-
-      let xValid = true;
-      if (isXOrder()) {
-        const xv = xProfileUrlInput.value.trim();
-        xValid = xv.length > 0;
-      }
-
-      errTgMsg.style.display = (tgHandleInput.value.length > 0 && !tgValid) ? 'block' : 'none';
-      errTxMsg.style.display = (txRefInput.value.length > 0 && !txValid) ? 'block' : 'none';
-      if (xProfileFieldWrap && xProfileFieldWrap.style.display !== 'none') {
-        errXMsg.style.display = (xProfileUrlInput.value.length > 0 && !xValid) ? 'block' : 'none';
-      }
-
-      const allValid = tgValid && txValid && fileValid && xValid && currentPlan && currentMethod && orderConfirmCheck.checked;
-      submitOrderBtn.disabled = !allValid;
-      return allValid;
+    function hideXPrev() { xPrev.classList.remove('on'); }
+    function showXPrev(name, handle, img) {
+      xPrev.classList.add('on'); xName.textContent = name; xHandle.textContent = '@' + handle;
+      xAv.innerHTML = ''; if (img) { var i = new Image(); i.src = img; i.alt = handle; xAv.appendChild(i); } else xAv.textContent = handle.charAt(0).toUpperCase();
     }
-
-    [tgHandleInput, xProfileUrlInput, txRefInput, orderConfirmCheck].forEach(el => {
-      if (el) {
-        el.addEventListener('input', validateCheckoutForm);
-        el.addEventListener('change', validateCheckoutForm);
-      }
+    xIn.addEventListener('input', function () {
+      clearTimeout(xTimer); var v = xIn.value.trim(); if (!v) { hideXPrev(); validate(); return; }
+      xTimer = setTimeout(function () {
+        var u = extractUser(v); if (!u) { hideXPrev(); return; }
+        showXPrev('Fetching profile…', u, null);
+        fetch(X_PROFILE_PROXY + encodeURIComponent(u)).then(function (r) { return r.json(); }).then(function (b) {
+          var p = b && b.data; if (p && (p.name || p.username)) showXPrev(p.name || '@' + u, p.username || u, p.profile_image_url); else showXPrev('Profile not found', u, null);
+        }).catch(function () { showXPrev('Preview unavailable', u, null); });
+      }, 450);
+      validate();
     });
 
-    // Form Submission & Telegram Dispatch
-    dispatchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!validateCheckoutForm()) return;
+    function validate() {
+      var tgOk = tgH.value.trim().indexOf('@') !== -1, txOk = txIn.value.trim().length >= 5;
+      var fileOk = !!(shot.files && shot.files.length && shot.files[0].type.indexOf('image/') === 0);
+      var xOk = true; if (isX()) { var xv = xIn.value.trim().toLowerCase(); xOk = xv.indexOf('x.com') !== -1 || xv.indexOf('twitter.com') !== -1 || extractUser(xv) !== null; }
+      $('#errTg').style.display = tgH.value.length && !tgOk ? 'block' : 'none';
+      $('#errTx').style.display = txIn.value.length && !txOk ? 'block' : 'none';
+      $('#errX').style.display = isX() && xIn.value.length && !xOk ? 'block' : 'none';
+      var all = tgOk && txOk && fileOk && xOk && plan && method && confirmCk.checked;
+      submitBtn.disabled = !all; return !!all;
+    }
+    [tgH, txIn, confirmCk].forEach(function (e) { e.addEventListener('input', validate); e.addEventListener('change', validate); });
 
-      submitOrderBtn.disabled = true;
-      submitOrderBtn.textContent = 'Transmitting to Telegram Concierge...';
-
-      const payloadLines = [
-        '⚡ NEW STORE ORDER DISPATCH ⚡',
-        'Package: ' + currentPlan,
-        'Amount: ' + currentPrice,
-        'Settlement Rail: ' + currentMethod,
-        'Telegram Handle: ' + tgHandleInput.value.trim(),
-        'Reference/Tx: ' + txRefInput.value.trim()
-      ];
-
-      if (isXOrder()) {
-        payloadLines.push('X Profile: ' + xProfileUrlInput.value.trim());
-      }
-
-      notifyTelegramBot(payloadLines.join('\n')).catch(() => {});
-
-      const shotFile = screenshotFile.files[0];
-      if (shotFile) {
-        notifyTelegramPhoto(shotFile, `Receipt: ${currentPlan} (${currentPrice}) - ${tgHandleInput.value.trim()}`).catch(() => {});
-      }
-
-      orderStatusBanner.className = 'order-status-banner success';
-      orderStatusBanner.innerHTML = `
-        <strong>Order Successfully Queued!</strong><br>
-        Your transaction reference has been logged. Our concierge will verify and dispatch your subscription shortly.
-      `;
-
-      setTimeout(() => {
-        dispatchForm.reset();
-        dropzoneText.textContent = 'Click or drag payment screenshot here';
-        screenshotPreviewBox.style.display = 'none';
-        screenshotPreviewBox.innerHTML = '';
-        submitOrderBtn.textContent = 'DISPATCH ORDER FOR VERIFICATION';
-        orderDrawer.classList.remove('is-open');
-        orderStatusBanner.className = 'order-status-banner';
-        orderStatusBanner.innerHTML = '';
-      }, 5000);
+    $('#dispatchForm').addEventListener('submit', function (e) {
+      e.preventDefault(); if (!validate()) return;
+      submitBtn.disabled = true; submitBtn.textContent = 'Sending…';
+      var lines = ['⚡ NEW STORE ORDER ⚡', 'Package: ' + plan, 'Amount: ' + price, 'Payment method: ' + method, 'Telegram: ' + tgH.value.trim(), 'Reference/Tx: ' + txIn.value.trim()];
+      if (isX()) lines.push('X Profile: ' + xIn.value.trim());
+      notifyTelegramBot(lines.join('\n')).catch(function () {});
+      var f = shot.files[0]; if (f) notifyTelegramPhoto(f, 'Screenshot for ' + plan + ' (' + price + ') - ' + tgH.value.trim()).catch(function () {});
+      $('#doneMsg').classList.add('on');
+      setTimeout(function () {
+        $('#dispatchForm').reset(); dropText.textContent = 'Click or drag your screenshot here'; dropPrev.style.display = 'none'; dropPrev.innerHTML = ''; hideXPrev();
+        submitBtn.textContent = 'Submit order'; drawer.classList.remove('is-open'); $('#doneMsg').classList.remove('on'); validate();
+      }, 6000);
     });
+
+    window.addEventListener('load', function () { if (hasGsap) ScrollTrigger.refresh(); });
+  })();
   </script>
 </body>
 </html>
+

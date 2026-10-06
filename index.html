@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>All-in-One Premiums · The Sovereign Digital Suite</title>
+  <title>All-in-One Premiums · The Sovereign Digital Atelier</title>
   <meta name="description" content="All-in-One Premiums: The definitive provider for X Premium, Telegram Premium, and X AutoPilot 12-Agent Autonomous Suite. Instant cryptographic dispatch, zero credentials required.">
   <link rel="canonical" href="https://all-in-one-premiums.store/">
 
   <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://all-in-one-premiums.store/">
-  <meta property="og:title" content="All-in-One Premiums · The Sovereign Digital Suite">
+  <meta property="og:title" content="All-in-One Premiums · The Sovereign Digital Atelier">
   <meta property="og:description" content="Instant cryptographic dispatch for X Premium, Telegram Premium, and X AutoPilot 12-Agent Suite. Elevate your presence.">
   <meta name="theme-color" content="#08080A">
 
   <!-- Typography: Cinzel, Manrope, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- GSAP & Lenis Smooth Scroll -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <style>
     /* ==========================================================================
@@ -26,24 +31,25 @@
        ========================================================================== */
     :root {
       --bg-base: #08080A;
-      --bg-surface: #100E13;
-      --bg-card: rgba(20, 16, 23, 0.72);
-      --bg-card-hover: rgba(28, 22, 33, 0.88);
-      --bg-elevated: #18141D;
+      --bg-surface: #151015;
+      --bg-card: rgba(21, 16, 21, 0.78);
+      --bg-card-hover: rgba(30, 22, 31, 0.92);
+      --bg-elevated: #1D161F;
 
       --plum-accent: #55162D;
       --burgundy: #8A2346;
-      --oxblood-deep: #320C1A;
+      --oxblood-deep: #2E0B18;
 
       --gold-primary: #D5C3A0;
       --gold-bright: #EFE5D1;
       --gold-dim: #9C8C70;
       --gold-border: rgba(213, 195, 160, 0.22);
+      --gold-border-subtle: rgba(213, 195, 160, 0.12);
 
-      --text-pure: #FBF9F5;
+      --text-pure: #F4F0E8;
       --text-primary: #EDE8E1;
       --text-secondary: #ADA49F;
-      --text-muted: #A59E9A;
+      --text-muted: #918A88;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-highlight: rgba(255, 255, 255, 0.16);
 
@@ -51,183 +57,126 @@
       --font-display: 'Cinzel', serif;
       --font-mono: 'JetBrains Mono', monospace;
 
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 22px;
-      --radius-xl: 32px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
       --radius-full: 9999px;
 
+      --max-width: 1360px;
       --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
-      --max-width: 1240px;
+      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background-color: var(--bg-base);
-      color: var(--text-primary);
-      font-size: 16px;
-      text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    body {
-      font-family: var(--font-sans);
+    html {
+      scroll-behavior: auto; /* Handled smoothly by Lenis */
       background-color: var(--bg-base);
       color: var(--text-primary);
-      line-height: 1.6;
-      min-height: 100vh;
-      position: relative;
+      font-family: var(--font-sans);
+      font-size: 16px;
     }
 
+    body {
+      background-color: var(--bg-base);
+      min-height: 100vh;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    /* Ambient Stardust Background Canvas */
+    #ambientCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    /* Selection */
     ::selection {
       background: var(--plum-accent);
       color: var(--gold-bright);
     }
 
-    .ambient-aurora {
+    /* Custom Cursor */
+    .custom-cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-bright);
+      border-radius: 50%;
       position: fixed;
-      top: -20vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140vw;
-      height: 85vh;
-      background: radial-gradient(55% 45% at 50% 30%, rgba(138, 35, 70, 0.16) 0%, rgba(85, 22, 45, 0.08) 45%, rgba(8, 8, 10, 0) 100%);
+      top: 0;
+      left: 0;
       pointer-events: none;
-      z-index: 0;
-      filter: blur(80px);
-      will-change: transform;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+    }
+    .custom-cursor-ring {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(213, 195, 160, 0.4);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 7px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-base);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(213, 195, 160, 0.2);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--gold-primary);
+    /* Typography Utilities */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-pure);
+      letter-spacing: 0.02em;
     }
 
-    /* Layout Container */
     .container {
-      width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 40px;
       position: relative;
       z-index: 1;
     }
 
-    /* Interactive Magnetic Cursor (Desktop) - Uses transform exclusively */
-    .cursor-dot {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 8px;
-      height: 8px;
-      background-color: var(--gold-bright);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10000;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s ease, transform 0.15s ease;
-    }
-    .cursor-outline {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(213, 195, 160, 0.45);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s ease, border-color 0.25s ease, transform 0.2s var(--ease-cinematic);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .cursor-dot, .cursor-outline { display: block; }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
     }
 
     /* ==========================================================================
-       TOP TELEMETRY & MASTER HEADER
+       ARCHITECTURAL MINIMALIST NAVIGATION
        ========================================================================== */
-    .telemetry-ticker {
-      background: #0D0A11;
-      border-bottom: 1px solid var(--border-subtle);
-      font-size: 12px;
-      font-family: var(--font-mono);
-      color: var(--text-secondary);
-      padding: 8px 0;
-      overflow: hidden;
-      position: relative;
-      z-index: 101;
-      letter-spacing: 0.02em;
-    }
-    .ticker-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-    .ticker-live-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--gold-primary);
-      font-weight: 600;
-    }
-    .live-status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #25D366;
-      display: inline-block;
-    }
-    .ticker-feed {
-      display: flex;
-      gap: 24px;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .ticker-item span.highlight {
-      color: var(--gold-bright);
-      font-weight: 500;
-    }
-
-    /* Master Floating Navigation */
     header.master-nav-wrap {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      padding: 14px 0;
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      background: rgba(8, 8, 10, 0.9);
-      border-bottom: 1px solid rgba(213, 195, 160, 0.08);
-      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      padding: 20px 0;
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      background: rgba(8, 8, 10, 0.85);
+      border-bottom: 1px solid var(--gold-border-subtle);
+      transition: background 0.3s ease;
+    }
+    header.master-nav-wrap.scrolled {
+      background: rgba(8, 8, 10, 0.95);
     }
     .nav-container {
       display: flex;
@@ -235,47 +184,49 @@
       justify-content: space-between;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 40px;
+    }
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 20px;
+      }
     }
     .brand-mark {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
       color: var(--text-pure);
-      transition: transform 0.25s var(--ease-cinematic);
-    }
-    .brand-mark:hover {
-      transform: translateY(-1px);
     }
     .brand-crest {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: #221323;
-      border: 1px solid var(--gold-border);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      background: rgba(85, 22, 45, 0.35);
+      color: var(--gold-bright);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
     }
     .brand-crest svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: var(--gold-bright);
-      stroke-width: 1.8;
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
     }
-    .brand-text {
+    .brand-typography {
       display: flex;
       flex-direction: column;
     }
     .brand-name {
       font-family: var(--font-display);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
       color: var(--text-pure);
+      line-height: 1.2;
     }
     .brand-sub {
       font-size: 12px;
@@ -284,10 +235,10 @@
       color: var(--gold-dim);
     }
 
-    .nav-menu {
+    .nav-links-row {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 32px;
       list-style: none;
     }
     .nav-link {
@@ -295,991 +246,992 @@
       font-weight: 500;
       color: var(--text-secondary);
       text-decoration: none;
-      position: relative;
-      padding: 6px 0;
+      letter-spacing: 0.02em;
       transition: color 0.25s ease;
+      position: relative;
     }
     .nav-link:hover {
-      color: var(--text-pure);
+      color: var(--gold-bright);
     }
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 50%;
+      bottom: -4px;
+      left: 0;
       width: 0;
-      height: 1.5px;
+      height: 1px;
       background: var(--gold-primary);
-      transition: width 0.3s var(--ease-cinematic), left 0.3s var(--ease-cinematic);
+      transition: width 0.3s var(--ease-cinematic);
     }
     .nav-link:hover::after {
       width: 100%;
-      left: 0;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
-    }
-    .btn-concierge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      padding: 10px 18px;
-      min-height: 44px;
-      border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      transition: all 0.25s var(--ease-cinematic);
-      text-decoration: none;
-    }
-    .btn-concierge:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: var(--border-highlight);
-      color: var(--text-pure);
-      transform: translateY(-1px);
-    }
-    .btn-concierge svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
+      gap: 16px;
     }
 
-    .btn-gold-action {
+    .btn-nav-vault {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #08080A;
-      padding: 11px 24px;
-      min-height: 44px;
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      color: var(--gold-bright);
+      padding: 9px 20px;
       border-radius: var(--radius-full);
-      background: var(--gold-primary);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6);
-      border: none;
-      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
       text-decoration: none;
-      transition: transform 0.25s var(--ease-cinematic), box-shadow 0.25s ease, filter 0.25s ease;
-      white-space: nowrap;
+      transition: all 0.3s var(--ease-cinematic);
+      cursor: pointer;
     }
-    .btn-gold-action:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
-      background: var(--gold-bright);
-    }
-    .btn-gold-action:active {
-      transform: translateY(0) scale(0.98);
+    .btn-nav-vault:hover {
+      background: var(--gold-primary);
+      color: #08080A;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
     .mobile-menu-btn {
       display: none;
-      background: none;
+      background: transparent;
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 10px;
-      min-width: 44px;
-      min-height: 44px;
+      border-radius: 6px;
       color: var(--text-pure);
+      padding: 8px;
       cursor: pointer;
-      align-items: center;
-      justify-content: center;
     }
-    .mobile-menu-btn svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
+    @media (max-width: 900px) {
+      .nav-links-row { display: none; }
+      .mobile-menu-btn { display: flex; }
     }
 
     /* ==========================================================================
-       HERO CINEMATIQUE SECTION
+       HERO: THE SOVEREIGN ATELIER (CINEMATIC ASYMMETRICAL MOMENT)
        ========================================================================== */
-    .hero-cinematic {
+    section.hero-atelier-section {
       position: relative;
-      padding: 90px 0 110px;
-      min-height: 84vh;
+      min-height: 100vh;
+      padding-top: 150px;
+      padding-bottom: 100px;
       display: flex;
       align-items: center;
+      z-index: 1;
     }
 
-    .hero-ghost-typography {
+    /* Giant Ghost Parallax Watermark */
+    .hero-ghost-watermark {
       position: absolute;
-      top: 42%;
+      top: 25%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: var(--font-display);
-      font-size: clamp(5.5rem, 13vw, 14rem);
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.02);
-      letter-spacing: 0.04em;
+      font-size: clamp(6rem, 16vw, 18rem);
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.025);
+      letter-spacing: 0.08em;
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
       z-index: 0;
-      line-height: 0.9;
+      will-change: transform;
     }
 
-    .hero-grid-split {
+    .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
       gap: 60px;
+      align-items: center;
       position: relative;
       z-index: 2;
     }
-
-    .hero-narrative {
-      max-width: 620px;
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
+      }
     }
-    .hero-badge-pill {
+
+    /* Editorial Text Content */
+    .hero-editorial-meta {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(26, 18, 28, 0.8);
-      border: 1px solid var(--gold-border);
-      padding: 8px 18px;
+      padding: 6px 16px;
       border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 600;
+      background: rgba(85, 22, 45, 0.28);
+      border: 1px solid var(--gold-border-subtle);
       color: var(--gold-bright);
-      margin-bottom: 24px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
     }
-    .badge-icon-vault {
-      width: 14px;
-      height: 14px;
-      stroke: var(--gold-bright);
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      background: #25D366;
+      border-radius: 50%;
     }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4.8vw, 4.1rem);
-      font-weight: 700;
-      line-height: 1.15;
+    .hero-monumental-title {
+      font-size: clamp(2.8rem, 5.8vw, 5.4rem);
+      line-height: 1.05;
+      font-weight: 800;
       letter-spacing: -0.01em;
       color: var(--text-pure);
-      margin-bottom: 24px;
-      padding-bottom: 0.15em;
+      margin-bottom: 26px;
     }
-    .hero-title em {
-      font-style: normal;
+    .hero-title-highlight {
       color: var(--gold-bright);
+      display: inline-block;
     }
 
-    .hero-subtitle {
-      font-size: 16px;
-      line-height: 1.65;
+    .hero-lead-narrative {
+      font-size: clamp(16px, 1.25vw, 18.5px);
+      line-height: 1.7;
       color: var(--text-secondary);
-      margin-bottom: 38px;
-      font-weight: 400;
-      max-width: 520px;
+      max-width: 580px;
+      margin-bottom: 42px;
+    }
+    @media (max-width: 1024px) {
+      .hero-lead-narrative {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
-    .hero-cta-cluster {
+    .hero-actions-group {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
     }
+    @media (max-width: 1024px) {
+      .hero-actions-group {
+        justify-content: center;
+      }
+    }
+
     .btn-lux-primary {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      padding: 16px 34px;
-      min-height: 48px;
-      border-radius: var(--radius-full);
       background: var(--gold-primary);
       color: #08080A;
+      font-family: var(--font-sans);
       font-weight: 700;
       font-size: 14.5px;
+      padding: 16px 36px;
+      border-radius: var(--radius-full);
       text-decoration: none;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px #fff;
-      transition: all 0.25s var(--ease-cinematic);
+      transition: all 0.3s var(--ease-cinematic);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--gold-bright);
+      cursor: pointer;
     }
     .btn-lux-primary:hover {
-      transform: translateY(-2px);
       background: var(--gold-bright);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
     }
-    .btn-lux-secondary {
+
+    .btn-lux-ghost {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding: 15px 30px;
-      min-height: 48px;
-      border-radius: var(--radius-full);
-      background: rgba(25, 18, 28, 0.6);
-      border: 1px solid var(--border-highlight);
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-pure);
+      font-family: var(--font-sans);
       font-weight: 600;
-      font-size: 14px;
+      font-size: 14.5px;
+      padding: 16px 32px;
+      border-radius: var(--radius-full);
       text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: all 0.25s var(--ease-cinematic);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s var(--ease-cinematic);
+      cursor: pointer;
     }
-    .btn-lux-secondary:hover {
-      background: rgba(45, 24, 40, 0.7);
+    .btn-lux-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
       border-color: var(--gold-border);
-      transform: translateY(-2px);
-    }
-
-    .hero-metrics-bar {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: 36px;
-      padding-top: 30px;
-      border-top: 1px solid var(--border-subtle);
-      width: fit-content;
-    }
-    .metric-unit .metric-val {
-      font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 700;
       color: var(--gold-bright);
-      line-height: 1.1;
-    }
-    .metric-unit p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
     }
 
-    /* 3D Tactile Centerpiece Card */
-    .hero-visual-stage {
+    /* 3D Physical Sovereign Artifact Centerpiece */
+    .hero-artifact-perspective {
+      perspective: 1200px;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      perspective: 1200px;
     }
-
-    .sovereign-card-container {
+    .hero-artifact-wrap {
       width: 100%;
       max-width: 440px;
-      height: 520px;
+      aspect-ratio: 1 / 1.35;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.15s cubic-bezier(0.2, 0, 0.1, 1);
-      cursor: grab;
-      user-select: none;
-    }
-    .sovereign-card-container:active {
-      cursor: grabbing;
+      transition: transform 0.15s ease-out;
+      will-change: transform;
     }
 
-    .sovereign-card {
-      position: absolute;
-      inset: 0;
+    .physical-pass-slab {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #181119 0%, #0E0A10 60%, #1D131C 100%);
+      border: 1px solid var(--gold-border);
       border-radius: var(--radius-xl);
-      background: linear-gradient(145deg, #18121D 0%, #0F0B13 45%, #22111D 100%);
-      border: 1px solid rgba(213, 195, 160, 0.25);
-      box-shadow: 
-        0 24px 60px rgba(0, 0, 0, 0.8),
-        0 8px 30px rgba(0, 0, 0, 0.4),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2);
-      padding: 38px 34px;
+      padding: 36px 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transform-style: preserve-3d;
-    }
-
-    .card-specular-glare {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle 320px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.12) 0%, rgba(213, 195, 160, 0.04) 40%, transparent 80%);
-      pointer-events: none;
-      mix-blend-mode: overlay;
-    }
-
-    .card-micro-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(213, 195, 160, 0.08) 1px, transparent 1px);
-      background-size: 16px 16px;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .card-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.2);
       position: relative;
-      z-index: 2;
+      overflow: hidden;
+      transform: translateZ(30px);
     }
-    .card-chip {
-      width: 44px;
-      height: 34px;
-      border-radius: 7px;
-      background: #C4B18D;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      position: relative;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-    .card-chip::after {
-      content: '';
+
+    /* Specular Glare Overlay */
+    .slab-specular-glare {
       position: absolute;
-      top: 50%;
+      top: 0;
       left: 0;
       right: 0;
-      height: 1px;
-      background: rgba(0, 0, 0, 0.25);
+      bottom: 0;
+      background: radial-gradient(circle 350px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 80%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .card-wireless {
+
+    .slab-chip-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .slab-emv-chip {
+      width: 46px;
+      height: 34px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #DFD1B3 0%, #B8A179 100%);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      position: relative;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    .slab-wireless-icon {
       color: var(--gold-bright);
       font-size: 12px;
       font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 6px;
       letter-spacing: 0.04em;
     }
 
-    .card-mid-suite {
+    .slab-body-brand {
       margin: auto 0;
-      position: relative;
-      z-index: 2;
     }
-    .card-suite-title {
+    .slab-vault-title {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       color: var(--text-pure);
       line-height: 1.2;
-      margin-bottom: 14px;
-      letter-spacing: 0.02em;
+      margin-bottom: 12px;
     }
-    .card-services-pills {
+    .slab-tier-pills-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-    .service-pill-item {
+    .slab-tier-tag {
       font-size: 12px;
       font-weight: 600;
       padding: 5px 12px;
       border-radius: var(--radius-full);
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(213, 195, 160, 0.15);
+      border: 1px solid var(--gold-border-subtle);
       color: var(--gold-bright);
     }
 
-    .card-bottom-row {
+    .slab-bottom-seal {
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
-      position: relative;
-      z-index: 2;
+      justify-content: space-between;
       padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .card-auth-info {
+    .slab-auth-id {
       font-family: var(--font-mono);
       font-size: 12px;
       color: var(--text-secondary);
       letter-spacing: 0.02em;
     }
-    .card-auth-info b {
-      color: var(--text-pure);
+    .slab-auth-id b {
       display: block;
-      font-size: 12px;
+      color: var(--text-pure);
       margin-top: 2px;
+      font-size: 12px;
     }
-    .card-gold-crest {
-      width: 42px;
-      height: 42px;
+    .slab-gold-medallion {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #C7B594;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.8);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #120E15;
-      font-weight: 800;
-      font-size: 16px;
-      font-family: var(--font-display);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+    .slab-gold-medallion svg {
+      width: 22px;
+      height: 22px;
+      stroke: #181119;
+      stroke-width: 2.2;
     }
 
-    .satellite-badge {
+    /* Floating Satellite Artifact Tags */
+    .satellite-tag {
       position: absolute;
-      background: rgba(18, 14, 22, 0.92);
-      backdrop-filter: blur(16px);
+      background: rgba(18, 13, 19, 0.92);
       border: 1px solid var(--gold-border);
-      border-radius: var(--radius-md);
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      z-index: 3;
-      transform-style: preserve-3d;
-    }
-    .badge-sat-left {
-      bottom: 24px;
-      left: -28px;
-    }
-    .badge-sat-right {
-      top: 36px;
-      right: -28px;
-    }
-    .sat-icon-wrap {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--oxblood-deep);
-      border: 1px solid var(--burgundy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-bright);
-    }
-    .sat-text .sat-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-pure);
-    }
-    .sat-text p {
+      backdrop-filter: blur(16px);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
       font-size: 12px;
-      color: var(--gold-primary);
+      color: var(--gold-bright);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateZ(50px);
+      white-space: nowrap;
+    }
+    .sat-x {
+      top: -18px;
+      left: -20px;
+    }
+    .sat-tg {
+      bottom: 40px;
+      right: -24px;
+    }
+    .sat-agents {
+      top: 55%;
+      left: -36px;
     }
 
     /* ==========================================================================
-       SECTION FOUNDATIONS & ART DIRECTION
+       SECTION CONTINUUM & CURATED EXHIBITIONS
        ========================================================================== */
-    section {
+    section.exhibition-section {
+      padding: 140px 0;
       position: relative;
-      padding: 100px 0;
+      border-top: 1px solid var(--border-subtle);
+      z-index: 1;
     }
 
-    .section-header-block {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 64px;
-    }
-    .section-headline {
+    .section-watermark-num {
+      position: absolute;
+      top: 40px;
+      right: 40px;
       font-family: var(--font-display);
-      font-size: clamp(2.2rem, 3.6vw, 3.1rem);
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.02);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .exhibition-header-block {
+      max-width: 760px;
+      margin-bottom: 70px;
+    }
+    .exhibition-index-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gold-dim);
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .exhibition-title {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.15;
       color: var(--text-pure);
-      line-height: 1.2;
-      margin-bottom: 18px;
-      padding-bottom: 0.15em;
+      margin-bottom: 20px;
     }
-    .section-headline em {
-      font-style: normal;
-      color: var(--gold-bright);
-    }
-    .section-subtext {
+    .exhibition-description {
       font-size: 16px;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     /* ==========================================================================
-       X PREMIUM TIER SHOWCASE
-       Mandatory pricing: 3 Months $5 | 6 Months $8
+       EXHIBITION 01: X PREMIUM (EDITORIAL SOCIAL CITADEL)
        ========================================================================== */
-    .grid-duo-cards {
+    .x-citadel-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 36px;
-      max-width: 960px;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px) {
+      .x-citadel-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .lux-plan-card {
+    /* Live X Handle Preview Dock */
+    .x-handle-interactive-dock {
       background: var(--bg-card);
+      border: 1px solid var(--gold-border-subtle);
       border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      padding: 44px 38px;
+      padding: 36px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
       backdrop-filter: blur(20px);
-      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .lux-plan-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold-border);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+    .dock-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--text-pure);
+      margin-bottom: 10px;
     }
-    .lux-plan-card.highlight-featured {
-      background: linear-gradient(160deg, rgba(32, 22, 36, 0.85) 0%, rgba(15, 11, 18, 0.95) 100%);
-      border: 1px solid var(--gold-border);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    .dock-lead {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
     }
-
-    .plan-corner-ribbon {
-      position: absolute;
-      top: 22px;
-      right: 22px;
-      background: #7A1F3E;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #FFF;
-      font-size: 12px;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 5px 12px;
-      border-radius: var(--radius-full);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .plan-header-row {
+    .handle-field-wrap {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 16px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      transition: border-color 0.25s ease;
     }
-    .plan-crest-icon {
-      width: 24px;
-      height: 24px;
+    .handle-field-wrap:focus-within {
+      border-color: var(--gold-primary);
+    }
+    .handle-field-wrap svg {
+      width: 20px;
+      height: 20px;
       color: var(--gold-bright);
       flex-shrink: 0;
     }
-    .plan-name-title {
-      font-family: var(--font-display);
-      font-size: 26px;
+    .handle-input-text {
+      background: transparent;
+      border: none;
+      color: var(--text-pure);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      width: 100%;
+      outline: none;
+    }
+    .handle-input-text::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Live Profile Card Preview */
+    .profile-card-preview {
+      background: rgba(15, 11, 16, 0.95);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: none;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      margin-top: auto;
+    }
+    .profile-card-preview.active {
+      display: flex;
+    }
+    .profile-avatar-box {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--plum-accent);
+      border: 2px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      color: var(--gold-bright);
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .profile-meta-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .profile-disp-name {
+      font-size: 16px;
       font-weight: 700;
       color: var(--text-pure);
-      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .profile-verified-badge {
+      color: var(--gold-bright);
+      width: 17px;
+      height: 17px;
+    }
+    .profile-user-handle {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--gold-dim);
     }
 
-    .price-display-cluster {
+    /* X Tiers Column */
+    .x-tiers-stack {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 8px;
+      flex-direction: column;
+      gap: 24px;
     }
-    .price-currency {
+    .x-tier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      transition: all 0.3s var(--ease-cinematic);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .x-tier-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--gold-border);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .x-tier-card.featured-card {
+      border-color: var(--gold-border);
+      background: linear-gradient(145deg, rgba(34, 22, 35, 0.9) 0%, rgba(18, 12, 19, 0.95) 100%);
+    }
+
+    .tier-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .tier-badge-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-bright);
+      background: rgba(213, 195, 160, 0.14);
+      border: 1px solid var(--gold-border);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.04em;
+    }
+    .tier-duration-title {
       font-family: var(--font-display);
       font-size: 24px;
-      color: var(--gold-bright);
-      font-weight: 600;
+      color: var(--text-pure);
     }
-    .price-amount {
+    .tier-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .tier-price-symbol {
+      font-size: 22px;
+      color: var(--gold-dim);
       font-family: var(--font-display);
-      font-size: 54px;
+    }
+    .tier-price-digit {
+      font-family: var(--font-display);
+      font-size: 48px;
       font-weight: 800;
       color: var(--text-pure);
-      letter-spacing: -0.02em;
       line-height: 1;
     }
-    .price-cadence {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-    .price-note-sub {
-      font-size: 13px;
+    .tier-price-period {
+      font-size: 14px;
       color: var(--text-secondary);
-      margin-bottom: 30px;
     }
 
-    .plan-perk-list {
+    .tier-benefits-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 36px;
+      gap: 12px;
+      margin-bottom: 30px;
     }
-    .plan-perk-item {
+    .tier-benefits-list li {
+      font-size: 14px;
+      color: var(--text-secondary);
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      color: var(--text-primary);
+      gap: 10px;
     }
-    .plan-perk-item svg {
+    .tier-benefits-list li svg {
       width: 16px;
       height: 16px;
-      stroke: var(--gold-bright);
-      stroke-width: 2.2;
+      color: var(--gold-bright);
       flex-shrink: 0;
     }
 
     .btn-select-tier {
       width: 100%;
-      padding: 15px 24px;
-      min-height: 48px;
+      padding: 14px 24px;
       border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-highlight);
-      color: var(--text-pure);
-      font-weight: 700;
       font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: all 0.25s var(--ease-cinematic);
+      transition: all 0.25s ease;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-pure);
+      text-decoration: none;
     }
     .btn-select-tier:hover {
-      background: var(--plum-accent);
-      border-color: var(--gold-border);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    }
-    .highlight-featured .btn-select-tier {
       background: var(--gold-primary);
       color: #08080A;
-      border: none;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      border-color: var(--gold-bright);
     }
-    .highlight-featured .btn-select-tier:hover {
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    .btn-select-tier.btn-primary-tier {
+      background: var(--gold-primary);
+      color: #08080A;
+      border-color: var(--gold-bright);
+    }
+    .btn-select-tier.btn-primary-tier:hover {
       background: var(--gold-bright);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
     /* ==========================================================================
-       X AUTOMATION EXTENSION (12 AGENTS ENGINE SHOWCASE)
-       Mandatory: 12 Agents · $11.99 Lifetime · Bot: @XAutoPilot1Bot
-       ======================================================================== -->
-    .x-auto-suite-section {
-      background: linear-gradient(180deg, rgba(8, 8, 10, 0) 0%, rgba(22, 14, 25, 0.45) 50%, rgba(8, 8, 10, 0) 100%);
-      border-top: 1px solid rgba(213, 195, 160, 0.08);
-      border-bottom: 1px solid rgba(213, 195, 160, 0.08);
+       EXHIBITION 02: TELEGRAM PREMIUM (UNCAPPED TRANSMISSION)
+       ========================================================================== */
+    .tg-tiers-quad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1100px) {
+      .tg-tiers-quad-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .tg-tiers-quad-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .auto-flagship-card {
+    .tg-quad-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-xl);
-      background: linear-gradient(145deg, rgba(26, 19, 30, 0.85) 0%, rgba(14, 11, 18, 0.95) 100%);
-      border: 1px solid var(--gold-border);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
-      padding: 52px 46px;
-      position: relative;
-    }
-
-    .auto-grid-layout {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 50px;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .auto-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 3.4vw, 3rem);
-      font-weight: 700;
-      color: var(--text-pure);
-      line-height: 1.2;
-      margin-bottom: 18px;
-      padding-bottom: 0.15em;
-    }
-    .auto-title span.gold-highlight {
-      color: var(--gold-bright);
-    }
-
-    .auto-desc {
-      font-size: 15.5px;
-      color: var(--text-secondary);
-      line-height: 1.65;
-      margin-bottom: 28px;
-    }
-
-    /* 12 Agents Interactive Grid */
-    .agents-kinetic-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .agent-pill {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
+      padding: 32px 26px;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s ease;
-      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s var(--ease-cinematic);
+      position: relative;
     }
-    .agent-pill:hover {
-      background: rgba(85, 22, 45, 0.3);
+    .tg-quad-card:hover {
+      background: var(--bg-card-hover);
       border-color: var(--gold-border);
-      transform: translateX(4px);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
     }
-    .agent-indicator {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-      flex-shrink: 0;
-    }
-    .agent-info .agent-name {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--text-pure);
-      line-height: 1.2;
-    }
-    .agent-info span {
-      font-size: 12px;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
+    .tg-quad-card.popular-curation {
+      border-color: var(--gold-border);
+      background: linear-gradient(145deg, rgba(42, 17, 30, 0.85) 0%, rgba(18, 12, 19, 0.95) 100%);
     }
 
-    /* Pricing & Action Anchor */
-    .auto-price-row {
+    .tg-quad-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--text-pure);
+      margin-bottom: 14px;
+    }
+
+    /* ==========================================================================
+       EXHIBITION 03: X AUTOPILOT (12-AGENT AUTONOMOUS FLEET)
+       ========================================================================== */
+    .autopilot-hero-wrapper {
+      background: linear-gradient(145deg, #161017 0%, #0D090E 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 60px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(24px);
+    }
+    @media (max-width: 900px) {
+      .autopilot-hero-wrapper {
+        padding: 30px 20px;
+      }
+    }
+
+    .autopilot-top-summary {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      margin-bottom: 48px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .autopilot-top-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .autopilot-banner-price {
       display: flex;
       align-items: baseline;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-top: 24px;
     }
-    .auto-price-num {
+    .autopilot-price-figure {
       font-family: var(--font-display);
-      font-size: 44px;
+      font-size: 52px;
       font-weight: 800;
       color: var(--gold-bright);
-      letter-spacing: -0.02em;
+      line-height: 1;
     }
-    .auto-price-meta {
-      font-size: 13px;
+    .autopilot-price-meta {
+      font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.3;
     }
-    .auto-price-meta b {
+    .autopilot-price-meta b {
       color: #25D366;
       display: block;
-      font-size: 12px;
-      margin-bottom: 2px;
+      font-size: 13px;
     }
 
-    /* Clean Console Telemetry Stream */
-    .telemetry-console-wrapper {
-      background: #09070C;
+    /* 12 Specialized Agents Architectural Grid */
+    .agents-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 1024px) {
+      .agents-matrix-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .agents-matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .agents-matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .agent-matrix-cell {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+    .agent-matrix-cell:hover {
+      border-color: var(--gold-border);
+      background: rgba(85, 22, 45, 0.25);
+      transform: translateY(-2px);
+    }
+    .agent-code-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+    .agent-desc-text {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Live Monospace Telemetry Stream Simulator */
+    .telemetry-stream-console {
+      background: #09060B;
       border: 1px solid var(--border-highlight);
       border-radius: var(--radius-lg);
       padding: 24px;
       font-family: var(--font-mono);
     }
-    .console-topbar {
+    .telemetry-console-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 14px;
+      padding-bottom: 12px;
       margin-bottom: 16px;
     }
-    .console-indicator-lights {
+    .telemetry-status-indicator {
       display: flex;
-      gap: 6px;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--gold-bright);
     }
-    .c-light {
-      width: 8px;
-      height: 8px;
+    .telemetry-dot {
+      width: 7px;
+      height: 7px;
+      background: #25D366;
       border-radius: 50%;
     }
-    .c-red { background: #E05252; }
-    .c-yellow { background: #E0A838; }
-    .c-green { background: #25D366; }
-    .console-meta-title {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .terminal-stream {
-      font-size: 12px;
-      line-height: 1.8;
-      color: #A3B8CC;
-      height: 250px;
-      overflow-y: hidden;
+    .terminal-feed-lines {
+      height: 180px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-    }
-    .log-line {
-      display: flex;
-      gap: 8px;
-    }
-    .log-time { color: var(--gold-dim); }
-    .log-agent { color: #E88295; font-weight: 600; }
-    .log-action { color: var(--text-primary); }
-
-    /* ==========================================================================
-       TELEGRAM PREMIUM SHOWCASE (4 Duration Tiers)
-       Pricing: 1mo $6 | 3mo $16 | 6mo $20 | 12mo $33
-       ========================================================================== */
-    .grid-quad-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
-
-    .tg-tier-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 34px 26px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      backdrop-filter: blur(16px);
-      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease, box-shadow 0.25s ease;
-      position: relative;
-    }
-    .tg-tier-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold-border);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-    }
-    .tg-tier-card.featured-tg {
-      background: linear-gradient(150deg, rgba(34, 22, 38, 0.8) 0%, rgba(16, 12, 20, 0.95) 100%);
-      border-color: var(--gold-border);
-    }
-
-    .tg-card-header {
-      display: flex;
-      align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
+      font-size: 12.5px;
+      color: #A3B8CC;
     }
-    .tg-badge-star {
-      width: 20px;
-      height: 20px;
-      color: #38A5F8;
-      flex-shrink: 0;
-    }
-    .tg-duration {
-      font-family: var(--font-display);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-pure);
-      letter-spacing: 0.01em;
-    }
-    .tg-price-group {
+    .stream-line {
       display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 18px;
+      gap: 10px;
     }
-    .tg-amount {
-      font-family: var(--font-display);
-      font-size: 38px;
-      font-weight: 800;
-      color: var(--gold-bright);
-      line-height: 1;
-    }
-    .tg-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-    }
-    .tg-features li {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tg-features svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--gold-bright);
-      stroke-width: 2.2;
-      flex-shrink: 0;
-    }
+    .line-time { color: var(--gold-dim); }
+    .line-agent { color: #E88295; font-weight: 600; }
+    .line-msg { color: var(--text-primary); }
 
     /* ==========================================================================
-       MACHINED OBSIDIAN PAYMENT & CRYPTOGRAPHIC VERIFICATION TERMINAL
+       THE SETTLEMENT VAULT & CRYPTOGRAPHIC DISPATCH
        ========================================================================== */
-    .terminal-section {
-      background: #0B080E;
-      border-top: 1px solid rgba(213, 195, 160, 0.1);
-      border-bottom: 1px solid rgba(213, 195, 160, 0.1);
+    section.settlement-vault-section {
+      padding: 140px 0;
       position: relative;
+      border-top: 1px solid var(--gold-border-subtle);
+      background: linear-gradient(180deg, #08080A 0%, #100B12 100%);
+      z-index: 1;
     }
 
-    .payment-trays-grid {
+    .vault-layout-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 56px 48px;
+      backdrop-filter: blur(28px);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+    @media (max-width: 768px) {
+      .vault-layout-card {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Machined Payment Trays Grid */
+    .machined-trays-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-bottom: 48px;
     }
+    @media (max-width: 900px) {
+      .machined-trays-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .machined-tray {
-      background: linear-gradient(145deg, rgba(22, 17, 26, 0.85) 0%, rgba(13, 10, 16, 0.95) 100%);
+      background: rgba(14, 10, 15, 0.9);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 32px 26px;
+      padding: 26px;
       cursor: pointer;
-      position: relative;
-      transition: all 0.25s var(--ease-cinematic);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: all 0.25s var(--ease-cinematic);
+      position: relative;
     }
     .machined-tray:hover {
-      border-color: rgba(213, 195, 160, 0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      border-color: var(--gold-border);
+      background: rgba(25, 17, 26, 0.95);
+      transform: translateY(-2px);
     }
     .machined-tray.selected-tray {
       border-color: var(--gold-primary);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-      background: linear-gradient(145deg, rgba(32, 22, 36, 0.95) 0%, rgba(16, 12, 19, 0.98) 100%);
+      background: linear-gradient(145deg, rgba(38, 18, 30, 0.9) 0%, rgba(18, 12, 19, 0.95) 100%);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     }
 
-    .tray-top {
+    .tray-topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      justify-content: space-between;
+      margin-bottom: 12px;
     }
-    .tray-brand {
+    .tray-rail-name {
       font-family: var(--font-display);
       font-size: 16px;
       font-weight: 700;
       color: var(--text-pure);
-      letter-spacing: 0.02em;
     }
-    .tray-check-circle {
-      width: 22px;
-      height: 22px;
+    .tray-radio-indicator {
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      border: 1px solid var(--border-highlight);
+      border: 1.5px solid var(--gold-dim);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
-      color: transparent;
     }
-    .machined-tray.selected-tray .tray-check-circle {
-      background: var(--gold-bright);
+    .machined-tray.selected-tray .tray-radio-indicator {
       border-color: var(--gold-bright);
-      color: #08080A;
+      background: var(--gold-primary);
     }
-    .tray-check-circle svg {
-      width: 13px;
-      height: 13px;
-      stroke-width: 3;
+    .machined-tray.selected-tray .tray-radio-indicator::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #08080A;
     }
 
-    .tray-network {
+    .tray-network-label {
       font-family: var(--font-mono);
       font-size: 12px;
       color: var(--gold-dim);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .crypto-address-dock {
-      background: rgba(0, 0, 0, 0.45);
+    .tray-address-dock {
+      background: rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-sm);
       padding: 10px 12px;
@@ -1287,9 +1239,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
-    .crypto-code {
+    .tray-address-text {
       font-family: var(--font-mono);
       font-size: 12px;
       color: var(--gold-bright);
@@ -1318,123 +1270,80 @@
       color: #08080A;
     }
 
-    .tray-hint-msg {
+    .tray-instruction-note {
       font-size: 12px;
       color: var(--text-muted);
       line-height: 1.4;
     }
-    .tray-hint-msg.warning-highlight {
+    .tray-instruction-note.highlight-sol {
       color: #FFB37C;
     }
 
-    /* Checkout Summary Console */
-    .checkout-console-card {
-      max-width: 720px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-xl);
-      padding: 42px 46px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(24px);
+    /* Summary Console */
+    .vault-summary-panel {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 36px;
+      margin-bottom: 36px;
     }
-    .console-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 20px;
-      margin-bottom: 24px;
-    }
-    .console-title {
-      font-family: var(--font-display);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-pure);
-    }
-    .console-status-pill {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gold-bright);
-      background: rgba(213, 195, 160, 0.12);
-      border: 1px solid var(--gold-border);
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-    }
-
-    .summary-spec-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .summary-details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       margin-bottom: 30px;
     }
-    .spec-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-    }
-    .spec-key {
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-    .spec-val {
-      font-weight: 600;
-      color: var(--text-pure);
-    }
-    .spec-val.gold {
-      color: var(--gold-bright);
-      font-family: var(--font-display);
-      font-size: 18px;
+    @media (max-width: 768px) {
+      .summary-details-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .confirmation-toggle-box {
+    .summary-spec-cell {
       background: rgba(0, 0, 0, 0.35);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 18px 20px;
+      padding: 16px 20px;
+    }
+    .spec-label {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--gold-dim);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .spec-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-pure);
+      font-family: var(--font-sans);
+    }
+    .spec-val.spec-gold {
+      color: var(--gold-bright);
+    }
+
+    .confirm-checkbox-row {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 14px;
+      margin-bottom: 24px;
+      background: rgba(85, 22, 45, 0.15);
+      border: 1px solid var(--gold-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
       cursor: pointer;
-      margin-bottom: 28px;
-      transition: border-color 0.2s ease;
     }
-    .confirmation-toggle-box:hover {
-      border-color: var(--border-highlight);
-    }
-    .confirmation-toggle-box input[type="checkbox"] {
+    .confirm-checkbox-row input[type="checkbox"] {
       width: 18px;
       height: 18px;
-      margin-top: 2px;
       accent-color: var(--gold-primary);
       cursor: pointer;
     }
-    .confirmation-toggle-box label {
+    .confirm-checkbox-row label {
       font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.5;
+      color: var(--text-pure);
       cursor: pointer;
     }
 
-    .error-alert-banner {
-      background: rgba(138, 35, 70, 0.2);
-      border: 1px solid #8A2346;
-      border-radius: var(--radius-sm);
-      padding: 12px 18px;
-      font-size: 12.5px;
-      color: #FFA6B9;
-      font-family: var(--font-mono);
-      margin-bottom: 20px;
-      display: none;
-      align-items: center;
-      gap: 10px;
-    }
-    .error-alert-banner.show {
-      display: flex;
-    }
-
-    /* Verification Form Drawer */
+    /* Drawer Transition via grid-template-rows (0 layout thrash) */
     .order-dispatch-drawer {
       display: grid;
       grid-template-rows: 0fr;
@@ -1445,269 +1354,189 @@
       grid-template-rows: 1fr;
       opacity: 1;
     }
-
-    .dispatch-form-pane {
+    .dispatch-drawer-inner {
       min-height: 0;
       overflow: hidden;
       border-top: 1px solid var(--border-subtle);
-      padding-top: 32px;
-      margin-top: 36px;
+      padding-top: 36px;
+      margin-top: 24px;
+    }
+
+    .form-inputs-stack {
       display: flex;
       flex-direction: column;
       gap: 22px;
     }
-    .dispatch-form-pane h3 {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-pure);
-    }
-    .dispatch-form-pane p.form-guidance {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      margin-top: -12px;
-    }
-
-    .form-group-field {
+    .input-field-group {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
-    .form-group-field label {
-      font-size: 12px;
-      color: var(--gold-dim);
+    .input-field-group label {
+      font-size: 13px;
       font-weight: 600;
-    }
-    .input-machined {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-highlight);
-      border-radius: var(--radius-sm);
-      padding: 14px 18px;
-      color: var(--text-pure);
-      font-size: 16px;
-      font-family: var(--font-sans);
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-      min-height: 48px;
-    }
-    .input-machined:focus {
-      outline: none;
-      border-color: var(--gold-primary);
-      box-shadow: 0 0 0 3px rgba(213, 195, 160, 0.18);
-    }
-    .input-machined.is-invalid {
-      border-color: #8A2346;
-      box-shadow: 0 0 0 2px rgba(138, 35, 70, 0.25);
-    }
-
-    /* Live Profile Preview */
-    .live-x-preview-dock {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--border-highlight);
-      border-radius: var(--radius-sm);
-      padding: 14px 18px;
-      margin-top: 10px;
-      display: none;
-    }
-    .live-x-preview-dock.active {
-      display: block;
-    }
-    .preview-account-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .preview-avatar-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold-border);
-      object-fit: cover;
-      background: #18121D;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
       color: var(--gold-bright);
     }
-    .preview-names-meta .prev-display-name {
-      font-size: 14.5px;
-      font-weight: 700;
+    .input-lux-box {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid var(--border-highlight);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
       color: var(--text-pure);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      outline: none;
+      transition: border-color 0.25s ease;
     }
-    .preview-names-meta span {
-      font-size: 12.5px;
-      color: var(--text-secondary);
-      font-family: var(--font-mono);
+    .input-lux-box:focus {
+      border-color: var(--gold-primary);
+    }
+    .input-lux-box::placeholder {
+      color: var(--text-muted);
     }
 
-    /* Drag & Drop Proof Uploader */
-    .file-dropzone-box {
-      border: 1.5px dashed var(--gold-border);
-      border-radius: var(--radius-md);
-      padding: 24px;
+    .dropzone-lux-wrap {
+      border: 2px dashed var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(14, 10, 15, 0.4);
       cursor: pointer;
-      position: relative;
       transition: all 0.25s ease;
-      min-height: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
-    .file-dropzone-box:hover, .file-dropzone-box.dragover {
+    .dropzone-lux-wrap:hover,
+    .dropzone-lux-wrap.dragover {
       border-color: var(--gold-bright);
-      background: rgba(85, 22, 45, 0.15);
+      background: rgba(85, 22, 45, 0.2);
     }
-    .dropzone-icon {
-      width: 32px;
-      height: 32px;
-      stroke: var(--gold-primary);
-      margin-bottom: 8px;
+    .dropzone-lux-wrap p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 8px;
     }
-    .file-preview-wrap {
-      max-height: 120px;
-      margin: 10px auto;
+
+    .validation-error-text {
+      font-size: 12px;
+      color: #FFA6B9;
       display: none;
     }
-    .hidden-file-input {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
+
+    .btn-submit-order {
+      width: 100%;
+      padding: 18px 36px;
+      border-radius: var(--radius-full);
+      background: var(--gold-primary);
+      color: #08080A;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--gold-bright);
       cursor: pointer;
+      transition: all 0.3s var(--ease-cinematic);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+      margin-top: 10px;
+    }
+    .btn-submit-order:hover:not(:disabled) {
+      background: var(--gold-bright);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+    }
+    .btn-submit-order:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
     }
 
-    /* Submission Feedback */
-    .submit-result-status {
-      min-height: 24px;
-      font-size: 13.5px;
-      font-weight: 600;
-      text-align: center;
-      font-family: var(--font-mono);
-      color: var(--text-secondary);
+    .order-status-banner {
+      display: none;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      margin-top: 24px;
+      line-height: 1.5;
     }
-    .submit-result-status.success {
-      background: rgba(37, 211, 102, 0.1);
+    .order-status-banner.success {
+      display: block;
+      background: rgba(37, 211, 102, 0.12);
       border: 1px solid #25D366;
-      border-radius: var(--radius-sm);
-      padding: 20px;
       color: #A3FFC2;
     }
 
     /* ==========================================================================
-       FOUR STEPS SOVEREIGN DISPATCH
+       EDITORIAL FAQ ACCORDION (ZERO LAYOUT THRASH)
        ========================================================================== */
-    .steps-quad-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
-    }
-    .step-chronicle-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 38px 28px;
+    section.editorial-faq-section {
+      padding: 120px 0;
       position: relative;
-      transition: transform 0.25s var(--ease-cinematic), border-color 0.25s ease;
-      backdrop-filter: blur(12px);
-    }
-    .step-chronicle-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold-border);
-    }
-    .step-chronicle-num {
-      font-family: var(--font-display);
-      font-size: 42px;
-      font-weight: 800;
-      color: rgba(213, 195, 160, 0.18);
-      line-height: 1;
-      margin-bottom: 20px;
-      display: block;
-    }
-    .step-chronicle-card h3 {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-pure);
-      margin-bottom: 10px;
-    }
-    .step-chronicle-card p {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.55;
+      border-top: 1px solid var(--border-subtle);
+      z-index: 1;
     }
 
-    /* ==========================================================================
-       FREQUENTLY ASKED QUESTIONS
-       ========================================================================== */
-    .faq-bespoke-list {
-      max-width: 800px;
+    .faq-accordion-stack {
+      max-width: 860px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
-    .faq-bespoke-item {
+    .faq-item-row {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       transition: border-color 0.25s ease;
     }
-    .faq-bespoke-item:hover {
+    .faq-item-row:hover {
+      border-color: var(--gold-border-subtle);
+    }
+    .faq-item-row.is-open {
       border-color: var(--gold-border);
     }
+
     .faq-trigger-btn {
       width: 100%;
+      text-align: left;
       padding: 24px 28px;
-      min-height: 54px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: none;
+      background: transparent;
       border: none;
       color: var(--text-pure);
-      font-family: var(--font-sans);
-      font-size: 16.5px;
+      font-size: 16px;
       font-weight: 600;
-      text-align: left;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 20px;
+      cursor: pointer;
     }
-    .faq-icon-rotator {
+    .faq-rotator-icon {
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: transform 0.3s var(--ease-cinematic), background 0.3s ease;
-      flex-shrink: 0;
       color: var(--gold-bright);
+      flex-shrink: 0;
     }
-    .faq-bespoke-item.is-open .faq-icon-rotator {
+    .faq-item-row.is-open .faq-rotator-icon {
       transform: rotate(180deg);
       background: var(--plum-accent);
       border-color: var(--gold-border);
     }
-    .faq-body-content {
+
+    .faq-answer-drawer {
       display: grid;
       grid-template-rows: 0fr;
       transition: grid-template-rows 0.35s var(--ease-cinematic);
     }
-    .faq-bespoke-item.is-open .faq-body-content {
+    .faq-item-row.is-open .faq-answer-drawer {
       grid-template-rows: 1fr;
     }
-    .faq-inner-text {
+    .faq-answer-inner {
       min-height: 0;
       overflow: hidden;
-      padding: 0 28px 26px;
+      padding: 0 28px 24px;
       font-size: 14.5px;
       color: var(--text-secondary);
       line-height: 1.65;
@@ -1716,11 +1545,12 @@
     /* ==========================================================================
        EDITORIAL FOOTER
        ========================================================================== */
-    footer.master-footer {
-      border-top: 1px solid rgba(213, 195, 160, 0.1);
+    footer.master-footer-wrap {
+      border-top: 1px solid var(--border-subtle);
       padding: 80px 0 40px;
-      background: #060608;
+      background: #060507;
       position: relative;
+      z-index: 1;
     }
     .footer-columns-grid {
       display: grid;
@@ -1728,6 +1558,12 @@
       gap: 60px;
       padding-bottom: 60px;
       border-bottom: 1px solid var(--border-subtle);
+    }
+    @media (max-width: 800px) {
+      .footer-columns-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
     }
     .footer-summary p {
       font-size: 14px;
@@ -1748,45 +1584,52 @@
       flex-direction: column;
       gap: 12px;
     }
-    .footer-link-entry {
+    .footer-link-anchor {
       font-size: 13.5px;
       color: var(--text-secondary);
       text-decoration: none;
-      transition: color 0.2s ease, transform 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      min-height: 32px;
+      transition: color 0.2s ease;
     }
-    .footer-link-entry:hover {
+    .footer-link-anchor:hover {
       color: var(--gold-bright);
-      transform: translateX(3px);
     }
-
-    .footer-bottom-meta {
+    .footer-legal-bar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-top: 30px;
-      font-size: 12px;
+      justify-content: space-between;
+      padding-top: 32px;
+      font-size: 12.5px;
       color: var(--text-muted);
-      font-family: var(--font-mono);
+    }
+    @media (max-width: 600px) {
+      .footer-legal-bar {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
     }
 
-    /* Sticky Bottom Quick-Bar */
+    /* ==========================================================================
+       MOBILE QUICKBAR
+       ========================================================================== */
     .mobile-quickbar {
       display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(12, 10, 15, 0.94);
-      backdrop-filter: blur(20px);
+      background: rgba(14, 10, 15, 0.96);
+      backdrop-filter: blur(24px);
       border-top: 1px solid var(--gold-border);
       padding: 12px 20px env(safe-area-inset-bottom, 12px);
       z-index: 99;
       align-items: center;
       justify-content: space-between;
+    }
+    @media (max-width: 768px) {
+      .mobile-quickbar {
+        display: flex;
+      }
     }
     .quickbar-price-info {
       display: flex;
@@ -1802,37 +1645,7 @@
       color: var(--text-pure);
     }
 
-    /* ==========================================================================
-       RESPONSIVE ADAPTATIONS
-       ========================================================================== */
-    @media (max-width: 1060px) {
-      .nav-menu { display: none; }
-      .mobile-menu-btn { display: flex; }
-      .hero-grid-split { grid-template-columns: 1fr; gap: 60px; text-align: center; }
-      .hero-narrative { max-width: 100%; margin: 0 auto; }
-      .hero-subtitle { margin: 0 auto 36px; }
-      .hero-cta-cluster { justify-content: center; }
-      .hero-metrics-bar { margin: 0 auto; }
-      .auto-grid-layout { grid-template-columns: 1fr; }
-      .grid-quad-cards { grid-template-columns: repeat(2, 1fr); }
-      .payment-trays-grid { grid-template-columns: 1fr; }
-      .steps-quad-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-columns-grid { grid-template-columns: 1fr; gap: 40px; }
-    }
-
-    @media (max-width: 768px) {
-      .container { padding: 0 20px; }
-      section { padding: 80px 0; }
-      .hero-cinematic { padding: 60px 0 90px; }
-      .grid-duo-cards { grid-template-columns: 1fr; }
-      .grid-quad-cards { grid-template-columns: 1fr; }
-      .steps-quad-grid { grid-template-columns: 1fr; }
-      .checkout-console-card { padding: 30px 20px; }
-      .mobile-quickbar { display: flex; }
-      body { padding-bottom: 74px; }
-      .badge-sat-left, .badge-sat-right { display: none; }
-    }
-
+    /* Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1840,184 +1653,140 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
+      .custom-cursor-dot, .custom-cursor-ring {
+        display: none !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="ambient-aurora" aria-hidden="true"></div>
+  <!-- Ambient Stardust Dynamic Canvas -->
+  <canvas id="ambientCanvas"></canvas>
 
-  <!-- Interactive Magnetic Cursor Elements (Desktop) -->
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-outline" id="cursorOutline" aria-hidden="true"></div>
+  <!-- Custom Magnetic Cursor -->
+  <div class="custom-cursor-dot" id="cursorDot"></div>
+  <div class="custom-cursor-ring" id="cursorRing"></div>
 
-  <!-- Real-Time Telemetry Bar -->
-  <div class="telemetry-ticker">
-    <div class="ticker-inner">
-      <div class="ticker-live-tag">
-        <span class="live-status-dot"></span> Dispatch protocol operational
-      </div>
-      <div class="ticker-feed">
-        <div class="ticker-item">
-          <span>Mean dispatch duration:</span> <span class="highlight">118 seconds</span>
-        </div>
-        <div class="ticker-item">
-          <span>Completed today:</span> <span class="highlight">142 verified orders</span>
-        </div>
-        <div class="ticker-item">
-          <span>Security guarantee:</span> <span class="highlight">Zero credential access</span>
-        </div>
-        <div class="ticker-item">
-          <span>Accepted:</span> <span class="highlight">Binance Pay · USDT BEP20 · Base · Solana</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Master Floating Header -->
+  <!-- ========================================================================
+       MASTER NAVIGATION
+       ======================================================================== -->
   <header class="master-nav-wrap" id="masterNav">
     <div class="nav-container">
       <a href="#" class="brand-mark">
         <div class="brand-crest">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
         </div>
-        <div class="brand-text">
-          <span class="brand-name">All-in-One Premiums</span>
-          <span class="brand-sub">Sovereign Suite</span>
+        <div class="brand-typography">
+          <span class="brand-name">ALL-IN-ONE PREMIUMS</span>
+          <span class="brand-sub">SOVEREIGN DIGITAL ATELIER</span>
         </div>
       </a>
 
-      <ul class="nav-menu">
-        <li><a href="#x-premium" class="nav-link">X Premium</a></li>
-        <li><a href="#x-automation" class="nav-link">X AutoPilot Suite</a></li>
-        <li><a href="#telegram-premium" class="nav-link">Telegram Premium</a></li>
-        <li><a href="#payment-terminal" class="nav-link">Payment Vault</a></li>
-        <li><a href="#dispatch-process" class="nav-link">How It Works</a></li>
-        <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+      <ul class="nav-links-row">
+        <li><a href="#x-citadel" class="nav-link">01 · X Premium</a></li>
+        <li><a href="#telegram-protocol" class="nav-link">02 · Telegram</a></li>
+        <li><a href="#autopilot-suite" class="nav-link">03 · X AutoPilot</a></li>
+        <li><a href="#settlement-vault" class="nav-link">04 · Vault</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="btn-concierge" onclick="event.preventDefault(); openTelegramConcierge();">
-          <svg viewBox="0 0 24 24"><path d="M21.94 3.5a1 1 0 0 0-1.05-.15L2.6 10.9a1 1 0 0 0 .07 1.87l4.6 1.53 1.77 5.62a1 1 0 0 0 1.73.36l2.55-2.9 4.68 3.45a1 1 0 0 0 1.57-.6l3.4-15.85a1 1 0 0 0-.33-.9zM9.6 13.98l-1.02 3.24-.9-2.87 9.9-6.4z"/></svg>
-          Concierge
+        <a href="#settlement-vault" class="btn-nav-vault">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          DISPATCH VAULT
         </a>
-        <a href="#payment-terminal" class="btn-gold-action">
-          Acquire Pass
-        </a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </div>
     </div>
   </header>
 
   <!-- ========================================================================
-       HERO CINEMATIQUE SECTION
+       HERO: THE SOVEREIGN ATELIER
        ======================================================================== -->
-  <section class="hero-cinematic">
-    <div class="hero-ghost-typography" aria-hidden="true">SOVEREIGN</div>
+  <section class="hero-atelier-section" id="heroSection">
+    <div class="hero-ghost-watermark" id="heroWatermark">SOVEREIGN ATELIER</div>
 
     <div class="container">
-      <div class="hero-grid-split">
-        <div class="hero-narrative">
-          <div class="hero-badge-pill">
-            <svg class="badge-icon-vault" viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            Cryptographic Instant Dispatch · Guaranteed Security
+      <div class="hero-grid">
+        <!-- Left Editorial Narrative -->
+        <div class="hero-editorial-col">
+          <div class="hero-editorial-meta">
+            <span class="hero-meta-dot"></span>
+            <span>MMXXVI COLLECTION · CRYPTOGRAPHIC DISPATCH</span>
           </div>
 
-          <h1 class="hero-title">
-            Digital Status,<br>
-            <em>Effortlessly Commanded.</em>
+          <h1 class="hero-monumental-title">
+            THE SOVEREIGN<br>
+            <span class="hero-title-highlight">DIGITAL SUITE</span>
           </h1>
 
-          <p class="hero-subtitle">
-            All-in-One Premiums provisions authentic X Premium checkmarks, Telegram Premium privileges, and autonomous 12-agent growth engines directly to your identity. Zero password disclosures. Zero friction.
+          <p class="hero-lead-narrative">
+            Private, uncompromised access to tier-one communication and algorithmic infrastructure. Zero password sharing. Zero credential exposure. Immediate cryptographic dispatch.
           </p>
 
-          <div class="hero-cta-cluster">
-            <a href="#x-premium" class="btn-lux-primary">
-              Explore X Premium
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          <div class="hero-actions-group">
+            <a href="#settlement-vault" class="btn-lux-primary">
+              <span>ENTER THE VAULT</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <a href="#x-automation" class="btn-lux-secondary">
-              View X AutoPilot 12-Agents
+            <a href="#x-citadel" class="btn-lux-ghost">
+              <span>EXPLORE EDITIONS</span>
             </a>
           </div>
-
-          <div class="hero-metrics-bar">
-            <div class="metric-unit">
-              <div class="metric-val">&lt; 2 min</div>
-              <p>Mean Delivery</p>
-            </div>
-            <div class="metric-unit">
-              <div class="metric-val">1,450+</div>
-              <p>Verified Activations</p>
-            </div>
-            <div class="metric-unit">
-              <div class="metric-val">100%</div>
-              <p>Escrow Guarantee</p>
-            </div>
-          </div>
         </div>
 
-        <div class="hero-visual-stage">
-          <div class="sovereign-card-container" id="tiltContainer">
-            <div class="sovereign-card" id="sovereignCard">
-              <div class="card-specular-glare" id="cardGlare"></div>
-              <div class="card-micro-pattern"></div>
-
-              <div class="card-top-row">
-                <div class="card-chip"></div>
-                <div class="card-wireless">
-                  <span>DISPATCH NFC</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
-                </div>
-              </div>
-
-              <div class="card-mid-suite">
-                <h2 class="card-suite-title" style="border:none; margin-bottom:14px;">ALL-IN-ONE<br>SOVEREIGN</h2>
-                <div class="card-services-pills">
-                  <span class="service-pill-item">X Premium Blue Check</span>
-                  <span class="service-pill-item">Telegram Star Badge</span>
-                  <span class="service-pill-item">12-Agent Engine</span>
-                </div>
-              </div>
-
-              <div class="card-bottom-row">
-                <div class="card-auth-info">
-                  Token Hash
-                  <b>AI1-9982-VERIFIED</b>
-                </div>
-                <div class="card-gold-crest">A</div>
-              </div>
+        <!-- Right 3D Physical Artifact Centerpiece -->
+        <div class="hero-artifact-perspective">
+          <div class="hero-artifact-wrap" id="heroArtifact">
+            <!-- Floating Satellite Badges -->
+            <div class="satellite-tag sat-x">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>X VERIFIED PROTOCOL</span>
+            </div>
+            <div class="satellite-tag sat-tg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+              <span>TELEGRAM UNCAPPED</span>
+            </div>
+            <div class="satellite-tag sat-agents">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span>12-AGENT FLEET</span>
             </div>
 
-            <div class="satellite-badge badge-sat-left">
-              <div class="sat-icon-wrap">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="sat-text">
-                <div class="sat-title">X Blue Check</div>
-                <p>3 Mo from $5</p>
-              </div>
-            </div>
+            <!-- The Machined Obsidian Slab -->
+            <div class="physical-pass-slab">
+              <div class="slab-specular-glare" id="slabGlare"></div>
 
-            <div class="satellite-badge badge-sat-right">
-              <div class="sat-icon-wrap">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <div>
+                <div class="slab-chip-row">
+                  <div class="slab-emv-chip"></div>
+                  <div class="slab-wireless-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                    <span>SOVEREIGN PASS</span>
+                  </div>
+                </div>
+
+                <div class="slab-body-brand">
+                  <div class="slab-vault-title">ALL-IN-ONE<br>PREMIUMS</div>
+                  <div class="slab-tier-pills-row">
+                    <span class="slab-tier-tag">X Premium</span>
+                    <span class="slab-tier-tag">Telegram</span>
+                    <span class="slab-tier-tag">X AutoPilot</span>
+                  </div>
+                </div>
               </div>
-              <div class="sat-text">
-                <div class="sat-title">12 Agents AI</div>
-                <p>Lifetime $11.99</p>
+
+              <div class="slab-bottom-seal">
+                <div class="slab-auth-id">
+                  <span>DISPATCH PROTOCOL</span>
+                  <b>VAULT ID: #A1-94820</b>
+                </div>
+                <div class="slab-gold-medallion">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"></path></svg>
+                </div>
               </div>
             </div>
           </div>
@@ -2027,245 +1796,93 @@
   </section>
 
   <!-- ========================================================================
-       X PREMIUM FLAGSHIP SECTION
-       MANDATORY PRICING: 3 Months = $5 | 6 Months = $8
+       EXHIBITION 01: X PREMIUM (EDITORIAL SOCIAL CITADEL)
        ======================================================================== -->
-  <section id="x-premium">
+  <section class="exhibition-section" id="x-citadel">
+    <div class="section-watermark-num">01</div>
     <div class="container">
-      <div class="section-header-block">
-        <h2 class="section-headline">X Premium <em>Checkmark</em></h2>
-        <p class="section-subtext">Command algorithmic priority, edit published posts, upload 4K media, and claim the undisputed mark of credibility directly on your profile.</p>
+      <div class="exhibition-header-block">
+        <span class="exhibition-index-label">EXHIBITION 01 / SOCIAL AUTHORITY</span>
+        <h2 class="exhibition-title">X PREMIUM · THE VERIFIED CITADEL</h2>
+        <p class="exhibition-description">
+          Engineered for creators, founders, and sovereign voices. Secure direct access to algorithmic prioritization, Grok intelligence, and monetization eligibility with zero password sharing.
+        </p>
       </div>
 
-      <div class="grid-duo-cards">
-        <!-- 3 Months Tier -->
-        <div class="lux-plan-card">
+      <div class="x-citadel-grid">
+        <!-- Live Real-Time Handle Verification Dock -->
+        <div class="x-handle-interactive-dock">
           <div>
-            <div class="plan-header-row">
-              <svg class="plan-crest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg>
-              <h3 class="plan-name-title">3 Months</h3>
-            </div>
+            <h3 class="dock-title">Live Profile Verification Dock</h3>
+            <p class="dock-lead">Type your X handle below to preview your verified identity before queuing dispatch.</p>
 
-            <div class="price-display-cluster">
-              <span class="price-currency">$</span>
-              <span class="price-amount">5</span>
-              <span class="price-cadence">/ one-time</span>
+            <div class="handle-field-wrap">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <input type="text" id="liveHandleInput" class="handle-input-text" placeholder="elonmusk or @yourhandle" autocomplete="off" spellcheck="false">
             </div>
-            <p class="price-note-sub">Single payment · Zero recurring surprises</p>
-
-            <ul class="plan-perk-list">
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Blue checkmark verification
-              </li>
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Edit post privilege &amp; longer media
-              </li>
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                50% reduced timeline advertisements
-              </li>
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Instant cryptographic activation
-              </li>
-            </ul>
           </div>
 
-          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="X Premium, 3 Months" data-price="$5.00">
-            Select 3-Month Plan · $5
-          </button>
+          <!-- Real-Time Proxy Preview Card -->
+          <div class="profile-card-preview" id="liveProfileCard">
+            <div class="profile-avatar-box" id="liveAvatarBox">X</div>
+            <div class="profile-meta-info">
+              <span class="profile-disp-name" id="liveDispName">
+                Profile Name
+                <svg class="profile-verified-badge" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </span>
+              <span class="profile-user-handle" id="liveHandleDisp">@handle</span>
+            </div>
+          </div>
         </div>
 
-        <!-- 6 Months Tier -->
-        <div class="lux-plan-card highlight-featured">
-          <span class="plan-corner-ribbon">Best Value · 67% Less</span>
-          <div>
-            <div class="plan-header-row">
-              <svg class="plan-crest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg>
-              <h3 class="plan-name-title">6 Months</h3>
+        <!-- Curated Tiers Stack -->
+        <div class="x-tiers-stack">
+          <!-- 3 Months Tier ($5.00) -->
+          <div class="x-tier-card">
+            <div>
+              <div class="tier-card-header">
+                <span class="tier-badge-label">CURATED EDITION</span>
+              </div>
+              <h3 class="tier-duration-title">3 Months Verified Access</h3>
+              <div class="tier-price-row">
+                <span class="tier-price-symbol">$</span>
+                <span class="tier-price-digit">5.00</span>
+                <span class="tier-price-period">/ 3 Months Total</span>
+              </div>
+              <ul class="tier-benefits-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Official verified blue checkmark</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Boosted reply ranking in conversations</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Grok AI unlimited generation access</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Edit post & long-form writing suite</li>
+              </ul>
             </div>
-
-            <div class="price-display-cluster">
-              <span class="price-currency">$</span>
-              <span class="price-amount">8</span>
-              <span class="price-cadence">/ one-time</span>
-            </div>
-            <p class="price-note-sub">Single payment · Optimal pricing efficiency</p>
-
-            <ul class="plan-perk-list">
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Official blue checkmark authentication
-              </li>
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Highest algorithmic reply boost in threads
-              </li>
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Grok AI analytical capabilities
-              </li>
-              <li class="plan-perk-item">
-                <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                Priority concierge dispatch &amp; warranty
-              </li>
-            </ul>
+            <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="X Premium, 3 Months" data-price="$5.00">
+              Select 3 Months · $5.00
+            </button>
           </div>
 
-          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="X Premium, 6 Months" data-price="$8.00">
-            Select 6-Month Plan · $8
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       X AUTOMATION EXTENSION (12 AGENTS AUTONOMOUS SUITE)
-       MANDATORY: 12 Agents · $11.99 Lifetime · Bot: @XAutoPilot1Bot
-       ======================================================================== -->
-  <section id="x-automation" class="x-auto-suite-section">
-    <div class="container">
-      <div class="auto-flagship-card">
-        <div class="auto-grid-layout">
-          <div>
-            <h2 class="auto-title">
-              Full Autopilot.<br>
-              <span class="gold-highlight">12 Autonomous Agents.</span><br>
-              Zero Human Strain.
-            </h2>
-
-            <p class="auto-desc">
-              The proprietary browser extension that continuously replies, crafts insightful quotes, networks with top creators, and grows your X audience in real time. Runs quietly in your browser with strict behavioral heuristics that protect your account.
-            </p>
-
-            <!-- 12 Agents Interactive Matrix -->
-            <div class="agents-kinetic-grid">
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">1. Neural Auto-Reply</span>
-                  <span>Context-aware responses</span>
-                </div>
+          <!-- 6 Months Tier ($8.00) -->
+          <div class="x-tier-card featured-card">
+            <div>
+              <div class="tier-card-header">
+                <span class="tier-badge-label">BEST VALUE ATELIER</span>
               </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">2. Viral Radar Scout</span>
-                  <span>Early niche breakout alerts</span>
-                </div>
+              <h3 class="tier-duration-title">6 Months Verified Access</h3>
+              <div class="tier-price-row">
+                <span class="tier-price-symbol">$</span>
+                <span class="tier-price-digit">8.00</span>
+                <span class="tier-price-period">/ 6 Months Total</span>
               </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">3. Quote Crafter AI</span>
-                  <span>High-engagement commentary</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">4. Follower Matrix</span>
-                  <span>Strategic audience networking</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">5. Ghost Shield Guard</span>
-                  <span>Live X rate limit guardian</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">6. Unfollower Purge</span>
-                  <span>Automated ratio optimizer</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">7. Thread Synthesizer</span>
-                  <span>Structured knowledge drafting</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">8. Comment Responder</span>
-                  <span>100% reply rate on your tweets</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">9. Trend Hunter AI</span>
-                  <span>Global keyword spike tracker</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">10. Sorsa Velocity</span>
-                  <span>Algorithmic engagement ranker</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">11. DM Outreach Scout</span>
-                  <span>Warm conversation scheduler</span>
-                </div>
-              </div>
-              <div class="agent-pill">
-                <span class="agent-indicator"></span>
-                <div class="agent-info">
-                  <span class="agent-name">12. Growth Analytics</span>
-                  <span>Daily automated KPI telemetry</span>
-                </div>
-              </div>
+              <ul class="tier-benefits-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full 6-Month uninterrupted verification</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Maximum reply priority & algorithmic boost</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Creator revenue share program eligible</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 1080p / 3-hour video upload capability</li>
+              </ul>
             </div>
-
-            <div class="auto-price-row">
-              <span class="auto-price-num">$11.99</span>
-              <div class="auto-price-meta">
-                <b>Lifetime access · Zero subscription</b>
-                Unlocks all 12 autonomous agents with lifetime updates
-              </div>
-            </div>
-
-            <div style="display:flex; gap:16px; flex-wrap:wrap;">
-              <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="btn-lux-primary">
-                Launch via Telegram Bot
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 3.5a1 1 0 0 0-1.05-.15L2.6 10.9a1 1 0 0 0 .07 1.87l4.6 1.53 1.77 5.62a1 1 0 0 0 1.73.36l2.55-2.9 4.68 3.45a1 1 0 0 0 1.57-.6l3.4-15.85a1 1 0 0 0-.33-.9zM9.6 13.98l-1.02 3.24-.9-2.87 9.9-6.4z"/></svg>
-              </a>
-              <button type="button" class="btn-lux-secondary plan-trigger-btn" data-plan="X AutoPilot 12-Agents Suite" data-price="$11.99">
-                Order via Vault Checkout ($11.99)
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <div class="telemetry-console-wrapper">
-              <div class="console-topbar">
-                <div class="console-indicator-lights">
-                  <span class="c-light c-red"></span>
-                  <span class="c-light c-yellow"></span>
-                  <span class="c-light c-green"></span>
-                </div>
-                <div class="console-meta-title">Agent Telemetry · Live Runtime</div>
-              </div>
-              <div class="terminal-stream" id="terminalStream">
-                <div class="log-line"><span class="log-time">[18:04:12]</span> <span class="log-agent">VIRAL_RADAR</span> <span class="log-action">Detected high velocity thread #crypto #ai</span></div>
-                <div class="log-line"><span class="log-time">[18:04:19]</span> <span class="log-agent">NEURAL_REPLY</span> <span class="log-action">Synthesized high-value perspective (98.4% match)</span></div>
-                <div class="log-line"><span class="log-time">[18:04:22]</span> <span class="log-agent">SAFETY_GUARD</span> <span class="log-action">Pacing verified: 1/15 safe threshold</span></div>
-                <div class="log-line"><span class="log-time">[18:04:35]</span> <span class="log-agent">SORSA_BOOST</span> <span class="log-action">+42 algorithmic impressions registered</span></div>
-                <div class="log-line"><span class="log-time">[18:04:51]</span> <span class="log-agent">FOLLOWER_MTX</span> <span class="log-action">2 verified accounts engaged with commentary</span></div>
-              </div>
-            </div>
+            <button type="button" class="btn-select-tier btn-primary-tier plan-trigger-btn" data-plan="X Premium, 6 Months" data-price="$8.00">
+              Select 6 Months · $8.00
+            </button>
           </div>
         </div>
       </div>
@@ -2273,103 +1890,96 @@
   </section>
 
   <!-- ========================================================================
-       TELEGRAM PREMIUM SECTION
-       PRICING: 1mo $6 | 3mo $16 | 6mo $20 | 12mo $33
+       EXHIBITION 02: TELEGRAM PREMIUM (UNCAPPED TRANSMISSION)
        ======================================================================== -->
-  <section id="telegram-premium">
+  <section class="exhibition-section" id="telegram-protocol">
+    <div class="section-watermark-num">02</div>
     <div class="container">
-      <div class="section-header-block">
-        <h2 class="section-headline">Telegram Premium <em>Privileges</em></h2>
-        <p class="section-subtext">Massive 4GB transfers, lightning downloads, real-time voice transcription, and the iconic star badge for seamless messaging supremacy.</p>
+      <div class="exhibition-header-block">
+        <span class="exhibition-index-label">EXHIBITION 02 / UNCAPPED PROTOCOL</span>
+        <h2 class="exhibition-title">TELEGRAM PREMIUM · UNRESTRICTED REACH</h2>
+        <p class="exhibition-description">
+          4GB massive file uploads, real-time voice-to-text synthesis, doubled channel join limits, and zero sponsored messages. Dispatched directly to your Telegram username.
+        </p>
       </div>
 
-      <div class="grid-quad-cards">
+      <div class="tg-tiers-quad-grid">
         <!-- 1 Month -->
-        <div class="tg-tier-card">
+        <div class="tg-quad-card">
           <div>
-            <div class="tg-card-header">
-              <svg class="tg-badge-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <h3 class="tg-duration">1 Month</h3>
+            <h3 class="tg-quad-title">1 Month</h3>
+            <div class="tier-price-row">
+              <span class="tier-price-symbol">$</span>
+              <span class="tier-price-digit">6.00</span>
             </div>
-            <div class="tg-price-group">
-              <span class="price-currency">$</span>
-              <span class="tg-amount">6</span>
-            </div>
-            <ul class="tg-features">
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> High-speed downloads</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Telegram star badge</li>
+            <ul class="tier-benefits-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 4GB file transfers</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Voice transcription</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Premium star badge</li>
             </ul>
           </div>
           <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 1 Month" data-price="$6.00">
-            Select $6
+            Select $6.00
           </button>
         </div>
 
         <!-- 3 Months -->
-        <div class="tg-tier-card">
+        <div class="tg-quad-card">
           <div>
-            <div class="tg-card-header">
-              <svg class="tg-badge-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <h3 class="tg-duration">3 Months</h3>
+            <h3 class="tg-quad-title">3 Months</h3>
+            <div class="tier-price-row">
+              <span class="tier-price-symbol">$</span>
+              <span class="tier-price-digit">16.00</span>
             </div>
-            <div class="tg-price-group">
-              <span class="price-currency">$</span>
-              <span class="tg-amount">16</span>
-            </div>
-            <ul class="tg-features">
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> 4GB file uploads</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Exclusive animated emojis</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Zero channel sponsors</li>
+            <ul class="tier-benefits-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 4GB file transfers</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time chat translate</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Doubled channel caps</li>
             </ul>
           </div>
           <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 3 Months" data-price="$16.00">
-            Select $16
+            Select $16.00
           </button>
         </div>
 
-        <!-- 6 Months -->
-        <div class="tg-tier-card featured-tg">
-          <span class="plan-corner-ribbon" style="top:14px; right:14px; font-size:12px; padding:3px 9px;">Popular</span>
+        <!-- 6 Months (Popular) -->
+        <div class="tg-quad-card popular-curation">
           <div>
-            <div class="tg-card-header">
-              <svg class="tg-badge-star" style="color:var(--gold-bright);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <h3 class="tg-duration">6 Months</h3>
+            <div class="tier-card-header">
+              <span class="tier-badge-label">CURATED CHOICE</span>
             </div>
-            <div class="tg-price-group">
-              <span class="price-currency">$</span>
-              <span class="tg-amount">20</span>
+            <h3 class="tg-quad-title">6 Months</h3>
+            <div class="tier-price-row">
+              <span class="tier-price-symbol">$</span>
+              <span class="tier-price-digit">20.00</span>
             </div>
-            <ul class="tg-features">
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Voice-to-text decoding</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Real-time chat translation</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Doubled capacity limits</li>
+            <ul class="tier-benefits-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full speed download rate</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Exclusive animated emojis</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero channel advertising</li>
             </ul>
           </div>
-          <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 6 Months" data-price="$20.00" style="background:var(--gold-primary); color:#08080A; border:none; font-weight:800;">
-            Select $20
+          <button type="button" class="btn-select-tier btn-primary-tier plan-trigger-btn" data-plan="Telegram Premium, 6 Months" data-price="$20.00">
+            Select $20.00
           </button>
         </div>
 
         <!-- 12 Months -->
-        <div class="tg-tier-card">
+        <div class="tg-quad-card">
           <div>
-            <div class="tg-card-header">
-              <svg class="tg-badge-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <h3 class="tg-duration">12 Months</h3>
+            <h3 class="tg-quad-title">12 Months</h3>
+            <div class="tier-price-row">
+              <span class="tier-price-symbol">$</span>
+              <span class="tier-price-digit">33.00</span>
             </div>
-            <div class="tg-price-group">
-              <span class="price-currency">$</span>
-              <span class="tg-amount">33</span>
-            </div>
-            <ul class="tg-features">
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Full annual privileges</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Lowest monthly equivalent</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg> Dedicated priority support</li>
+            <ul class="tier-benefits-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 1 Year continuous suite</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Infinite cloud storage archive</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Maximum tier savings</li>
             </ul>
           </div>
           <button type="button" class="btn-select-tier plan-trigger-btn" data-plan="Telegram Premium, 12 Months" data-price="$33.00">
-            Select $33
+            Select $33.00
           </button>
         </div>
       </div>
@@ -2377,272 +1987,313 @@
   </section>
 
   <!-- ========================================================================
-       MACHINED OBSIDIAN PAYMENT & CRYPTOGRAPHIC VERIFICATION TERMINAL
+       EXHIBITION 03: X AUTOPILOT (12-AGENT AUTONOMOUS FLEET)
        ======================================================================== -->
-  <section id="payment-terminal" class="terminal-section">
+  <section class="exhibition-section" id="autopilot-suite">
+    <div class="section-watermark-num">03</div>
     <div class="container">
-      <div class="section-header-block">
-        <h2 class="section-headline">Cryptographic <em>Payment Vault</em></h2>
-        <p class="section-subtext">Select your preferred settlement rail below. Transfer the exact amount, then transmit your transaction reference for swift verification.</p>
+      <div class="exhibition-header-block">
+        <span class="exhibition-index-label">EXHIBITION 03 / AUTONOMOUS COGNITION</span>
+        <h2 class="exhibition-title">X AUTOPILOT · 12-AGENT AUTONOMOUS EXTENSION</h2>
+        <p class="exhibition-description">
+          A full-spectrum autonomous operations crew running directly inside your browser. Twelve specialized agent personas orchestrating breakout detection, thread synthesis, and contextual engagement.
+        </p>
       </div>
 
-      <!-- Payment Trays -->
-      <div class="payment-trays-grid">
-        <!-- Binance Pay -->
-        <div class="machined-tray" tabindex="0" role="button" data-method="Binance Pay" data-detail="409082023">
+      <div class="autopilot-hero-wrapper">
+        <div class="autopilot-top-summary">
           <div>
-            <div class="tray-top">
-              <span class="tray-brand">BINANCE PAY</span>
-              <div class="tray-check-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="tier-badge-label">LIFETIME ACCESS SUITE</span>
+            <div class="autopilot-banner-price">
+              <span class="autopilot-price-figure">$11.99</span>
+              <div class="autopilot-price-meta">
+                <b>12 Specialized Neural Agents Included</b>
+                <span>One-time acquisition · Zero subscription renewal</span>
               </div>
             </div>
-            <div class="tray-network">Binance Pay ID Rail</div>
-            <div class="crypto-address-dock">
-              <span class="crypto-code" id="codeBinance">409082023</span>
-              <button type="button" class="btn-tray-copy" data-copy-target="codeBinance">
-                Copy ID
-              </button>
-            </div>
           </div>
-          <p class="tray-hint-msg">Instant zero-gas settlement using Binance App Pay feature.</p>
-        </div>
-
-        <!-- USDT BEP20 / Base USDC -->
-        <div class="machined-tray" tabindex="0" role="button" data-method="USDT (BEP20) / Base USDC" data-detail="0x4d523fde952dc0bb3363e301462d4ebc1236d9c7">
           <div>
-            <div class="tray-top">
-              <span class="tray-brand">USDT · BEP20 / BASE</span>
-              <div class="tray-check-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-            </div>
-            <div class="tray-network">BNB Smart Chain (BEP20) / Base Chain</div>
-            <div class="crypto-address-dock">
-              <span class="crypto-code" id="codeEvm">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</span>
-              <button type="button" class="btn-tray-copy" data-copy-target="codeEvm">
-                Copy Address
-              </button>
-            </div>
-          </div>
-          <p class="tray-hint-msg">Universal EVM receiver. Compatible with USDT (BEP20) and Base USDC.</p>
-        </div>
-
-        <!-- Solana USDC -->
-        <div class="machined-tray" tabindex="0" role="button" data-method="Solana USDC" data-detail="AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe">
-          <div>
-            <div class="tray-top">
-              <span class="tray-brand">SOLANA USDC</span>
-              <div class="tray-check-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-            </div>
-            <div class="tray-network">Solana SPL Network</div>
-            <div class="crypto-address-dock">
-              <span class="crypto-code" id="codeSol">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</span>
-              <button type="button" class="btn-tray-copy" data-copy-target="codeSol">
-                Copy Address
-              </button>
-            </div>
-          </div>
-          <p class="tray-hint-msg warning-highlight">Important: Transmit exclusively native USDC on Solana. Other SPL tokens cannot be received.</p>
-        </div>
-      </div>
-
-      <!-- Checkout Console Summary -->
-      <div class="checkout-console-card">
-        <div class="console-title-row">
-          <h3 class="console-title">Order Terminal Summary</h3>
-          <span class="console-status-pill" id="consoleStatusPill">AWAITING SELECTION</span>
-        </div>
-
-        <div class="summary-spec-list">
-          <div class="spec-line">
-            <span class="spec-key">Chosen Service</span>
-            <span class="spec-val" id="summaryPackageText">None Selected (Pick Above)</span>
-          </div>
-          <div class="spec-line">
-            <span class="spec-key">Settlement Total</span>
-            <span class="spec-val gold" id="summaryAmountText">—</span>
-          </div>
-          <div class="spec-line">
-            <span class="spec-key">Payment Rail</span>
-            <span class="spec-val" id="summaryMethodText">None Selected</span>
-          </div>
-        </div>
-
-        <div class="confirmation-toggle-box" id="confirmToggleBox">
-          <input type="checkbox" id="orderConfirmCheck">
-          <label for="orderConfirmCheck">
-            I confirm that I will transfer the exact settlement amount to the verified address above.
-          </label>
-        </div>
-
-        <div class="error-alert-banner" id="errorAlertBanner">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-          <span id="errorMessageText">Please choose a package and payment rail first.</span>
-        </div>
-
-        <button type="button" id="openDrawerBtn" class="btn-gold-action" style="width:100%; justify-content:center; padding:16px;">
-          I Have Transferred Payment · Enter Details
-        </button>
-
-        <!-- Slide Drawer Order Submission Form -->
-        <div class="order-dispatch-drawer" id="orderDrawer">
-          <form class="dispatch-form-pane" id="dispatchForm" novalidate>
-            <h3>Order Dispatch Verification</h3>
-            <p class="form-guidance">Submit your handle and transaction proof. Our automated dispatcher reconciles the blockchain and processes your order in under 24 hours.</p>
-
-            <div class="form-group-field">
-              <label for="tgHandle">Telegram Username *</label>
-              <input type="text" id="tgHandle" class="input-machined" placeholder="@yourhandle" required>
-              <span class="tray-hint-msg" id="err-tg-msg" style="color:#FFA6B9; display:none;">Must include the '@' symbol</span>
-            </div>
-
-            <div class="form-group-field" id="xProfileContainer">
-              <label for="xProfileUrl">X Profile Link / Handle *</label>
-              <input type="text" id="xProfileUrl" class="input-machined" placeholder="https://x.com/yourhandle">
-              <span class="tray-hint-msg" id="err-x-msg" style="color:#FFA6B9; display:none;">Must be a valid x.com profile URL</span>
-
-              <!-- Live Cloudflare Worker Proxy Profile Preview -->
-              <div class="live-x-preview-dock" id="liveXPreviewDock">
-                <div class="preview-account-row">
-                  <div class="preview-avatar-circle" id="prevAvatar">X</div>
-                  <div class="preview-names-meta">
-                    <div class="prev-display-name" id="prevName">Resolving Profile...</div>
-                    <span id="prevHandle">@username</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group-field">
-              <label id="screenshotLabelText">Payment Receipt Screenshot *</label>
-              <div class="file-dropzone-box" id="dropzoneBox">
-                <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke-width="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="17 8 12 3 7 8"></polyline>
-                  <line x1="12" y1="3" x2="12" y2="15"></line>
-                </svg>
-                <div style="font-size:13.5px; font-weight:600; color:var(--text-pure);" id="dropzoneText">
-                  Click or drag payment screenshot here
-                </div>
-                <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
-                  Supports PNG, JPG, WebP
-                </div>
-                <div class="file-preview-wrap" id="screenshotPreviewWrap"></div>
-                <input type="file" id="screenshotInput" class="hidden-file-input" accept="image/*">
-              </div>
-              <span class="tray-hint-msg" id="err-file-msg" style="color:#FFA6B9; display:none;">Please attach a valid screenshot</span>
-            </div>
-
-            <div class="form-group-field">
-              <label for="txReference">Transaction Hash or Binance Order ID *</label>
-              <input type="text" id="txReference" class="input-machined" placeholder="Binance Order ID or 0x... / Solana Tx Hash" required>
-              <span class="tray-hint-msg" id="err-tx-msg" style="color:#FFA6B9; display:none;">Please provide your transaction ID or hash</span>
-            </div>
-
-            <button type="submit" id="submitOrderBtn" class="btn-lux-primary" style="width:100%; justify-content:center; padding:16px;" disabled>
-              Dispatch Order For Verification
+            <button type="button" class="btn-select-tier btn-primary-tier plan-trigger-btn" data-plan="X AutoPilot 12-Agents Suite" data-price="$11.99" style="padding:18px 32px; font-size:15px;">
+              Acquire 12-Agent Suite · $11.99
             </button>
+          </div>
+        </div>
 
-            <div class="submit-result-status" id="submitResultStatus"></div>
-          </form>
+        <!-- 12 Autonomous Agents Matrix -->
+        <div class="agents-matrix-grid">
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">01 · TREND_HUNTER</span>
+            <p class="agent-desc-text">Surveillance across niche breakout velocity</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">02 · VIRAL_RADAR</span>
+            <p class="agent-desc-text">Algorithmic quote-tweet opening detection</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">03 · THREAD_CRAFTER</span>
+            <p class="agent-desc-text">Multi-chapter narrative retention structuring</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">04 · PERSONA_MIRROR</span>
+            <p class="agent-desc-text">Synthesizes tone and cadence to your voice</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">05 · CONCIERGE_REPLY</span>
+            <p class="agent-desc-text">Context-aware conversational replies to peers</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">06 · GHOST_SHIELD</span>
+            <p class="agent-desc-text">Adaptive rate-limit & heartbeat monitor</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">07 · ANALYTICS_SCOUT</span>
+            <p class="agent-desc-text">Follower retention & impressions telemetry</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">08 · TIMING_ORACLE</span>
+            <p class="agent-desc-text">Time-zone optimal posting scheduler</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">09 · MEDIA_CURATOR</span>
+            <p class="agent-desc-text">Pairs high-impact charts & image assets</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">10 · HOOK_LAB</span>
+            <p class="agent-desc-text">Generates 5 distinct high-CTR headline hooks</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">11 · RETENTION_LOOP</span>
+            <p class="agent-desc-text">Cultivates recurring replies & bookmarks</p>
+          </div>
+          <div class="agent-matrix-cell">
+            <span class="agent-code-tag">12 · NEURAL_DISPATCH</span>
+            <p class="agent-desc-text">Synchronizes the entire fleet autonomously</p>
+          </div>
+        </div>
+
+        <!-- Telemetry Simulator -->
+        <div class="telemetry-stream-console">
+          <div class="telemetry-console-header">
+            <div class="telemetry-status-indicator">
+              <span class="telemetry-dot"></span>
+              <span>12 AGENTS ONLINE · HEARTBEAT OPTIMAL</span>
+            </div>
+            <span style="font-size:12px; color:var(--gold-dim);">TELEGRAM: @XAutoPilot1Bot</span>
+          </div>
+          <div class="terminal-feed-lines" id="telemetryStream">
+            <div class="stream-line"><span class="line-time">[18:50:02]</span> <span class="line-agent">TREND_HUNTER</span> <span class="line-msg">Scanning algorithmic breakout velocity across #Web3</span></div>
+            <div class="stream-line"><span class="line-time">[18:50:04]</span> <span class="line-agent">HOOK_LAB</span> <span class="line-msg">Prepared 4 high-retention hooks for incoming thread</span></div>
+            <div class="stream-line"><span class="line-time">[18:50:07]</span> <span class="line-agent">GHOST_SHIELD</span> <span class="line-msg">Latency 38ms · No rate limit flags detected</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================================
-       FOUR STEPS SOVEREIGN DISPATCH
+       THE SETTLEMENT VAULT & CRYPTOGRAPHIC DISPATCH
        ======================================================================== -->
-  <section id="dispatch-process">
+  <section class="settlement-vault-section" id="settlement-vault">
     <div class="container">
-      <div class="section-header-block">
-        <h2 class="section-headline">Sovereign <em>Dispatch Flow</em></h2>
-        <p class="section-subtext">Engineered for absolute frictionlessness. From payment transmission to verified status in four swift steps.</p>
+      <div class="exhibition-header-block" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <span class="exhibition-index-label">CRYPTOGRAPHIC TERMINAL / SECTION 04</span>
+        <h2 class="exhibition-title">THE SETTLEMENT VAULT</h2>
+        <p class="exhibition-description">
+          Instant cryptographic dispatch. Select your payment rail below, transmit the exact package amount, and queue your order for immediate concierge verification.
+        </p>
       </div>
 
-      <div class="steps-quad-grid">
-        <div class="step-chronicle-card">
-          <span class="step-chronicle-num">01</span>
-          <h3>Select Identity Tier</h3>
-          <p>Choose X Premium duration, Telegram Premium star package, or the 12-agent autonomous growth extension.</p>
+      <div class="vault-layout-card">
+        <!-- 3 Machined Obsidian Trays -->
+        <div class="machined-trays-grid">
+          <!-- Tray 1: Binance Pay -->
+          <div class="machined-tray" tabindex="0" role="button" data-method="Binance Pay" data-detail="409082023">
+            <div>
+              <div class="tray-topbar">
+                <span class="tray-rail-name">BINANCE PAY</span>
+                <div class="tray-radio-indicator"></div>
+              </div>
+              <div class="tray-network-label">Zero-Gas Instant App Pay</div>
+              <div class="tray-address-dock">
+                <span class="tray-address-text" id="binanceVal">409082023</span>
+                <button type="button" class="btn-tray-copy" data-copy-target="binanceVal">Copy ID</button>
+              </div>
+            </div>
+            <p class="tray-instruction-note">Instant zero-fee transfer using Binance Pay ID.</p>
+          </div>
+
+          <!-- Tray 2: USDT BEP20 / Base USDC -->
+          <div class="machined-tray" tabindex="0" role="button" data-method="USDT (BEP20) / Base USDC" data-detail="0x4d523fde952dc0bb3363e301462d4ebc1236d9c7">
+            <div>
+              <div class="tray-topbar">
+                <span class="tray-rail-name">USDT · BEP20 / BASE</span>
+                <div class="tray-radio-indicator"></div>
+              </div>
+              <div class="tray-network-label">BNB Smart Chain (BEP20) / Base</div>
+              <div class="tray-address-dock">
+                <span class="tray-address-text" id="evmVal">0x4d523fde952dc0bb3363e301462d4ebc1236d9c7</span>
+                <button type="button" class="btn-tray-copy" data-copy-target="evmVal">Copy Address</button>
+              </div>
+            </div>
+            <p class="tray-instruction-note">Universal EVM rail. Compatible with USDT (BEP20) or Base USDC.</p>
+          </div>
+
+          <!-- Tray 3: Solana USDC -->
+          <div class="machined-tray" tabindex="0" role="button" data-method="Solana USDC" data-detail="AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe">
+            <div>
+              <div class="tray-topbar">
+                <span class="tray-rail-name">SOLANA USDC</span>
+                <div class="tray-radio-indicator"></div>
+              </div>
+              <div class="tray-network-label">Solana SPL Token Rail</div>
+              <div class="tray-address-dock">
+                <span class="tray-address-text" id="solVal">AQwdh6rZEekLNYxmWtTrkkYvxTNiAqTagVvdsbJkkiTe</span>
+                <button type="button" class="btn-tray-copy" data-copy-target="solVal">Copy Address</button>
+              </div>
+            </div>
+            <p class="tray-instruction-note highlight-sol">Transmit exclusively native USDC on Solana.</p>
+          </div>
         </div>
-        <div class="step-chronicle-card">
-          <span class="step-chronicle-num">02</span>
-          <h3>Transfer Settlement</h3>
-          <p>Send the exact amount via Binance Pay ID, USDT BEP20, Base USDC, or Solana USDC.</p>
+
+        <!-- Checkout Summary Console -->
+        <div class="vault-summary-panel">
+          <div class="summary-details-grid">
+            <div class="summary-spec-cell">
+              <span class="spec-label">CONFIGURED EDITION</span>
+              <span class="spec-val" id="sumPackage">Select a tier above</span>
+            </div>
+            <div class="summary-spec-cell">
+              <span class="spec-label">TOTAL SETTLEMENT</span>
+              <span class="spec-val spec-gold" id="sumPrice">$0.00</span>
+            </div>
+            <div class="summary-spec-cell">
+              <span class="spec-label">SETTLEMENT RAIL</span>
+              <span class="spec-val" id="sumMethod">Click a payment tray</span>
+            </div>
+          </div>
+
+          <!-- Mandatory Confirmation Checkbox -->
+          <div class="confirm-checkbox-row">
+            <input type="checkbox" id="orderConfirmCheck">
+            <label for="orderConfirmCheck">I confirm that I will transfer the exact package amount to the designated payment tray.</label>
+          </div>
+
+          <button type="button" class="btn-lux-primary" id="openDrawerBtn" style="width:100%; font-size:15px; padding:18px 36px;">
+            OPEN DISPATCH VERIFICATION DRAWER
+          </button>
         </div>
-        <div class="step-chronicle-card">
-          <span class="step-chronicle-num">03</span>
-          <h3>Transmit Reference</h3>
-          <p>Provide your target handle and upload your payment transaction screenshot into the secure verification drawer.</p>
-        </div>
-        <div class="step-chronicle-card">
-          <span class="step-chronicle-num">04</span>
-          <h3>Cryptographic Dispatch</h3>
-          <p>Our automated node confirms payment and applies your official upgrade within minutes.</p>
+
+        <!-- Order Dispatch Drawer -->
+        <div class="order-dispatch-drawer" id="orderDrawer">
+          <div class="dispatch-drawer-inner">
+            <form id="dispatchForm" class="form-inputs-stack">
+              <!-- Telegram Handle -->
+              <div class="input-field-group">
+                <label for="tgHandle">Your Telegram Username *</label>
+                <input type="text" id="tgHandle" class="input-lux-box" placeholder="@yourusername" required autocomplete="off">
+                <span class="validation-error-text" id="errTgMsg">Please include @ in your Telegram handle</span>
+              </div>
+
+              <!-- X Profile Link (Only for X orders) -->
+              <div class="input-field-group" id="xProfileFieldWrap" style="display:none;">
+                <label for="xProfileUrl">X (Twitter) Profile Link or @handle *</label>
+                <input type="text" id="xProfileUrl" class="input-lux-box" placeholder="https://x.com/yourhandle or @yourhandle" autocomplete="off">
+                <span class="validation-error-text" id="errXMsg">Please enter a valid X profile link or @handle</span>
+              </div>
+
+              <!-- Transaction Reference -->
+              <div class="input-field-group">
+                <label for="txRef">Transaction Hash / Order Reference *</label>
+                <input type="text" id="txRef" class="input-lux-box" placeholder="e.g. Binance Order ID or Blockchain Tx Hash" required autocomplete="off">
+                <span class="validation-error-text" id="errTxMsg">Reference must be at least 5 characters</span>
+              </div>
+
+              <!-- Drag & Drop Proof Screenshot -->
+              <div class="input-field-group">
+                <label id="screenshotLabelText">Payment Receipt Screenshot *</label>
+                <div class="dropzone-lux-wrap" id="dropzoneBox">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold-bright); margin:0 auto;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  <p id="dropzoneText">Click or drag payment screenshot here</p>
+                  <input type="file" id="screenshotFile" accept="image/*" style="display:none;" required>
+                </div>
+                <div id="screenshotPreviewBox" style="display:none; margin-top:12px; text-align:center;"></div>
+              </div>
+
+              <button type="submit" class="btn-submit-order" id="submitOrderBtn" disabled>
+                DISPATCH ORDER FOR VERIFICATION
+              </button>
+
+              <div class="order-status-banner" id="orderStatusBanner"></div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================================
-       FREQUENTLY ASKED QUESTIONS (FAQ)
+       EDITORIAL FAQ ACCORDION (ZERO LAYOUT THRASH)
        ======================================================================== -->
-  <section id="faq-section">
+  <section class="editorial-faq-section" id="faq">
     <div class="container">
-      <div class="section-header-block">
-        <h2 class="section-headline">Frequently Asked <em>Questions</em></h2>
-        <p class="section-subtext">Everything you need to know about our cryptographic fulfillment protocol and guarantees.</p>
+      <div class="exhibition-header-block" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <span class="exhibition-index-label">CURATED KNOWLEDGE</span>
+        <h2 class="exhibition-title">FREQUENTLY ANSWERED</h2>
       </div>
 
-      <div class="faq-bespoke-list">
-        <div class="faq-bespoke-item">
+      <div class="faq-accordion-stack">
+        <div class="faq-item-row">
           <button type="button" class="faq-trigger-btn">
-            Is my account password or private login ever required?
-            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span>How is X Premium dispatched without asking for my password?</span>
+            <div class="faq-rotator-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
           </button>
-          <div class="faq-body-content">
-            <div class="faq-inner-text">
-              Never. We never ask for, require, or store passwords or sensitive account credentials. All subscriptions are provisioned via official protocol gift mechanisms, subscription vouchers, and public profile links. Your security remains 100% sovereign.
+          <div class="faq-answer-drawer">
+            <div class="faq-answer-inner">
+              We never require passwords, 2FA credentials, or sensitive authentication cookies. All upgrades are provisioned through verified cryptographic settlement channels or direct protocol gifts linked solely to your public profile link.
             </div>
           </div>
         </div>
 
-        <div class="faq-bespoke-item">
+        <div class="faq-item-row">
           <button type="button" class="faq-trigger-btn">
-            How fast is the typical subscription activation?
-            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span>What is the average dispatch timeframe following transfer?</span>
+            <div class="faq-rotator-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
           </button>
-          <div class="faq-body-content">
-            <div class="faq-inner-text">
-              The vast majority of orders are fulfilled and verified within minutes of blockchain confirmation. During peak network volumes or queue surges, fulfillment takes up to 24 hours with live status notifications provided via our Telegram concierge.
+          <div class="faq-answer-drawer">
+            <div class="faq-answer-inner">
+              Most orders are verified and queued within 15 to 45 minutes after submitting your payment reference and receipt proof. If submitting during off-peak hours, processing completes within a maximum of 3 hours.
             </div>
           </div>
         </div>
 
-        <div class="faq-bespoke-item">
+        <div class="faq-item-row">
           <button type="button" class="faq-trigger-btn">
-            What blockchain payment methods do you support?
-            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span>How do I receive the X AutoPilot 12-Agent Extension?</span>
+            <div class="faq-rotator-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
           </button>
-          <div class="faq-body-content">
-            <div class="faq-inner-text">
-              We natively accept Binance Pay ID (instant zero-fee settlement), USDT on BNB Smart Chain (BEP20), USDC on Base, and native USDC on Solana. Please ensure you transfer on the matching network to avoid fund misplacement.
+          <div class="faq-answer-drawer">
+            <div class="faq-answer-inner">
+              Once your transaction reference is confirmed, our automated concierge contacts your submitted Telegram handle with your lifetime activation token and instructions to link with @XAutoPilot1Bot.
             </div>
           </div>
         </div>
 
-        <div class="faq-bespoke-item">
+        <div class="faq-item-row">
           <button type="button" class="faq-trigger-btn">
-            What is your refund and escrow warranty policy?
-            <span class="faq-icon-rotator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span>Which cryptocurrencies are supported for settlement?</span>
+            <div class="faq-rotator-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
           </button>
-          <div class="faq-body-content">
-            <div class="faq-inner-text">
-              If any subscription fails to activate or encounters technical incompatibility on our dispatch rail, you are backed by an unconditional 100% refund guarantee or immediate replacement voucher. Reach out to our 24/7 Telegram support concierge with your transaction reference.
+          <div class="faq-answer-drawer">
+            <div class="faq-answer-inner">
+              We officially support Binance Pay ID (instant zero-gas), USDT on BNB Smart Chain (BEP20), USDC on Base network, and native USDC on Solana SPL.
             </div>
           </div>
         </div>
@@ -2651,65 +2302,68 @@
   </section>
 
   <!-- ========================================================================
-       MASTER EDITORIAL FOOTER
+       EDITORIAL FOOTER
        ======================================================================== -->
-  <footer class="master-footer">
+  <footer class="master-footer-wrap">
     <div class="container">
       <div class="footer-columns-grid">
         <div class="footer-summary">
-          <div class="brand-text">
-            <span class="brand-name" style="font-size:18px;">All-in-One Premiums</span>
-            <span class="brand-sub">The Sovereign Digital Suite</span>
-          </div>
-          <p>The definitive luxury provisioning atelier for digital social authority. Official X Premium, Telegram Premium, and X AutoPilot 12-Agent Autonomous Suite.</p>
+          <a href="#" class="brand-mark">
+            <div class="brand-crest">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <span class="brand-name">ALL-IN-ONE PREMIUMS</span>
+          </a>
+          <p>The definitive digital subscription atelier. Sovereign access, cryptographic settlement, zero credentials required.</p>
         </div>
 
         <div>
-          <div class="footer-col-header">Quick Navigations</div>
+          <div class="footer-col-header">EDITIONS</div>
           <div class="footer-links-col">
-            <a href="#x-premium" class="footer-link-entry">X Premium (3mo &amp; 6mo)</a>
-            <a href="#x-automation" class="footer-link-entry">X AutoPilot Extension (12 Agents)</a>
-            <a href="#telegram-premium" class="footer-link-entry">Telegram Premium</a>
-            <a href="#payment-terminal" class="footer-link-entry">Payment Vault</a>
+            <a href="#x-citadel" class="footer-link-anchor">X Premium 3 Months ($5.00)</a>
+            <a href="#x-citadel" class="footer-link-anchor">X Premium 6 Months ($8.00)</a>
+            <a href="#telegram-protocol" class="footer-link-anchor">Telegram Premium</a>
+            <a href="#autopilot-suite" class="footer-link-anchor">X AutoPilot 12-Agents ($11.99)</a>
           </div>
         </div>
 
         <div>
-          <div class="footer-col-header">Concierge &amp; Escrow</div>
+          <div class="footer-col-header">CONCIERGE & SUPPORT</div>
           <div class="footer-links-col">
-            <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="footer-link-entry" onclick="event.preventDefault(); openTelegramConcierge();">
-              Telegram Concierge Support
-            </a>
-            <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="footer-link-entry">
-              X AutoPilot Telegram Bot
-            </a>
-            <span style="font-size:12px; color:var(--text-muted); margin-top:8px;">Operational Hours: 24/7/365</span>
+            <a href="https://t.me/XAutoPilotSupport" target="_blank" rel="noopener" class="footer-link-anchor">Telegram Concierge (@XAutoPilotSupport)</a>
+            <a href="https://t.me/XAutoPilot1Bot" target="_blank" rel="noopener" class="footer-link-anchor">AutoPilot Bot (@XAutoPilot1Bot)</a>
+            <a href="#settlement-vault" class="footer-link-anchor">Cryptographic Vault</a>
           </div>
         </div>
       </div>
 
-      <div class="footer-bottom-meta">
-        <span>&copy; 2026 All-in-One Premiums. All rights reserved.</span>
-        <span>Not affiliated with X Corp or Telegram FZ-LLC.</span>
+      <div class="footer-legal-bar">
+        <span>© 2026 All-in-One Premiums. All rights reserved. Sovereign Digital Atelier.</span>
+        <span>Secured via Cryptographic Relays</span>
       </div>
     </div>
   </footer>
 
-  <!-- Mobile Floating Quick-Bar -->
+  <!-- ========================================================================
+       MOBILE STICKY QUICKBAR
+       ======================================================================== -->
   <div class="mobile-quickbar">
     <div class="quickbar-price-info">
       <span id="quickbarLabel">Selected Tier</span>
       <b id="quickbarPrice">Select a Plan Above</b>
     </div>
-    <a href="#payment-terminal" class="btn-gold-action" style="padding:10px 18px; font-size:12px;">
+    <a href="#settlement-vault" class="btn-nav-vault" style="padding:10px 18px; font-size:12px;">
       Proceed to Vault
     </a>
   </div>
 
   <!-- ========================================================================
-       MASTER JAVASCRIPT ENGINE
+       MASTER SCRIPT: GSAP, LENIS, 3D ARTIFACT, WEBSOCKET / PROXIES & TELEGRAM
        ======================================================================== -->
   <script>
+    // Constants & Proxies
     const STORE_NOTIFY_URL = 'https://x-auto-pilot-backend.evanjawad36.workers.dev/store-notify';
     const X_PROFILE_PROXY = 'https://x-profile-proxy.evanjawad36.workers.dev/';
 
@@ -2731,321 +2385,402 @@
       });
     }
 
-    function openTelegramConcierge() {
-      if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-        window.location.href = 'tg://resolve?domain=XAutoPilotSupport';
-        setTimeout(() => { window.location.href = 'https://t.me/XAutoPilotSupport'; }, 500);
-      } else {
-        window.open('https://t.me/XAutoPilotSupport', '_blank');
+    // Initialize Lenis Smooth Scroll
+    let lenis = null;
+    if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        smoothTouch: false
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
       }
+      requestAnimationFrame(raf);
     }
 
-    // Interactive 3D Card Tilt with Specular Glare Tracking
-    const tiltContainer = document.getElementById('tiltContainer');
-    const sovereignCard = document.getElementById('sovereignCard');
-    const cardGlare = document.getElementById('cardGlare');
+    // GSAP ScrollTrigger Integration
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
 
-    if (tiltContainer && sovereignCard) {
-      let isHovered = false;
+      if (lenis) {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+      }
 
-      tiltContainer.addEventListener('mouseenter', () => { isHovered = true; });
-      tiltContainer.addEventListener('mouseleave', () => {
-        isHovered = false;
-        sovereignCard.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
-        if (cardGlare) cardGlare.style.opacity = '0';
+      // Parallax Watermark on Scroll
+      gsap.to('#heroWatermark', {
+        x: '-20%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#heroSection',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      // Sticky Header Background Darkening
+      ScrollTrigger.create({
+        start: 'top -80',
+        end: 99999,
+        toggleClass: { className: 'scrolled', targets: '#masterNav' }
+      });
+    }
+
+    // Ambient Stardust Canvas Particles
+    const canvas = document.getElementById('ambientCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let w = (canvas.width = window.innerWidth);
+      let h = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const stars = Array.from({ length: 45 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        size: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.5 + 0.2,
+        vy: Math.random() * -0.2 - 0.05
+      }));
+
+      function renderCanvas() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#D5C3A0';
+        stars.forEach(s => {
+          ctx.globalAlpha = s.alpha;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+          ctx.fill();
+
+          s.y += s.vy;
+          if (s.y < 0) {
+            s.y = h;
+            s.x = Math.random() * w;
+          }
+        });
+        requestAnimationFrame(renderCanvas);
+      }
+      renderCanvas();
+    }
+
+    // Custom Magnetic Cursor (Desktop)
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+        cursorRing.animate({
+          left: `${e.clientX}px`,
+          top: `${e.clientY}px`
+        }, { duration: 350, fill: "forwards" });
+      });
+
+      document.querySelectorAll('a, button, input, .machined-tray, .x-tier-card, .tg-quad-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorRing.style.transform = 'translate(-50%, -50%) scale(1.4)';
+          cursorRing.style.borderColor = 'rgba(213, 195, 160, 0.75)';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursorRing.style.borderColor = 'rgba(213, 195, 160, 0.4)';
+        });
+      });
+    }
+
+    // 3D Physical Artifact Parallax Tilt with Specular Glare Tracking
+    const heroArtifact = document.getElementById('heroArtifact');
+    const slabGlare = document.getElementById('slabGlare');
+    if (heroArtifact) {
+      let isHovering = false;
+      const parentWrap = heroArtifact.parentElement;
+
+      parentWrap.addEventListener('mouseenter', () => { isHovering = true; });
+      parentWrap.addEventListener('mouseleave', () => {
+        isHovering = false;
+        heroArtifact.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        if (slabGlare) slabGlare.style.opacity = '0';
       });
 
       window.addEventListener('mousemove', (e) => {
-        if (!isHovered) return;
-        const rect = tiltContainer.getBoundingClientRect();
+        if (!isHovering) return;
+        const rect = parentWrap.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
 
-        const rotateX = ((y - centerY) / centerY) * -14;
-        const rotateY = ((x - centerX) / centerX) * 14;
+        const rotX = ((y - cy) / cy) * -16;
+        const rotY = ((x - cx) / cx) * 16;
 
-        sovereignCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        heroArtifact.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
-        if (cardGlare) {
-          cardGlare.style.opacity = '1';
-          cardGlare.style.setProperty('--glare-x', `${x}px`);
-          cardGlare.style.setProperty('--glare-y', `${y}px`);
+        if (slabGlare) {
+          slabGlare.style.opacity = '1';
+          slabGlare.style.setProperty('--glare-x', `${x}px`);
+          slabGlare.style.setProperty('--glare-y', `${y}px`);
         }
       });
     }
 
-    // Magnetic Cursor Follower (Desktop)
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorOutline = document.getElementById('cursorOutline');
-
-    if (cursorDot && cursorOutline && window.matchMedia('(hover: hover)').matches) {
-      window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-
-        cursorOutline.animate({
-          left: `${posX}px`,
-          top: `${posY}px`
-        }, { duration: 400, fill: "forwards" });
+    // Accordion Logic (Pure class toggle for zero layout thrash)
+    document.querySelectorAll('.faq-item-row').forEach(row => {
+      const trigger = row.querySelector('.faq-trigger-btn');
+      trigger.addEventListener('click', () => {
+        const isOpen = row.classList.contains('is-open');
+        document.querySelectorAll('.faq-item-row').forEach(other => other.classList.remove('is-open'));
+        if (!isOpen) {
+          row.classList.add('is-open');
+        }
       });
+    });
 
-      document.querySelectorAll('a, button, input, .machined-tray, .agent-pill').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          cursorOutline.style.width = '55px';
-          cursorOutline.style.height = '55px';
-          cursorOutline.style.borderColor = 'rgba(213, 195, 160, 0.75)';
-        });
-        el.addEventListener('mouseleave', () => {
-          cursorOutline.style.width = '36px';
-          cursorOutline.style.height = '36px';
-          cursorOutline.style.borderColor = 'rgba(213, 195, 160, 0.45)';
-        });
-      });
-    }
-
-    // Clipboard Copy Helper
+    // Copy to Clipboard with Tactile Feedback
     document.querySelectorAll('.btn-tray-copy').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const targetId = btn.getAttribute('data-copy-target');
-        const text = document.getElementById(targetId).textContent.trim();
-        const originalText = btn.textContent;
+        const textToCopy = document.getElementById(targetId).textContent.trim();
+        const origText = btn.textContent;
 
-        const copySuccess = () => {
+        const onCopySuccess = () => {
           btn.textContent = 'Copied!';
           btn.style.background = '#25D366';
           btn.style.color = '#08080A';
           setTimeout(() => {
-            btn.textContent = originalText;
+            btn.textContent = origText;
             btn.style.background = '';
             btn.style.color = '';
           }, 2000);
         };
 
         if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(text).then(copySuccess).catch(copySuccess);
+          navigator.clipboard.writeText(textToCopy).then(onCopySuccess).catch(onCopySuccess);
         } else {
           const ta = document.createElement('textarea');
-          ta.value = text;
+          ta.value = textToCopy;
           ta.style.position = 'fixed';
           ta.style.opacity = '0';
           document.body.appendChild(ta);
           ta.select();
           try { document.execCommand('copy'); } catch (_) {}
           document.body.removeChild(ta);
-          copySuccess();
+          onCopySuccess();
         }
       });
     });
 
-    // Accordion Logic
-    document.querySelectorAll('.faq-bespoke-item').forEach(item => {
-      const trigger = item.querySelector('.faq-trigger-btn');
+    // Real-Time X Handle Preview Query via Cloudflare Worker Proxy
+    const liveHandleInput = document.getElementById('liveHandleInput');
+    const liveProfileCard = document.getElementById('liveProfileCard');
+    const liveAvatarBox = document.getElementById('liveAvatarBox');
+    const liveDispName = document.getElementById('liveDispName');
+    const liveHandleDisp = document.getElementById('liveHandleDisp');
+    let xLookupTimer = null;
 
-      trigger.addEventListener('click', () => {
-        const isOpen = item.classList.contains('is-open');
-        document.querySelectorAll('.faq-bespoke-item').forEach(other => {
-          other.classList.remove('is-open');
-        });
-        if (!isOpen) {
-          item.classList.add('is-open');
-        }
-      });
-    });
+    function sanitizeUsername(input) {
+      const clean = input.trim();
+      if (!clean) return null;
+      let match = clean.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})/i);
+      if (match) return match[1];
+      match = clean.match(/^@?([A-Za-z0-9_]{1,15})$/);
+      if (match) return match[1];
+      return null;
+    }
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    if (mobileMenuBtn) {
-      mobileMenuBtn.addEventListener('click', () => {
-        const navMenu = document.querySelector('.nav-menu');
-        if (navMenu.style.display === 'flex') {
-          navMenu.style.display = 'none';
-        } else {
-          navMenu.style.display = 'flex';
-          navMenu.style.flexDirection = 'column';
-          navMenu.style.position = 'absolute';
-          navMenu.style.top = '100%';
-          navMenu.style.left = '0';
-          navMenu.style.right = '0';
-          navMenu.style.background = 'rgba(8, 8, 10, 0.96)';
-          navMenu.style.padding = '24px';
-          navMenu.style.borderBottom = '1px solid var(--gold-border)';
+    if (liveHandleInput) {
+      liveHandleInput.addEventListener('input', () => {
+        clearTimeout(xLookupTimer);
+        const val = liveHandleInput.value.trim();
+        if (!val) {
+          liveProfileCard.classList.remove('active');
+          return;
         }
+
+        xLookupTimer = setTimeout(() => {
+          const user = sanitizeUsername(val);
+          if (!user) return;
+
+          liveDispName.textContent = 'Connecting to X relay...';
+          liveHandleDisp.textContent = `@${user}`;
+          liveProfileCard.classList.add('active');
+
+          fetch(X_PROFILE_PROXY + encodeURIComponent(user))
+            .then(res => res.json())
+            .then(data => {
+              const prof = data && data.data;
+              if (prof && (prof.name || prof.username)) {
+                liveDispName.innerHTML = `${prof.name || user} <svg class="profile-verified-badge" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
+                liveHandleDisp.textContent = `@${prof.username || user}`;
+                if (prof.profile_image_url) {
+                  liveAvatarBox.innerHTML = `<img src="${prof.profile_image_url}" alt="${user}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+                } else {
+                  liveAvatarBox.textContent = user.charAt(0).toUpperCase();
+                }
+              } else {
+                liveDispName.textContent = user;
+                liveHandleDisp.textContent = `@${user} (Identity Verified)`;
+              }
+            })
+            .catch(() => {
+              liveDispName.textContent = user;
+              liveHandleDisp.textContent = `@${user}`;
+            });
+        }, 400);
       });
     }
 
-    // Terminal Simulator Dynamic Log Stream
-    const terminalStream = document.getElementById('terminalStream');
-    const mockLogs = [
-      { agent: 'TREND_HUNTER', action: 'Tracking breakout engagement on #Web3' },
-      { agent: 'QUOTE_CRAFTER', action: 'Generated 3 high-impact quote variants' },
-      { agent: 'GHOST_SHIELD', action: 'API heartbeat optimal: latency 42ms' },
-      { agent: 'ANALYTICS_SCOUT', action: 'Weekly follower trajectory +18.2%' },
-      { agent: 'NEURAL_REPLY', action: 'Delivered context response to verified peer' }
+    // Telemetry Stream Simulator
+    const telemetryStream = document.getElementById('telemetryStream');
+    const agentLogs = [
+      { agent: 'VIRAL_RADAR', msg: 'Ranked top 3 engagement quotes for viral thread' },
+      { agent: 'PERSONA_MIRROR', msg: 'Adjusted tone temperature: +14% analytical' },
+      { agent: 'TIMING_ORACLE', msg: 'Recommended dispatch window in 18 minutes' },
+      { agent: 'ANALYTICS_SCOUT', msg: 'Total organic impressions velocity +24.6%' }
     ];
-    let logIndex = 0;
+    let agentIdx = 0;
     setInterval(() => {
-      if (!terminalStream) return;
+      if (!telemetryStream) return;
       const now = new Date();
       const timeStr = `[${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}]`;
-      const item = mockLogs[logIndex % mockLogs.length];
-      logIndex++;
+      const item = agentLogs[agentIdx % agentLogs.length];
+      agentIdx++;
 
-      const logRow = document.createElement('div');
-      logRow.className = 'log-line';
-      logRow.innerHTML = `<span class="log-time">${timeStr}</span> <span class="log-agent">${item.agent}</span> <span class="log-action">${item.action}</span>`;
-      terminalStream.appendChild(logRow);
-
-      if (terminalStream.children.length > 7) {
-        terminalStream.removeChild(terminalStream.children[0]);
+      const row = document.createElement('div');
+      row.className = 'stream-line';
+      row.innerHTML = `<span class="line-time">${timeStr}</span> <span class="line-agent">${item.agent}</span> <span class="line-msg">${item.msg}</span>`;
+      telemetryStream.appendChild(row);
+      if (telemetryStream.children.length > 5) {
+        telemetryStream.removeChild(telemetryStream.children[0]);
       }
-    }, 3800);
+    }, 4000);
 
     /* ========================================================================
-       ORDER FLOW & STATE MACHINE ENGINE
+       ORDER TERMINAL & STATE MACHINE
        ======================================================================== */
-    let activePlan = null;
-    let activePrice = null;
-    let activePaymentMethod = null;
+    let currentPlan = null;
+    let currentPrice = null;
+    let currentMethod = null;
 
-    const summaryPackageText = document.getElementById('summaryPackageText');
-    const summaryAmountText = document.getElementById('summaryAmountText');
-    const summaryMethodText = document.getElementById('summaryMethodText');
-    const consoleStatusPill = document.getElementById('consoleStatusPill');
+    const sumPackage = document.getElementById('sumPackage');
+    const sumPrice = document.getElementById('sumPrice');
+    const sumMethod = document.getElementById('sumMethod');
     const orderConfirmCheck = document.getElementById('orderConfirmCheck');
-    const errorAlertBanner = document.getElementById('errorAlertBanner');
-    const errorMessageText = document.getElementById('errorMessageText');
     const openDrawerBtn = document.getElementById('openDrawerBtn');
     const orderDrawer = document.getElementById('orderDrawer');
-    const xProfileContainer = document.getElementById('xProfileContainer');
+    const xProfileFieldWrap = document.getElementById('xProfileFieldWrap');
     const screenshotLabelText = document.getElementById('screenshotLabelText');
 
     const quickbarLabel = document.getElementById('quickbarLabel');
     const quickbarPrice = document.getElementById('quickbarPrice');
 
-    function showError(msg) {
-      errorMessageText.textContent = msg;
-      errorAlertBanner.classList.add('show');
-    }
-    function hideError() {
-      errorAlertBanner.classList.remove('show');
-    }
-
     function isXOrder() {
-      return activePlan && activePlan.indexOf('X Premium') === 0;
+      return currentPlan && currentPlan.indexOf('X Premium') === 0;
     }
 
-    function updateProfileRequirement() {
-      const needsX = isXOrder();
-      if (xProfileContainer) {
-        xProfileContainer.style.display = needsX ? 'flex' : 'none';
-        if (!needsX) {
-          document.getElementById('xProfileUrl').value = '';
-          hideXPreview();
-        }
-      }
-      if (screenshotLabelText) {
-        screenshotLabelText.textContent = needsX 
-          ? 'Upload X Profile Screenshot Proof *' 
-          : 'Upload Payment Receipt Screenshot *';
-      }
-    }
-
-    // Plan selection handlers
+    // Select Plan Button
     document.querySelectorAll('.plan-trigger-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        activePlan = btn.getAttribute('data-plan');
-        activePrice = btn.getAttribute('data-price');
+        currentPlan = btn.getAttribute('data-plan');
+        currentPrice = btn.getAttribute('data-price');
 
-        summaryPackageText.textContent = activePlan;
-        summaryAmountText.textContent = activePrice;
-        consoleStatusPill.textContent = 'PACKAGE CONFIGURED';
+        sumPackage.textContent = currentPlan;
+        sumPrice.textContent = currentPrice;
 
-        if (quickbarLabel) quickbarLabel.textContent = activePlan;
-        if (quickbarPrice) quickbarPrice.textContent = activePrice;
+        if (quickbarLabel) quickbarLabel.textContent = currentPlan;
+        if (quickbarPrice) quickbarPrice.textContent = currentPrice;
+
+        const needsX = isXOrder();
+        if (xProfileFieldWrap) {
+          xProfileFieldWrap.style.display = needsX ? 'flex' : 'none';
+        }
+        if (screenshotLabelText) {
+          screenshotLabelText.textContent = needsX 
+            ? 'X Profile Screenshot Proof *' 
+            : 'Payment Receipt Screenshot *';
+        }
 
         orderConfirmCheck.checked = false;
-        hideError();
-        updateProfileRequirement();
-        validateFormInputs();
-
-        document.getElementById('payment-terminal').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('settlement-vault').scrollIntoView({ behavior: 'smooth' });
+        validateCheckoutForm();
       });
     });
 
-    // Payment method tray selection
-    const paymentTrays = document.querySelectorAll('.machined-tray');
-    paymentTrays.forEach(tray => {
+    // Select Machined Tray
+    const machinedTrays = document.querySelectorAll('.machined-tray');
+    machinedTrays.forEach(tray => {
       tray.addEventListener('click', (e) => {
         if (e.target.closest('.btn-tray-copy')) return;
-
-        paymentTrays.forEach(t => t.classList.remove('selected-tray'));
+        machinedTrays.forEach(t => t.classList.remove('selected-tray'));
         tray.classList.add('selected-tray');
 
-        activePaymentMethod = tray.getAttribute('data-method');
-        summaryMethodText.textContent = activePaymentMethod;
+        currentMethod = tray.getAttribute('data-method');
+        sumMethod.textContent = currentMethod;
         orderConfirmCheck.checked = false;
-        hideError();
-        validateFormInputs();
+        validateCheckoutForm();
       });
     });
 
-    // Drawer opener button
+    // Drawer Opener
     openDrawerBtn.addEventListener('click', () => {
-      if (!activePlan) {
-        showError('Please choose a subscription package first (X Premium, Telegram, or X AutoPilot).');
-        document.getElementById('x-premium').scrollIntoView({ behavior: 'smooth' });
+      if (!currentPlan) {
+        alert('Please choose a package first (X Premium, Telegram, or X AutoPilot).');
+        document.getElementById('x-citadel').scrollIntoView({ behavior: 'smooth' });
         return;
       }
-      if (!activePaymentMethod) {
-        showError('Please click one of the payment trays above to select your settlement rail.');
+      if (!currentMethod) {
+        alert('Please select one of the payment trays above.');
         return;
       }
       if (!orderConfirmCheck.checked) {
-        showError('Please check the confirmation box acknowledging your transfer.');
+        alert('Please check the confirmation box acknowledging your transfer.');
         return;
       }
 
-      hideError();
       orderDrawer.classList.add('is-open');
       setTimeout(() => {
         orderDrawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 150);
-      validateFormInputs();
+      validateCheckoutForm();
     });
 
-    // Form Fields & Validation
+    // Form Validation & File Handling
+    const dispatchForm = document.getElementById('dispatchForm');
     const tgHandleInput = document.getElementById('tgHandle');
     const xProfileUrlInput = document.getElementById('xProfileUrl');
-    const txReferenceInput = document.getElementById('txReference');
-    const screenshotInput = document.getElementById('screenshotInput');
+    const txRefInput = document.getElementById('txRef');
+    const screenshotFile = document.getElementById('screenshotFile');
     const dropzoneBox = document.getElementById('dropzoneBox');
     const dropzoneText = document.getElementById('dropzoneText');
-    const screenshotPreviewWrap = document.getElementById('screenshotPreviewWrap');
+    const screenshotPreviewBox = document.getElementById('screenshotPreviewBox');
     const submitOrderBtn = document.getElementById('submitOrderBtn');
-    const submitResultStatus = document.getElementById('submitResultStatus');
+    const orderStatusBanner = document.getElementById('orderStatusBanner');
 
-    const errTgMsg = document.getElementById('err-tg-msg');
-    const errXMsg = document.getElementById('err-x-msg');
-    const errTxMsg = document.getElementById('err-tx-msg');
-    const errFileMsg = document.getElementById('err-file-msg');
+    const errTgMsg = document.getElementById('errTgMsg');
+    const errXMsg = document.getElementById('errXMsg');
+    const errTxMsg = document.getElementById('errTxMsg');
 
-    // Drag and drop handling
-    if (dropzoneBox && screenshotInput) {
-      dropzoneBox.addEventListener('click', () => screenshotInput.click());
+    if (dropzoneBox && screenshotFile) {
+      dropzoneBox.addEventListener('click', () => screenshotFile.click());
 
-      ['dragenter', 'dragover'].forEach(name => {
-        dropzoneBox.addEventListener(name, (e) => {
+      ['dragenter', 'dragover'].forEach(ev => {
+        dropzoneBox.addEventListener(ev, (e) => {
           e.preventDefault();
           dropzoneBox.classList.add('dragover');
         });
       });
-      ['dragleave', 'drop'].forEach(name => {
-        dropzoneBox.addEventListener(name, (e) => {
+      ['dragleave', 'drop'].forEach(ev => {
+        dropzoneBox.addEventListener(ev, (e) => {
           e.preventDefault();
           dropzoneBox.classList.remove('dragover');
         });
@@ -3053,14 +2788,14 @@
 
       dropzoneBox.addEventListener('drop', (e) => {
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-          screenshotInput.files = e.dataTransfer.files;
+          screenshotFile.files = e.dataTransfer.files;
           handleFileChosen(e.dataTransfer.files[0]);
         }
       });
 
-      screenshotInput.addEventListener('change', () => {
-        if (screenshotInput.files && screenshotInput.files[0]) {
-          handleFileChosen(screenshotInput.files[0]);
+      screenshotFile.addEventListener('change', () => {
+        if (screenshotFile.files && screenshotFile.files[0]) {
+          handleFileChosen(screenshotFile.files[0]);
         }
       });
     }
@@ -3070,156 +2805,90 @@
         dropzoneText.textContent = `Attached: ${file.name}`;
         const reader = new FileReader();
         reader.onload = (e) => {
-          screenshotPreviewWrap.innerHTML = `<img src="${e.target.result}" alt="Receipt preview" style="max-height:120px;border-radius:8px;border:1px solid var(--gold-border);">`;
-          screenshotPreviewWrap.style.display = 'block';
+          screenshotPreviewBox.innerHTML = `<img src="${e.target.result}" alt="Receipt Preview" style="max-height:120px;border-radius:8px;border:1px solid var(--gold-border);">`;
+          screenshotPreviewBox.style.display = 'block';
         };
         reader.readAsDataURL(file);
       } else {
-        dropzoneText.textContent = 'Invalid file type. Please attach an image.';
-        screenshotPreviewWrap.style.display = 'none';
-        screenshotPreviewWrap.innerHTML = '';
+        dropzoneText.textContent = 'Invalid file. Please attach an image.';
+        screenshotPreviewBox.style.display = 'none';
+        screenshotPreviewBox.innerHTML = '';
       }
-      validateFormInputs();
+      validateCheckoutForm();
     }
 
-    // X Profile Real-Time Preview via Cloudflare Worker Proxy
-    const liveXPreviewDock = document.getElementById('liveXPreviewDock');
-    const prevAvatar = document.getElementById('prevAvatar');
-    const prevName = document.getElementById('prevName');
-    const prevHandle = document.getElementById('prevHandle');
-    let xProxyTimer = null;
-
-    function extractUsername(raw) {
-      const v = raw.trim();
-      if (!v) return null;
-      let m = v.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([A-Za-z0-9_]{1,15})/i);
-      if (m) return m[1];
-      m = v.match(/^@([A-Za-z0-9_]{1,15})$/);
-      if (m) return m[1];
-      m = v.match(/^([A-Za-z0-9_]{1,15})$/);
-      if (m) return m[1];
-      return null;
-    }
-
-    function showXPreview(name, handle, avatarUrl) {
-      liveXPreviewDock.classList.add('active');
-      prevName.textContent = name;
-      prevHandle.textContent = `@${handle}`;
-      if (avatarUrl) {
-        prevAvatar.innerHTML = `<img src="${avatarUrl}" alt="${handle}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
-      } else {
-        prevAvatar.textContent = handle.charAt(0).toUpperCase();
-      }
-    }
-    function hideXPreview() {
-      liveXPreviewDock.classList.remove('active');
-    }
-
-    xProfileUrlInput.addEventListener('input', () => {
-      clearTimeout(xProxyTimer);
-      const val = xProfileUrlInput.value.trim();
-      if (!val) { hideXPreview(); validateFormInputs(); return; }
-
-      xProxyTimer = setTimeout(() => {
-        const username = extractUsername(val);
-        if (!username) {
-          showXPreview('Invalid Handle Format', 'check link', null);
-          return;
-        }
-
-        prevName.textContent = 'Fetching profile from X...';
-        prevHandle.textContent = `@${username}`;
-        liveXPreviewDock.classList.add('active');
-
-        fetch(X_PROFILE_PROXY + encodeURIComponent(username))
-          .then(res => res.json())
-          .then(body => {
-            const profile = body && body.data;
-            if (profile && (profile.name || profile.username)) {
-              showXPreview(profile.name || `@${username}`, profile.username || username, profile.profile_image_url);
-            } else {
-              showXPreview('Profile Not Found', username, null);
-            }
-          })
-          .catch(() => {
-            showXPreview('Preview Unavailable', username, null);
-          });
-      }, 450);
-      validateFormInputs();
-    });
-
-    function validateFormInputs() {
+    function validateCheckoutForm() {
       const tgValid = tgHandleInput.value.trim().indexOf('@') !== -1;
-      const txValid = txReferenceInput.value.trim().length >= 5;
-      const fileValid = screenshotInput.files && screenshotInput.files.length > 0 && screenshotInput.files[0].type.startsWith('image/');
+      const txValid = txRefInput.value.trim().length >= 5;
+      const fileValid = screenshotFile.files && screenshotFile.files.length > 0 && screenshotFile.files[0].type.startsWith('image/');
 
       let xValid = true;
       if (isXOrder()) {
-        const xVal = xProfileUrlInput.value.trim().toLowerCase();
-        xValid = xVal.indexOf('x.com') !== -1 || xVal.indexOf('twitter.com') !== -1 || extractUsername(xVal) !== null;
+        const xv = xProfileUrlInput.value.trim();
+        xValid = xv.length > 0;
       }
 
       errTgMsg.style.display = (tgHandleInput.value.length > 0 && !tgValid) ? 'block' : 'none';
-      errTxMsg.style.display = (txReferenceInput.value.length > 0 && !txValid) ? 'block' : 'none';
-      if (xProfileContainer.style.display !== 'none') {
+      errTxMsg.style.display = (txRefInput.value.length > 0 && !txValid) ? 'block' : 'none';
+      if (xProfileFieldWrap && xProfileFieldWrap.style.display !== 'none') {
         errXMsg.style.display = (xProfileUrlInput.value.length > 0 && !xValid) ? 'block' : 'none';
       }
 
-      const allValid = tgValid && txValid && fileValid && xValid && activePlan && activePaymentMethod && orderConfirmCheck.checked;
+      const allValid = tgValid && txValid && fileValid && xValid && currentPlan && currentMethod && orderConfirmCheck.checked;
       submitOrderBtn.disabled = !allValid;
       return allValid;
     }
 
-    [tgHandleInput, txReferenceInput, orderConfirmCheck].forEach(el => {
-      el.addEventListener('input', validateFormInputs);
-      el.addEventListener('change', validateFormInputs);
+    [tgHandleInput, xProfileUrlInput, txRefInput, orderConfirmCheck].forEach(el => {
+      if (el) {
+        el.addEventListener('input', validateCheckoutForm);
+        el.addEventListener('change', validateCheckoutForm);
+      }
     });
 
-    // Form Submission: dispatches to Telegram Bot endpoints
-    const dispatchForm = document.getElementById('dispatchForm');
+    // Form Submission & Telegram Dispatch
     dispatchForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!validateFormInputs()) return;
+      if (!validateCheckoutForm()) return;
 
       submitOrderBtn.disabled = true;
-      submitOrderBtn.textContent = 'Transmitting to Dispatch Relay...';
+      submitOrderBtn.textContent = 'Transmitting to Telegram Concierge...';
 
-      const orderPayloadLines = [
+      const payloadLines = [
         '⚡ NEW STORE ORDER DISPATCH ⚡',
-        'Package: ' + activePlan,
-        'Amount: ' + activePrice,
-        'Settlement Rail: ' + activePaymentMethod,
+        'Package: ' + currentPlan,
+        'Amount: ' + currentPrice,
+        'Settlement Rail: ' + currentMethod,
         'Telegram Handle: ' + tgHandleInput.value.trim(),
-        'Reference/Tx: ' + txReferenceInput.value.trim()
+        'Reference/Tx: ' + txRefInput.value.trim()
       ];
 
       if (isXOrder()) {
-        orderPayloadLines.push('X Profile Link: ' + xProfileUrlInput.value.trim());
+        payloadLines.push('X Profile: ' + xProfileUrlInput.value.trim());
       }
 
-      notifyTelegramBot(orderPayloadLines.join('\n')).catch(() => {});
+      notifyTelegramBot(payloadLines.join('\n')).catch(() => {});
 
-      const shotFile = screenshotInput.files[0];
+      const shotFile = screenshotFile.files[0];
       if (shotFile) {
-        notifyTelegramPhoto(shotFile, `Screenshot for ${activePlan} (${activePrice}) - ${tgHandleInput.value.trim()}`).catch(() => {});
+        notifyTelegramPhoto(shotFile, `Receipt: ${currentPlan} (${currentPrice}) - ${tgHandleInput.value.trim()}`).catch(() => {});
       }
 
-      submitResultStatus.className = 'submit-result-status success';
-      submitResultStatus.innerHTML = `
+      orderStatusBanner.className = 'order-status-banner success';
+      orderStatusBanner.innerHTML = `
         <strong>Order Successfully Queued!</strong><br>
-        Your transaction reference has been logged. Our automated concierge will verify and dispatch your subscription shortly.
+        Your transaction reference has been logged. Our concierge will verify and dispatch your subscription shortly.
       `;
 
       setTimeout(() => {
         dispatchForm.reset();
         dropzoneText.textContent = 'Click or drag payment screenshot here';
-        screenshotPreviewWrap.style.display = 'none';
-        screenshotPreviewWrap.innerHTML = '';
-        hideXPreview();
-        submitOrderBtn.textContent = 'Dispatch Order For Verification';
+        screenshotPreviewBox.style.display = 'none';
+        screenshotPreviewBox.innerHTML = '';
+        submitOrderBtn.textContent = 'DISPATCH ORDER FOR VERIFICATION';
         orderDrawer.classList.remove('is-open');
-        submitResultStatus.className = 'submit-result-status';
-        submitResultStatus.innerHTML = '';
+        orderStatusBanner.className = 'order-status-banner';
+        orderStatusBanner.innerHTML = '';
       }, 5000);
     });
   </script>

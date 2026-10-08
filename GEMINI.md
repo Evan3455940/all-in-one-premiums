@@ -9,7 +9,7 @@ These rules are persistent and govern all UI/UX, styling, layout, motion, and fr
 1. **Anti-Default Aesthetic**:
    - Strictly BANNED: generic AI purple gradients, cyan-on-dark neon glow, washed-out low-contrast grays, three identical symmetrical cards with generic icons, and floating decorative blobs.
    - Banned default fonts: Do NOT default to standard unstyled `Inter`, `Roboto`, `Arial`, or generic serif fonts like `Fraunces` or `Instrument Serif`.
-   - Use high-craft font pairings: `Cabinet Grotesk` or `Satoshi` for display/headlines; `Geist` or refined system sans for body; `JetBrains Mono` for crypto addresses and numbers.
+   - Type system (see DESIGN.md): `Bodoni Moda` (optical size 96, weight 400) for display/headlines; `Schibsted Grotesk` for body and interface; `JetBrains Mono` for crypto addresses, numbers and labels.
 
 2. **The Zero Em-Dash Rule**:
    - Never use em-dashes (`—`) in headlines, eyebrows, buttons, body copy, or attribution. Use periods, colons, or clean hyphens (`-`).
@@ -25,8 +25,8 @@ These rules are persistent and govern all UI/UX, styling, layout, motion, and fr
 ## 2. UI & Component Architecture
 
 1. **Color & Palette Lock**:
-   - Foundational Ground: Tuned obsidian (`#0B0C0E`), surface (`#121418`), elevated (`#181B20`).
-   - Single Accent: Telemetry Gold (`#E5C07B`). Never mix competing saturated accents on the same page.
+   - Foundational Ground: warm near-black (`#0D0B0C`), surface (`#151213`), raised (`#1C1718`); light scenes use warm ivory (`#F4EFE6`).
+   - Signature: deep oxblood (`#4A101C`, secondary burgundy `#741F32`); muted champagne (`#BFA16A`) only as a micro accent. No bright or neon red, no blue or purple, never mix competing saturated accents.
    - All text must exceed WCAG AA contrast (minimum 4.5:1 for body text, 3:1 for large display text).
 
 2. **Buttons & Controls**:

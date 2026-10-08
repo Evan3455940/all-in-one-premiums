@@ -1,217 +1,88 @@
 ---
 name: All-in-One Premiums
-description: High-craft, anti-slop digital subscription store and automation showcase
+description: Cinematic, editorial store for X Premium, Telegram Premium and the X Automation extension
 colors:
-  bg: "#08080A"
-  bg-surface: "#151015"
-  bg-elevated: "#1D161F"
-  plum-accent: "#55162D"
-  burgundy: "#8A2346"
-  border-subtle: "rgba(255, 255, 255, 0.08)"
-  border-active: "rgba(213, 195, 160, 0.22)"
-  text-primary: "#F4F0E8"
-  text-secondary: "#ADA49F"
-  text-muted: "#918A88"
-  accent-gold: "#D5C3A0"
-  accent-gold-bright: "#EFE5D1"
-  success: "#25D366"
-  error: "#8A2346"
+  ink: "#0D0B0C"
+  ink-surface: "#151213"
+  ink-raised: "#1C1718"
+  window: "#110E0F"
+  ivory: "#F4EFE6"
+  oxblood: "#4A101C"
+  oxblood-2: "#741F32"
+  oxblood-hover: "#86283D"
+  champagne: "#BFA16A"
+  warn: "#D9B57F"
+  error: "#E6A9A9"
 typography:
   display:
-    fontFamily: "'Cinzel', serif"
-    fontSize: "clamp(2.5rem, 5vw, 4.4rem)"
-    fontWeight: 700
-    lineHeight: 1.15
-  headline:
-    fontFamily: "'Cinzel', serif"
-    fontSize: "clamp(1.75rem, 3.8vw, 3.2rem)"
-    fontWeight: 700
-    lineHeight: 1.2
+    fontFamily: "'Bodoni Moda', serif"
+    fontSize: "clamp(46px, 6.6vw, 120px)"
+    fontWeight: 400
+    lineHeight: 0.93
+  giant:
+    fontFamily: "'Bodoni Moda', serif"
+    fontSize: "clamp(84px, 16.6vw, 300px)"
+    fontWeight: 400
+    lineHeight: 0.85
   body:
-    fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, sans-serif"
-    fontSize: "1rem"
+    fontFamily: "'Schibsted Grotesk', sans-serif"
+    fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.6
   mono:
     fontFamily: "'JetBrains Mono', monospace"
-    fontSize: "0.875rem"
+    fontSize: "11px"
     fontWeight: 500
-    lineHeight: 1.5
+    lineHeight: 1.4
 rounded:
-  sm: "6px"
-  md: "12px"
-  lg: "18px"
-  pill: "9999px"
+  sharp: "2px"
+  window: "12px"
+  phone: "50px"
+  pill: "999px"
 spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "16px"
-  lg: "24px"
-  xl: "40px"
-  2xl: "64px"
-  section: "100px"
-components:
-  button-primary:
-    backgroundColor: "{colors.text-primary}"
-    textColor: "{colors.bg}"
-    rounded: "{rounded.pill}"
-    padding: "14px 28px"
-  button-secondary:
-    backgroundColor: "{colors.bg-elevated}"
-    textColor: "{colors.text-primary}"
-    rounded: "{rounded.pill}"
-    padding: "14px 28px"
+  gutter: "clamp(20px, 4.4vw, 72px)"
+  section: "clamp(120px, 18vh, 210px)"
 ---
 
 # Design System: All-in-One Premiums
 
-## Overview
+## Idea
 
-**Creative North Star: "Machined Precision Vault"**
+The page is one short film in nine scenes: Opening, Promise, X Premium, Telegram, Automation, Plans, Order, Questions, Begin. The products are the visuals. X, Telegram and the extension appear as real interface windows drawn in HTML, placed in CSS 3D space and moved by the scroll, never as stock art, blobs or abstract shapes.
 
-All-in-One Premiums is an elevated, high-trust digital storefront designed to feel like precision hardware rather than disposable SaaS. It merges deep Obsidian/Graphite surfaces with tactile micro-physics, typographic hierarchy, and gold telemetry accents. 
+## Colour
 
-### Key Characteristics:
-- **Calibrated Darkness**: Deep graphite and charcoal (`#0B0C0E`, `#121418`) instead of washed-out grays or harsh unstyled `#000000`.
-- **Typographic Rigor**: High-contrast pairing of structural Grotesk display (`Cabinet Grotesk`) with ultra-readable body text (`Geist`) and monospace data figures (`JetBrains Mono`). No generic Inter defaults.
-- **Machined Tactility**: Concentric double-bezel nesting, 1px inner hairline borders (`rgba(255,255,255,0.08)`), and subtle ambient shadows tinted to surface tones.
-- **Purposeful Motion**: Every transition is under 300ms, GPU-accelerated (`transform` & `opacity`), uses custom cubic-bezier easing (`cubic-bezier(0.23, 1, 0.32, 1)`), and strictly respects `prefers-reduced-motion`.
+Mostly warm near-black (`#0D0B0C`) and warm ivory (`#F4EFE6`). Deep oxblood (`#4A101C`, lighter `#741F32` for buttons on black) is the signature: the Telegram scene, the closing scene, the period at the end of headlines, the main buttons. Muted champagne (`#BFA16A`) appears only in the smallest places: index numbers, the verified mark, a checked box, a selected payment method. No bright or neon red, no blue or purple, no gradient fills on type, no coloured glow.
 
----
+The room behind the page is one fixed backdrop whose colour is scrubbed between scenes (ink, ivory, oxblood), so scene changes are continuous instead of hard section edges. Each scene sets its own text tone (`tone-dark`, `tone-light`, `tone-ox`); the nav and the film counter follow the tone of the scene under them.
 
-## Colors
+## Type
 
-The palette is anchored by the locked luxury atelier color system: Obsidian Black foundation, Deep Plum / Oxblood and Burgundy atmospheric warmth, and Champagne Silver metallic highlights.
+- Display: Bodoni Moda at optical size 96, weight 400, tight tracking (-0.035em to -0.06em). Headlines end with a period in oxblood (champagne on oxblood).
+- Text and interface: Schibsted Grotesk.
+- Data, addresses, labels: JetBrains Mono, uppercase labels tracked 0.14em to 0.17em.
+- Prices are the largest numerals on the page; the stronger plan is shown by scale and colour, never by a badge.
+- No em dashes anywhere. Headlines stay short; labels above sections are rare.
 
-### Foundational Ground & Surfaces
-- **Obsidian Ground** (`#08080A`): Foundational page canvas. Deep, optical OLED-friendly tone without dead clipping.
-- **Warm Black Surface** (`#100E13` / `#151015`): Cards, module containers, and interactive trays.
-- **Elevated Obsidian** (`#18141D`): Floating inputs, hovered elements, and active drawer states.
+## Depth and motion
 
-### Atmospheric Warmth & Accents
-- **Deep Plum / Oxblood** (`#55162D` / `#3E1220`): Atmospheric glow, subtle depth accents.
-- **Deep Burgundy / Cherry** (`#8A2346` / `#A82C56`): Featured tier highlights, verified status badges.
-
-### Metallic Sheen & Typography
-- **Champagne Silver / Gold** (`#D5C3A0` / `#EFE5D1`): Metallic borders, specular reflections, primary action buttons.
-- **Warm White Text** (`#FBF9F5` / `#EDE8E1`): Pristine contrast (16:1 against obsidian).
-- **Muted Taupe / Slate** (`#918A88` / `#ADA49F`): Subheadings, descriptions, metadata.
-- **Deep Muted** (`#726A66` / `#636A78`): Secondary indicators, footnotes.
-
-### Named Rules
-**The Locked Palette Rule.** Never introduce generic AI purple or neon cyan glows. All warmth is strictly anchored in deep oxblood, cherry burgundy, and champagne silver.
-**The No-Dead-Black Rule.** Pure `#000000` is banned for broad background fills. Always use tuned obsidian (`#08080A`).
-
----
-
-## Typography
-
-- **Display & Headline Font:** `Cinzel`
-- **Body Font:** `Manrope`
-- **Data & Telemetry Font:** `JetBrains Mono`
-
-### Type Ramp
-- **Hero Display:** `clamp(2.5rem, 5.5vw, 4.4rem)` (weight 600-700)
-- **Section Headline:** `clamp(1.75rem, 3.8vw, 3.2rem)` (weight 600-700)
-- **Display Big:** `54px`, `44px`, `42px`, `38px`
-- **Card Titles:** `28px`, `26px`, `24px`, `22px`, `20px`
-- **Subheads & Lead:** `17px`, `16.5px`, `16px`
-- **Body Text:** `15.5px`, `14.5px`, `14px`
-- **Metadata & Data:** `13.5px`, `13px`, `12.5px`, `12px`, `11.5px`, `11px`
-
-### Named Rules
-**The Descender Clearance Rule.** Display headings with negative line-height must reserve `padding-bottom: 0.15em` to prevent clipping descenders (`g`, `y`, `p`, `q`).
-**The Zero Em-Dash Rule.** Em-dashes (`—`) are completely banned across all headlines, body copy, and pills. Use precise sentences, commas, or clean hyphens (`-`).
-
----
-
-## Layout & Spatial System
-
-- **Container Constraint:** `max-width: 1240px; margin: 0 auto; padding: 0 32px;`
-- **Vertical Rhythm:**
-  - Hero: `padding-top: clamp(60px, 10vw, 96px); padding-bottom: clamp(48px, 8vw, 80px);`
-  - Sections: `padding: clamp(64px, 8vw, 112px) 0;`
-  - Component gaps: 16px (tight), 24px (standard), 32px (module separation).
-- **Grid Discipline:**
-  - Pricing cards: Responsive 2-column or 4-column CSS Grid.
-  - Payment options: 3-column equal distribution with mobile vertical stack.
-  - No complex fractional percentage math (`calc(33% - 10px)`). Always CSS Grid.
-
----
-
-## Elevation & Depth
-
-Surfaces communicate elevation through inner hairline borders and tonal shifts rather than blurry drop shadows.
-
-### Depth Vocabulary
-- **Card Default:** Surface background (`#121418`), border `1px solid rgba(255, 255, 255, 0.07)`, subtle inner shadow `inset 0 1px 0 rgba(255, 255, 255, 0.06)`.
-- **Card Hover:** Subtle elevation `translateY(-3px)`, border `1px solid rgba(255, 255, 255, 0.15)`, shadow `0 16px 36px rgba(0, 0, 0, 0.35)`.
-- **Active / Selected:** Border `1.5px solid var(--accent-gold)`, shadow `0 0 24px rgba(229, 192, 123, 0.12)`.
-
-### Named Rules
-**The Single-Light-Source Rule.** Shadows must have vertical offset (`Y: 8px to 24px`) and never appear as centered decorative glow-halos.
-
----
-
-## Shapes & Form Language
-
-- **Corner Scale:**
-  - Controls & Buttons: `rounded-pill` (`9999px`)
-  - Modals & Cards: `16px` (`--radius-lg`)
-  - Inner Inputs & Trays: `10px` (`--radius-md`)
-  - Badges & Chips: `6px` (`--radius-sm`)
-- **Nested Bezel Rule:** Inner element radius must be mathematically smaller than the container radius (`radius_inner = radius_outer - padding`) to preserve concentric curves.
-
----
+- 3D is CSS 3D only (perspective on a stage, preserve-3d rigs). GSAP ScrollTrigger scrubs it; Lenis smooths the wheel on a desk only. Phones keep native scrolling.
+- Opening: a browser window in perspective in front of the giant "All in One." It turns toward the viewer, then opens into its three layers (X, Telegram, extension) like an exploded drawing, labelled above each layer.
+- X: the profile window turns as you scroll and the verified mark draws itself.
+- Telegram: a phone turns on a pinned stage while a 3.8 GB file uploads and a voice note becomes text, in step with the scroll.
+- Automation: the extension window arrives from deep Z, an agent card crosses the lens, agents switch to Running; the twelve agents then pass sideways (swipe on a phone).
+- Interface feedback stays under 300ms; scroll scenes are tied to the scroll, not timed.
+- Only transform and opacity animate. `prefers-reduced-motion` turns the film off and shows every scene in its final state; so does a failed script load.
 
 ## Components
 
-### Buttons
-- **Primary Action:** Solid white/light surface (`#F5F7FA`) with black text (`#0B0C0E`), pill-shaped, `font-weight: 600`. Hover lifts `translateY(-1.5px)`, press active `scale(0.98)`.
-- **Secondary Action:** Obsidian elevated (`#181B20`), 1px subtle border, white text.
-- **Copy Address Button:** Integrated in monospace code tray with instant visual state feedback ("Copied!" with check icon).
+- Buttons: rectangles with a 2px radius, 52 to 54px tall. Oxblood on dark scenes, ink on ivory, ivory on oxblood.
+- Plans: open columns separated by hairlines, not boxed cards. Hover leans the plan slightly in 3D with a faint oxblood light under the pointer (mouse only).
+- Order desk: payment rails with monospace addresses and copy buttons, a ledger, a confirm box, then the details form. Labels sit above inputs; inputs are 16px.
 
-### Cards
-- No generic AI "white-box-with-drop-shadow".
-- High-contrast featured cards use micro-gold borders or elevated status ribbons.
-- Equal height and baseline alignment for CTAs across sibling cards.
+## Do and don't
 
-### Forms & Inputs
-- Explicit `<label>` positioned directly above the input.
-- Input height min `48px`, font-size min `16px` on mobile (prevents iOS auto-zoom).
-- High-contrast placeholder text (at least 4.5:1 against input background).
-- Clear inline error messages directly beneath the invalid input.
-
----
-
-## Motion & Interaction (Emil Kowalski Craft Standards)
-
-### Timing & Easings
-- **Standard UI Interaction:** `160ms - 220ms`
-- **Modal / Panel Transitions:** `240ms - 300ms`
-- **Custom Easing Curve:** `cubic-bezier(0.23, 1, 0.32, 1)` (snappy ease-out, zero sluggishness)
-- **Banned:** `linear` transitions on UI; `ease-in` on entry elements; any UI animation exceeding 300ms.
-
-### Interaction Protocols
-- **Tactile Feedback:** Buttons scale to `0.97` - `0.98` on `:active` with `120ms` transition.
-- **Origin-Aware:** Menus, dropdowns, and copy confirmations expand from their trigger origin.
-- **Entrance Animations:** Never scale from `scale(0)`. Always enter from `scale(0.96)` with opacity fade.
-- **Hardware Acceleration:** Animate exclusively `transform` and `opacity`. Never animate `height`, `width`, or `margin`.
-- **Accessibility Guarantee:** Every movement is gated behind `@media (prefers-reduced-motion: no-preference)`. When reduced motion is preferred, transitions degrade to gentle opacity changes.
-
----
-
-## Do's and Don'ts
-
-### Do:
-- **Do** test every form and CTA in both desktop and 390px mobile viewports.
-- **Do** ensure all interactive touch targets meet or exceed 44x44px.
-- **Do** keep crypto addresses readable in monospace with single-tap copy and immediate feedback.
-- **Do** keep copy clear, direct, and active ("Activate X Premium", "Copy Address").
-
-### Don't:
-- **Don't** use generic AI purple/blue gradients or cyan neon glow effects.
-- **Don't** allow button text to wrap into multiple lines on desktop.
-- **Don't** add decorative kickers/eyebrows to every section header (maximum 1 per 3 sections).
-- **Don't** animate elements during high-frequency tasks.
-- **Don't** ship without running Impeccable design detector audits (`impeccable detect index.html`).
+- Do keep every product fact true to the real products. Agent names and descriptions come from the extension itself.
+- Do check 360, 390, 768, 1024, 1440 and wider; the page width must equal the screen at every size.
+- Don't add particles, spheres, rings or other decoration without a product reason.
+- Don't use glassmorphism, gradient text, glow shadows or badges like "best value".

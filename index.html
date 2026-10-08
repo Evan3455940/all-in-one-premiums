@@ -109,10 +109,14 @@ p{margin:0}
   .nav-cta:hover{background:var(--ivory);color:var(--ink)}
   .nav[data-tone="light"] .nav-cta:hover{background:var(--ink);color:var(--ivory)}
 }
-.sheet{position:fixed;inset:0;z-index:55;background:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:calc(var(--nav-h) + 24px) var(--gut) calc(48px + env(safe-area-inset-bottom,0px));visibility:hidden;opacity:0;transition:opacity .35s var(--ease),visibility .35s}
+.sheet{position:fixed;inset:0;z-index:55;background:var(--ink);display:flex;flex-direction:column;justify-content:flex-start;gap:6px;overflow-y:auto;overscroll-behavior:contain;padding:calc(var(--nav-h) + 24px) var(--gut) calc(48px + env(safe-area-inset-bottom,0px));visibility:hidden;opacity:0;transition:opacity .35s var(--ease),visibility .35s}
 .sheet.open{visibility:visible;opacity:1}
+.sheet>:first-child{margin-top:auto}
+html.sheet-open{overflow:hidden}
+html.sheet-open .nav{color:var(--ivory);translate:none}
+html.sheet-open .nav::before{opacity:0}
 .sheet a{font:400 clamp(44px,12vw,72px)/1.04 var(--serif);letter-spacing:-.03em;color:var(--ivory)}
-.sheet a:last-child{color:var(--cham)}
+.sheet a:last-of-type{color:var(--cham)}
 .sheet-note{margin-top:28px;font:400 14px/1.5 var(--sans);color:rgba(244,239,230,.55)}
 
 /* film counter, bottom left on a wide screen */
@@ -219,7 +223,8 @@ p{margin:0}
 .we-reply{border-radius:14px;background:rgba(116,31,50,.22);border:1px solid rgba(116,31,50,.55);padding:14px 18px}
 .we-reply .k{font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cham)}
 .we-reply p{margin:8px 0 0;font-size:14px;color:var(--ivory)}
-.we-reply p::after{content:'';display:inline-block;width:1.5px;height:15px;margin-left:2px;vertical-align:-2px;background:var(--cham);animation:caret 1.1s steps(2) infinite}
+.we-reply p::after{content:'';display:inline-block;width:1.5px;height:15px;margin-left:2px;vertical-align:-2px;background:var(--cham);animation:caret 1.1s steps(2) infinite;animation-play-state:paused}
+.live .we-reply p::after{animation-play-state:running}
 @keyframes caret{50%{opacity:0}}
 .we-ghost i{display:block;height:9px;border-radius:5px;background:rgba(244,239,230,.07);margin-top:10px}
 .we-ghost i:nth-child(1){width:70%}.we-ghost i:nth-child(2){width:92%}.we-ghost i:nth-child(3){width:54%}
@@ -261,16 +266,15 @@ p{margin:0}
 .layer>.win{position:absolute;inset:0}
 #lext{transform:translateZ(-2px)}#ltg{transform:translateZ(-1px)}
 .shadow{position:absolute;left:4%;right:4%;top:100%;height:120px;margin-top:-30px;background:radial-gradient(closest-side,rgba(0,0,0,.7),rgba(0,0,0,0));transform:translateZ(-80px)}
-.callout{position:absolute;left:4px;bottom:100%;width:460px;margin-bottom:26px;text-align:left;opacity:0;pointer-events:none}
-.callout .n{font:500 11px/1 var(--mono);letter-spacing:.16em;color:var(--cham)}
-.callout b{display:block;margin:10px 0 6px;font:400 40px/1 var(--serif);font-variation-settings:'opsz' 72;letter-spacing:-.025em;color:var(--ivory)}
-.callout span{font:400 15px/1.5 var(--sans);color:rgba(244,239,230,.62)}
-.callout::after{content:'';position:absolute;left:0;top:100%;margin-top:8px;width:1px;height:14px;background:var(--cham);opacity:.8}
+.callout{position:absolute;left:4px;bottom:100%;margin-bottom:74px;text-align:left;white-space:nowrap;opacity:0;pointer-events:none}
+.callout .n{display:block;font:500 14px/1 var(--mono);letter-spacing:.16em;color:var(--cham)}
+.callout b{display:block;margin:12px 0 0;font:400 40px/1 var(--serif);font-variation-settings:'opsz' 72;letter-spacing:-.025em;color:var(--ivory)}
+.callout::after{content:'';position:absolute;left:0;top:100%;margin-top:12px;width:1px;height:52px;background:linear-gradient(var(--cham),rgba(191,161,106,.15))}
 .op-front{position:absolute;inset:0;z-index:3;pointer-events:none}
 .op-foot{position:absolute;left:var(--gut);right:var(--gut);bottom:max(40px,6vh);display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 .op-lead{max-width:430px;pointer-events:auto}
 .op-lead p{font:400 17px/1.58 var(--sans);color:rgba(244,239,230,.72)}
-.op-actions{display:flex;align-items:center;gap:28px;margin-top:28px}
+.op-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px}
 .op-index{list-style:none;margin:0;padding:0;display:grid;gap:0;min-width:300px;pointer-events:auto}
 .op-index a{display:flex;align-items:baseline;justify-content:space-between;gap:28px;padding:12px 0;border-top:1px solid rgba(244,239,230,.12);font:400 14px/1.2 var(--sans);color:rgba(244,239,230,.82);transition:color .25s}
 .op-index a b{font:500 12px/1 var(--mono);color:var(--cham);font-weight:500}
@@ -303,7 +307,9 @@ p{margin:0}
 .feats span{font:400 14.5px/1.5 var(--sans);color:var(--fg2)}
 .buy{display:flex;align-items:center;gap:30px;flex-wrap:wrap;margin-top:48px}
 .price-line{display:flex;align-items:baseline;gap:22px;font:400 14px/1 var(--sans);color:var(--fg2)}
-.price-line b{font:400 34px/1 var(--serif);letter-spacing:-.02em;color:var(--fg);margin-right:6px}
+.price-line b{font:400 34px/1 var(--serif);letter-spacing:-.02em;color:var(--fg);margin-right:6px;font-variation-settings:'opsz' 16}
+.price-line span:last-child{color:var(--fg)}
+.price-line span:last-child b{font-size:44px;color:var(--ox)}
 .xs-visual{position:relative}
 .fitbox>.fit{perspective:1600px;perspective-origin:30% 50%}
 .fitbox{position:relative;width:100%}
@@ -326,7 +332,7 @@ p{margin:0}
 .tgs-copy .lead{margin-top:26px}
 .tgs-buy{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:36px}
 .tgs-price{font:400 14px/1.3 var(--sans);color:var(--fg2)}
-.tgs-price b{font:400 30px/1 var(--serif);color:var(--fg);margin-right:8px}
+.tgs-price b{font:400 30px/1 var(--serif);color:var(--fg);margin-right:8px;font-variation-settings:'opsz' 16}
 .tgs-stage{perspective:1500px}
 .phone{position:relative;width:310px;height:640px;border-radius:50px;padding:11px;background:#0C0A0B;transform-style:preserve-3d;
   box-shadow:0 0 0 1px rgba(244,239,230,.16) inset,0 0 0 2px rgba(0,0,0,.55),0 90px 120px -50px rgba(10,2,5,.85),0 40px 60px -40px rgba(0,0,0,.7)}
@@ -349,6 +355,8 @@ p{margin:0}
 .tgs-list li.on{color:var(--fg);transform:translateX(-8px)}
 .tgs-list li.on span{color:var(--cham)}
 .no-motion .tgs-list li{color:var(--fg)}
+.no-motion .chapter{display:none}
+.no-motion .au-word{opacity:.12}
 
 /* =====================================================================
    5 · AUTOMATION
@@ -375,7 +383,7 @@ p{margin:0}
 .au-head .lead{margin-top:28px}
 .au-buy{justify-self:end;text-align:right}
 .au-price{display:block;font:400 clamp(72px,8vw,140px)/.84 var(--serif);font-variation-settings:'opsz' 96;letter-spacing:-.05em}
-.au-price small{font-size:.32em;vertical-align:top;position:relative;top:.32em;margin-right:.08em;letter-spacing:0}
+.au-price small{font-size:.32em;vertical-align:top;position:relative;top:.32em;margin-right:.08em;letter-spacing:0;font-variation-settings:'opsz' 18}
 .au-buy .meta{display:block;margin:16px 0 26px}
 .railwrap{position:relative}
 .rail-sticky{position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:24px 0 40px}
@@ -416,7 +424,7 @@ p{margin:0}
 .p-num{display:block;overflow:hidden;margin:26px 0 20px;padding-bottom:.04em}
 .p-num>span{display:block;font:400 clamp(118px,14vw,250px)/.8 var(--serif);font-variation-settings:'opsz' 96;letter-spacing:-.06em;font-variant-numeric:lining-nums}
 .major .p-num>span{font-size:clamp(150px,18.4vw,330px);color:var(--ox)}
-.p-num sup,.p-numsm sup{font-size:.3em;vertical-align:top;position:relative;top:.44em;margin-right:.06em;letter-spacing:0}
+.p-num sup,.p-numsm sup{font-size:.3em;vertical-align:top;position:relative;top:.44em;margin-right:.06em;letter-spacing:0;font-variation-settings:'opsz' 18}
 .p-rate{font:500 13px/1 var(--mono);color:var(--fg2)}
 .major .p-rate{color:var(--ox)}
 .p-feat{display:block;max-width:36ch;margin:18px 0 32px;font:400 15px/1.58 var(--sans);color:var(--fg2)}
@@ -466,7 +474,7 @@ p{margin:0}
 .ledger div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-bottom:1px solid var(--rule2)}
 .ledger span{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
 .ledger b{font:500 15px/1.35 var(--sans);text-align:right}
-.ledger #sumPrice{font:400 30px/1 var(--serif);letter-spacing:-.02em}
+.ledger #sumPrice{font:400 30px/1 var(--serif);letter-spacing:-.02em;font-variation-settings:'opsz' 16}
 .pay-note{margin:20px 0 0;font-size:14px;line-height:1.6;color:var(--fg2)}
 .confirm{display:flex;gap:14px;align-items:flex-start;margin:22px 0 8px;font-size:14.5px;line-height:1.5;color:var(--fg2);cursor:pointer}
 .confirm input{appearance:none;-webkit-appearance:none;width:22px;height:22px;flex:none;margin:1px 0 0;border:1px solid rgba(244,239,230,.4);border-radius:2px;display:grid;place-items:center;cursor:pointer;transition:background-color .2s,border-color .2s}
@@ -534,7 +542,7 @@ p{margin:0}
 .quickbar{position:fixed;right:var(--gut);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;align-items:center;gap:22px;padding:10px 10px 10px 20px;background:var(--ink-2);border:1px solid rgba(244,239,230,.14);border-radius:2px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);transform:translateY(160%);transition:transform .6s var(--ease)}
 .quickbar.on{transform:none}
 .quickbar.on.hide{transform:translateY(160%)}
-.quickbar b{display:block;font:400 22px/1 var(--serif);color:var(--ivory)}
+.quickbar b{display:block;font:400 22px/1 var(--serif);color:var(--ivory);font-variation-settings:'opsz' 16}
 .quickbar span{display:block;margin-top:4px;font:400 12px/1.2 var(--sans);color:rgba(244,239,230,.55);max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .quickbar a{height:44px;padding:0 20px;display:inline-flex;align-items:center;background:var(--ox-2);color:var(--ivory);border-radius:2px;font:500 13.5px/1 var(--sans)}
 
@@ -557,11 +565,12 @@ p{margin:0}
   .prow{grid-template-columns:minmax(90px,1fr) minmax(120px,1fr) minmax(0,1.4fr);grid-template-areas:"t n c" "r f f";row-gap:14px}
   .prow .p-term{grid-area:t}.prow .p-numsm{grid-area:n}.prow .p-rate{grid-area:r}.prow .p-feat{grid-area:f}.prow .p-cta{grid-area:c;justify-self:end}
 }
+/* the layer labels need room; below this width the windows speak for themselves */
+@media (max-width:1199px){.callout{display:none}}
 @media (max-width:1023px){
   .motion .opening{height:240vh}
   .motion .au-intro{height:220vh}
   .chapter{display:none}
-  .callout{display:none}
   .tgs-sticky{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"copy phone" "list phone";align-content:center}
   .tgs-copy{grid-area:copy}.tgs-stage{grid-area:phone}.tgs-list{grid-area:list;justify-self:start}
   .au-head,.order-head{grid-template-columns:1fr}
@@ -570,9 +579,10 @@ p{margin:0}
 /* a tablet held upright: title on top, the window below it, like the phone */
 @media (min-width:761px) and (max-width:1023px) and (orientation:portrait){
   .giant{top:calc(var(--nav-h) + 4vh);transform:none;font-size:clamp(110px,21vw,200px);line-height:.84}
-  .halo{left:50%;top:58%}
-  .stage{perspective-origin:50% 56%}
-  .rig-pos{left:50%;top:57%}
+  .op-sticky{--stacked:1}
+  .halo{left:50%;top:calc(var(--rig-top,57%) + 2%)}
+  .stage{perspective-origin:50% var(--rig-top,57%)}
+  .rig-pos{left:50%;top:var(--rig-top,57%)}
   .op-claim{bottom:auto;top:calc(var(--nav-h) + 4vh);font-size:clamp(56px,8.6vw,84px)}
 }
 @media (max-width:900px){
@@ -586,13 +596,15 @@ p{margin:0}
   :root{--nav-h:64px}
   .brand{font-size:18px}
   .giant{top:calc(var(--nav-h) + 4vh);transform:none;font-size:clamp(70px,25vw,150px);line-height:.84}
-  .halo{left:50%;top:58%}
-  .stage{perspective-origin:50% 55%}
-  .rig-pos{left:50%;top:60%}
+  /* the window sits in the middle of the room left between the title and the text; the script measures it */
+  .op-sticky{--stacked:1}
+  .halo{left:50%;top:calc(var(--rig-top,56%) + 2%)}
+  .stage{perspective-origin:50% var(--rig-top,56%)}
+  .rig-pos{left:50%;top:var(--rig-top,56%)}
   .op-foot{flex-direction:column;align-items:stretch;gap:24px;bottom:max(28px,4vh)}
   .op-lead p{font-size:15.5px}
   .op-index{display:none}
-  .op-actions{gap:22px}
+  .op-actions{column-gap:22px}
   .op-claim{bottom:auto;top:calc(var(--nav-h) + 4vh);font-size:clamp(40px,12vw,64px)}
   .facts{grid-template-columns:1fr}
   .feats{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px;margin-top:36px}
@@ -625,15 +637,16 @@ p{margin:0}
   .op-actions a{white-space:nowrap}
 }
 @media (max-width:380px){
-  .op-actions{gap:18px}
+  .op-actions{column-gap:18px}
   .op-actions .btn{padding-left:20px;padding-right:20px}
+}
+@media (max-width:359px){
+  .tabs{gap:8px}
+  .tab{font-size:12.5px}
 }
 /* short phones (iPhone SE and smaller): a smaller title so the window has room above the text */
 @media (max-width:760px) and (max-height:720px){
-  .giant{font-size:clamp(64px,21.5vw,120px);top:calc(var(--nav-h) + 3vh)}
-  .halo{top:52%}
-  .stage{perspective-origin:50% 52%}
-  .rig-pos{top:52.5%}
+  .giant{font-size:clamp(64px,min(21.5vw,15.5vh),120px);top:calc(var(--nav-h) + 3vh)}
   .op-foot{gap:18px;bottom:max(22px,3.4vh)}
   .op-lead p{font-size:14.5px;line-height:1.5}
   .op-actions{margin-top:18px}
@@ -712,7 +725,7 @@ p{margin:0}
                     </div>
                   </div>
                 </div>
-                <div class="callout"><span class="n">03</span><b>X Automation</b><span>Twelve agents in one extension. One payment, for life.</span></div>
+                <div class="callout"><span class="n">03</span><b>X Automation</b></div>
               </div>
 
               <!-- 02 · Telegram, in the middle -->
@@ -736,7 +749,7 @@ p{margin:0}
                     </div>
                   </div>
                 </div>
-                <div class="callout"><span class="n">02</span><b>Telegram Premium</b><span>4 GB uploads, faster downloads, voice to text.</span></div>
+                <div class="callout"><span class="n">02</span><b>Telegram Premium</b></div>
               </div>
 
               <!-- 01 · X profile, in front -->
@@ -760,7 +773,7 @@ p{margin:0}
                     </aside>
                   </div>
                 </div>
-                <div class="callout"><span class="n">01</span><b>X Premium</b><span>The checkmark, post editing, longer videos.</span></div>
+                <div class="callout"><span class="n">01</span><b>X Premium</b></div>
               </div>
             </div>
           </div>
@@ -968,7 +981,7 @@ p{margin:0}
 </section>
 
 <!-- ============================ 6 · PLANS ============================ -->
-<section class="scene tone-light plans" id="plans" data-nochapter data-bg="#F4EFE6" data-tone="light" data-ch="06" data-name="Plans">
+<section class="scene tone-light plans" id="plans" data-bg="#F4EFE6" data-tone="light" data-ch="06" data-name="Plans">
   <div class="plans-head">
     <h2 class="h2" id="plansTitle"><span class="ln"><span>Choose your</span></span><span class="ln"><span>term<em>.</em></span></span></h2>
     <div class="tabs" role="tablist" aria-label="Products">
@@ -1036,7 +1049,7 @@ p{margin:0}
 </section>
 
 <!-- ============================ 7 · ORDER ============================ -->
-<section class="scene tone-dark order" id="payment" data-nochapter data-bg="#0D0B0C" data-tone="dark" data-ch="07" data-name="Order">
+<section class="scene tone-dark order" id="payment" data-bg="#0D0B0C" data-tone="dark" data-ch="07" data-name="Order">
   <div class="order-head" id="how-it-works">
     <h2 class="h2"><span class="ln"><span>Pay, then tell us</span></span><span class="ln"><span>where to deliver<em>.</em></span></span></h2>
     <ol class="flow">
@@ -1117,7 +1130,7 @@ p{margin:0}
 </section>
 
 <!-- ============================ FAQ ============================ -->
-<section class="scene tone-dark faq" id="faq" data-nochapter data-bg="#0D0B0C" data-tone="dark" data-ch="08" data-name="Questions">
+<section class="scene tone-dark faq" id="faq" data-bg="#0D0B0C" data-tone="dark" data-ch="08" data-name="Questions">
   <div class="faq-grid">
     <h2 class="h2">Questions<em>.</em></h2>
     <div>
@@ -1130,7 +1143,7 @@ p{margin:0}
 </section>
 
 <!-- ============================ CLOSING ============================ -->
-<section class="scene tone-ox closing" id="begin" data-nochapter data-bg="#4A101C" data-tone="ox" data-ch="09" data-name="Begin">
+<section class="scene tone-ox closing" id="begin" data-bg="#4A101C" data-tone="ox" data-ch="09" data-name="Begin">
   <h2 class="h2" id="beginTitle"><span class="ln"><span>Begin<em>.</em></span></span></h2>
   <div class="closing-row">
     <p class="lead">Pick a plan, pay in crypto, and your account is upgraded within a day. Questions first? We answer on Telegram.</p>
@@ -1176,6 +1189,12 @@ document.addEventListener('DOMContentLoaded', function () {
     return fetch(STORE_NOTIFY_URL + '/photo', { method: 'POST', body: form });
   }
 
+  /* the typing caret only blinks while its scene is on screen */
+  if ('IntersectionObserver' in window) {
+    var liveIo = new IntersectionObserver(function (entries) { entries.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); }); });
+    $$('.op-sticky, .au-sticky').forEach(function (el) { liveIo.observe(el); });
+  } else $$('.op-sticky, .au-sticky').forEach(function (el) { el.classList.add('live'); });
+
   /* voice note waveforms, drawn once */
   $$('[data-wave]').forEach(function (w) {
     var n = +w.getAttribute('data-wave'), seed = 7;
@@ -1183,12 +1202,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* fixed-size interface drawings scaled to fit, and the size of the 3D stages */
-  var fitW = 0, fitH = 0;
+  var opSticky = $('.op-sticky'), giantEl = $('#giant'), opFoot = $('.op-foot');
   function fitAll() {
-    var vw = window.innerWidth, vh = window.innerHeight, desk = vw >= 1024;
-    /* a phone's height changes as its address bar slides; only take a new height when the width changes */
-    if (vw !== fitW || desk) { fitW = vw; fitH = vh; }
-    var k = desk ? Math.min(0.84, vw * 0.54 / 960, vh * 0.64 / 600) : Math.min(0.62, vw * 1.04 / 960, fitH * 0.345 / 600);
+    var vw = window.innerWidth, vh = window.innerHeight, desk = vw >= 1024, k;
+    if (desk) k = Math.min(0.84, vw * 0.54 / 960, vh * 0.64 / 600);
+    else if (getComputedStyle(opSticky).getPropertyValue('--stacked').trim() === '1') {
+      /* title on top, text at the bottom: the window takes the middle of what is left (layout sizes, so a sliding address bar does not move it) */
+      var gB = giantEl.offsetTop + giantEl.offsetHeight, room = Math.max(140, opFoot.offsetTop - gB);
+      root.style.setProperty('--rig-top', ((gB + room * 0.46) / opSticky.offsetHeight * 100).toFixed(2) + '%');
+      k = Math.min(0.62, vw * 0.9 / 960, room * 0.82 / 600);
+    } else k = Math.min(0.62, vw * 1.04 / 960);
+    if (desk) root.style.removeProperty('--rig-top');
     root.style.setProperty('--k', k.toFixed(3));
     $$('[data-fit]').forEach(function (box) {
       var w = +box.getAttribute('data-fit'), h = +box.getAttribute('data-fit-h'), s = Math.min(1, box.clientWidth / w);
@@ -1232,11 +1256,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* mobile menu */
   var sheet = $('#sheet'), menuBtn = $('#menuBtn');
-  function closeSheet() { sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'Menu'; if (lenis) lenis.start(); }
+  function closeSheet() { sheet.classList.remove('open'); root.classList.remove('sheet-open'); sheet.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'Menu'; if (lenis) lenis.start(); }
   menuBtn.addEventListener('click', function () {
     var open = !sheet.classList.contains('open');
     if (!open) { closeSheet(); return; }
-    sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); menuBtn.setAttribute('aria-expanded', 'true'); menuBtn.textContent = 'Close'; if (lenis) lenis.stop();
+    sheet.classList.add('open'); root.classList.add('sheet-open'); sheet.setAttribute('aria-hidden', 'false'); menuBtn.setAttribute('aria-expanded', 'true'); menuBtn.textContent = 'Close'; if (lenis) lenis.stop();
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sheet.classList.contains('open')) closeSheet(); });
 
@@ -1412,17 +1436,20 @@ document.addEventListener('DOMContentLoaded', function () {
   if (motion && fine) {
     $$('[data-magnetic]').forEach(function (m) {
       var mx = gsap.quickTo(m, 'x', { duration: 0.6, ease: 'power3' }), my = gsap.quickTo(m, 'y', { duration: 0.6, ease: 'power3' });
-      m.addEventListener('pointermove', function (e) { var r = m.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * 0.22); my((e.clientY - r.top - r.height / 2) * 0.3); });
+      m.addEventListener('pointermove', function (e) { var r = m.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * 0.1); my((e.clientY - r.top - r.height / 2) * 0.14); });
       m.addEventListener('pointerleave', function () { mx(0); my(0); });
     });
     $$('.plan').forEach(function (p) {
-      var rx = gsap.quickTo(p, 'rotationX', { duration: 0.7, ease: 'power3' }), ry = gsap.quickTo(p, 'rotationY', { duration: 0.7, ease: 'power3' });
+      var rx = gsap.quickTo(p, 'rotationX', { duration: 0.7, ease: 'power3' }), ry = gsap.quickTo(p, 'rotationY', { duration: 0.7, ease: 'power3' }), r = null;
+      p.addEventListener('pointerenter', function () { r = p.getBoundingClientRect(); });
+      window.addEventListener('scroll', function () { r = null; }, { passive: true });
       p.addEventListener('pointermove', function (e) {
-        var r = p.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-        ry((px - 0.5) * (p.classList.contains('prow') ? 1.6 : 5)); rx((0.5 - py) * (p.classList.contains('prow') ? 2.4 : 4));
+        if (!r) r = p.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        ry((px - 0.5) * (p.classList.contains('prow') ? 1.2 : 3.2)); rx((0.5 - py) * (p.classList.contains('prow') ? 1.6 : 2.6));
         p.style.setProperty('--lx', (px * 100).toFixed(1) + '%'); p.style.setProperty('--ly', (py * 100).toFixed(1) + '%');
       });
-      p.addEventListener('pointerleave', function () { rx(0); ry(0); });
+      p.addEventListener('pointerleave', function () { r = null; rx(0); ry(0); });
     });
     var parY = gsap.quickTo('#rigPar', 'rotationY', { duration: 1.4, ease: 'power3' }), parX = gsap.quickTo('#rigPar', 'rotationX', { duration: 1.4, ease: 'power3' });
     var gX = gsap.quickTo('#giantIn', 'x', { duration: 1.6, ease: 'power3' });
@@ -1462,17 +1489,31 @@ document.addEventListener('DOMContentLoaded', function () {
   /* the room changes colour between scenes */
   scenes.forEach(function (s, i) {
     if (!i) return; var from = scenes[i - 1].getAttribute('data-bg'), to = s.getAttribute('data-bg'); if (from === to) return;
-    gsap.fromTo(backdrop, { backgroundColor: from }, { backgroundColor: to, ease: 'none', immediateRender: false,
-      scrollTrigger: { trigger: s, start: 'top 82%', end: 'top 32%', scrub: true } });
+    gsap.fromTo(backdrop, { backgroundColor: from }, { backgroundColor: to, ease: 'power2.inOut', immediateRender: false,
+      scrollTrigger: { trigger: s, start: 'top 64%', end: 'top 47%', scrub: true } });
   });
   /* nav and the film counter take the tone of the scene under them */
   scenes.forEach(function (s) {
     ScrollTrigger.create({ trigger: s, start: 'top 57%', end: 'bottom 57%', onToggle: function (self) {
       if (!self.isActive) return; var tone = s.getAttribute('data-tone');
       nav.setAttribute('data-tone', tone); chapter.setAttribute('data-tone', tone);
-      $('#chN').textContent = s.getAttribute('data-ch'); $('#chT').textContent = s.getAttribute('data-name'); chapter.classList.toggle('off', s.hasAttribute('data-nochapter'));
+      $('#chN').textContent = s.getAttribute('data-ch'); $('#chT').textContent = s.getAttribute('data-name'); syncChapter();
     } });
   });
+  /* the film counter shows only while a scene is held on screen, where nothing scrolls underneath it */
+  /* (the opening counts only once its front text has gone, so the counter never crowds the first buttons) */
+  var held = ['#opening', '#telegram', '#auIntro', '#railWrap'].map(function (sel) {
+    return ScrollTrigger.create({ trigger: sel, start: sel === '#opening' ? 'top -30%' : 'top top', end: 'bottom bottom', onToggle: syncChapter });
+  });
+  var chapterRaf = 0;
+  function syncChapter() {
+    cancelAnimationFrame(chapterRaf);
+    chapterRaf = requestAnimationFrame(function () {
+      var on = held.some(function (t) { return t.isActive; });
+      chapter.classList.toggle('off', !on);
+    });
+  }
+  ScrollTrigger.addEventListener('refresh', syncChapter);
 
   /* masked headlines rise with the scroll */
   function scrubLines(sel, trigger, start, end) {
@@ -1496,21 +1537,23 @@ document.addEventListener('DOMContentLoaded', function () {
         .to('#giant', { yPercent: -26, scale: 0.9, opacity: 0.3, duration: 0.34 }, 0)
         .to(rig, { rotationY: -9, rotationX: 4, rotationZ: 0, x: -150, y: -10, duration: 0.3 }, 0)
         .to('#halo', { xPercent: -8, scale: 1.12, duration: 0.6 }, 0)
-        .to(rig, { rotationY: -32, rotationX: 15, rotationZ: -1.2, x: 20, y: 20, scale: 0.86, duration: 0.34 }, 0.3)
+        .to(rig, { rotationY: -32, rotationX: 15, rotationZ: -1.2, x: 10, y: 10, scale: 0.8, duration: 0.34 }, 0.3)
         .to('#lx', { x: -200, y: 150, z: 300, duration: 0.34 }, 0.3)
         .to('#ltg', { x: 0, y: 0, z: 0, duration: 0.34 }, 0.3)
         .to('#lext', { x: 190, y: -150, z: -300, duration: 0.34 }, 0.3)
         .to('#giant', { opacity: 0.07, duration: 0.3 }, 0.32)
         .to('.callout', { opacity: 1, duration: 0.1, stagger: 0.05 }, 0.52)
         .fromTo('#opClaim', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.14 }, 0.68)
-        .to(rig, { y: 0, x: 60, duration: 0.18 }, 0.7)
+        .to(rig, { y: -30, x: 30, duration: 0.18 }, 0.7)
         .to({}, { duration: 0.12 });
     } else {
       gsap.set(rig, { rotationX: 24, rotationY: -12, rotationZ: 5 });
-      var opm = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#opening', start: 'top top', end: 'bottom bottom', scrub: 0.8 } });
+      /* the opened stack settles into the lower part of the frame, under the line that names it */
+      var settle = function () { var k = parseFloat(getComputedStyle(root).getPropertyValue('--k')) || 0.4; return window.innerHeight * 0.17 / k; };
+      var opm = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#opening', start: 'top top', end: 'bottom bottom', scrub: 0.8, invalidateOnRefresh: true } });
       opm.to('#opFront', { opacity: 0, y: -24, duration: 0.18 }, 0)
         .to('#giant', { opacity: 0.12, yPercent: -10, duration: 0.3 }, 0)
-        .to(rig, { rotationX: 54, rotationY: 0, rotationZ: -16, y: 60, duration: 0.45 }, 0.1)
+        .to(rig, { rotationX: 54, rotationY: 0, rotationZ: -16, y: settle, duration: 0.45 }, 0.1)
         .to('#lx', { z: 330, duration: 0.45 }, 0.15)
         .to('#lext', { z: -330, duration: 0.45 }, 0.15)
         .fromTo('#opClaim', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.16 }, 0.6)
@@ -1535,14 +1578,16 @@ document.addEventListener('DOMContentLoaded', function () {
     scrubLines('#tgTitle .ln > span', desk ? '#telegram' : '#tgTitle', desk ? 80 : 90, desk ? 40 : 58);
     var upBar = $('#upBar'), upState = $('#upState'), tws = $$('#vText .tw'), tgItems = $$('#tgList li');
     gsap.set(tws, { opacity: 0.12 });
+    var tgLast = { u: -1, label: '', words: -1, idx: -2 };
     function tgProgress(p) {
-      var u = Math.min(1, Math.max(0, (p - 0.1) / 0.42));
-      upBar.style.transform = 'scaleX(' + u.toFixed(3) + ')';
-      upState.textContent = u >= 1 ? 'Sent · 3.8 GB' : (u * 3.8).toFixed(1) + ' of 3.8 GB';
-      var w = Math.min(1, Math.max(0, (p - 0.56) / 0.26));
-      tws.forEach(function (t, i) { t.style.opacity = (i / tws.length) < w ? 1 : 0.12; });
+      var u = Math.min(1, Math.max(0, (p - 0.1) / 0.42)), us = u.toFixed(3);
+      if (us !== tgLast.u) { tgLast.u = us; upBar.style.transform = 'scaleX(' + us + ')'; }
+      var label = u >= 1 ? 'Sent · 3.8 GB' : (u * 3.8).toFixed(1) + ' of 3.8 GB';
+      if (label !== tgLast.label) { tgLast.label = label; upState.textContent = label; }
+      var w = Math.min(1, Math.max(0, (p - 0.56) / 0.26)), words = Math.ceil(w * tws.length);
+      if (words !== tgLast.words) { tgLast.words = words; tws.forEach(function (t, i) { t.style.opacity = i < words ? 1 : 0.12; }); }
       var idx = desk ? Math.min(tgItems.length - 1, Math.floor(Math.max(0, p - 0.04) * tgItems.length * 1.12)) : tgItems.length - 1;
-      tgItems.forEach(function (li, i) { li.classList.toggle('on', i <= idx); });
+      if (idx !== tgLast.idx) { tgLast.idx = idx; tgItems.forEach(function (li, i) { li.classList.toggle('on', i <= idx); }); }
     }
     if (desk) {
       gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#telegram', start: 'top top', end: 'bottom bottom', scrub: 1, onUpdate: function (s) { tgProgress(s.progress); } } })
@@ -1555,7 +1600,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ---------- 5 · AUTOMATION: the extension arrives from deep space, an agent crosses the lens ---------- */
     var agents = $$('#auAgents li');
-    function agentsOn(n) { agents.forEach(function (li, i) { var on = i < n; li.classList.toggle('on', on); $('em', li).textContent = on ? 'Running' : 'Ready'; }); }
+    var agentsLast = -1;
+    function agentsOn(n) {
+      if (n === agentsLast) return; agentsLast = n;
+      agents.forEach(function (li, i) { var on = i < n; li.classList.toggle('on', on); $('em', li).textContent = on ? 'Running' : 'Ready'; });
+    }
     gsap.set('#auWin', { z: -1700, rotationX: 36, rotationY: 14, y: 140 });
     var au = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#auIntro', start: 'top top', end: 'bottom bottom', scrub: 1,
       onUpdate: function (s) { agentsOn(Math.max(0, Math.round((s.progress - 0.45) / 0.45 * agents.length))); } } });

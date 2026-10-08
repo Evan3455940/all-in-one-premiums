@@ -54,20 +54,22 @@ The page is one short film in nine scenes: Opening, Promise, X Premium, Telegram
 
 Mostly warm near-black (`#0D0B0C`) and warm ivory (`#F4EFE6`). Deep oxblood (`#4A101C`, lighter `#741F32` for buttons on black) is the signature: the Telegram scene, the closing scene, the period at the end of headlines, the main buttons. Muted champagne (`#BFA16A`) appears only in the smallest places: index numbers, the verified mark, a checked box, a selected payment method. No bright or neon red, no blue or purple, no gradient fills on type, no coloured glow.
 
-The room behind the page is one fixed backdrop whose colour is scrubbed between scenes (ink, ivory, oxblood), so scene changes are continuous instead of hard section edges. Each scene sets its own text tone (`tone-dark`, `tone-light`, `tone-ox`); the nav and the film counter follow the tone of the scene under them.
+The room behind the page is one fixed backdrop whose colour is scrubbed between scenes (ink, ivory, oxblood), so scene changes are continuous instead of hard section edges. The change is a short, eased dissolve (the scene top travels from 64% to 47% of the screen), so the muddy midpoint between ink and ivory only flashes by. Each scene sets its own text tone (`tone-dark`, `tone-light`, `tone-ox`); the nav and the film counter follow the tone of the scene under them.
 
 ## Type
 
 - Display: Bodoni Moda at optical size 96, weight 400, tight tracking (-0.035em to -0.06em). Headlines end with a period in oxblood (champagne on oxblood).
 - Text and interface: Schibsted Grotesk.
 - Data, addresses, labels: JetBrains Mono, uppercase labels tracked 0.14em to 0.17em.
-- Prices are the largest numerals on the page; the stronger plan is shown by scale and colour, never by a badge.
+- Prices are the largest numerals on the page; the stronger plan is shown by scale and colour, never by a badge. In the X scene the 6 month $8 is larger and oxblood.
+- Small serif text (the $ beside a price, prices under 50px) uses a low optical size (opsz 16 to 18) so Bodoni hairlines do not vanish.
 - No em dashes anywhere. Headlines stay short; labels above sections are rare.
 
 ## Depth and motion
 
 - 3D is CSS 3D only (perspective on a stage, preserve-3d rigs). GSAP ScrollTrigger scrubs it; Lenis smooths the wheel on a desk only. Phones keep native scrolling.
-- Opening: a browser window in perspective in front of the giant "All in One." It turns toward the viewer, then opens into its three layers (X, Telegram, extension) like an exploded drawing, labelled above each layer.
+- Opening: a browser window in perspective in front of the giant "All in One." It turns toward the viewer, then opens into its three layers (X, Telegram, extension) like an exploded drawing. Each layer carries only its number and name with a thin leader line, and only from 1200px up. On phones and upright tablets the title sits on top and the window is centred in the measured gap between the title and the text (the script sets --rig-top and --k); the opened stack then settles into the lower part of the frame.
+- The film counter (bottom left) shows only while a scene is held on screen, so nothing ever scrolls underneath it. The top bar steps aside when reading down and returns on any upward scroll.
 - X: the profile window turns as you scroll and the verified mark draws itself.
 - Telegram: a phone turns on a pinned stage while a 3.8 GB file uploads and a voice note becomes text, in step with the scroll.
 - Automation: the extension window arrives from deep Z, an agent card crosses the lens, agents switch to Running; the twelve agents then pass sideways (swipe on a phone).

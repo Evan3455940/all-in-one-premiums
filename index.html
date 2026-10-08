@@ -20,6 +20,9 @@
   // Motion is on unless the visitor asked for less; the scripts below switch it off again if they fail to load.
   document.documentElement.classList.add('js');
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('no-motion');
+  // The scroll film runs on a wide screen with a mouse. Phones, tablets and touch screens get the calm page:
+  // every scene paints its own colour and nothing moves with the scroll.
+  document.documentElement.classList.add(window.matchMedia && matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)').matches ? 'film' : 'calm');
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -61,6 +64,10 @@ p{margin:0}
 .tone-light{--fg:#0D0B0C;--fg2:rgba(13,11,12,.68);--fg3:rgba(13,11,12,.5);--rule:rgba(13,11,12,.15);--rule2:rgba(13,11,12,.08)}
 .tone-ox{--fg:var(--ivory);--fg2:rgba(244,239,230,.76);--fg3:rgba(244,239,230,.55);--rule:rgba(244,239,230,.2);--rule2:rgba(244,239,230,.1)}
 .scene{position:relative;color:var(--fg)}
+/* each scene paints its own room; only the film on a desk lets one shared backdrop change colour behind them */
+.scene.tone-dark{background:var(--ink)}.scene.tone-light{background:var(--ivory)}.scene.tone-ox{background:var(--ox)}
+.scene.tone-dark.foot{background:var(--ox)}
+.motion.film .scene{background:none}
 .backdrop{position:fixed;inset:0;z-index:-1;background:var(--ink)}
 .grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .93 0 0 0 0 .9 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
@@ -251,8 +258,8 @@ html.sheet-open .nav::before{opacity:0}
    ===================================================================== */
 .opening{position:relative}
 .op-sticky{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden}
-.motion .opening{height:330vh}
-.motion .op-sticky{position:sticky;top:0}
+.motion.film .opening{height:330vh}
+.motion.film .op-sticky{position:sticky;top:0}
 .giant{position:absolute;left:calc(var(--gut) - .06em);top:50%;z-index:1;margin:0;pointer-events:none;white-space:nowrap;transform:translateY(-54%);
   font-family:var(--serif);font-variation-settings:'opsz' 96;font-weight:400;font-size:clamp(84px,16.6vw,300px);line-height:.85;letter-spacing:-.05em}
 .giant-in{will-change:transform,opacity}
@@ -326,8 +333,8 @@ html.sheet-open .nav::before{opacity:0}
    ===================================================================== */
 .tgs{position:relative}
 .tgs-sticky{position:relative;min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(28px,4.5vw,96px);padding:calc(var(--nav-h) + 32px) var(--gut) 48px}
-.motion .tgs{height:290vh}
-.motion .tgs-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.motion.film .tgs{height:290vh}
+.motion.film .tgs-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .tgs-copy .h2{font-size:clamp(48px,5.4vw,98px)}
 .tgs-copy .lead{margin-top:26px}
 .tgs-buy{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:36px}
@@ -356,6 +363,11 @@ html.sheet-open .nav::before{opacity:0}
 .tgs-list li.on span{color:var(--cham)}
 .no-motion .tgs-list li{color:var(--fg)}
 .no-motion .chapter{display:none}
+.calm .callout,.calm .op-claim,.calm .au-fore,.calm .grain,.calm .chapter{display:none}
+/* calm automation: the word on top, the window right under it, a frame only as tall as both */
+.calm .au-sticky{--au-fs:clamp(90px,13vw,190px);--au-top:calc(var(--nav-h) + 28px);height:calc(var(--au-top) + var(--au-fs) * .86 + 600px * var(--k,.5) + 120px);min-height:0}
+.calm .au-word{top:var(--au-top);transform:none;font-size:var(--au-fs)}
+.calm .au-pos{left:50%;top:calc(var(--au-top) + var(--au-fs) * .86 + 52px + 300px * var(--k,.5))}
 .no-motion .au-word{opacity:.12}
 
 /* =====================================================================
@@ -363,8 +375,8 @@ html.sheet-open .nav::before{opacity:0}
    ===================================================================== */
 .au-intro{position:relative}
 .au-sticky{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden}
-.motion .au-intro{height:270vh}
-.motion .au-sticky{position:sticky;top:0}
+.motion.film .au-intro{height:270vh}
+.motion.film .au-sticky{position:sticky;top:0}
 .au-word{position:absolute;left:calc(var(--gut) - .05em);top:50%;margin:0;z-index:1;transform:translateY(-50%);white-space:nowrap;pointer-events:none;
   font-family:var(--serif);font-variation-settings:'opsz' 96;font-weight:400;font-size:clamp(80px,17.5vw,330px);line-height:.85;letter-spacing:-.05em;color:var(--ivory)}
 .au-stage{position:absolute;inset:0;z-index:2;perspective:1600px;perspective-origin:55% 45%;pointer-events:none}
@@ -568,8 +580,6 @@ html.sheet-open .nav::before{opacity:0}
 /* the layer labels need room; below this width the windows speak for themselves */
 @media (max-width:1199px){.callout{display:none}}
 @media (max-width:1023px){
-  .motion .opening{height:240vh}
-  .motion .au-intro{height:220vh}
   .chapter{display:none}
   .tgs-sticky{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"copy phone" "list phone";align-content:center}
   .tgs-copy{grid-area:copy}.tgs-stage{grid-area:phone}.tgs-list{grid-area:list;justify-self:start}
@@ -615,12 +625,10 @@ html.sheet-open .nav::before{opacity:0}
   .xs-copy{display:contents}
   .xs-copy>.meta{order:1}.xs-title{order:2}.xs-copy>.lead{order:3}.xs-visual{order:4;margin-top:40px}.feats{order:5}.buy{order:6}
   .tgs-sticky{grid-template-columns:1fr;grid-template-areas:"copy" "phone" "list";gap:40px;padding-top:calc(var(--nav-h) + 40px)}
-  .motion .tgs{height:auto}
-  .motion .tgs-sticky{position:relative;height:auto;overflow:visible}
   .tgs-stage{justify-self:center}
   .phone{width:280px;height:578px;border-radius:46px}
   .tgs-list li{font-size:22px}
-  .au-word{font-size:clamp(70px,23vw,140px);top:calc(var(--nav-h) + 6vh);transform:none}
+  .au-word{font-size:clamp(62px,20vw,130px);top:calc(var(--nav-h) + 6vh);transform:none}
   .au-pos{left:50%;top:62%}
   .au-fore{left:-160px;top:150px;width:320px}
   .au-notes{grid-template-columns:1fr}
@@ -635,6 +643,17 @@ html.sheet-open .nav::before{opacity:0}
   .closing .h2{font-size:clamp(100px,34vw,200px)}
   .tabs{width:100%;justify-content:space-between;gap:12px}
   .op-actions a{white-space:nowrap}
+  .promise{padding:104px var(--gut) 88px}
+  .promise-text{margin-bottom:56px}
+  .xs{padding:96px var(--gut) 88px}
+  .tgs-sticky{padding-top:96px;padding-bottom:80px}
+  .au-head{padding:64px var(--gut) 36px}
+  .au-notes{padding:44px var(--gut) 80px}
+  .plans{padding:96px var(--gut) 88px}
+  .order{padding:96px var(--gut) 80px}
+  .faq{padding:72px var(--gut) 88px}
+  .closing{padding:104px var(--gut) 80px}
+  .calm .au-sticky{--au-fs:clamp(62px,20vw,130px)}
 }
 @media (max-width:380px){
   .op-actions{column-gap:18px}
@@ -1486,12 +1505,6 @@ document.addEventListener('DOMContentLoaded', function () {
     .to('.op-lead, .op-index', { opacity: 1, duration: 1.2, stagger: 0.12 }, 0.9)
     .from('#nav', { opacity: 0, y: -12, duration: 1.2, clearProps: 'all' }, 0.6);
 
-  /* the room changes colour between scenes */
-  scenes.forEach(function (s, i) {
-    if (!i) return; var from = scenes[i - 1].getAttribute('data-bg'), to = s.getAttribute('data-bg'); if (from === to) return;
-    gsap.fromTo(backdrop, { backgroundColor: from }, { backgroundColor: to, ease: 'power2.inOut', immediateRender: false,
-      scrollTrigger: { trigger: s, start: 'top 64%', end: 'top 47%', scrub: true } });
-  });
   /* nav and the film counter take the tone of the scene under them */
   scenes.forEach(function (s) {
     ScrollTrigger.create({ trigger: s, start: 'top 57%', end: 'bottom 57%', onToggle: function (self) {
@@ -1515,7 +1528,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   ScrollTrigger.addEventListener('refresh', syncChapter);
 
-  /* masked headlines rise with the scroll */
+  /* calm: a masked headline rises once as it arrives, then stays put */
+  function revealLines(sel, trigger) {
+    gsap.fromTo($$(sel), { yPercent: 108 }, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08, scrollTrigger: { trigger: trigger, start: 'top 90%', once: true } });
+  }
+  /* film: masked headlines rise with the scroll */
   function scrubLines(sel, trigger, start, end) {
     $$(sel).forEach(function (s, i, all) {
       gsap.fromTo(s, { yPercent: 108 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: trigger, start: 'top ' + (start - i * 5) + '%', end: 'top ' + (end - i * 5) + '%', scrub: 0.7 } });
@@ -1523,14 +1540,71 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var mm = gsap.matchMedia();
-  mm.add({ desk: '(min-width: 1024px)', mob: '(max-width: 1023px)' }, function (ctx) {
-    var desk = ctx.conditions.desk;
-    root.classList.toggle('is-desk', !!desk);
+  mm.add({ film: '(min-width: 1024px) and (hover: hover) and (pointer: fine)', calm: '(max-width: 1023.98px), (hover: none), (pointer: coarse), (pointer: none)', narrow: '(max-width: 1023.98px)' }, function (ctx) {
+    var film = !!ctx.conditions.film, narrow = !!ctx.conditions.narrow;
+    root.classList.toggle('is-desk', film); root.classList.toggle('film', film); root.classList.toggle('calm', !film);
     fitAll();
+    var rig = $('#rig');
+    var upBar = $('#upBar'), upState = $('#upState'), tws = $$('#vText .tw'), tgItems = $$('#tgList li');
+    var tgLast = { u: -1, label: '', words: -1, idx: -2 };
+    function tgProgress(p) {
+      var u = Math.min(1, Math.max(0, (p - 0.1) / 0.42)), us = u.toFixed(3);
+      if (us !== tgLast.u) { tgLast.u = us; upBar.style.transform = 'scaleX(' + us + ')'; }
+      var label = u >= 1 ? 'Sent · 3.8 GB' : (u * 3.8).toFixed(1) + ' of 3.8 GB';
+      if (label !== tgLast.label) { tgLast.label = label; upState.textContent = label; }
+      var w = Math.min(1, Math.max(0, (p - 0.56) / 0.26)), words = Math.ceil(w * tws.length);
+      if (words !== tgLast.words) { tgLast.words = words; tws.forEach(function (t, i) { t.style.opacity = i < words ? 1 : 0.12; }); }
+      var idx = film ? Math.min(tgItems.length - 1, Math.floor(Math.max(0, p - 0.04) * tgItems.length * 1.12)) : tgItems.length - 1;
+      if (idx !== tgLast.idx) { tgLast.idx = idx; tgItems.forEach(function (li, i) { li.classList.toggle('on', i <= idx); }); }
+    }
+    var agents = $$('#auAgents li');
+    var agentsLast = -1;
+    function agentsOn(n) {
+      if (n === agentsLast) return; agentsLast = n;
+      agents.forEach(function (li, i) { var on = i < n; li.classList.toggle('on', on); $('em', li).textContent = on ? 'Running' : 'Ready'; });
+    }
+    ScrollTrigger.create({ trigger: '#xsCard', start: 'top 72%', onEnter: function () { $('#x').classList.add('drawn'); } });
+
+    if (!film) {
+      /* =================== CALM: phones, tablets, touch screens ===================
+         Nothing is held and nothing moves with the scroll: the scenes rest in their final
+         poses, headlines rise once, and the two product demos play once when they come into view. */
+      if (narrow) gsap.set(rig, { rotationX: 24, rotationY: -12, rotationZ: 5 });
+      gsap.set('#xsCard', { rotationY: narrow ? -5 : -9, rotationX: 3 });
+      gsap.set('#phone', { rotationY: -10, rotationX: 4 });
+      gsap.set('#auWin', { rotationX: 18, rotationY: 0 });
+      revealLines('#promiseText .ln > span', '#promiseText');
+      revealLines('#xsTitle .ln > span', '#xsTitle');
+      revealLines('#tgTitle .ln > span', '#tgTitle');
+      revealLines('#auWord .ln > span', '#auWord');
+      revealLines('#auTitle .ln > span', '#auTitle');
+      revealLines('#plansTitle .ln > span', '#plansTitle');
+      revealLines('#tp-x .p-num > span', '#tp-x');
+      revealLines('#beginTitle .ln > span', '#beginTitle');
+      /* Telegram: the 3.8 GB file goes through, then the voice note turns into text */
+      gsap.set(tws, { opacity: 0.12 }); tgProgress(0);
+      var demo = { p: 0 };
+      ScrollTrigger.create({ trigger: '#phone', start: 'top 72%', once: true, onEnter: function () {
+        gsap.to(demo, { p: 1, duration: 3.4, ease: 'power1.inOut', onUpdate: function () { tgProgress(demo.p); } });
+      } });
+      /* Automation: the agents switch on one after another */
+      agentsOn(0);
+      ScrollTrigger.create({ trigger: '#auWin', start: 'top 78%', once: true, onEnter: function () {
+        agents.forEach(function (li, i) { gsap.delayedCall(0.3 + i * 0.22, function () { agentsOn(i + 1); }); });
+      } });
+      return function () { root.classList.remove('is-desk'); };
+    }
+
+    /* =================== FILM: a desk with a mouse =================== */
+    /* the room changes colour between scenes */
+    scenes.forEach(function (s, i) {
+      if (!i) return; var from = scenes[i - 1].getAttribute('data-bg'), to = s.getAttribute('data-bg'); if (from === to) return;
+      gsap.fromTo(backdrop, { backgroundColor: from }, { backgroundColor: to, ease: 'power2.inOut', immediateRender: false,
+        scrollTrigger: { trigger: s, start: 'top 64%', end: 'top 47%', scrub: true } });
+    });
 
     /* ---------- 1 · OPENING: the window comes forward, then opens into its three layers ---------- */
-    var rig = $('#rig');
-    if (desk) {
+    {
       gsap.set(rig, { rotationY: -24, rotationX: 9, rotationZ: 1.2 });
       var op = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#opening', start: 'top top', end: 'bottom bottom', scrub: 1.1 } });
       op.to('#opFront', { opacity: 0, y: -40, duration: 0.16 }, 0)
@@ -1546,18 +1620,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .fromTo('#opClaim', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.14 }, 0.68)
         .to(rig, { y: -30, x: 30, duration: 0.18 }, 0.7)
         .to({}, { duration: 0.12 });
-    } else {
-      gsap.set(rig, { rotationX: 24, rotationY: -12, rotationZ: 5 });
-      /* the opened stack settles into the lower part of the frame, under the line that names it */
-      var settle = function () { var k = parseFloat(getComputedStyle(root).getPropertyValue('--k')) || 0.4; return window.innerHeight * 0.17 / k; };
-      var opm = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#opening', start: 'top top', end: 'bottom bottom', scrub: 0.8, invalidateOnRefresh: true } });
-      opm.to('#opFront', { opacity: 0, y: -24, duration: 0.18 }, 0)
-        .to('#giant', { opacity: 0.12, yPercent: -10, duration: 0.3 }, 0)
-        .to(rig, { rotationX: 54, rotationY: 0, rotationZ: -16, y: settle, duration: 0.45 }, 0.1)
-        .to('#lx', { z: 330, duration: 0.45 }, 0.15)
-        .to('#lext', { z: -330, duration: 0.45 }, 0.15)
-        .fromTo('#opClaim', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.16 }, 0.6)
-        .to({}, { duration: 0.2 });
     }
 
     /* ---------- 2 · PROMISE ---------- */
@@ -1569,53 +1631,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ---------- 3 · X PREMIUM: the profile turns toward you and earns its mark ---------- */
     scrubLines('#xsTitle .ln > span', '#xsTitle', 90, 58);
-    gsap.fromTo('#xsCard', { rotationY: desk ? 30 : 12, rotationX: desk ? 8 : 4, y: desk ? 80 : 40 }, { rotationY: desk ? -8 : -3, rotationX: -2, y: desk ? -40 : -10, ease: 'none',
+    gsap.fromTo('#xsCard', { rotationY: 30, rotationX: 8, y: 80 }, { rotationY: -8, rotationX: -2, y: -40, ease: 'none',
       scrollTrigger: { trigger: '#x', start: 'top bottom', end: 'bottom top', scrub: 1 } });
-    ScrollTrigger.create({ trigger: '#xsCard', start: 'top 72%', onEnter: function () { $('#x').classList.add('drawn'); } });
     gsap.fromTo('.feats li', { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'none', stagger: 0.12, scrollTrigger: { trigger: '.feats', start: 'top 92%', end: 'top 56%', scrub: 0.8 } });
 
     /* ---------- 4 · TELEGRAM: a file larger than a free account allows goes through ---------- */
-    scrubLines('#tgTitle .ln > span', desk ? '#telegram' : '#tgTitle', desk ? 80 : 90, desk ? 40 : 58);
-    var upBar = $('#upBar'), upState = $('#upState'), tws = $$('#vText .tw'), tgItems = $$('#tgList li');
+    scrubLines('#tgTitle .ln > span', '#telegram', 80, 40);
     gsap.set(tws, { opacity: 0.12 });
-    var tgLast = { u: -1, label: '', words: -1, idx: -2 };
-    function tgProgress(p) {
-      var u = Math.min(1, Math.max(0, (p - 0.1) / 0.42)), us = u.toFixed(3);
-      if (us !== tgLast.u) { tgLast.u = us; upBar.style.transform = 'scaleX(' + us + ')'; }
-      var label = u >= 1 ? 'Sent · 3.8 GB' : (u * 3.8).toFixed(1) + ' of 3.8 GB';
-      if (label !== tgLast.label) { tgLast.label = label; upState.textContent = label; }
-      var w = Math.min(1, Math.max(0, (p - 0.56) / 0.26)), words = Math.ceil(w * tws.length);
-      if (words !== tgLast.words) { tgLast.words = words; tws.forEach(function (t, i) { t.style.opacity = i < words ? 1 : 0.12; }); }
-      var idx = desk ? Math.min(tgItems.length - 1, Math.floor(Math.max(0, p - 0.04) * tgItems.length * 1.12)) : tgItems.length - 1;
-      if (idx !== tgLast.idx) { tgLast.idx = idx; tgItems.forEach(function (li, i) { li.classList.toggle('on', i <= idx); }); }
-    }
-    if (desk) {
-      gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#telegram', start: 'top top', end: 'bottom bottom', scrub: 1, onUpdate: function (s) { tgProgress(s.progress); } } })
-        .fromTo('#phone', { rotationY: -30, rotationX: 10, y: 50 }, { rotationY: 22, rotationX: -4, y: -30, duration: 1 }, 0);
-    } else {
-      gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#phone', start: 'top 95%', end: 'bottom 25%', scrub: 0.8, onUpdate: function (s) { tgProgress(s.progress); } } })
-        .fromTo('#phone', { rotationY: -14, rotationX: 8 }, { rotationY: 10, rotationX: -2, duration: 1 }, 0);
-    }
+    gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#telegram', start: 'top top', end: 'bottom bottom', scrub: 1, onUpdate: function (s) { tgProgress(s.progress); } } })
+      .fromTo('#phone', { rotationY: -30, rotationX: 10, y: 50 }, { rotationY: 22, rotationX: -4, y: -30, duration: 1 }, 0);
     tgProgress(0);
 
     /* ---------- 5 · AUTOMATION: the extension arrives from deep space, an agent crosses the lens ---------- */
-    var agents = $$('#auAgents li');
-    var agentsLast = -1;
-    function agentsOn(n) {
-      if (n === agentsLast) return; agentsLast = n;
-      agents.forEach(function (li, i) { var on = i < n; li.classList.toggle('on', on); $('em', li).textContent = on ? 'Running' : 'Ready'; });
-    }
     gsap.set('#auWin', { z: -1700, rotationX: 36, rotationY: 14, y: 140 });
     var au = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#auIntro', start: 'top top', end: 'bottom bottom', scrub: 1,
       onUpdate: function (s) { agentsOn(Math.max(0, Math.round((s.progress - 0.45) / 0.45 * agents.length))); } } });
     au.fromTo('#auWord .ln > span', { yPercent: 108 }, { yPercent: 0, duration: 0.16 }, 0)
-      .to('#auWin', { z: 0, rotationX: desk ? 7 : 24, rotationY: desk ? -14 : 0, y: desk ? 0 : 40, duration: 0.46 }, 0.12)
+      .to('#auWin', { z: 0, rotationX: 7, rotationY: -14, y: 0, duration: 0.46 }, 0.12)
       .to('#auWord', { opacity: 0.1, scale: 0.94, duration: 0.3 }, 0.32)
-      .fromTo('#auFore', { x: desk ? 1100 : 700, z: 320, rotationY: -20, y: desk ? 0 : 60 }, { x: desk ? -1000 : -700, z: 420, rotationY: -6, y: desk ? -30 : 40, duration: 0.42 }, 0.5)
+      .fromTo('#auFore', { x: 1100, z: 320, rotationY: -20, y: 0 }, { x: -1000, z: 420, rotationY: -6, y: -30, duration: 0.42 }, 0.5)
       .to({}, { duration: 0.08 });
     scrubLines('#auTitle .ln > span', '#auTitle', 92, 60);
 
-    if (desk) {
+    {
       var track = $('#agentsTrack'), wrap = $('#railWrap');
       var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
       var sizeRail = function () { wrap.style.setProperty('--rail-h', (dist() + window.innerHeight) + 'px'); };

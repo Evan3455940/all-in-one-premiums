@@ -76,6 +76,10 @@ The room behind the page is one fixed backdrop whose colour is scrubbed between 
 - Interface feedback stays under 300ms; scroll scenes are tied to the scroll, not timed.
 - Only transform and opacity animate. `prefers-reduced-motion` turns the film off and shows every scene in its final state; so does a failed script load.
 
+## Calm mode (phones, tablets, touch screens)
+
+The scroll film runs only on a screen at least 1024px wide with a mouse (`(min-width:1024px) and (hover:hover) and (pointer:fine)`); the page gets the class `film`. Everything else gets `calm`, decided in the head before the first paint. In calm mode nothing is held on screen and nothing moves with the scroll: each scene paints its own colour (ink, ivory, oxblood, the footer oxblood), the windows rest in their final poses, headlines rise once as they arrive, the Telegram upload and the agents switching on each play once when they come into view, and the Automation word sits above its window in a frame only as tall as both. No layer labels, no crossing agent card, no grain, no film counter. Phones also get tighter section padding. This was asked for after the owner found the film too busy and jumpy on a phone; keep it this way.
+
 ## Components
 
 - Buttons: rectangles with a 2px radius, 52 to 54px tall. Oxblood on dark scenes, ink on ivory, ivory on oxblood.
